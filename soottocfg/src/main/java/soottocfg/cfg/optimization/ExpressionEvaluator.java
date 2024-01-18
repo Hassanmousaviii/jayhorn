@@ -10,9 +10,7 @@ import soottocfg.cfg.expression.IteExpression;
 import soottocfg.cfg.expression.TupleAccessExpression;
 import soottocfg.cfg.expression.UnaryExpression;
 import soottocfg.cfg.expression.UnaryExpression.UnaryOperator;
-import soottocfg.cfg.expression.literal.BooleanLiteral;
-import soottocfg.cfg.expression.literal.IntegerLiteral;
-import soottocfg.cfg.expression.literal.NullLiteral;
+import soottocfg.cfg.expression.literal.*;
 import soottocfg.cfg.variable.Variable;
 import soottocfg.cfg.type.Type;
 import soottocfg.cfg.type.IntType;
@@ -36,6 +34,10 @@ public class ExpressionEvaluator {
 		} else if (e instanceof IdentifierExpression) {
 			return e;
 		} else if (e instanceof IntegerLiteral) {
+			return e;
+		} else if (e instanceof DoubleLiteral) {
+			return e;
+		} else if (e instanceof FloatLiteral) {
 			return e;
 		} else if (e instanceof IteExpression) {
 			return simplify((IteExpression) e);

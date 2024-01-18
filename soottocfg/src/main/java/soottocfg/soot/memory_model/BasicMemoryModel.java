@@ -34,17 +34,13 @@ import soottocfg.Options;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.expression.Expression;
 import soottocfg.cfg.expression.IdentifierExpression;
+import soottocfg.cfg.expression.literal.DoubleLiteral;
 import soottocfg.cfg.expression.literal.IntegerLiteral;
 import soottocfg.cfg.expression.literal.NullLiteral;
 import soottocfg.cfg.expression.literal.StringLiteral;
 import soottocfg.cfg.method.Method;
 import soottocfg.cfg.statement.CallStatement;
-import soottocfg.cfg.type.BoolType;
-import soottocfg.cfg.type.IntType;
-import soottocfg.cfg.type.StringType;
-import soottocfg.cfg.type.ReferenceType;
-import soottocfg.cfg.type.Type;
-import soottocfg.cfg.type.TypeType;
+import soottocfg.cfg.type.*;
 import soottocfg.cfg.variable.ClassVariable;
 import soottocfg.cfg.variable.Variable;
 import soottocfg.soot.util.SootTranslationHelpers;
@@ -162,9 +158,14 @@ public abstract class BasicMemoryModel extends MemoryModel {
 		if (!constantDictionary.containsKey(arg0)) {
 			constantDictionary.put(arg0, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
 					"$double" + constantDictionary.size(), lookupType(arg0.getType())));
+			putExpression(constantDictionary.get(arg0),
+					new DoubleLiteral(statementSwitch.getCurrentLoc(), arg0.value));
 		}
 		return new IdentifierExpression(this.statementSwitch.getCurrentLoc(), constantDictionary.get(arg0));
 	}
+
+
+		//return new StringLiteral(this.statementSwitch.getCurrentLoc(), constantDictionary.get(arg0), arg0.value);
 
 	/*
 	 * (non-Javadoc)
@@ -209,9 +210,9 @@ public abstract class BasicMemoryModel extends MemoryModel {
 			} else if (t instanceof soot.CharType) {
 				type = IntType.instance();
 			} else if (t instanceof soot.DoubleType) {
-				type = IntType.instance();
+				type = DoubleType.instance();
 			} else if (t instanceof soot.FloatType) {
-				type = IntType.instance();
+				type = FloatType.instance();
 			} else if (t instanceof soot.IntType) {
 				type = IntType.instance();
 			} else if (t instanceof soot.LongType) {

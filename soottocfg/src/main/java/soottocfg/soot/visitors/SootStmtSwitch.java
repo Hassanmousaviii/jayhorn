@@ -26,22 +26,7 @@ import java.util.List;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Verify;
 
-import soot.ArrayType;
-import soot.Body;
-import soot.Local;
-import soot.PatchingChain;
-import soot.RefType;
-import soot.IntType;
-import soot.ByteType;
-import soot.CharType;
-import soot.ShortType;
-import soot.LongType;
-import soot.BooleanType;
-import soot.SootClass;
-import soot.SootMethod;
-import soot.Unit;
-import soot.Value;
-import soot.Type;
+import soot.*;
 import soot.jimple.Jimple;
 import soot.jimple.AnyNewExpr;
 import soot.jimple.AssignStmt;
@@ -75,6 +60,7 @@ import soottocfg.cfg.SourceLocation;
 import soottocfg.cfg.expression.*;
 import soottocfg.cfg.expression.BinaryExpression.BinaryOperator;
 import soottocfg.cfg.expression.UnaryExpression.UnaryOperator;
+import soottocfg.cfg.expression.literal.DoubleLiteral;
 import soottocfg.cfg.expression.literal.IntegerLiteral;
 import soottocfg.cfg.expression.literal.BooleanLiteral;
 import soottocfg.cfg.expression.literal.StringLiteral;
@@ -962,6 +948,10 @@ public class SootStmtSwitch implements StmtSwitch {
 			translateNondetString(RefType.v(), optionalLhs, call);
 			return true;
 
+		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: double nondetDouble()>")) {
+			translateRandomNondet(DoubleType.v(), optionalLhs, call,true, Double.doubleToLongBits(Double.MIN_VALUE),Double.doubleToLongBits(Double.MAX_VALUE));
+		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: float nondetFloat()>")) {
+		translateRandomNondet(FloatType.v(), optionalLhs, call,true, Float.floatToIntBits(Float.MIN_VALUE),Float.floatToIntBits(Float.MAX_VALUE));
 		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: void assume(boolean)>")) {
 			Verify.verify(optionalLhs == null);
 			Verify.verify(call.getArgCount() == 1);
@@ -1050,10 +1040,10 @@ public class SootStmtSwitch implements StmtSwitch {
 										loc, BinaryOperator.And,
 										new BinaryExpression(
 												loc, BinaryOperator.Le,
-												new IntegerLiteral(loc, lower), idLhs),
+												!(t instanceof DoubleType) ? new IntegerLiteral(loc, lower) : new DoubleLiteral(loc, lower), idLhs),
 										new BinaryExpression(
 												loc, BinaryOperator.Le,
-												idLhs, new IntegerLiteral(loc, upper)))));
+												idLhs, !(t instanceof DoubleType) ? new IntegerLiteral(loc, upper) : new DoubleLiteral(loc, upper)))));
 		}
 	}
 

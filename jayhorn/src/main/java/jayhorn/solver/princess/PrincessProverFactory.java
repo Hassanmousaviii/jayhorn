@@ -1,20 +1,20 @@
 package jayhorn.solver.princess;
 
-import jayhorn.solver.Prover;
-import jayhorn.solver.ProverADT;
-import jayhorn.solver.ProverFactory;
-import jayhorn.solver.StringADTFactory;
+import jayhorn.solver.*;
 
 public class PrincessProverFactory implements ProverFactory {
 
 	private final StringADTFactory stringADTFactory;
+	private final FloatingPointADTFactory floatingPointADTFactory;
 
 	public PrincessProverFactory() {
 		this.stringADTFactory = new PrincessStringADTFactory();
+		this.floatingPointADTFactory = new PrincessFloatingPointADTFactory();
 	}
 
-	public PrincessProverFactory(StringADTFactory stringADTFactory) {
+	public PrincessProverFactory(StringADTFactory stringADTFactory, FloatingPointADTFactory floatingPointADTFactory) {
 		this.stringADTFactory = stringADTFactory;
+		this.floatingPointADTFactory = floatingPointADTFactory;
 	}
 
 	@Override
@@ -32,4 +32,8 @@ public class PrincessProverFactory implements ProverFactory {
 		return stringADTFactory.spawnStringADT();
 	}
 
+	@Override
+	public ProverADT spawnFloatingPointADT(PrincessFloatingPointType.Precision precision) {
+		return floatingPointADTFactory.spawnFloatingPointADT(precision);
+	}
 }

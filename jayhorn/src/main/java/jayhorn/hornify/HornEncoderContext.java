@@ -191,10 +191,12 @@ public class HornEncoderContext {
         }
     }
 
-    public HornEncoderContext(Prover p, Program prog, ProverADT stringADT, int explicitHeapSize, GeneratedAssertions generatedAssertions) {
+    public HornEncoderContext(Prover p, Program prog, ProverADT stringADT, ProverADT singleFlotingPointADT, ProverADT doubleFloatingPointADT, int explicitHeapSize, GeneratedAssertions generatedAssertions) {
         this.program = prog;
         this.p = p;
         HornHelper.hh().setStringADT(stringADT);
+        HornHelper.hh().setSingleFloatingPointADT(singleFlotingPointADT);
+        HornHelper.hh().setDoubleFloatingPointADT(doubleFloatingPointADT);
         this.explicitHeapSize = explicitHeapSize;
         this.genAssertions = generatedAssertions;
         for (ClassVariable var : program.getTypeGraph().vertexSet()) {

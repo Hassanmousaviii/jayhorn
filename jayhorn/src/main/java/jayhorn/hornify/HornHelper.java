@@ -21,6 +21,10 @@ public class HornHelper {
 	private static HornHelper hh;
 
 	private ProverADT stringADT;
+
+	private ProverADT singleFloatingPointADT;
+
+	private ProverADT doubleFloatingPointADT;
 	
 	public static void resetInstance() {
 		hh = null;
@@ -39,9 +43,23 @@ public class HornHelper {
 	public void setStringADT(ProverADT stringADT) {
 		this.stringADT = stringADT;
 	}
+	public void setSingleFloatingPointADT(ProverADT singleFloatingPointADT) {
+		this.singleFloatingPointADT = singleFloatingPointADT;
+	}
+	public void setDoubleFloatingPointADT(ProverADT doubleFloatingPointADT) {
+		this.doubleFloatingPointADT = doubleFloatingPointADT;
+	}
 
 	public ProverADT getStringADT() {
 		return stringADT;
+	}
+
+	public ProverADT getSingleFloatingPointADT() {
+		return singleFloatingPointADT;
+	}
+
+	public ProverADT getDoubleFloatingPointADT() {
+		return doubleFloatingPointADT;
 	}
 
 	/**
@@ -60,6 +78,18 @@ public class HornHelper {
 			if (stringADT == null)
 				throw new RuntimeException("stringADT is not set");
 			return stringADT.getType(0);
+		}
+		if (t == FloatType.instance())
+		{
+			if(singleFloatingPointADT == null)
+				throw new RuntimeException("singleFloatingPointADT is not set");
+			return singleFloatingPointADT.getType(0);
+		}
+		if (t == DoubleType.instance())
+		{
+			if(doubleFloatingPointADT == null)
+				throw new RuntimeException("doubleFloatingPointADT is not set");
+			return doubleFloatingPointADT.getType(0);
 		}
 		if (t == BoolType.instance()) {
 			return p.getBooleanType();

@@ -15,6 +15,7 @@ import jayhorn.solver.Prover;
 import jayhorn.solver.ProverFactory;
 import jayhorn.solver.ProverFun;
 import jayhorn.solver.ProverHornClause;
+import jayhorn.solver.princess.PrincessFloatingPointType;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.method.Method;
 
@@ -51,8 +52,9 @@ public class Hornify {
                                      HornEncoderContext.GeneratedAssertions generatedAssertions){
 		prover = factory.spawn();
 		prover.setHornLogic(true);
+
 		
-		HornEncoderContext hornContext = new HornEncoderContext(prover, program, factory.spawnStringADT(), explicitHeapSize, generatedAssertions);
+		HornEncoderContext hornContext = new HornEncoderContext(prover, program, factory.spawnStringADT(), factory.spawnFloatingPointADT(PrincessFloatingPointType.Precision.Single), factory.spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double), explicitHeapSize, generatedAssertions);
 
 		Log.info("Transform Program Methods into Horn Clauses ... ");
 

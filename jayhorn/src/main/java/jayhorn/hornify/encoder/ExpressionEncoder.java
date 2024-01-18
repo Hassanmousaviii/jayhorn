@@ -43,6 +43,12 @@ public class ExpressionEncoder {
 
 	private final StringEncoder stringEncoder;
 
+	private final FloatingPointEncoder singleFloatingPointEnCoder;
+
+	private final FloatingPointEncoder doubleFloatingPointEnCoder;
+
+	//private final F
+
 	/**
 	 * 
 	 */
@@ -50,11 +56,18 @@ public class ExpressionEncoder {
 		this.p = p;
 		this.hornContext = hornContext;
 		this.stringEncoder = new StringEncoder(p, HornHelper.hh().getStringADT());
+		this.singleFloatingPointEnCoder = new FloatingPointEncoder(p,HornHelper.hh().getSingleFloatingPointADT(), FloatingPointEncoder.Precision.Single);
+		this.doubleFloatingPointEnCoder = new FloatingPointEncoder(p,HornHelper.hh().getDoubleFloatingPointADT(), FloatingPointEncoder.Precision.Double);
+
 	}
 
 	public StringEncoder getStringEncoder() {
 		return stringEncoder;
 	}
+
+	public FloatingPointEncoder getSingleFloatingPointEnCoder(){return singleFloatingPointEnCoder;}
+
+	public FloatingPointEncoder getDoubleFloatingPointEnCoder(){return doubleFloatingPointEnCoder;}
 
 	public HornEncoderContext getContext() {
 		return this.hornContext;

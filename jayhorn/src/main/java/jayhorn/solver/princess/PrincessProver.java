@@ -49,6 +49,7 @@ import ap.terfor.preds.Predicate;
 import ap.theories.ADT;
 import ap.theories.ADT$;
 import ap.theories.ADT.ADTProxySort;
+import ap.theories.bitvectors.ModuloArithmetic;
 import ap.theories.ADT.TermMeasure$;
 import ap.theories.ADT.CtorSignature;
 import ap.theories.ADT.CtorArgSort;
@@ -61,10 +62,14 @@ import ap.types.Sort.Integer$;
 import jayhorn.Log;
 import jayhorn.Options;
 import jayhorn.solver.*;
+import jdk.nashorn.internal.runtime.BitVector;
+import lazabs.GlobalParameters$;
+import lazabs.ast.ASTree;
 import lazabs.horn.bottomup.HornClauses;
 import lazabs.horn.bottomup.HornClauses.Clause;
 import lazabs.horn.bottomup.SimpleWrapper;
 import lazabs.horn.bottomup.Util.Dag;
+import lazabs.viewer.HornPrinter$;
 import scala.Tuple2;
 import scala.collection.Iterator;
 import scala.collection.Seq;
@@ -74,16 +79,28 @@ import scala.collection.immutable.Set;
 import scala.collection.mutable.ArrayBuffer;
 import scala.collection.mutable.HashSet;
 import scala.util.Either;
+import soottocfg.ast.Absyn.Constant;
+
 
 public class PrincessProver implements Prover {
 
 	private SimpleAPI api;
+    ConstantTerm s = ModuloArithmetic.UnsignedBVSort$.MODULE$.apply(9).newConstant("bvf");
+   // ASTree.BVadd
 
-	public PrincessProver() {
+
+
+//BitVector bv = new BitVector(8);
+   /* public void setBvSort$(ModuloArithmetic.UnsignedBVSort$ bvSort$) {
+        this.bvSort$ = bvSort$;
+    }*/
+
+    public PrincessProver() {
 		ap.util.Debug.enableAllAssertions(false);
 		api = SimpleAPI.spawnNoSanitise();
 		// api = SimpleAPI.spawnWithScalaLog();
 		// api = SimpleAPI.spawnWithAssertions();
+
 	}
 
 	public PrincessProver(String basename) {
@@ -166,6 +183,7 @@ public class PrincessProver implements Prover {
                                                         type2Sort(type)),
                                     type);
             }
+
 	}
 
     protected static ProverType sort2Type(Sort sort) {
@@ -186,7 +204,10 @@ public class PrincessProver implements Prover {
             return ((PrincessADTType)type).sort;
         } else if (type instanceof ArrayType) {
             return new ArraySort (((ArrayType)type).arity);
+        } else if(type instanceof BitVectorType){
+            return ModuloArithmetic.UnsignedBVSort$.MODULE$.apply(((BitVectorType) type).arity);
         }
+
         throw new IllegalArgumentException();
     }
 
@@ -295,6 +316,8 @@ public class PrincessProver implements Prover {
 		final ArrayBuffer<IFormula> argsBuf = new ArrayBuffer<IFormula>();
 		for (int i = 0; i < args.length; ++i)
 			argsBuf.$plus$eq(((PrincessProverExpr) args[i]).toFormula());
+
+
 		return new FormulaExpr(IExpression$.MODULE$.and(argsBuf));
 	}
 
@@ -333,6 +356,7 @@ public class PrincessProver implements Prover {
 	}
 
 	public ProverExpr mkPlus(ProverExpr left, ProverExpr right) {
+       //ap.theories.bitvectors.ModuloArithmetic.bvadd() //ap.theories.bitvectors.ModuloArithmetic.bv_add();
 		return new TermExpr(new IPlus(((TermExpr) left).term, ((TermExpr) right).term), getIntType());
 	}
 
@@ -529,7 +553,8 @@ public class PrincessProver implements Prover {
             clauses.$plus$eq(clause.clause);
 
         lazabs.GlobalParameters$.MODULE$.get().assertions_$eq(false);
-				
+        //GlobalParameters$.MODULE$.get().set
+
         if (Options.v().solution) {
                                 	               	
             final Either<Map<Predicate, IFormula>, Dag<Tuple2<IAtom, Clause>>> result =

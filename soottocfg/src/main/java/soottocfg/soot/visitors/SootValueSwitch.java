@@ -96,6 +96,7 @@ import soottocfg.cfg.expression.IteExpression;
 import soottocfg.cfg.expression.UnaryExpression;
 import soottocfg.cfg.expression.UnaryExpression.UnaryOperator;
 import soottocfg.cfg.expression.literal.BooleanLiteral;
+import soottocfg.cfg.expression.literal.DoubleLiteral;
 import soottocfg.cfg.expression.literal.IntegerLiteral;
 import soottocfg.cfg.expression.literal.StringLiteral;
 import soottocfg.cfg.variable.ClassVariable;
@@ -238,7 +239,11 @@ public class SootValueSwitch implements JimpleValueSwitch {
 
 	@Override
 	public void caseDoubleConstant(DoubleConstant arg0) {
-		this.expressionStack.add(this.memoryModel.mkDoubleConstant(arg0));
+		this.expressionStack.add( new DoubleLiteral(statementSwitch.getCurrentLoc(),SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+						"$Double(" + arg0.value + ")",
+						SootTranslationHelpers.v().getMemoryModel().lookupType(soot.DoubleType.v())), arg0.value)
+				//this.memoryModel.mkDoubleConstant(arg0)
+		);
 
 	}
 

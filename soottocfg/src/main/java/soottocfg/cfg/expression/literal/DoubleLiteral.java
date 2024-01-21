@@ -7,22 +7,30 @@ import soottocfg.cfg.type.DoubleType;
 import soottocfg.cfg.type.IntType;
 import soottocfg.cfg.type.Type;
 import soottocfg.cfg.variable.Variable;
+import soottocfg.soot.util.SootTranslationHelpers;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class DoubleLiteral extends Expression implements Literal{
+public class DoubleLiteral extends IdentifierExpression{
     private static final long serialVersionUID = 7913206010686231183L;
 
     private final Double value;
 
-    private static final DoubleLiteral one = new DoubleLiteral(null, 1.0);
-    private static final DoubleLiteral zero = new DoubleLiteral(null, 0.0);
-    private static final DoubleLiteral minusOne = new DoubleLiteral(null, -1.0);
+    private static final DoubleLiteral one = new DoubleLiteral(null, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+            "$Double(" + 1.0 + ")",
+            SootTranslationHelpers.v().getMemoryModel().lookupType(soot.DoubleType.v())),1.0);
+    private static final DoubleLiteral zero = new DoubleLiteral(null, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+            "$Double(" + 0.0 + ")",
+            SootTranslationHelpers.v().getMemoryModel().lookupType(soot.DoubleType.v())),0.0);
+    private static final DoubleLiteral minusOne = new DoubleLiteral(null, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+            "$Double(" + -1.0 + ")",
+            SootTranslationHelpers.v().getMemoryModel().lookupType(soot.DoubleType.v())),-1.0);
 
     public static DoubleLiteral one() {
-        return one;
+         return one;
     }
 
     public static DoubleLiteral zero() {
@@ -33,12 +41,12 @@ public class DoubleLiteral extends Expression implements Literal{
         return minusOne;
     }
 
-    public DoubleLiteral(SourceLocation loc,Double value) {
-        super(loc);
+    public DoubleLiteral(SourceLocation loc,Variable variable,@Nullable Double value) {
+        super(loc,variable);
         this.value = value; //Long.valueOf(value);
     }
-    public DoubleLiteral(SourceLocation loc, Long value) {
-        super(loc);
+    public DoubleLiteral(SourceLocation loc,Variable variable,@Nullable Long value) {
+        super(loc, variable);
         this.value = Double.longBitsToDouble(value); //Long.valueOf(value);
     }
 
@@ -84,12 +92,12 @@ public class DoubleLiteral extends Expression implements Literal{
     }
 
     @Override
-    public Expression substitute(Map<Variable, Variable> subs) {
+    public IdentifierExpression substitute(Map<Variable, Variable> subs) {
         return this;
     }
 
     @Override
-    public Expression substituteVarWithExpression(Map<Variable, Expression> subs) {
+    public IdentifierExpression substituteVarWithExpression(Map<Variable, Expression> subs) {
         return this;
     }
 

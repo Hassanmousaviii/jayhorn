@@ -159,6 +159,7 @@ public class SootToCfg {
 
 		// now set the entry points.
 		Method m = program.lookupMethod(mainMethod.getSignature());
+
 		program.setEntryPoint(m);
 		m.isProgramEntryPoint(true);
 

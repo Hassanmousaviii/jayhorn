@@ -159,9 +159,10 @@ public abstract class BasicMemoryModel extends MemoryModel {
 			constantDictionary.put(arg0, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
 					"$double" + constantDictionary.size(), lookupType(arg0.getType())));
 			putExpression(constantDictionary.get(arg0),
-					new DoubleLiteral(statementSwitch.getCurrentLoc(), arg0.value));
+					new DoubleLiteral(statementSwitch.getCurrentLoc(), constantDictionary.get(arg0), arg0.value));
 		}
-		return new IdentifierExpression(this.statementSwitch.getCurrentLoc(), constantDictionary.get(arg0));
+		return new DoubleLiteral(this.statementSwitch.getCurrentLoc(), constantDictionary.get(arg0),arg0.value);
+				//new IdentifierExpression(this.statementSwitch.getCurrentLoc(), constantDictionary.get(arg0));
 	}
 
 
@@ -248,6 +249,11 @@ public abstract class BasicMemoryModel extends MemoryModel {
 			if (typeSootClass.equals(Scene.v().getSootClass("java.lang.String"))) {
 				LinkedHashMap<String, Type> elementTypes = ReferenceType.mkDefaultElementTypes();
 				elementTypes.put("$String", StringType.instance());
+				return new ReferenceType(lookupClassVariable(SootTranslationHelpers.v().getClassConstant(t)), elementTypes);
+			}
+			if (typeSootClass.equals(Scene.v().getSootClass("java.lang.Double"))) {
+				LinkedHashMap<String, Type> elementTypes = ReferenceType.mkDefaultElementTypes();
+				elementTypes.put("$Double", DoubleType.instance());
 				return new ReferenceType(lookupClassVariable(SootTranslationHelpers.v().getClassConstant(t)), elementTypes);
 			}
 			return new ReferenceType(lookupClassVariable(SootTranslationHelpers.v().getClassConstant(t)));

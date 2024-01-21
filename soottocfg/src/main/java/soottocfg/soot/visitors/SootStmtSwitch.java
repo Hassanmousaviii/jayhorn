@@ -1040,10 +1040,10 @@ public class SootStmtSwitch implements StmtSwitch {
 										loc, BinaryOperator.And,
 										new BinaryExpression(
 												loc, BinaryOperator.Le,
-												!(t instanceof DoubleType) ? new IntegerLiteral(loc, lower) : new DoubleLiteral(loc, lower), idLhs),
+												!(t instanceof DoubleType) ? new IntegerLiteral(loc, lower) : new DoubleLiteral(loc,idLhs.getVariable(), lower),idLhs),
 										new BinaryExpression(
 												loc, BinaryOperator.Le,
-												idLhs, !(t instanceof DoubleType) ? new IntegerLiteral(loc, upper) : new DoubleLiteral(loc, upper)))));
+												idLhs, !(t instanceof DoubleType) ? new IntegerLiteral(loc, upper) : new DoubleLiteral(loc,idLhs.getVariable() ,upper)))));
 		}
 	}
 
@@ -1142,6 +1142,7 @@ public class SootStmtSwitch implements StmtSwitch {
 				if (left instanceof IdentifierExpression && right instanceof StringLiteral) { // TODO: find a better way
 					SootTranslationHelpers.v().getMemoryModel().putExpression(((IdentifierExpression) left).getVariable(), right);
 				}
+
 				currentBlock.addStatement(
 						new AssignStatement(SootTranslationHelpers.v().getSourceLocation(def), left, right));
 			}

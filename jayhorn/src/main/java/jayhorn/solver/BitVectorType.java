@@ -4,7 +4,6 @@ public class BitVectorType implements ProverType{
     public final int arity;
 
 
-
     public BitVectorType(int arity) {
         this.arity = arity;
     }

@@ -15,6 +15,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import ap.basetypes.IdealInt;
 import com.google.common.base.Verify;
 
 import ap.DialogUtil$;
@@ -116,6 +117,9 @@ public class PrincessProver implements Prover {
 	public ProverType getIntType() {
 		return IntType.INSTANCE;
 	}
+    public ProverType getBVType(int arity){
+        return new BitVectorType(arity);
+    }
 
 	public ProverType getArrayType(ProverType[] argTypes, ProverType resType) {
 		return new ArrayType(argTypes.length);
@@ -351,9 +355,15 @@ public class PrincessProver implements Prover {
 		return new TermExpr(new IIntLit(IdealInt$.MODULE$.apply(value)), getIntType());
 	}
 
+
 	public ProverExpr mkLiteral(BigInteger value) {
 		return new TermExpr(new IIntLit(IdealInt$.MODULE$.apply(value.toString())), getIntType());
 	}
+    public ProverExpr mkBVLiteral(BigInteger value, int bitLength)
+    {
+        //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bv(bitLength, IdealInt$.MODULE$.apply(value)), getBVType(bitLength));
+    }
 
 	public ProverExpr mkPlus(ProverExpr left, ProverExpr right) {
        //ap.theories.bitvectors.ModuloArithmetic.bvadd() //ap.theories.bitvectors.ModuloArithmetic.bv_add();

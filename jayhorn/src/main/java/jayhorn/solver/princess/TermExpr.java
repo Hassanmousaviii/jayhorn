@@ -9,6 +9,7 @@ import ap.parser.IFormula;
 import ap.parser.IIntLit;
 import ap.parser.ITerm;
 import ap.basetypes.IdealInt$;
+import jayhorn.solver.BitVectorType;
 import jayhorn.solver.IntType;
 import jayhorn.solver.BoolType;
 import jayhorn.solver.ProverType;
@@ -34,7 +35,9 @@ class TermExpr extends PrincessProverExpr {
                 return "false";
             else
                 return SimpleAPI$.MODULE$.pp(toFormula());
-        } else {
+        } else if (type instanceof BitVectorType) {
+			return type.toString();
+		} else {
             throw new IllegalArgumentException
                 ("Don't know what to do with type " + type);
         }

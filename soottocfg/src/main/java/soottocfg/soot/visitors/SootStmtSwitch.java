@@ -793,6 +793,17 @@ public class SootStmtSwitch implements StmtSwitch {
 //				// ignore for now
 //			}
 		}
+		if (methodSignature.contains("<java.lang.Double: java.lang.Double valueOf(double)>") ||
+				methodSignature.contains("<java.lang.Double: java.lang.Float valueOf(float)>")) {
+			assert (call instanceof StaticInvokeExpr);
+			if (optionalLhs != null) {
+				Expression itemExpr = valueToExpr(call.getArg(0));
+				Expression lhs = valueToExpr(optionalLhs);
+				//Expression rhs = new  new BinaryExpression(srcLoc, BinaryOperator.ToString, itemExpr, lhs);
+				currentBlock.addStatement(new AssignStatement(srcLoc, lhs, itemExpr));
+			} // else: ignore
+			return true;
+		}
 		if (methodSignature.contains("<java.lang.System: void exit(int)>") ||
 				methodSignature.contains("<java.lang.Runtime: void halt(int)>")) {
 			// TODO: this is not sufficient for interprocedural analysis.

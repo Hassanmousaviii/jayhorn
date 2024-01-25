@@ -24,10 +24,7 @@ import soottocfg.cfg.expression.IdentifierExpression;
 import soottocfg.cfg.expression.IteExpression;
 import soottocfg.cfg.expression.TupleAccessExpression;
 import soottocfg.cfg.expression.UnaryExpression;
-import soottocfg.cfg.expression.literal.BooleanLiteral;
-import soottocfg.cfg.expression.literal.IntegerLiteral;
-import soottocfg.cfg.expression.literal.NullLiteral;
-import soottocfg.cfg.expression.literal.StringLiteral;
+import soottocfg.cfg.expression.literal.*;
 import soottocfg.cfg.type.ReferenceType;
 import soottocfg.cfg.variable.ClassVariable;
 import soottocfg.cfg.variable.Variable;
@@ -119,6 +116,14 @@ public class ExpressionEncoder {
 //			stringEncoder.assertStringLiteral(ref, ste, (ReferenceType)e.getType());
 //			return ref;
 			return p.mkTupleUpdate(ref, 3, str);
+
+		} else if (e instanceof DoubleLiteral) {
+			DoubleLiteral doubleLiteral = (DoubleLiteral) e;
+			ProverExpr dble = doubleFloatingPointEnCoder.mkDoublePE(doubleLiteral.getValue());
+			ProverExpr ref = varToProverExpr(doubleLiteral.getVariable(),varMap);
+
+			return p.mkTupleUpdate(ref,3, dble);
+
 		} else if (e instanceof IdentifierExpression) {
 			Variable var = ((IdentifierExpression) e).getVariable();
                         return varToProverExpr(var, varMap);

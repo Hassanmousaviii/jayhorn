@@ -1,16 +1,18 @@
 package soottocfg.cfg.expression.literal;
 
+import soot.RefType;
+import soot.Scene;
 import soottocfg.cfg.SourceLocation;
 import soottocfg.cfg.expression.Expression;
 import soottocfg.cfg.expression.IdentifierExpression;
-import soottocfg.cfg.type.DoubleType;
-import soottocfg.cfg.type.IntType;
-import soottocfg.cfg.type.Type;
+import soottocfg.cfg.type.*;
 import soottocfg.cfg.variable.Variable;
 import soottocfg.soot.util.SootTranslationHelpers;
+import soottocfg.soot.memory_model.BasicMemoryModel;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,15 +21,9 @@ public class DoubleLiteral extends IdentifierExpression{
 
     private final Double value;
 
-    private static final DoubleLiteral one = new DoubleLiteral(null, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
-            "$Double(" + 1.0 + ")",
-            SootTranslationHelpers.v().getMemoryModel().lookupType(soot.DoubleType.v())),1.0);
-    private static final DoubleLiteral zero = new DoubleLiteral(null, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
-            "$Double(" + 0.0 + ")",
-            SootTranslationHelpers.v().getMemoryModel().lookupType(soot.DoubleType.v())),0.0);
-    private static final DoubleLiteral minusOne = new DoubleLiteral(null, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
-            "$Double(" + -1.0 + ")",
-            SootTranslationHelpers.v().getMemoryModel().lookupType(soot.DoubleType.v())),-1.0);
+    /*private static final DoubleLiteral one = new DoubleLiteral(null, ,1.0);
+    private static final DoubleLiteral zero = new DoubleLiteral(null, 0.0);
+    private static final DoubleLiteral minusOne = new DoubleLiteral(null, -1.0);
 
     public static DoubleLiteral one() {
          return one;
@@ -39,14 +35,14 @@ public class DoubleLiteral extends IdentifierExpression{
 
     public static DoubleLiteral minusOne() {
         return minusOne;
-    }
+    }*/
 
-    public DoubleLiteral(SourceLocation loc,Variable variable,@Nullable Double value) {
+    public DoubleLiteral(SourceLocation loc, Variable variable,@Nullable Double value) {
         super(loc,variable);
         this.value = value; //Long.valueOf(value);
     }
     public DoubleLiteral(SourceLocation loc,Variable variable,@Nullable Long value) {
-        super(loc, variable);
+        super(loc,variable);
         this.value = Double.longBitsToDouble(value); //Long.valueOf(value);
     }
 
@@ -75,7 +71,8 @@ public class DoubleLiteral extends IdentifierExpression{
 
     @Override
     public Type getType() {
-        return DoubleType.instance();
+
+        return DoubleType.instance();//SootTranslationHelpers.v().getMemoryModel().lookupType(soot.DoubleType.v());
     }
 
     @Override

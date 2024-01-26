@@ -159,9 +159,17 @@ public abstract class BasicMemoryModel extends MemoryModel {
 			constantDictionary.put(arg0, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
 					"$double" + constantDictionary.size(), lookupType(arg0.getType())));
 			putExpression(constantDictionary.get(arg0),
-					new DoubleLiteral(statementSwitch.getCurrentLoc(), constantDictionary.get(arg0), arg0.value));
+					new DoubleLiteral(statementSwitch.getCurrentLoc(),
+							SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+									"$double(" + arg0.value + ")",
+									SootTranslationHelpers.v().getMemoryModel().lookupType(arg0.getType()))
+							,arg0.value));
 		}
-		return new DoubleLiteral(this.statementSwitch.getCurrentLoc(), constantDictionary.get(arg0),arg0.value);
+		return new DoubleLiteral(this.statementSwitch.getCurrentLoc(),
+				SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+						"$double(" + arg0.value + ")",
+						SootTranslationHelpers.v().getMemoryModel().lookupType(arg0.getType()))
+				,arg0.value);
 				//new IdentifierExpression(this.statementSwitch.getCurrentLoc(), constantDictionary.get(arg0));
 	}
 
@@ -211,7 +219,8 @@ public abstract class BasicMemoryModel extends MemoryModel {
 			} else if (t instanceof soot.CharType) {
 				type = IntType.instance();
 			} else if (t instanceof soot.DoubleType) {
-				type = DoubleType.instance();
+				//type = DoubleType.instance();
+				type = lookupRefLikeType(Scene.v().getSootClass("java.lang.Double").getType());
 			} else if (t instanceof soot.FloatType) {
 				type = FloatType.instance();
 			} else if (t instanceof soot.IntType) {

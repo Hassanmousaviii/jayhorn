@@ -20,25 +20,11 @@
 package soottocfg.soot.visitors;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import soot.ArrayType;
-import soot.ByteType;
-import soot.CharType;
-import soot.DoubleType;
-import soot.FloatType;
-import soot.IntType;
-import soot.Local;
-import soot.LongType;
-import soot.NullType;
-import soot.PrimType;
-import soot.RefType;
-import soot.ShortType;
-import soot.SootClass;
-import soot.SootMethod;
-import soot.Type;
-import soot.Value;
+import soot.*;
 import soot.jimple.AddExpr;
 import soot.jimple.AndExpr;
 import soot.jimple.ArrayRef;
@@ -99,6 +85,7 @@ import soottocfg.cfg.expression.literal.BooleanLiteral;
 import soottocfg.cfg.expression.literal.DoubleLiteral;
 import soottocfg.cfg.expression.literal.IntegerLiteral;
 import soottocfg.cfg.expression.literal.StringLiteral;
+import soottocfg.cfg.type.ReferenceType;
 import soottocfg.cfg.variable.ClassVariable;
 import soottocfg.soot.memory_model.MemoryModel;
 import soottocfg.soot.util.MethodInfo;
@@ -239,10 +226,13 @@ public class SootValueSwitch implements JimpleValueSwitch {
 
 	@Override
 	public void caseDoubleConstant(DoubleConstant arg0) {
-		this.expressionStack.add( new DoubleLiteral(statementSwitch.getCurrentLoc(),SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
-						"$Double(" + arg0.value + ")",
-						SootTranslationHelpers.v().getMemoryModel().lookupType(soot.DoubleType.v())), arg0.value)
-				//this.memoryModel.mkDoubleConstant(arg0)
+
+		this.expressionStack.add( new DoubleLiteral(statementSwitch.getCurrentLoc(),
+				SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+						"$double(" + arg0.value + ")",
+						SootTranslationHelpers.v().getMemoryModel().lookupType(arg0.getType()))
+				,arg0.value)
+
 		);
 
 	}

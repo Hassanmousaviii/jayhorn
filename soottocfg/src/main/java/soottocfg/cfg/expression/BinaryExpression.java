@@ -11,13 +11,11 @@ import com.google.common.base.Preconditions;
 
 import soottocfg.cfg.SourceLocation;
 import soottocfg.cfg.expression.literal.BooleanLiteral;
+import soottocfg.cfg.expression.literal.DoubleLiteral;
 import soottocfg.cfg.expression.literal.IntegerLiteral;
 import soottocfg.cfg.expression.literal.NullLiteral;
-import soottocfg.cfg.type.BoolType;
-import soottocfg.cfg.type.IntType;
-import soottocfg.cfg.type.ReferenceType;
-import soottocfg.cfg.type.Type;
-import soottocfg.cfg.type.TypeType;
+import soottocfg.cfg.type.*;
+import soottocfg.cfg.variable.ClassVariable;
 import soottocfg.cfg.variable.Variable;
 import soottocfg.soot.util.SootTranslationHelpers;
 
@@ -79,7 +77,13 @@ public class BinaryExpression extends Expression {
 				} else {
 					throw new RuntimeException("BinaryExpression: bool/int confusion");
 				}				
-			}
+			} /*else if (left instanceof DoubleLiteral && right.getType() == new ReferenceType(new ClassVariable("java.lang.Double",null))) {
+				left = new IdentifierExpression (left.getSourceLocation(), ((DoubleLiteral) left).getVariable());
+			} else if (right instanceof DoubleLiteral && left.getType() == ReferenceType.instance()) {
+
+				right = new IdentifierExpression (right.getSourceLocation(), ((DoubleLiteral) right).getVariable());
+			}*/
+
 		}
 
 		Preconditions.checkArgument(
@@ -88,6 +92,7 @@ public class BinaryExpression extends Expression {
 							((ReferenceType) left.getType()).getClassVariable().equals(((ReferenceType) right.getType()).getClassVariable()))
 						|| SootTranslationHelpers.v().getMemoryModel().isNullReference(right)
 						|| SootTranslationHelpers.v().getMemoryModel().isNullReference(left)
+						|| (op == BinaryOperator.Ne && (left.getType() == DoubleType.instance()))
 						|| op == BinaryOperator.CharAt || op == BinaryOperator.IndexInString
 						|| op == BinaryOperator.ToString || op == BinaryOperator.BoolToString || op == BinaryOperator.CharToString
 							|| op == BinaryOperator.StringIndexOfChar || op == BinaryOperator.StringLastIndexOfChar

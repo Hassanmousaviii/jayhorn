@@ -13,6 +13,7 @@ import java.util.Set;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.SourceLocation;
 import soottocfg.cfg.expression.Expression;
+import soottocfg.cfg.expression.literal.DoubleLiteral;
 import soottocfg.cfg.expression.literal.IntegerLiteral;
 import soottocfg.cfg.expression.literal.Literal;
 import soottocfg.cfg.expression.literal.StringLiteral;
@@ -115,7 +116,8 @@ public class ConstPropagator {
                                 continue mainLoop;
                             if (!(s instanceof AssignStatement &&
                                   (((AssignStatement)s).getRight() instanceof Literal ||
-                                   ((AssignStatement)s).getRight() instanceof StringLiteral)))
+                                   ((AssignStatement)s).getRight() instanceof StringLiteral ||
+										  ((AssignStatement)s).getRight() instanceof DoubleLiteral)))
                                 continue mainLoop;
                             AssignStatement assS = (AssignStatement)s;
                             Expression rhs = assS.getRight();

@@ -118,11 +118,13 @@ public class ExpressionEncoder {
 			return p.mkTupleUpdate(ref, 3, str);
 
 		} else if (e instanceof DoubleLiteral) {
-			DoubleLiteral doubleLiteral = (DoubleLiteral) e;
+			/*DoubleLiteral doubleLiteral = (DoubleLiteral) e;
 			ProverExpr dble = doubleFloatingPointEnCoder.mkDoublePE(doubleLiteral.getValue());
 			ProverExpr ref = varToProverExpr(doubleLiteral.getVariable(),varMap);
 
-			return p.mkTupleUpdate(ref,3, dble);
+			return p.mkTupleUpdate(ref,3, dble);*/
+			DoubleLiteral doubleLiteral = (DoubleLiteral) e;
+			return doubleFloatingPointEnCoder.mkDoublePE(doubleLiteral.getValue());
 
 		} else if (e instanceof IdentifierExpression) {
 			Variable var = ((IdentifierExpression) e).getVariable();

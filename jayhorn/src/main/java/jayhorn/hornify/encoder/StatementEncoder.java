@@ -161,7 +161,7 @@ public class StatementEncoder {
      * into the error state if the assertion doesn't hold.
      *
      * @param as
-     * @param prePred
+     * @param preAtom
      * @param postPred
      * @return
      */
@@ -547,7 +547,7 @@ public class StatementEncoder {
      * Translates a call statement of the form:
      *   havoc x
      *
-     * @param cs
+     * @param hs
      * @param postPred
      * @param preAtom
      * @param varMap

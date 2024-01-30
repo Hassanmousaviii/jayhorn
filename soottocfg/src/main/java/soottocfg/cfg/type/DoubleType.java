@@ -21,6 +21,6 @@ public class DoubleType extends PrimitiveType {
     }
 
     public String toString() {
-        return "Double";
+        return "DoubleFloatingPoint";
     }
 }

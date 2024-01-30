@@ -17,6 +17,8 @@ import jayhorn.solver.ProverTupleExpr;
 import jayhorn.solver.ProverType;
 import jayhorn.solver.ProverTupleType;
 import jayhorn.solver.ProverHornClause;
+import jayhorn.solver.princess.PrincessADTType;
+import jayhorn.solver.princess.PrincessFloatingPointType;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.expression.BinaryExpression;
 import soottocfg.cfg.expression.Expression;
@@ -118,13 +120,13 @@ public class ExpressionEncoder {
 			return p.mkTupleUpdate(ref, 3, str);
 
 		} else if (e instanceof DoubleLiteral) {
-			/*DoubleLiteral doubleLiteral = (DoubleLiteral) e;
+			DoubleLiteral doubleLiteral = (DoubleLiteral) e;
 			ProverExpr dble = doubleFloatingPointEnCoder.mkDoublePE(doubleLiteral.getValue());
 			ProverExpr ref = varToProverExpr(doubleLiteral.getVariable(),varMap);
 
-			return p.mkTupleUpdate(ref,3, dble);*/
-			DoubleLiteral doubleLiteral = (DoubleLiteral) e;
-			return doubleFloatingPointEnCoder.mkDoublePE(doubleLiteral.getValue());
+			return p.mkTupleUpdate(ref,3, dble);
+			/*DoubleLiteral doubleLiteral = (DoubleLiteral) e;
+			return doubleFloatingPointEnCoder.mkDoublePE(doubleLiteral.getValue());*/
 
 		} else if (e instanceof IdentifierExpression) {
 			Variable var = ((IdentifierExpression) e).getVariable();
@@ -148,6 +150,8 @@ public class ExpressionEncoder {
 			// left = p.mkTupleSelect(left, 0);
 			// }
 			ProverExpr right = exprToProverExpr(be.getRight(), varMap);
+
+
 			// if (right instanceof ProverTupleType) {
 			// //in that case only use the projection to the first element
 			// //of the tuple.
@@ -182,6 +186,7 @@ public class ExpressionEncoder {
 		        if (left instanceof ProverTupleExpr) {
 		            ProverTupleExpr tLeft = (ProverTupleExpr)left;
 		            ProverTupleExpr tRight = (ProverTupleExpr)right;
+					//if(tLeft.getSubExpr(3) instanceof PrincessFloatingPointType)
 		            /*
 					TODO: this is sound if we assume that the first element of a tuple is the sound identifier.
 						  does this make sense? it should be advantageous to use the other tuple components to differentiate objects
@@ -192,6 +197,16 @@ public class ExpressionEncoder {
 					return p.mkEq(left, right);
 		        }
 			case Ne:
+				if (left instanceof ProverTupleExpr) {
+					ProverTupleExpr tLeft = (ProverTupleExpr)left;
+					ProverTupleExpr tRight = (ProverTupleExpr)right;
+					//if( tLeft.getSubExpr(3).getType() ==
+					/*if(tLeft.getSubExpr(3) instanceof PrincessADTType)
+					{*/
+						return p.mkNot( p.mkEq(tLeft.getSubExpr(3), tRight.getSubExpr(3)));
+					//}
+				}
+
 				return p.mkNot(p.mkEq(left, right));
 			case Gt:
 				return p.mkGt(left, right);

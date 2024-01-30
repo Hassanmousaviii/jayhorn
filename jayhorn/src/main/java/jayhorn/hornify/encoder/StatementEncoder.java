@@ -229,6 +229,16 @@ public class StatementEncoder {
         if (stringConstraints != null)
             return generateStringClauses(stringConstraints, idLhs, postPred, preAtom, varMap);
 
+        FloatingPointEncoder.EncodingFacts doubleFloatingPointConstraints =
+                expEncoder.getDoubleFloatingPointEnCoder().handleFloatingPointExpr(as.getRight(), varMap);
+        if(doubleFloatingPointConstraints != null)
+            return generateFloatingPointClauses(doubleFloatingPointConstraints,idLhs,postPred,preAtom, varMap);
+
+        FloatingPointEncoder.EncodingFacts singleFloatingPointConstraints =
+                expEncoder.getSingleFloatingPointEnCoder().handleFloatingPointExpr(as.getRight(), varMap);
+        if(singleFloatingPointConstraints != null)
+            return generateFloatingPointClauses(singleFloatingPointConstraints,idLhs,postPred,preAtom, varMap);
+
         ProverExpr right = expEncoder.exprToProverExpr(as.getRight(), varMap);
         if (as.getRight() instanceof NullLiteral) {
             ProverTupleType pttLeft = (ProverTupleType) HornHelper.hh().getProverType(p, idLhs.getType());
@@ -283,6 +293,29 @@ public class StatementEncoder {
         clauses.add(p.mkHornClause(postAtom, body, stringConstraints.constraint));
 
         return clauses;
+    }
+    private List<ProverHornClause> generateFloatingPointClauses(FloatingPointEncoder.EncodingFacts stringConstraints,
+                                                         IdentifierExpression idLhs,
+                                                         HornPredicate postPred, ProverExpr preAtom,
+                                                         Map<Variable, ProverExpr> varMap) {
+        List<ProverHornClause> clauses = new LinkedList<ProverHornClause>();
+
+        if (stringConstraints.rely != null)
+            clauses.add(p.mkHornClause(stringConstraints.rely, new ProverExpr[]{preAtom}, p.mkLiteral(true)));
+
+        varMap.put(idLhs.getVariable(), stringConstraints.result);
+
+        ProverExpr[] body;
+        if (stringConstraints.guarantee != null)
+            body = new ProverExpr[]{preAtom, stringConstraints.guarantee};
+        else
+            body = new ProverExpr[]{preAtom};
+
+        final ProverExpr postAtom = postPred.instPredicate(varMap);
+        clauses.add(p.mkHornClause(postAtom, body, stringConstraints.constraint));
+
+        return clauses;
+
     }
 
     public List<ProverHornClause> newToClause(NewStatement ns, HornPredicate postPred, ProverExpr preAtom,

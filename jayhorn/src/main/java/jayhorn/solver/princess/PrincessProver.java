@@ -80,6 +80,7 @@ import scala.collection.immutable.Set;
 import scala.collection.mutable.ArrayBuffer;
 import scala.collection.mutable.HashSet;
 import scala.util.Either;
+import soot.JastAddJ.FloatingPointType;
 import soottocfg.ast.Absyn.Constant;
 
 
@@ -294,6 +295,10 @@ public class PrincessProver implements Prover {
 
             return mkAnd(conjuncts);
         }
+        if (right.getType() instanceof PrincessADTType)
+        {
+           // (TermExpr)right.toTerm();
+        }
         
         PrincessProverExpr pLeft = (PrincessProverExpr) left;
         PrincessProverExpr pRight = (PrincessProverExpr) right;
@@ -307,7 +312,15 @@ public class PrincessProver implements Prover {
 		return new FormulaExpr(new IBoolLit(value));
 	}
 
+    //
+
+    public ProverExpr mkBVNot(ProverExpr body) {
+
+        PrincessProverExpr pbody =  (PrincessProverExpr)body;
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bvnot(pbody.toTerm()),pbody.getType());
+    }
 	public ProverExpr mkNot(ProverExpr body) {
+
 		return new FormulaExpr(new INot(((PrincessProverExpr) body).toFormula()));
 	}
 
@@ -361,6 +374,7 @@ public class PrincessProver implements Prover {
 	}
     public ProverExpr mkBVLiteral(BigInteger value, int bitLength)
     {
+
         //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
         return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bv(bitLength, IdealInt$.MODULE$.apply(value)), getBVType(bitLength));
     }

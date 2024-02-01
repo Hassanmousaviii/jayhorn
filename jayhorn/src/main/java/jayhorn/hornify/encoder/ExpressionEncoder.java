@@ -11,14 +11,11 @@ import com.google.common.base.Verify;
 
 import jayhorn.hornify.HornEncoderContext;
 import jayhorn.hornify.HornHelper;
-import jayhorn.solver.Prover;
-import jayhorn.solver.ProverExpr;
-import jayhorn.solver.ProverTupleExpr;
-import jayhorn.solver.ProverType;
-import jayhorn.solver.ProverTupleType;
-import jayhorn.solver.ProverHornClause;
+import jayhorn.solver.*;
 import jayhorn.solver.princess.PrincessADTType;
+import jayhorn.solver.princess.PrincessFloatingPointADTFactory;
 import jayhorn.solver.princess.PrincessFloatingPointType;
+import jayhorn.solver.princess.PrincessStringADTFactory;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.expression.BinaryExpression;
 import soottocfg.cfg.expression.Expression;
@@ -144,11 +141,7 @@ public class ExpressionEncoder {
 		} else if (e instanceof BinaryExpression) {
 			final BinaryExpression be = (BinaryExpression) e;
 			ProverExpr left = exprToProverExpr(be.getLeft(), varMap);
-			// if (left instanceof ProverTupleType) {
-			// //in that case only use the projection to the first element
-			// //of the tuple.
-			// left = p.mkTupleSelect(left, 0);
-			// }
+
 			ProverExpr right = exprToProverExpr(be.getRight(), varMap);
 
 
@@ -218,10 +211,18 @@ public class ExpressionEncoder {
 				if (left instanceof ProverTupleExpr) {
 					ProverTupleExpr tLeft = (ProverTupleExpr)left;
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
+
+					final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+
+					/*ProverExpr tLeft_mantisa = p.mkVariable("mantissa", FloatingPointADT.getType(2));
+					ProverExpr tRight_mantisa = p.mkVariable("mantissa", FloatingPointADT.getType(2));*/
+
+					return p.mkBVLeq(FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3)),
+							FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3)));
 					//if( tLeft.getSubExpr(3).getType() ==
 					/*if(tLeft.getSubExpr(3) instanceof PrincessADTType)
 					{*/
-					return p.mkBVLeq(tLeft.getSubExpr(3), tRight.getSubExpr(3));
+					//return p.mkBVLeq(tLeft.getSubExpr(3), tRight.getSubExpr(3));
 					//}
 				}
 				return p.mkLeq(left, right);

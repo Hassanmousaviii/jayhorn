@@ -172,13 +172,19 @@ public class PrincessProver implements Prover {
 	}
 
     protected static ProverType sort2Type(Sort sort) {
+
+
         if (sort == Sort.Integer$.MODULE$) {
             return IntType.INSTANCE;
         } else if (sort instanceof ADTProxySort) {
             return new PrincessADTType((ADTProxySort)sort);
         } else if (sort instanceof ArraySort) {
             return new ArrayType(((ArraySort)sort).arity());
+        } else if (sort instanceof ModuloArithmetic.ModSort) {
+           int arity = Integer.valueOf(sort.toString().substring(3,sort.toString().indexOf("]")));
+            return new BitVectorType(arity);
         }
+
         throw new IllegalArgumentException();
     }
 
@@ -414,7 +420,7 @@ public class PrincessProver implements Prover {
        // ap.theories.bitvectors.ModuloArithmetic.bv_sle()
        // PrincessADT princessADT = new PrincessADT(((ADT) Left));
         //((TermExpr) left).toExpression()
-        //((TermExpr) right).term.apply(2).apply(2)
+       // ((TermExpr) right).term.apply(2).apply(2)
         return  new FormulaExpr(ModuloArithmetic.bvule(((TermExpr) left).term, ((TermExpr) right).term));
     }
 

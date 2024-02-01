@@ -9,7 +9,7 @@ public class PrincessFloatingPointADTFactory implements FloatingPointADTFactory 
         return PrincessADT.mkADT(new String[]{precision == PrincessFloatingPointType.Precision.Single ? "FloatingPoint" : "DoubleFloatingPoint"},
                 new String[]{precision == PrincessFloatingPointType.Precision.Single ? "FloatingPoint" : "DoubleFloatingPoint"},
                 new int[]{ADTTempType.ListADTTypeIndex},
-                new ProverType[][]{{}, {new BitVectorType(1), new BitVectorType(precision == PrincessFloatingPointType.Precision.Single ? 8 : 11), new BitVectorType(precision == PrincessFloatingPointType.Precision.Single ? 23 : 53)}},
-                new String[][]{{}, {"sign", "exponent", "mantissa"}});
+                new ProverType[][]{{new BitVectorType(1), new BitVectorType(precision == PrincessFloatingPointType.Precision.Single ? 8 : 11), new BitVectorType(precision == PrincessFloatingPointType.Precision.Single ? 23 : 53)}},
+                new String[][]{{"sign", "exponent", "mantissa"}});
     }
 }

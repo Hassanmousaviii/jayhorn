@@ -47,6 +47,7 @@ public class PrincessADT implements ProverADT {
     }
 
     public ProverType getType(int typeIndex) {
+
         return new PrincessADTType (adt.sorts().apply(typeIndex));
     }
 

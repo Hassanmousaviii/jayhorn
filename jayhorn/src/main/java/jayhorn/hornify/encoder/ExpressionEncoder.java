@@ -215,6 +215,15 @@ public class ExpressionEncoder {
 			case Lt:
 				return p.mkLt(left, right);
 			case Le:
+				if (left instanceof ProverTupleExpr) {
+					ProverTupleExpr tLeft = (ProverTupleExpr)left;
+					ProverTupleExpr tRight = (ProverTupleExpr)right;
+					//if( tLeft.getSubExpr(3).getType() ==
+					/*if(tLeft.getSubExpr(3) instanceof PrincessADTType)
+					{*/
+					return p.mkBVLeq(tLeft.getSubExpr(3), tRight.getSubExpr(3));
+					//}
+				}
 				return p.mkLeq(left, right);
 			case PoLeq:
 				if ((be.getRight() instanceof IdentifierExpression)

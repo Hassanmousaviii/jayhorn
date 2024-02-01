@@ -21,6 +21,7 @@ import soottocfg.cfg.LiveVars;
 import soottocfg.cfg.method.CfgBlock;
 import soottocfg.cfg.method.CfgEdge;
 import soottocfg.cfg.method.Method;
+import soottocfg.cfg.statement.HavocStatement;
 import soottocfg.cfg.statement.Statement;
 import soottocfg.cfg.variable.Variable;
 
@@ -276,7 +277,16 @@ public class MethodEncoder {
             final Statement s = stmts.get(i);
             final String postName = initName + "_" + (++counter);
             final List<Variable> interVarList = HornHelper.hh().setToSortedList(liveAfter.get(s));
-            final HornPredicate postPred = freshHornPredicate(postName, interVarList);
+            HornPredicate postPred = null;
+            if(s instanceof HavocStatement) //ToDo: check it aggain
+            {
+                if(!interVarList.contains(((HavocStatement) s).getVariable())) {
+                    interVarList.add(((HavocStatement) s).getVariable());
+                    postPred = freshHornPredicate(postName, interVarList);
+                }
+
+            }
+            else postPred = freshHornPredicate(postName, interVarList);
             this.clauses.addAll(senc.statementToClause(s, prePred, postPred, this.method));
 
             prePred = postPred;

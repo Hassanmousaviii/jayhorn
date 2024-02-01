@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import ap.basetypes.IdealInt;
+import ap.parser.*;
 import com.google.common.base.Verify;
 
 import ap.DialogUtil$;
@@ -23,28 +24,6 @@ import ap.SimpleAPI;
 import ap.SimpleAPI$;
 import ap.SimpleAPI.ProverStatus$;
 import ap.basetypes.IdealInt$;
-import ap.parser.ConstantSubstVisitor$;
-import ap.parser.IAtom;
-import ap.parser.IAtom$;
-import ap.parser.IBinFormula;
-import ap.parser.IBinJunctor;
-import ap.parser.IBoolLit;
-import ap.parser.IConstant;
-import ap.parser.IConstant$;
-import ap.parser.IExpression;
-import ap.parser.IExpression$;
-import ap.parser.IFormula;
-import ap.parser.IFormulaITE;
-import ap.parser.IFunApp;
-import ap.parser.IIntLit;
-import ap.parser.INot;
-import ap.parser.IPlus;
-import ap.parser.ITerm;
-import ap.parser.ITermITE;
-import ap.parser.IVariable;
-import ap.parser.ISortedVariable;
-import ap.parser.PredicateSubstVisitor$;
-import ap.parser.SymbolCollector$;
 import ap.terfor.ConstantTerm;
 import ap.terfor.preds.Predicate;
 import ap.theories.ADT;
@@ -80,6 +59,7 @@ import scala.collection.immutable.Set;
 import scala.collection.mutable.ArrayBuffer;
 import scala.collection.mutable.HashSet;
 import scala.util.Either;
+import scala.util.Left;
 import soot.JastAddJ.FloatingPointType;
 import soottocfg.ast.Absyn.Constant;
 
@@ -430,6 +410,13 @@ public class PrincessProver implements Prover {
 	public ProverExpr mkLeq(ProverExpr left, ProverExpr right) {
 		return new FormulaExpr(((TermExpr) left).term.$less$eq(((TermExpr) right).term));
 	}
+    public ProverExpr mkBVLeq(ProverExpr left, ProverExpr right) {
+       // ap.theories.bitvectors.ModuloArithmetic.bv_sle()
+       // PrincessADT princessADT = new PrincessADT(((ADT) Left));
+        //((TermExpr) left).toExpression()
+        //((TermExpr) right).term.apply(2).apply(2)
+        return  new FormulaExpr(ModuloArithmetic.bvule(((TermExpr) left).term, ((TermExpr) right).term));
+    }
 
 	public ProverExpr mkLt(ProverExpr left, ProverExpr right) {
 		return new FormulaExpr(((TermExpr) left).term.$less(((TermExpr) right).term));
@@ -620,6 +607,10 @@ public class PrincessProver implements Prover {
                                 final ProverExpr[] flatArgs = new ProverExpr[pred.arity()];
                                 for (int i = 0; i < flatTypes.length; ++i)
                                     flatArgs[i] = new TermExpr(p._1().args().apply(i), flatTypes[i]);
+
+                              /*  ap.parser.IFunApp funApp = ((ap.parser.IFunApp)p._1().args().apply(12));
+                                IFunction fun1 = funApp.fun();
+                                fun1.*/
                                 return new Tuple2(fun, ProverTupleExpr.unflatten(flatArgs, types));
                             }
                         });

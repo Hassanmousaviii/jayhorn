@@ -530,6 +530,11 @@ public class SpacerProver implements Prover {
 	}
 
 	@Override
+	public ProverExpr mkBVLeq(ProverExpr left, ProverExpr right) {
+		throw new RuntimeException("not implemented");
+	}
+
+	@Override
 	public ProverExpr mkMult(ProverExpr left, ProverExpr right)  {
 		try {
 			return new SpacerTermExpr(ctx.mkMul((ArithExpr) unpack(left),

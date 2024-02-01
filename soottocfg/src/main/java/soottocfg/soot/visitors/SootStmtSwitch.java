@@ -725,7 +725,9 @@ public class SootStmtSwitch implements StmtSwitch {
 				}
 				return true;
 			}
+
 		}
+
 		if (methodSignature.contains("<java.lang.String: boolean startsWith(java.lang.String)>")) {
 			assert (call instanceof InstanceInvokeExpr);
 			if (optionalLhs != null) {
@@ -796,6 +798,7 @@ public class SootStmtSwitch implements StmtSwitch {
 		if (methodSignature.contains("<java.lang.Double: java.lang.Double valueOf(double)>") ) {
 			assert (call instanceof StaticInvokeExpr);
 			if (optionalLhs != null) {
+
 				Expression itemExpr = valueToExpr(call.getArg(0));
 				Expression lhs = valueToExpr(optionalLhs);
 				Expression rhs = new BinaryExpression(srcLoc, BinaryOperator.ToDouble, itemExpr, lhs);
@@ -803,6 +806,17 @@ public class SootStmtSwitch implements StmtSwitch {
 			} // else: ignore
 			return true;
 		}
+		if (methodSignature.contains("<java.lang.Double: double doubleValue()>") ) {
+			assert (call instanceof StaticInvokeExpr);
+			if (optionalLhs != null) {
+				Expression itemExpr = valueToInnerExpr(((InstanceInvokeExpr) call).getBase());
+				Expression lhs = valueToExpr(optionalLhs);
+				Expression rhs = new BinaryExpression(srcLoc, BinaryOperator.ToDouble, itemExpr, lhs);
+				currentBlock.addStatement(new AssignStatement(srcLoc, lhs, rhs));
+			} // else: ignore
+			return true;
+		}
+
 		if (methodSignature.contains("<java.lang.Float: java.lang.Float valueOf(float)>")) {
 			assert (call instanceof StaticInvokeExpr);
 			if (optionalLhs != null) {
@@ -969,7 +983,8 @@ public class SootStmtSwitch implements StmtSwitch {
 			return true;
 
 		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: double nondetDouble()>")) {
-			translateRandomNondet(RefType.v(), optionalLhs, call,false, Float.floatToIntBits(Float.MIN_VALUE),Float.floatToIntBits(Float.MAX_VALUE));
+			translateRandomNondet(RefType.v(), optionalLhs, call,false, Double.doubleToLongBits(Double.MIN_VALUE),Double.doubleToLongBits(Double.MAX_VALUE));
+			//translateNondetDouble(RefType.v(), optionalLhs, call);
 		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: float nondetFloat()>")) {
 		translateRandomNondet(RefType.v(), optionalLhs, call,false, Float.floatToIntBits(Float.MIN_VALUE),Float.floatToIntBits(Float.MAX_VALUE));
 		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: void assume(boolean)>")) {
@@ -1112,7 +1127,7 @@ public class SootStmtSwitch implements StmtSwitch {
 
 			// There is no soottocfg.cfg.expression.IdentifierExpression equivalent for the internal string,
 			// so new HavocStatement(loc, internalString) is not possible.
-			DoubleLiteral nondetDoubleIdExp = new DoubleLiteral(loc, idLhs.getVariable(), 0.0);
+			DoubleLiteral nondetDoubleIdExp = new DoubleLiteral(loc, idLhs.getVariable(), (Double) null);
 			// see jayhorn.hornify.encoder.StringEncoder.mkStringPE(String value)
 
 			currentBlock.addStatement(new AssumeStatement(loc,

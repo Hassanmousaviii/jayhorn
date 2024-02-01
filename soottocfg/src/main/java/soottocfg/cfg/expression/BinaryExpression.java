@@ -93,6 +93,8 @@ public class BinaryExpression extends Expression {
 						|| SootTranslationHelpers.v().getMemoryModel().isNullReference(right)
 						|| SootTranslationHelpers.v().getMemoryModel().isNullReference(left)
 						|| (op == BinaryOperator.Ne && (left.getType() == DoubleType.instance()))
+						|| (op == BinaryOperator.Le && (right.getType() == DoubleType.instance()))
+						|| (op == BinaryOperator.Eq && (right.getType() == DoubleType.instance()))
 						|| (op == BinaryOperator.ToDouble)
 						|| (op == BinaryOperator.ToFloat)
 						|| op == BinaryOperator.CharAt || op == BinaryOperator.IndexInString

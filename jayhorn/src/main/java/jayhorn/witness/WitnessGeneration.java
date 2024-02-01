@@ -99,7 +99,7 @@ public  class WitnessGeneration {
     }
     private static int FindHavocArgIndex(ProverExpr [] Args)
     {
-        ProverExpr havocExpr = Arrays.stream(Args).filter(x -> x.toString().contains("_havoc")).findFirst().orElse(null);
+        ProverExpr havocExpr = Arrays.stream(Args).filter(x -> x.toString().contains("_havoc#3")).findFirst().orElse(null);
         List<ProverExpr> headArgsList = Arrays.asList(Args);
         return headArgsList.indexOf(havocExpr);
     }
@@ -108,14 +108,18 @@ public  class WitnessGeneration {
         int TotalIndx = -1;
         for (ProverExpr pe: Args) {
 
-            if(pe.getType() instanceof ProverTupleType)
-                TotalIndx += ((ProverTupleExpr)pe).getArity();
+            if(pe.getType() instanceof ProverTupleType) {
+                TotalIndx += ((ProverTupleExpr) pe).getArity();
+                if (TotalIndx == havocArgIndex)
+                    return pe.toString();
+            }
             else {
                 TotalIndx++;
                 if(TotalIndx == havocArgIndex)
                     return pe.toString();
             }
         }
+
         return "";
     }
 

@@ -109,6 +109,8 @@ public interface Prover {
 
 	ProverExpr mkLeq(ProverExpr left, ProverExpr right);
 
+	ProverExpr mkBVLeq(ProverExpr left, ProverExpr right);
+
 	ProverExpr mkLt(ProverExpr left, ProverExpr right);
 
 	ProverExpr mkSelect(ProverExpr ar, ProverExpr[] indexes);

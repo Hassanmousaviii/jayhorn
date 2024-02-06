@@ -139,16 +139,24 @@ public class FloatingPointEncoder {
     {
         return  p.mkBVLiteral(value, bitLength);
     }
+    private ProverExpr SignedBVLit(ProverExpr expr, int bitLength)
+    {
+        return  p.mkSignedBVLiteral(expr, bitLength);
+    }
     private ProverExpr mkDoublePEFromValue(double value, ProverADT floatingPointADT)
     {
         ProverExpr sign, exponent,mantissa;
 
-        IeeeFloatt ieeeOne = new IeeeFloatt(new IeeeFloatSpect(f, e));
+        IeeeFloatt ieeeOne = new IeeeFloatt(new IeeeFloatSpect(f-1, e));
         ieeeOne.fromDouble(value);
         sign = BVLit( new BigInteger(ieeeOne.get_sign() ? "1" : "0"),1);
-        exponent = BVLit(ieeeOne.get_exponent(),e);
+        exponent = BVLit(ieeeOne.get_exponent().add(ieeeOne.getSpec().maxExponent()),e);
+       
+       //ieeeOne.get_exponent().doubleValue()
+       // byte [] ex = ieeeOne.get_exponent().toByteArray();
+       // byte [] ma = ieeeOne.get_fraction().toByteArray();
         mantissa = BVLit(ieeeOne.get_fraction(),f);
-
+       //ieeeOne.get_fraction().add(BigInteger.ONE).doubleValue()
         ProverExpr res = floatingPointADT.mkCtorExpr(0,new ProverExpr[]{sign, exponent,mantissa });
 
         return  res;

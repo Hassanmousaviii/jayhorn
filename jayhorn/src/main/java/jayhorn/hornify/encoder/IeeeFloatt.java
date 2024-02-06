@@ -46,6 +46,10 @@ public class IeeeFloatt {
     {
         return exponent;
     }
+    public IeeeFloatSpect getSpec()
+    {
+        return  spec;
+    }
 
     BigInteger get_fraction()
     {
@@ -295,9 +299,9 @@ public class IeeeFloatt {
     public void fromDouble(double d) {
 
 
-        spec.setF(52);
-        spec.setE(11);
-        assert spec.width() == 64;
+       // spec.setF(52);
+       // spec.setE(11);
+      //  assert spec.width() == 64;
 
         BigInteger i = BigInteger.valueOf(Double.doubleToLongBits(d));
 

@@ -525,6 +525,11 @@ public class SpacerProver implements Prover {
 	}
 
 	@Override
+	public ProverExpr mkSignedBVLiteral(ProverExpr expr, int bitLength) {
+		throw new RuntimeException("not implemented");
+	}
+
+	@Override
 	public ProverExpr mkTMod(ProverExpr num, ProverExpr denom) {
 		throw new RuntimeException("not implemented");
 	}

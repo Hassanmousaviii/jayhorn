@@ -362,7 +362,13 @@ public class PrincessProver implements Prover {
     {
 
         //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
-        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bv(bitLength, IdealInt$.MODULE$.apply(value)), getBVType(bitLength));
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bv(bitLength, IdealInt$.MODULE$.apply(value)) , getBVType(bitLength));
+    }
+    public ProverExpr mkSignedBVLiteral(ProverExpr expr, int bitLength)
+    {
+
+        //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.cast2SignedBV(bitLength,((TermExpr)expr).term) , getBVType(bitLength));
     }
 
 	public ProverExpr mkPlus(ProverExpr left, ProverExpr right) {

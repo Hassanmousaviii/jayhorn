@@ -51,7 +51,7 @@ public class IeeeFloatSpect {
     }*/
 
     public BigInteger maxExponent() {
-        return new BigInteger("2").pow(e).subtract(BigInteger.ONE);
+        return new BigInteger("2").pow(e-1).subtract(BigInteger.ONE);
     }
 
     public BigInteger maxFraction() {

@@ -73,6 +73,8 @@ public interface Prover {
 
 	ProverExpr mkBVLiteral(BigInteger value, int bitLength);
 
+	public ProverExpr mkSignedBVLiteral(ProverExpr expr, int bitLength);
+
 	ProverExpr mkPlus(ProverExpr left, ProverExpr right);
 
 	ProverExpr mkPlus(ProverExpr[] args);

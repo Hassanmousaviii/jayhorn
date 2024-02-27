@@ -135,6 +135,9 @@ public class FloatingPointEncoder {
             }
         };
     }
+    public ProverExpr mkDoublePE( ProverExpr sign, ProverExpr exponent,ProverExpr mantissa) {
+            return mkDoublePE(sign, exponent, mantissa, floatingPointADT);
+    }
     private ProverExpr BVLit(BigInteger value, int bitLength)
     {
         return  p.mkBVLiteral(value, bitLength);
@@ -157,6 +160,14 @@ public class FloatingPointEncoder {
        // byte [] ma = ieeeOne.get_fraction().toByteArray();
         mantissa = BVLit(ieeeOne.get_fraction(),f);
        //ieeeOne.get_fraction().add(BigInteger.ONE).doubleValue()
+        ProverExpr res = floatingPointADT.mkCtorExpr(0,new ProverExpr[]{sign, exponent,mantissa });
+
+        return  res;
+    }
+    private ProverExpr mkDoublePE( ProverExpr sign, ProverExpr exponent,ProverExpr mantissa, ProverADT floatingPointADT)
+    {
+
+
         ProverExpr res = floatingPointADT.mkCtorExpr(0,new ProverExpr[]{sign, exponent,mantissa });
 
         return  res;

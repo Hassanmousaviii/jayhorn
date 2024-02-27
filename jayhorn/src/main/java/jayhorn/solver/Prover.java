@@ -73,9 +73,21 @@ public interface Prover {
 
 	ProverExpr mkBVLiteral(BigInteger value, int bitLength);
 
+	public ProverExpr mkBV(int value, int bitLength);
+
+	public ProverExpr mkBVExtract(int from, int to, ProverExpr expr);
+
+	public ProverExpr mkBVZeroExtend(int count, ProverExpr expr, int bitLength);
+
+	public ProverExpr mkBVlshr(ProverExpr expr, ProverExpr count,int bitLength);
+
 	public ProverExpr mkSignedBVLiteral(ProverExpr expr, int bitLength);
 
 	ProverExpr mkPlus(ProverExpr left, ProverExpr right);
+
+	ProverExpr mkBVPlus(ProverExpr left, ProverExpr right, int bitLength);
+
+	public ProverExpr mkBVSub(ProverExpr left, ProverExpr right,  int bitLength);
 
 	ProverExpr mkPlus(ProverExpr[] args);
 
@@ -112,6 +124,9 @@ public interface Prover {
 	ProverExpr mkLeq(ProverExpr left, ProverExpr right);
 
 	ProverExpr mkBVLeq(ProverExpr left, ProverExpr right);
+
+	ProverExpr mkBVUge(ProverExpr left, ProverExpr right);
+
 
 	ProverExpr mkLt(ProverExpr left, ProverExpr right);
 

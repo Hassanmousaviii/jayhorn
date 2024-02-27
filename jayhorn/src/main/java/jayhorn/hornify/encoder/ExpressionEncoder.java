@@ -166,6 +166,68 @@ public class ExpressionEncoder {
 			// configurable)
 			switch (be.getOp()) {
 			case Plus:
+				if (left instanceof ProverTupleExpr) {
+					ProverTupleExpr tLeft = (ProverTupleExpr) left;
+					ProverTupleExpr tRight = (ProverTupleExpr) right;
+					//((PrincessADTType) tLeft.getSubExpr(3))
+
+					if (tLeft.getArity() == 4)
+						if (((PrincessADTType) tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
+							final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+							ProverExpr leftSign = FloatingPointADT.mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = FloatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = FloatingPointADT.mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3));
+							ProverExpr exponent = p.mkIte(
+									p.mkEq(leftSign,rightSign), //left.s == right.s
+									p.mkIte(p.mkEq(leftExponent,rightExponent),  //left.e == right.e
+											doubleFloatingPointEnCoder.mkDoublePE(leftSign, //sign
+													p.mkIte( // exponent
+															p.mkEq(p.mkBVExtract(53,53,p.mkBVPlus(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVZeroExtend(1,rightMantisa,54),54)),p.mkBV(1,1)), // Overflow?
+															p.mkBVPlus(leftExponent,p.mkBV(1,11),11), //overflow occured! => e= e+1
+															leftExponent // No overflow! => e = e
+															),
+													p.mkIte( // Mantissa
+															p.mkEq(p.mkBVExtract(1,1,p.mkBVPlus(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVZeroExtend(1,rightMantisa,54),54)),p.mkBV(1,1)),
+															p.mkBVPlus(p.mkBVExtract(53,1,p.mkBVPlus(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVZeroExtend(1,rightMantisa,54),54)),p.mkBV(1,53),53),
+															p.mkBVExtract(53,1,p.mkBVPlus(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVZeroExtend(1,rightMantisa,54),54))
+													)
+													),
+											p.mkIte(p.mkBVUge(leftExponent,rightExponent),
+													doubleFloatingPointEnCoder.mkDoublePE(leftSign, //sign
+															p.mkBVPlus(leftExponent,p.mkBV(1,11),11), // exponent
+															p.mkIte(
+																	p.mkEq(p.mkBVExtract(0,0,p.mkBVPlus(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVlshr(p.mkBVZeroExtend(1,rightMantisa,54),p.mkBVZeroExtend(43,p.mkBVSub(leftExponent,rightExponent,11),54),54),54)),p.mkBV(1,1)),
+																	p.mkBVPlus(p.mkBVExtract(53,1,p.mkBVPlus(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVlshr(p.mkBVZeroExtend(1,rightMantisa,54),p.mkBVZeroExtend(43,p.mkBVSub(leftExponent,rightExponent,11),54),54),54)),p.mkBV(1,53),53),
+																	p.mkBVExtract(53,1,p.mkBVPlus(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVlshr(p.mkBVZeroExtend(1,rightMantisa,54),p.mkBVZeroExtend(43,p.mkBVSub(leftExponent,rightExponent,11),54),54),54))
+															)
+													),
+													doubleFloatingPointEnCoder.mkDoublePE(leftSign, //sign
+															p.mkBVPlus(rightExponent,p.mkBV(1,11),11), // exponent
+															p.mkIte(
+																	p.mkEq(p.mkBVExtract(0,0,p.mkBVPlus(p.mkBVZeroExtend(1,rightMantisa,54),p.mkBVlshr(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVZeroExtend(43,p.mkBVSub(rightExponent,leftExponent,11),54),54),54)),p.mkBV(1,1)),
+																	p.mkBVPlus(p.mkBVExtract(53,1,p.mkBVPlus(p.mkBVZeroExtend(1,rightMantisa,54),p.mkBVlshr(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVZeroExtend(43,p.mkBVSub(rightExponent,leftExponent,11),54),54),54)),p.mkBV(1,53),53),
+																	p.mkBVExtract(53,1,p.mkBVPlus(p.mkBVZeroExtend(1,rightMantisa,54),p.mkBVlshr(p.mkBVZeroExtend(1,leftMantisa,54),p.mkBVZeroExtend(43,p.mkBVSub(rightExponent,leftExponent,11),54),54),54))
+															)
+													)
+													)
+
+											),
+									doubleFloatingPointEnCoder.mkDoublePE(p.mkBV(0,1),p.mkBV(0,11),p.mkBV(0,53))//ToDo: oposite sign in addition
+									);
+									                      //p.mkBVUge(FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3)),
+																    //FloatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3))), // right.e >=  left.e
+									                      //FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3)),
+									//p.mkIte(p.mkEq(p.mkBVExtract(54, 53, p.mkBVPlus(p.mkBVZeroExtend(, FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3)),53))),p.mkBV(1,1)))
+									//);
+							//);
+							//doubleFloatingPointEnCoder.mkDoublePE()
+							//p.mkIte(p.mkEq(((ProverTupleExpr)tLeft).getSubExpr(1), ((ProverTupleExpr)tRight).getSubExpr(1)), p.mk
+							return p.mkBVPlus(left, right, 53);
+						}
+				}
 				return p.mkPlus(left, right);
 			case Minus:
 				return p.mkMinus(left, right);
@@ -179,7 +241,11 @@ public class ExpressionEncoder {
 		        if (left instanceof ProverTupleExpr) {
 		            ProverTupleExpr tLeft = (ProverTupleExpr)left;
 		            ProverTupleExpr tRight = (ProverTupleExpr)right;
-					//if(tLeft.getSubExpr(3) instanceof PrincessFloatingPointType)
+
+					if(tLeft.getArity() == 4)
+						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint"))
+							return p.mkEq(tLeft.getSubExpr(3), tRight.getSubExpr(3));
+
 		            /*
 					TODO: this is sound if we assume that the first element of a tuple is the sound identifier.
 						  does this make sense? it should be advantageous to use the other tuple components to differentiate objects
@@ -196,7 +262,9 @@ public class ExpressionEncoder {
 					//if( tLeft.getSubExpr(3).getType() ==
 					/*if(tLeft.getSubExpr(3) instanceof PrincessADTType)
 					{*/
-						return p.mkNot( p.mkEq(tLeft.getSubExpr(3), tRight.getSubExpr(3)));
+					if(tLeft.getArity() == 4)
+						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint"))
+							return p.mkNot( p.mkEq(tLeft.getSubExpr(3), tRight.getSubExpr(3)));
 					//}
 				}
 
@@ -211,14 +279,16 @@ public class ExpressionEncoder {
 				if (left instanceof ProverTupleExpr) {
 					ProverTupleExpr tLeft = (ProverTupleExpr)left;
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
-
-					final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+					if(tLeft.getArity() == 4)
+						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
+							final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
 
 					/*ProverExpr tLeft_mantisa = p.mkVariable("mantissa", FloatingPointADT.getType(2));
 					ProverExpr tRight_mantisa = p.mkVariable("mantissa", FloatingPointADT.getType(2));*/
 
-					return p.mkBVLeq(FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3)),
-							FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3)));
+							return p.mkBVLeq(FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3)),
+									FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3)));
+						}
 					//if( tLeft.getSubExpr(3).getType() ==
 					/*if(tLeft.getSubExpr(3) instanceof PrincessADTType)
 					{*/

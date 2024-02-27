@@ -81,7 +81,7 @@ public class SpacerProver implements Prover {
 		}
 	}
 
-	public SpacerProver(){
+	public SpacerProver() {
 		this.cfg.put("model", "true");
 		try {
 			this.ctx = new Context(this.cfg);
@@ -89,41 +89,41 @@ public class SpacerProver implements Prover {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
-	
+
 	private void createSolver() {
 		try {
-				this.solver = this.ctx.mkSolver();
-				this.fx = this.ctx.mkFixedpoint();
-				Params params = this.ctx.mkParams();
-				params.add(":engine", "spacer");
-				params.add (":use_heavy_mev", true);
-				params.add (":reset_obligation_queue", true);
-				params.add (":pdr.flexible_trace", false);
-				if (Options.v().getSolverOptions().contains("spacer_no_pp")){
-					// No pre-processing
-					params.add (":xform.slice", false);
-					params.add (":xform.inline-linear", false);
-					params.add (":xform.inline-eager", false);
-				}
-				params.add (":pdr.utvpi", false);
-			    //params.set (":pdr.flexible_trace", FlexTrace);
+			this.solver = this.ctx.mkSolver();
+			this.fx = this.ctx.mkFixedpoint();
+			Params params = this.ctx.mkParams();
+			params.add(":engine", "spacer");
+			params.add(":use_heavy_mev", true);
+			params.add(":reset_obligation_queue", true);
+			params.add(":pdr.flexible_trace", false);
+			if (Options.v().getSolverOptions().contains("spacer_no_pp")) {
+				// No pre-processing
+				params.add(":xform.slice", false);
+				params.add(":xform.inline-linear", false);
+				params.add(":xform.inline-eager", false);
+			}
+			params.add(":pdr.utvpi", false);
+			//params.set (":pdr.flexible_trace", FlexTrace);
 
-			    // -- disable propagate_variable_equivalences in tail_simplifier
-			    params.add (":xform.tail_simplifier_pve", false);
-			    //params.set (":xform.subsumption_checker", Subsumption);
+			// -- disable propagate_variable_equivalences in tail_simplifier
+			params.add(":xform.tail_simplifier_pve", false);
+			//params.set (":xform.subsumption_checker", Subsumption);
 //			    params.add (":order_children", HornChildren ? 1U : 0U);
 //			    params.add (":pdr.max_num_contexts", PdrContexts);
-				//this.solver.setParameters(params);
-				this.fx.setParameters(params);
+			//this.solver.setParameters(params);
+			this.fx.setParameters(params);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	protected Expr unpack(ProverExpr exp) {
 		if (exp instanceof SpacerTermExpr) {
 			return ((SpacerTermExpr) exp).getExpr();
@@ -166,10 +166,10 @@ public class SpacerProver implements Prover {
 		} else if (type instanceof SpacerArrayType) {
 			return ((SpacerArrayType) type).getSort();
 		}
-		throw new RuntimeException( type + "not implemented");
+		throw new RuntimeException(type + "not implemented");
 	}
 
-	protected ProverType pack(Sort type) throws Z3Exception{
+	protected ProverType pack(Sort type) throws Z3Exception {
 		if (type.equals(ctx.getIntSort())) {
 			return this.getIntType();
 		} else if (type.equals(ctx.getBoolSort())) {
@@ -197,39 +197,39 @@ public class SpacerProver implements Prover {
 
 	@Override
 	public ProverType getArrayType(ProverType[] argTypes, ProverType resType) {
-		try{
-		if (argTypes.length == 0) {
-			throw new RuntimeException("Array should have at one dimension");
-		}
-		ProverType t = resType;
-		Sort sort = unpack(resType);
-		// fold everything but the last iteration.
-		for (int i = argTypes.length - 1; i > 0; i--) {
-			sort = lookupArraySort(unpack(argTypes[i]), sort);
-		}
-		return new SpacerArrayType(lookupArraySort(unpack(argTypes[0]), sort),
-				argTypes[0], t);
+		try {
+			if (argTypes.length == 0) {
+				throw new RuntimeException("Array should have at one dimension");
+			}
+			ProverType t = resType;
+			Sort sort = unpack(resType);
+			// fold everything but the last iteration.
+			for (int i = argTypes.length - 1; i > 0; i--) {
+				sort = lookupArraySort(unpack(argTypes[i]), sort);
+			}
+			return new SpacerArrayType(lookupArraySort(unpack(argTypes[0]), sort),
+					argTypes[0], t);
 		} catch (Z3Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
 
-	private ArraySort lookupArraySort(Sort idx, Sort val) throws Z3Exception{
+	private ArraySort lookupArraySort(Sort idx, Sort val) throws Z3Exception {
 		return this.ctx.mkArraySort(idx, val);
 	}
 
 	@Override
 	public ProverExpr mkBoundVariable(int deBruijnIndex, ProverType type) {
-		try{
+		try {
 			return new SpacerTermExpr(ctx.mkBound(deBruijnIndex, unpack(type)), type);
-		}catch (Z3Exception e){
+		} catch (Z3Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
 
 	@Override
-	public ProverExpr mkVariable(String name, ProverType type){
-		try{
+	public ProverExpr mkVariable(String name, ProverType type) {
+		try {
 			Expr exp = null;
 			if (type instanceof IntType) {
 				exp = ctx.mkIntConst(name);
@@ -239,17 +239,17 @@ public class SpacerProver implements Prover {
 				exp = ctx.mkArrayConst(name,
 						unpack(((SpacerArrayType) type).getIndexType()),
 						unpack(((SpacerArrayType) type).getValueType()));
-			} else if (type instanceof ProverTupleType){
-				 final ProverTupleType tt = (ProverTupleType)type;
-		            final ProverExpr[] res = new ProverExpr[tt.getArity()];
-		            for (int i = 0; i < tt.getArity(); ++i)
-		                res[i] = mkVariable(name + "_" + i, tt.getSubType(i));
-		            return mkTuple(res);
+			} else if (type instanceof ProverTupleType) {
+				final ProverTupleType tt = (ProverTupleType) type;
+				final ProverExpr[] res = new ProverExpr[tt.getArity()];
+				for (int i = 0; i < tt.getArity(); ++i)
+					res[i] = mkVariable(name + "_" + i, tt.getSubType(i));
+				return mkTuple(res);
 			} else {
 				throw new RuntimeException("not implemented");
 			}
 			return new SpacerTermExpr(exp, type);
-		}catch (Z3Exception e){
+		} catch (Z3Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
@@ -257,21 +257,21 @@ public class SpacerProver implements Prover {
 
 	@Override
 	public SpacerFun mkUnintFunction(String name, ProverType[] argTypes,
-			ProverType resType) {
-		try{
+									 ProverType resType) {
+		try {
 			ProverType[] flatType = ProverTupleType.flatten(argTypes);
 			Sort[] argSorts = new Sort[flatType.length];
 			for (int i = 0; i < flatType.length; i++) {
-						argSorts[i] = unpack(flatType[i]);
+				argSorts[i] = unpack(flatType[i]);
 			}
-			
+
 			return new SpacerFun(ctx.mkFuncDecl(name, argSorts, unpack(resType)), ctx,
 					resType);
-		}catch (Z3Exception e){
+		} catch (Z3Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * TODO: Define a new interpreted function. The body is supposed to contain
 	 * bound variables with indexes <code>0, 1, ..., (n-1)</code> representing
@@ -279,33 +279,33 @@ public class SpacerProver implements Prover {
 	 */
 	@Override
 	public ProverFun mkDefinedFunction(String name, ProverType[] argTypes,
-			ProverExpr body){
-			final ProverExpr b = body;
-			return new ProverFun() {
-				public ProverExpr mkExpr(ProverExpr[] args){
-					final Expr[] z3args = new Expr[args.length];
-					try {
-						for (int i = 0; i < args.length; i++) {
-							if (args[i] instanceof SpacerTermExpr) {
-								z3args[i] = ((SpacerTermExpr) args[i]).getExpr();
-							} else if (args[i] instanceof SpacerBoolExpr) {
-								z3args[i] = ctx.mkITE(((SpacerBoolExpr) args[i]).getExpr(),
-										ctx.mkInt(0), ctx.mkInt(1));
-							}
+									   ProverExpr body) {
+		final ProverExpr b = body;
+		return new ProverFun() {
+			public ProverExpr mkExpr(ProverExpr[] args) {
+				final Expr[] z3args = new Expr[args.length];
+				try {
+					for (int i = 0; i < args.length; i++) {
+						if (args[i] instanceof SpacerTermExpr) {
+							z3args[i] = ((SpacerTermExpr) args[i]).getExpr();
+						} else if (args[i] instanceof SpacerBoolExpr) {
+							z3args[i] = ctx.mkITE(((SpacerBoolExpr) args[i]).getExpr(),
+									ctx.mkInt(0), ctx.mkInt(1));
 						}
-						if (b instanceof SpacerTermExpr) {
-							return new SpacerTermExpr(unpack(b).substituteVars(z3args),
-									b.getType());
-						} else {
-							return new SpacerBoolExpr((BoolExpr) unpack(b).substituteVars(
-									z3args));
-						}
-					} catch (Exception e) {
-						throw new RuntimeException(e.getMessage());
 					}
+					if (b instanceof SpacerTermExpr) {
+						return new SpacerTermExpr(unpack(b).substituteVars(z3args),
+								b.getType());
+					} else {
+						return new SpacerBoolExpr((BoolExpr) unpack(b).substituteVars(
+								z3args));
+					}
+				} catch (Exception e) {
+					throw new RuntimeException(e.getMessage());
 				}
-				
-			};
+			}
+
+		};
 	}
 
 	@Override
@@ -324,59 +324,58 @@ public class SpacerProver implements Prover {
 	}
 
 	@Override
-	public ProverExpr mkEq(ProverExpr left, ProverExpr right)  {
-		try{
+	public ProverExpr mkEq(ProverExpr left, ProverExpr right) {
+		try {
 			if (left instanceof ProverTupleExpr) {
-		            ProverTupleExpr tLeft = (ProverTupleExpr)left;
-		            ProverTupleExpr tRight = (ProverTupleExpr)right;
-		            Verify.verify(tLeft.getArity() == tRight.getArity(), tLeft.getArity()+"!="+ tRight.getArity()+ " for " +left + " and " + right);
+				ProverTupleExpr tLeft = (ProverTupleExpr) left;
+				ProverTupleExpr tRight = (ProverTupleExpr) right;
+				Verify.verify(tLeft.getArity() == tRight.getArity(), tLeft.getArity() + "!=" + tRight.getArity() + " for " + left + " and " + right);
 
-		            ProverExpr[] conjuncts = new ProverExpr[tLeft.getArity()];
-		            for (int i = 0; i < tLeft.getArity(); ++i)
-		                conjuncts[i] = mkEq(tLeft.getSubExpr(i),
-		                                    tRight.getSubExpr(i));
+				ProverExpr[] conjuncts = new ProverExpr[tLeft.getArity()];
+				for (int i = 0; i < tLeft.getArity(); ++i)
+					conjuncts[i] = mkEq(tLeft.getSubExpr(i),
+							tRight.getSubExpr(i));
 
-		            return mkAnd(conjuncts);
-		        }
+				return mkAnd(conjuncts);
+			}
 			return new SpacerBoolExpr(ctx.mkEq(unpack(left), unpack(right)));
-		}catch (Exception e){
-			throw  new RuntimeException (e.getMessage());
-		}
-	}
-
-	@Override
-	public ProverExpr mkLiteral(boolean value) {
-		try{
-			return new SpacerBoolExpr(ctx.mkBool(value));
-		} catch (Exception e){
+		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
 
 	@Override
-	public ProverExpr mkNot(ProverExpr body){
-		try{
+	public ProverExpr mkLiteral(boolean value) {
+		try {
+			return new SpacerBoolExpr(ctx.mkBool(value));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+
+	@Override
+	public ProverExpr mkNot(ProverExpr body) {
+		try {
 			return new SpacerBoolExpr(ctx.mkNot((BoolExpr) unpack(body)));
-		}catch (Exception e){
-				throw new RuntimeException(e.getMessage());
-			}
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+
+	@Override
+	public ProverExpr mkAnd(ProverExpr left, ProverExpr right) {
+		try {
+			return new SpacerBoolExpr(ctx.mkAnd((BoolExpr) unpack(left),
+					(BoolExpr) unpack(right)));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
 		}
 
-		@Override
-		public ProverExpr mkAnd(ProverExpr left, ProverExpr right)   {
-			try
-			{
-				return new SpacerBoolExpr(ctx.mkAnd((BoolExpr) unpack(left),
-						(BoolExpr) unpack(right)));
-			}catch (Exception e){
-				throw new RuntimeException(e.getMessage());
-			}
-
-		}
+	}
 
 
 	@Override
-	public ProverExpr mkAnd(ProverExpr ... args)  {
+	public ProverExpr mkAnd(ProverExpr... args) {
 		try {
 			BoolExpr[] bargs = new BoolExpr[args.length];
 			for (int i = 0; i < args.length; i++) {
@@ -389,7 +388,7 @@ public class SpacerProver implements Prover {
 	}
 
 	@Override
-	public ProverExpr mkOr(ProverExpr left, ProverExpr right)  {
+	public ProverExpr mkOr(ProverExpr left, ProverExpr right) {
 		try {
 			return new SpacerBoolExpr(ctx.mkOr((BoolExpr) unpack(left),
 					(BoolExpr) unpack(right)));
@@ -400,7 +399,7 @@ public class SpacerProver implements Prover {
 	}
 
 	@Override
-	public ProverExpr mkOr(ProverExpr ... args) {
+	public ProverExpr mkOr(ProverExpr... args) {
 		try {
 			BoolExpr[] bargs = new BoolExpr[args.length];
 			for (int i = 0; i < args.length; i++) {
@@ -413,7 +412,7 @@ public class SpacerProver implements Prover {
 	}
 
 	@Override
-	public ProverExpr mkImplies(ProverExpr left, ProverExpr right)  {
+	public ProverExpr mkImplies(ProverExpr left, ProverExpr right) {
 		try {
 			return new SpacerBoolExpr(ctx.mkImplies((BoolExpr) unpack(left),
 					(BoolExpr) unpack(right)));
@@ -424,7 +423,7 @@ public class SpacerProver implements Prover {
 
 	@Override
 	public ProverExpr mkIte(ProverExpr cond, ProverExpr thenExpr,
-			ProverExpr elseExpr)   {
+							ProverExpr elseExpr) {
 		try {
 			return new SpacerTermExpr(ctx.mkITE((BoolExpr) unpack(cond),
 					unpack(thenExpr), unpack(elseExpr)), thenExpr.getType());
@@ -434,7 +433,7 @@ public class SpacerProver implements Prover {
 	}
 
 	@Override
-	public ProverExpr mkLiteral(int value)   {
+	public ProverExpr mkLiteral(int value) {
 		try {
 			return new SpacerTermExpr(ctx.mkInt(value), this.getIntType());
 		} catch (Exception e) {
@@ -452,13 +451,23 @@ public class SpacerProver implements Prover {
 	}
 
 	@Override
-	public ProverExpr mkPlus(ProverExpr left, ProverExpr right)  {
+	public ProverExpr mkPlus(ProverExpr left, ProverExpr right) {
 		try {
 			return new SpacerTermExpr(ctx.mkAdd((ArithExpr) unpack(left),
 					(ArithExpr) unpack(right)), left.getType());
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}
+	}
+    @Override
+	public ProverExpr mkBVPlus(ProverExpr left, ProverExpr right, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVSub(ProverExpr left, ProverExpr right,  int bitLength)
+	{
+		throw new RuntimeException("not implemented");
 	}
 
 	@Override
@@ -523,6 +532,11 @@ public class SpacerProver implements Prover {
 	public ProverExpr mkBVLiteral(BigInteger value, int bitLength) {
 		throw new RuntimeException("not implemented");
 	}
+	@Override
+	public ProverExpr mkBV(int value, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
 
 	@Override
 	public ProverExpr mkSignedBVLiteral(ProverExpr expr, int bitLength) {
@@ -538,7 +552,24 @@ public class SpacerProver implements Prover {
 	public ProverExpr mkBVLeq(ProverExpr left, ProverExpr right) {
 		throw new RuntimeException("not implemented");
 	}
-
+	@Override
+	public ProverExpr mkBVUge(ProverExpr left, ProverExpr right) {
+		throw new RuntimeException("not implemented");
+	}
+	public ProverExpr mkBVExtract(int from, int to, ProverExpr expr)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVZeroExtend(int count, ProverExpr expr, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVlshr(ProverExpr expr, ProverExpr count,int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
 	@Override
 	public ProverExpr mkMult(ProverExpr left, ProverExpr right)  {
 		try {

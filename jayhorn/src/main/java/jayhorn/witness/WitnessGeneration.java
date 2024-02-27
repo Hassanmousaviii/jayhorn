@@ -5,6 +5,7 @@ import jayhorn.solver.ProverExpr;
 import jayhorn.solver.ProverHornClause;
 import jayhorn.solver.ProverTupleExpr;
 import jayhorn.solver.ProverTupleType;
+
 import soottocfg.cfg.statement.HavocStatement;
 import soottocfg.cfg.statement.Statement;
 
@@ -111,6 +112,7 @@ public  class WitnessGeneration {
             if(pe.getType() instanceof ProverTupleType) {
                 TotalIndx += ((ProverTupleExpr) pe).getArity();
                 if (TotalIndx == havocArgIndex)
+                     //((ProverTupleExpr) pe).getSubExpr(3)
                     return pe.toString();
             }
             else {

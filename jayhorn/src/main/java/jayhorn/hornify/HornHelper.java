@@ -122,7 +122,7 @@ public class HornHelper {
 						&& types[i].toString().equals(StringType.instance().toString())) {	// TODO: better check
 				subExprs[i] = expEncoder.getStringEncoder().mkStringPE("");
 			} else if (types[i] instanceof jayhorn.solver.ProverADTType
-					&& types[i].toString().equals(DoubleType.instance().toString())) {	// TODO: better check
+					&& types[i].toString().equals("DoubleFloatingPoint")) {	// TODO: better check
 				subExprs[i] = expEncoder.getDoubleFloatingPointEnCoder().mkDoublePE(0.0);
 			} else if (types[i] instanceof ProverTupleType) {				
 				subExprs[i] = mkNullExpression(p, ((ProverTupleType)types[i]).getSubTypes(), expEncoder);

@@ -278,12 +278,13 @@ public class MethodEncoder {
             final String postName = initName + "_" + (++counter);
             final List<Variable> interVarList = HornHelper.hh().setToSortedList(liveAfter.get(s));
             HornPredicate postPred = null;
-            if(s instanceof HavocStatement) //ToDo: check it aggain
+            if(s instanceof HavocStatement) //ToDo: check it again
             {
                 if(!interVarList.contains(((HavocStatement) s).getVariable())) {
                     interVarList.add(((HavocStatement) s).getVariable());
                     postPred = freshHornPredicate(postName, interVarList);
                 }
+                else postPred = freshHornPredicate(postName, interVarList);
 
             }
             else postPred = freshHornPredicate(postName, interVarList);

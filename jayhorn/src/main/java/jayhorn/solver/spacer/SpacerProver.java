@@ -537,6 +537,11 @@ public class SpacerProver implements Prover {
 	{
 		throw new RuntimeException("not implemented");
 	}
+	@Override
+	public ProverExpr mkBV(BigInteger value, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
 
 	@Override
 	public ProverExpr mkSignedBVLiteral(ProverExpr expr, int bitLength) {
@@ -554,6 +559,16 @@ public class SpacerProver implements Prover {
 	}
 	@Override
 	public ProverExpr mkBVUge(ProverExpr left, ProverExpr right) {
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVUlt(ProverExpr left, ProverExpr right)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVUgt(ProverExpr left, ProverExpr right)
+	{
 		throw new RuntimeException("not implemented");
 	}
 	public ProverExpr mkBVExtract(int from, int to, ProverExpr expr)

@@ -35,7 +35,7 @@ public class BinaryExpression extends Expression {
 		Ne("!="), Gt(">"), Ge(">="), Lt("<"), Le("<="), Shl("<<"), Shr(">>"), Ushr("u>>"), BOr("|"), BAnd("&"),
 		PoLeq("<:"), StringEq("==="), StringConcat("+++"), StringCompareTo("<?>"), StartsWith("startsWith"), EndsWith("endsWith"), CharAt("charAt"),
 		ToString("<str>"), BoolToString("<str_b>"), CharToString("<str_c>"), IndexInString("<idx_str>"), StringIndexOf("<idx_of>"), StringIndexOfChar("<idx_of_char>"),
-		StringLastIndexOf("<last_idx_of>"), StringLastIndexOfChar("<last_idx_of_char>"), ToDouble("<double>"), ToFloat("<float>");	// TODO: not an actual BinaryExpression
+		StringLastIndexOf("<last_idx_of>"), StringLastIndexOfChar("<last_idx_of_char>"), ToDouble("<double>"), ToFloat("<float>"), AssumeDouble("<AssumeDouble>"),AssumeFloat("<AssumeFloat>");	// TODO: not an actual BinaryExpression
 
 		private final String name;
 
@@ -94,6 +94,9 @@ public class BinaryExpression extends Expression {
 						|| SootTranslationHelpers.v().getMemoryModel().isNullReference(left)
 						|| (op == BinaryOperator.Ne && (left.getType() == DoubleType.instance()))
 						|| (op == BinaryOperator.Le && (right.getType() == DoubleType.instance()))
+						|| (op == BinaryOperator.Le && (left.getType() == DoubleType.instance()))
+						|| (op == BinaryOperator.Le && (right.getType() == FloatType.instance()))
+						|| (op == BinaryOperator.Le && (left.getType() == FloatType.instance()))
 						|| (op == BinaryOperator.Eq && (right.getType() == DoubleType.instance()))
 						|| (op == BinaryOperator.ToDouble)
 						|| (op == BinaryOperator.ToFloat)

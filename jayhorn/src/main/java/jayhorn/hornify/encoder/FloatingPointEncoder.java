@@ -3,6 +3,7 @@ package jayhorn.hornify.encoder;
 import com.google.common.base.Verify;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import jayhorn.hornify.HornHelper;
+import jayhorn.hornify.HornPredicate;
 import jayhorn.solver.*;
 import scala.Int;
 import soottocfg.cfg.expression.BinaryExpression;
@@ -14,10 +15,15 @@ import soottocfg.cfg.type.ReferenceType;
 import soottocfg.cfg.variable.Variable;
 
 import javax.annotation.Nullable;
+import java.awt.datatransfer.FlavorListener;
 import java.math.BigInteger;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class FloatingPointEncoder {
+
+    private  ExpressionEncoder expEncoder;
 
     public enum Precision{
         Single,
@@ -40,8 +46,8 @@ public class FloatingPointEncoder {
             this.constraint = constraint;
         }
     }
-    public FloatingPointEncoder.EncodingFacts handleFloatingPointExpr(Expression e, Map<Variable, ProverExpr> varMap) {
-
+    public List<ProverHornClause> handleFloatingPointExpr(Expression e, IdentifierExpression idLhs,Map<Variable, ProverExpr> varMap, HornPredicate postPred, HornPredicate prePred, ProverExpr preAtom ,ExpressionEncoder expEnc) {
+        expEncoder = expEnc;
         if (e instanceof BinaryExpression) {
             final BinaryExpression be = (BinaryExpression) e;
             Expression leftExpr = be.getLeft();
@@ -49,25 +55,51 @@ public class FloatingPointEncoder {
             switch (be.getOp()) {
                 case ToDouble:
                 case ToFloat:
-                    return mkToDoubleFromExpression(leftExpr, rightExpr,varMap);
+                    return mkToDoubleFromExpression(leftExpr, idLhs,rightExpr,varMap, postPred, prePred, preAtom);
+                case AssumeDouble:
+                    return mkAssumeDoubleFromExpression(rightExpr,varMap, postPred, prePred, preAtom);
                 default: return null;
 
             }
         }
         return null;
     }
-    public FloatingPointEncoder.EncodingFacts mkToDoubleFromExpression(Expression DoubleExpr, Expression lhsRefExpr,
-                                                                Map<Variable, ProverExpr> varMap) {
+    public List<ProverHornClause> mkAssumeDoubleFromExpression(Expression rightExpr, Map<Variable, ProverExpr> varMap, HornPredicate postPred, HornPredicate prePred, ProverExpr preAtom)
+    {
+        List<ProverHornClause> clauses = new LinkedList<ProverHornClause>();
+        if(rightExpr instanceof BinaryExpression && ((BinaryExpression) rightExpr).getOp() == BinaryExpression.BinaryOperator.And)
+        {
+            final ProverExpr leftCond = expEncoder.exprToProverExpr(((BinaryExpression) rightExpr).getLeft(), varMap);
+
+            final HornPredicate leftCondPred = new HornPredicate(p, prePred.name + "_1", prePred.variables);
+            final ProverExpr leftCondAtom = leftCondPred.instPredicate(varMap);
+            clauses.add(p.mkHornClause(leftCondAtom, new ProverExpr[]{preAtom}, leftCond));
+
+            final ProverExpr rightCond = expEncoder.exprToProverExpr(((BinaryExpression) rightExpr).getRight(), varMap);
+            final ProverExpr postAtom = postPred.instPredicate(varMap);
+            clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{leftCondAtom}, rightCond));
+        }
+        return clauses;
+
+    }
+    public List<ProverHornClause> mkToDoubleFromExpression(Expression DoubleExpr, IdentifierExpression idLhs,Expression lhsRefExpr,
+                                                                Map<Variable, ProverExpr> varMap, HornPredicate postPred, HornPredicate prePred, ProverExpr preAtom) {
+        List<ProverHornClause> clauses = new LinkedList<ProverHornClause>();
         ReferenceType lhsRefExprType = (ReferenceType) lhsRefExpr.getType();
 
         final ProverExpr internalDouble = selectFloatingPoint(DoubleExpr, varMap);
         if (internalDouble == null)
             return null;
         ProverExpr result = mkRefHornVariable(internalDouble.toString(), lhsRefExprType);
-        ProverExpr resultString = selectFloatingPoint(result);
-        return new FloatingPointEncoder.EncodingFacts(null, null, result,
-                p.mkAnd(mkNotNullConstraint(result), p.mkEq(resultString, internalDouble))
-        );
+        ProverExpr resultDouble = selectFloatingPoint(result);
+
+        varMap.put(idLhs.getVariable(), result);
+        ProverExpr[] body = new ProverExpr[]{preAtom};
+
+        final ProverExpr postAtom = postPred.instPredicate(varMap);
+        clauses.add(p.mkHornClause(postAtom, body,  p.mkAnd(mkNotNullConstraint(result), p.mkEq(resultDouble, internalDouble))));
+
+        return clauses;
     }
     private ProverExpr mkNotNullConstraint(ProverExpr refPE) {
         return p.mkNot(p.mkEq(p.mkTupleSelect(refPE, 0), lit(0)));

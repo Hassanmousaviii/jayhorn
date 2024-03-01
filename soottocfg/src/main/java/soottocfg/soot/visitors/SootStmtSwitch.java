@@ -60,10 +60,7 @@ import soottocfg.cfg.SourceLocation;
 import soottocfg.cfg.expression.*;
 import soottocfg.cfg.expression.BinaryExpression.BinaryOperator;
 import soottocfg.cfg.expression.UnaryExpression.UnaryOperator;
-import soottocfg.cfg.expression.literal.DoubleLiteral;
-import soottocfg.cfg.expression.literal.IntegerLiteral;
-import soottocfg.cfg.expression.literal.BooleanLiteral;
-import soottocfg.cfg.expression.literal.StringLiteral;
+import soottocfg.cfg.expression.literal.*;
 import soottocfg.cfg.method.CfgBlock;
 import soottocfg.cfg.method.Method;
 import soottocfg.cfg.statement.AssertStatement;
@@ -79,6 +76,8 @@ import soottocfg.cfg.variable.ClassVariable;
 import soottocfg.cfg.variable.Variable;
 import soottocfg.soot.util.MethodInfo;
 import soottocfg.soot.util.SootTranslationHelpers;
+
+import javax.swing.*;
 
 /**
  * @author schaef
@@ -972,8 +971,8 @@ public class SootStmtSwitch implements StmtSwitch {
 				methodSignature.equals("<java.util.Random: int nextInt()>")) {
 			translateRandomNondet(IntType.v(), optionalLhs, call,true, Integer.MIN_VALUE, Integer.MAX_VALUE);
 			return true;
-		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: long nondetLong()>") ||
-				methodSignature.equals("<java.util.Random: long nextLong()>")) {
+		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: long nondetLong()>") || methodSignature.equals("<java.util.Random: Long nextLong()>")
+				) {
 			translateRandomNondet(LongType.v(), optionalLhs, call,true, Long.MIN_VALUE, Long.MAX_VALUE);
 			return true;
 			// TODO: cover other nondeterministic Verifier functions
@@ -982,11 +981,14 @@ public class SootStmtSwitch implements StmtSwitch {
 			translateNondetString(RefType.v(), optionalLhs, call);
 			return true;
 
-		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: double nondetDouble()>")) {
-			translateRandomNondet(RefType.v(), optionalLhs, call,false, Double.doubleToLongBits(Double.MIN_VALUE),Double.doubleToLongBits(Double.MAX_VALUE));
-			//translateNondetDouble(RefType.v(), optionalLhs, call);
-		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: float nondetFloat()>")) {
-		translateRandomNondet(RefType.v(), optionalLhs, call,false, Float.floatToIntBits(Float.MIN_VALUE),Float.floatToIntBits(Float.MAX_VALUE));
+		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: double nondetDouble()>")
+				|| methodSignature.equals("<java.util.Random: double nextDouble()>")) {
+			translateRandomNondet(RefType.v("java.lang.Double"), optionalLhs, call,true, Double.doubleToLongBits(Double.MIN_VALUE),Double.doubleToLongBits(Double.MAX_VALUE));
+			return true;
+		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: float nondetFloat()>")
+				|| methodSignature.equals("<java.util.Random: float nextFloat()>")) {
+		translateRandomNondet(RefType.v("java.lang.Float"), optionalLhs, call,true, Float.floatToIntBits(Float.MIN_VALUE),Float.floatToIntBits(Float.MAX_VALUE));
+		return  true;
 		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: void assume(boolean)>")) {
 			Verify.verify(optionalLhs == null);
 			Verify.verify(call.getArgCount() == 1);
@@ -1057,29 +1059,91 @@ public class SootStmtSwitch implements StmtSwitch {
 			(/*(RefType.v("java.lang.Double"))*/optionalLhs).apply(valueSwitch);
 			optionalLhs.getUseBoxes();
 			Expression lhs = valueSwitch.popExpression();
+//if(t.toString().equals("java.lang.Double" ))
 
 			Verify.verify(lhs instanceof IdentifierExpression,
 					"do not know how to havoc " + lhs);
-			IdentifierExpression idLhs = (IdentifierExpression)lhs;
+			IdentifierExpression idLhs = (IdentifierExpression) lhs;
 
 			//final SourceLocation loc = lhs.getSourceLocation();
 			final SourceLocation loc = valueSwitch.getStatementSwitch().loc;//lhs.getSourceLocation();
 			//final SootMethod sootMethod = valueSwitch.getMethodInfo().getSootMethod();
 			final String scope = sootMethod.getDeclaringClass().getName() + "." + sootMethod.getName();
-			currentBlock.addStatement(new HavocStatement(loc ,scope ,idLhs));
+			currentBlock.addStatement(new HavocStatement(loc, scope, idLhs));
 			//currentBlock.addStatement(new HavocStatement(loc, idLhs));
 
-			if (addBounds)
-				currentBlock.addStatement(
-						new AssumeStatement(loc,
-								new BinaryExpression(
-										loc, BinaryOperator.And,
-										new BinaryExpression(
-												loc, BinaryOperator.Le,
-												 new IntegerLiteral(loc, lower),idLhs),
-										new BinaryExpression(
-												loc, BinaryOperator.Le,
-												idLhs,  new IntegerLiteral(loc, upper) ))));
+			if (addBounds) {
+				/*if(t.toString().equals("java.lang.Double"))
+				{
+					AssumeStatement assumeStatement = new AssumeStatement(loc,
+							new BinaryExpression(
+									loc, BinaryOperator.And,
+									new BinaryExpression(
+											loc, BinaryOperator.Le,
+											new DoubleLiteral(loc,
+													SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+															"$double(" + lower + ")",
+															SootTranslationHelpers.v().getMemoryModel().lookupType(DoubleType.v()))
+													, lower), idLhs),
+									new BinaryExpression(
+											loc, BinaryOperator.Le,
+											idLhs,new DoubleLiteral(loc,
+											SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+													"$double(" + upper + ")",
+													SootTranslationHelpers.v().getMemoryModel().lookupType(DoubleType.v()))
+											, upper))));
+					Expression itemExpr = new IdentifierExpression(loc,SootTranslationHelpers.v().getProgram().lookupGlobalVariable(idLhs.getVariable().getName()+"_tmp",SootTranslationHelpers.v().getMemoryModel().lookupType(BooleanType.v())));
+					Expression assumeExpr = assumeStatement.getExpression();
+					Expression rhs = new BinaryExpression(loc, BinaryOperator.AssumeDouble, itemExpr, assumeExpr);
+
+					currentBlock.addStatement(new AssumeStatement(loc, rhs));
+				}
+				else*/ if(t.toString().equals("java.lang.Float"))
+				{
+					AssumeStatement assumeStatement = new AssumeStatement(loc,
+							new BinaryExpression(
+									loc, BinaryOperator.And,
+									new BinaryExpression(
+											loc, BinaryOperator.Le,
+											new FloatLiteral(loc,
+													SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+															"$float(" + lower + ")",
+															SootTranslationHelpers.v().getMemoryModel().lookupType(FloatType.v()))
+													,lower), idLhs),
+									new BinaryExpression(
+											loc, BinaryOperator.Le,
+											idLhs,new FloatLiteral(loc,
+											SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+													"$float(" + upper + ")",
+													SootTranslationHelpers.v().getMemoryModel().lookupType(FloatType.v()))
+											,  upper))));
+					Expression itemExpr = new IdentifierExpression(loc,SootTranslationHelpers.v().getProgram().lookupGlobalVariable(idLhs.getVariable().getName()+"_tmp",SootTranslationHelpers.v().getMemoryModel().lookupType(BooleanType.v())));
+					Expression assumeExpr = assumeStatement.getExpression();
+					Expression rhs = new BinaryExpression(loc, BinaryOperator.AssumeDouble, itemExpr, assumeExpr);
+
+					currentBlock.addStatement(new AssumeStatement(loc, rhs));
+				}
+				else {
+					currentBlock.addStatement(
+							new AssumeStatement(loc,
+									new BinaryExpression(
+											loc, BinaryOperator.And,
+											new BinaryExpression(
+													loc, BinaryOperator.Le,
+													!t.toString().equals("java.lang.Double") ? new IntegerLiteral(loc, lower) : new DoubleLiteral(loc,
+															SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+																	"$double(" + lower + ")",
+																	SootTranslationHelpers.v().getMemoryModel().lookupType(DoubleType.v()))
+															, lower), idLhs),
+											new BinaryExpression(
+													loc, BinaryOperator.Le,
+													idLhs, !t.toString().equals("java.lang.Double") ? new IntegerLiteral(loc, upper) : new DoubleLiteral(loc,
+													SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+															"$double(" + upper + ")",
+															SootTranslationHelpers.v().getMemoryModel().lookupType(DoubleType.v()))
+													, upper)))));
+				}
+			}
 		}
 	}
 

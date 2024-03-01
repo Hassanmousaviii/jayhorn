@@ -8,16 +8,17 @@ import soottocfg.cfg.type.FloatType;
 import soottocfg.cfg.type.Type;
 import soottocfg.cfg.variable.Variable;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class FloatLiteral extends Expression implements Literal{
+public class FloatLiteral extends IdentifierExpression{
     private static final long serialVersionUID = 7913206010686231183L;
 
     private final Float value;
 
-    private static final FloatLiteral one = new FloatLiteral(null, 1);
+   /* private static final FloatLiteral one = new FloatLiteral(null, 1);
     private static final FloatLiteral zero = new FloatLiteral(null, 0);
     private static final FloatLiteral minusOne = new FloatLiteral(null, -1);
 
@@ -31,15 +32,15 @@ public class FloatLiteral extends Expression implements Literal{
 
     public static FloatLiteral minusOne() {
         return minusOne;
-    }
+    }*/
 
-    public FloatLiteral(SourceLocation loc, Float value) {
-        super(loc);
+    public FloatLiteral(SourceLocation loc, Variable variable ,@Nullable Float value) {
+        super(loc,variable);
         this.value = value; //Long.valueOf(value);
     }
-    public FloatLiteral(SourceLocation loc, int value) {
-        super(loc);
-        this.value = Float.intBitsToFloat(value); //Long.valueOf(value);
+    public FloatLiteral(SourceLocation loc, Variable variable,@Nullable long value) {
+        super(loc,variable);
+        this.value =(float) value; //Long.valueOf(value);
     }
 
     @Override
@@ -84,12 +85,12 @@ public class FloatLiteral extends Expression implements Literal{
     }
 
     @Override
-    public Expression substitute(Map<Variable, Variable> subs) {
+    public IdentifierExpression substitute(Map<Variable, Variable> subs) {
         return this;
     }
 
     @Override
-    public Expression substituteVarWithExpression(Map<Variable, Expression> subs) {
+    public IdentifierExpression substituteVarWithExpression(Map<Variable, Expression> subs) {
         return this;
     }
 }

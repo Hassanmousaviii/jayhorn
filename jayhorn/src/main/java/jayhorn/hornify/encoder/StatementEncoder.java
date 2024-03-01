@@ -23,6 +23,8 @@ import jayhorn.solver.ProverHornClause;
 import jayhorn.solver.ProverTupleExpr;
 import jayhorn.solver.ProverTupleType;
 import jayhorn.solver.ProverType;
+import lazabs.ast.ASTree;
+import soottocfg.cfg.expression.BinaryExpression;
 import soottocfg.cfg.expression.Expression;
 import soottocfg.cfg.expression.IdentifierExpression;
 import soottocfg.cfg.expression.literal.NullLiteral;
@@ -114,11 +116,11 @@ public class StatementEncoder {
             S2H.sh().addClause(s, clause);
             return clause;
         } else if (s instanceof AssumeStatement) {
-            List<ProverHornClause> clause = assumeToClause((AssumeStatement) s, postPred, preAtom, varMap);
+            List<ProverHornClause> clause = assumeToClause((AssumeStatement) s, postPred, prePred,preAtom, varMap);
             S2H.sh().addClause(s, clause);
             return clause;
         } else if (s instanceof AssignStatement) {
-            List<ProverHornClause> clause = assignToClause((AssignStatement) s, postPred, preAtom, varMap);
+            List<ProverHornClause> clause = assignToClause((AssignStatement) s, postPred, prePred,preAtom, varMap);
             S2H.sh().addClause(s, clause);
             return clause;
         } else if (s instanceof NewStatement) {
@@ -207,16 +209,26 @@ public class StatementEncoder {
      * @param varMap
      * @return
      */
-    public List<ProverHornClause> assumeToClause(AssumeStatement as, HornPredicate postPred, ProverExpr preAtom,
+    public List<ProverHornClause> assumeToClause(AssumeStatement as, HornPredicate postPred, HornPredicate prePred, ProverExpr preAtom,
                                                  Map<Variable, ProverExpr> varMap) {
         List<ProverHornClause> clauses = new LinkedList<ProverHornClause>();
+        List<ProverHornClause> clause = null;
+        clause = expEncoder.getDoubleFloatingPointEnCoder().handleFloatingPointExpr(as.getExpression(), null,varMap, postPred,prePred,preAtom,expEncoder);
+        if(clause != null)
+            return clause;
+
+        clause = expEncoder.getSingleFloatingPointEnCoder().handleFloatingPointExpr(as.getExpression(), null,varMap, postPred,prePred, preAtom,expEncoder);
+        if(clause != null)
+            return clause;
+
         final ProverExpr cond = expEncoder.exprToProverExpr(as.getExpression(), varMap);
         final ProverExpr postAtom = postPred.instPredicate(varMap);
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{preAtom}, cond));
+
         return clauses;
     }
 
-    public List<ProverHornClause> assignToClause(AssignStatement as, HornPredicate postPred, ProverExpr preAtom,
+    public List<ProverHornClause> assignToClause(AssignStatement as, HornPredicate postPred, HornPredicate prePred ,ProverExpr preAtom,
                                                  Map<Variable, ProverExpr> varMap) {
         List<ProverHornClause> clauses = new LinkedList<ProverHornClause>();
 
@@ -228,16 +240,14 @@ public class StatementEncoder {
             expEncoder.getStringEncoder().handleStringExpr(as.getRight(), varMap);
         if (stringConstraints != null)
             return generateStringClauses(stringConstraints, idLhs, postPred, preAtom, varMap);
+        List<ProverHornClause> clause = null;
+        clause = expEncoder.getDoubleFloatingPointEnCoder().handleFloatingPointExpr(as.getRight(), idLhs,varMap, postPred,prePred,preAtom,expEncoder);
+        if(clause != null)
+            return clause;
 
-        FloatingPointEncoder.EncodingFacts doubleFloatingPointConstraints =
-                expEncoder.getDoubleFloatingPointEnCoder().handleFloatingPointExpr(as.getRight(), varMap);
-        if(doubleFloatingPointConstraints != null)
-            return generateFloatingPointClauses(doubleFloatingPointConstraints,idLhs,postPred,preAtom, varMap);
-
-        FloatingPointEncoder.EncodingFacts singleFloatingPointConstraints =
-                expEncoder.getSingleFloatingPointEnCoder().handleFloatingPointExpr(as.getRight(), varMap);
-        if(singleFloatingPointConstraints != null)
-            return generateFloatingPointClauses(singleFloatingPointConstraints,idLhs,postPred,preAtom, varMap);
+        clause = expEncoder.getSingleFloatingPointEnCoder().handleFloatingPointExpr(as.getRight(), idLhs,varMap, postPred,prePred, preAtom,expEncoder);
+        if(clause != null)
+            return clause;
 
         ProverExpr right = expEncoder.exprToProverExpr(as.getRight(), varMap);
         if (as.getRight() instanceof NullLiteral) {

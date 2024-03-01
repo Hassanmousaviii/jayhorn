@@ -222,7 +222,7 @@ public abstract class BasicMemoryModel extends MemoryModel {
 				//type = DoubleType.instance();
 				type = lookupRefLikeType(Scene.v().getSootClass("java.lang.Double").getType());
 			} else if (t instanceof soot.FloatType) {
-				type = FloatType.instance();
+				type = lookupRefLikeType(Scene.v().getSootClass("java.lang.Float").getType());
 			} else if (t instanceof soot.IntType) {
 				type = IntType.instance();
 			} else if (t instanceof soot.LongType) {

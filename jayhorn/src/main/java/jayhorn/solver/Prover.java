@@ -75,6 +75,8 @@ public interface Prover {
 
 	public ProverExpr mkBV(int value, int bitLength);
 
+	public ProverExpr mkBV(BigInteger value, int bitLength);
+
 	public ProverExpr mkBVExtract(int from, int to, ProverExpr expr);
 
 	public ProverExpr mkBVZeroExtend(int count, ProverExpr expr, int bitLength);
@@ -127,6 +129,8 @@ public interface Prover {
 
 	ProverExpr mkBVUge(ProverExpr left, ProverExpr right);
 
+	ProverExpr mkBVUlt(ProverExpr left, ProverExpr right);
+	ProverExpr mkBVUgt(ProverExpr left, ProverExpr right);
 
 	ProverExpr mkLt(ProverExpr left, ProverExpr right);
 

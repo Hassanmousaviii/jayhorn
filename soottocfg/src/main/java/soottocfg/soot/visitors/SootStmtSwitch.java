@@ -1073,7 +1073,7 @@ public class SootStmtSwitch implements StmtSwitch {
 			//currentBlock.addStatement(new HavocStatement(loc, idLhs));
 
 			if (addBounds) {
-				/*if(t.toString().equals("java.lang.Double"))
+				if(t.toString().equals("java.lang.Double"))
 				{
 					AssumeStatement assumeStatement = new AssumeStatement(loc,
 							new BinaryExpression(
@@ -1084,7 +1084,7 @@ public class SootStmtSwitch implements StmtSwitch {
 													SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
 															"$double(" + lower + ")",
 															SootTranslationHelpers.v().getMemoryModel().lookupType(DoubleType.v()))
-													, lower), idLhs),
+													, -upper), idLhs),
 									new BinaryExpression(
 											loc, BinaryOperator.Le,
 											idLhs,new DoubleLiteral(loc,
@@ -1098,7 +1098,7 @@ public class SootStmtSwitch implements StmtSwitch {
 
 					currentBlock.addStatement(new AssumeStatement(loc, rhs));
 				}
-				else*/ if(t.toString().equals("java.lang.Float"))
+				else if(t.toString().equals("java.lang.Float"))
 				{
 					AssumeStatement assumeStatement = new AssumeStatement(loc,
 							new BinaryExpression(

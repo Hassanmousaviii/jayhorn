@@ -354,12 +354,12 @@ public class ExpressionEncoder {
 							ProverExpr rightExponent = FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3));
 							ProverExpr rightMantisa = FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3));
 							return p.mkIte(p.mkEq(tLeft.getSubExpr(3), tRight.getSubExpr(3)),
-									       p.mkLiteral(1),
+									       p.mkLiteral(0),
 									       p.mkIte(p.mkEq(leftSign,rightSign),
 												   p.mkIte(p.mkEq(leftExponent,rightExponent),
 														   p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUgt(leftMantisa,rightMantisa),p.mkBVUlt(leftMantisa,rightMantisa)),
 														   p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)), p.mkBVUgt(leftExponent,rightExponent),p.mkBVUlt(leftExponent,rightExponent))),
-												   p.mkIte(p.mkBVUlt(leftSign,rightSign),p.mkLiteral(0),p.mkLiteral(1))
+												   p.mkIte(p.mkBVUlt(leftSign,rightSign),p.mkLiteral(1),p.mkLiteral(0))
 												   )
 							);
 

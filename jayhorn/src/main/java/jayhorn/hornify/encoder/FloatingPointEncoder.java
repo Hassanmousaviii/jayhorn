@@ -5,6 +5,8 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import jayhorn.hornify.HornHelper;
 import jayhorn.hornify.HornPredicate;
 import jayhorn.solver.*;
+import jayhorn.solver.princess.PrincessFloatingPointADTFactory;
+import jayhorn.solver.princess.PrincessFloatingPointType;
 import scala.Int;
 import soottocfg.cfg.expression.BinaryExpression;
 import soottocfg.cfg.expression.Expression;
@@ -33,6 +35,8 @@ public class FloatingPointEncoder {
     private ProverADT floatingPointADT;
 
     private Precision floatingPointPrecision;
+
+
 
     private int f, e;
 
@@ -67,7 +71,7 @@ public class FloatingPointEncoder {
     public List<ProverHornClause> mkAssumeDoubleFromExpression(Expression rightExpr, Map<Variable, ProverExpr> varMap, HornPredicate postPred, HornPredicate prePred, ProverExpr preAtom)
     {
         List<ProverHornClause> clauses = new LinkedList<ProverHornClause>();
-        if(rightExpr instanceof BinaryExpression && ((BinaryExpression) rightExpr).getOp() == BinaryExpression.BinaryOperator.And)
+      /*  if(rightExpr instanceof BinaryExpression && ((BinaryExpression) rightExpr).getOp() == BinaryExpression.BinaryOperator.And)
         {
             final ProverExpr leftCond = expEncoder.exprToProverExpr(((BinaryExpression) rightExpr).getLeft(), varMap);
 
@@ -78,7 +82,23 @@ public class FloatingPointEncoder {
             final ProverExpr rightCond = expEncoder.exprToProverExpr(((BinaryExpression) rightExpr).getRight(), varMap);
             final ProverExpr postAtom = postPred.instPredicate(varMap);
             clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{leftCondAtom}, rightCond));
-        }
+        }*/
+        //((BinaryExpression) ((BinaryExpression) rightExpr).getLeft()).getRight().getUseVariables()
+        final ProverExpr expr1 =  expEncoder.exprToProverExpr(((BinaryExpression) ((BinaryExpression) rightExpr).getLeft()).getRight(), varMap);
+        final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+
+
+        //this.mkDoublePE(p.mkBV(0,1),p.mkBV(1021,11),p.mkBV(new BigInteger("5404319552844596"),53))
+        //Expression checkSpecialCasesExpr = new BinaryExpression(rightExpr.getSourceLocation(), BinaryExpression.BinaryOperator.Ne,)
+        //BinaryExpression expression = new BinaryExpression(rightExpr.getSourceLocation(), BinaryExpression.BinaryOperator.And,,((BinaryExpression) rightExpr));
+        final ProverExpr boundCond = expEncoder.exprToProverExpr(((BinaryExpression) rightExpr), varMap);
+        final ProverExpr notNanAndInfinity = p.mkNot(p.mkEq(FloatingPointADT.mkSelExpr(0, 1, ((ProverTupleExpr)expr1).getSubExpr(3)),p.mkBV(((int)Math.pow(2.0,11.0))-1,11)));
+        final ProverExpr tempCond = p.mkNot(p.mkEq(FloatingPointADT.mkSelExpr(0, 1, ((ProverTupleExpr)expr1).getSubExpr(3)),p.mkBV(0,11)));
+        final ProverExpr beNormal = p.mkEq(p.mkBVExtract(52,52,FloatingPointADT.mkSelExpr(0, 2, ((ProverTupleExpr)expr1).getSubExpr(3))),p.mkBV(1,1));
+        final ProverExpr finalCond = p.mkAnd(notNanAndInfinity,beNormal,boundCond);
+        //BinaryExpression checkForNanAndInfinity = new BinaryExpression(rightExpr.getSourceLocation(), BinaryExpression.BinaryOperator.Ne,FloatingPointADT.mkSelExpr(0, 1, ((ProverTupleExpr)expr1).getSubExpr(3)),p.mkBV(1,11));
+        final ProverExpr postAtom = postPred.instPredicate(varMap);
+        clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{preAtom}, finalCond));
         return clauses;
 
     }

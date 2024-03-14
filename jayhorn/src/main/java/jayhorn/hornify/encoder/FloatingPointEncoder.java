@@ -1,7 +1,7 @@
 package jayhorn.hornify.encoder;
 
 import com.google.common.base.Verify;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import jayhorn.hornify.HornHelper;
 import jayhorn.hornify.HornPredicate;
 import jayhorn.solver.*;
@@ -88,17 +88,16 @@ public class FloatingPointEncoder {
         final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
 
 
-        //this.mkDoublePE(p.mkBV(0,1),p.mkBV(1021,11),p.mkBV(new BigInteger("5404319552844596"),53))
-        //Expression checkSpecialCasesExpr = new BinaryExpression(rightExpr.getSourceLocation(), BinaryExpression.BinaryOperator.Ne,)
-        //BinaryExpression expression = new BinaryExpression(rightExpr.getSourceLocation(), BinaryExpression.BinaryOperator.And,,((BinaryExpression) rightExpr));
+
         final ProverExpr boundCond = expEncoder.exprToProverExpr(((BinaryExpression) rightExpr), varMap);
         final ProverExpr notNanAndInfinity = p.mkNot(p.mkEq(FloatingPointADT.mkSelExpr(0, 1, ((ProverTupleExpr)expr1).getSubExpr(3)),p.mkBV(((int)Math.pow(2.0,11.0))-1,11)));
-        final ProverExpr tempCond = p.mkNot(p.mkEq(FloatingPointADT.mkSelExpr(0, 1, ((ProverTupleExpr)expr1).getSubExpr(3)),p.mkBV(0,11)));
-        final ProverExpr beNormal = p.mkEq(p.mkBVExtract(52,52,FloatingPointADT.mkSelExpr(0, 2, ((ProverTupleExpr)expr1).getSubExpr(3))),p.mkBV(1,1));
-        final ProverExpr finalCond = p.mkAnd(notNanAndInfinity,beNormal,boundCond);
-        //BinaryExpression checkForNanAndInfinity = new BinaryExpression(rightExpr.getSourceLocation(), BinaryExpression.BinaryOperator.Ne,FloatingPointADT.mkSelExpr(0, 1, ((ProverTupleExpr)expr1).getSubExpr(3)),p.mkBV(1,11));
+
+                //p.mkBVUlt(FloatingPointADT.mkSelExpr(0, 1, ((ProverTupleExpr)expr1).getSubExpr(3)),p.mkBV(((int)Math.pow(2.0,11.0))-1,11));// p.mkNot(p.mkEq(FloatingPointADT.mkSelExpr(0, 1, ((ProverTupleExpr)expr1).getSubExpr(3)),p.mkBV(((int)Math.pow(2.0,11.0))-1,11)));
+        //final ProverExpr beNormal = p.mkNot(p.mkEq(p.mkBVExtract(52,52,FloatingPointADT.mkSelExpr(0, 2, ((ProverTupleExpr)expr1).getSubExpr(3))),p.mkBV(0,1)));
+        final ProverExpr finalCond = p.mkAnd(notNanAndInfinity/*,beNormal*/,boundCond);
+
         final ProverExpr postAtom = postPred.instPredicate(varMap);
-        clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{preAtom}, finalCond));
+        clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{preAtom}, boundCond));
         return clauses;
 
     }
@@ -117,7 +116,9 @@ public class FloatingPointEncoder {
         ProverExpr[] body = new ProverExpr[]{preAtom};
 
         final ProverExpr postAtom = postPred.instPredicate(varMap);
-        clauses.add(p.mkHornClause(postAtom, body,  p.mkAnd(mkNotNullConstraint(result), p.mkEq(resultDouble, internalDouble))));
+        clauses.add(p.mkHornClause(postAtom, body,
+                p.mkAnd(mkNotNullConstraint(result),
+                        p.mkEq(resultDouble, internalDouble))));
 
         return clauses;
     }

@@ -11,6 +11,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import ap.theories.bitvectors.ModuloArithmetic;
 import com.google.common.base.Verify;
 import com.microsoft.z3.ArithExpr;
 import com.microsoft.z3.ArrayExpr;
@@ -41,6 +42,7 @@ import jayhorn.solver.ProverResult;
 import jayhorn.solver.ProverTupleExpr;
 import jayhorn.solver.ProverTupleType;
 import jayhorn.solver.ProverType;
+
 
 /**
  * @author teme
@@ -469,7 +471,15 @@ public class SpacerProver implements Prover {
 	{
 		throw new RuntimeException("not implemented");
 	}
-
+	@Override
+	public ProverExpr mkBVMul(ProverExpr left, ProverExpr right,  int bitLength) {
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVXOR(ProverExpr left, ProverExpr right, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
 	@Override
 	public ProverExpr mkPlus(ProverExpr[] args)  {
 		try {

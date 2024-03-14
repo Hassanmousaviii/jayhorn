@@ -91,6 +91,9 @@ public interface Prover {
 
 	public ProverExpr mkBVSub(ProverExpr left, ProverExpr right,  int bitLength);
 
+	public ProverExpr mkBVMul(ProverExpr left, ProverExpr right,  int bitLength) ;
+	ProverExpr mkBVXOR(ProverExpr left, ProverExpr right, int bitLength);
+
 	ProverExpr mkPlus(ProverExpr[] args);
 
 	ProverExpr mkMinus(ProverExpr left, ProverExpr right);

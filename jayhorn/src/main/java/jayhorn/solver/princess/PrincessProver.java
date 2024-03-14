@@ -401,15 +401,25 @@ public class PrincessProver implements Prover {
        //ap.theories.bitvectors.ModuloArithmetic.bvadd() //ap.theories.bitvectors.ModuloArithmetic.bv_add();
 		return new TermExpr(new IPlus(((TermExpr) left).term, ((TermExpr) right).term), getIntType());
 	}
+
     public ProverExpr mkBVPlus(ProverExpr left, ProverExpr right,  int bitLength) {
         //ap.theories.bitvectors.ModuloArithmetic.bvadd() //ap.theories.bitvectors.ModuloArithmetic.bv_add();
 
         return new TermExpr( ModuloArithmetic.bvadd(((TermExpr) left).term, ((TermExpr) right).term), getBVType(bitLength));
     }
+    public ProverExpr mkBVMul(ProverExpr left, ProverExpr right,  int bitLength) {
+        //ap.theories.bitvectors.ModuloArithmetic.bvadd() //ap.theories.bitvectors.ModuloArithmetic.bv_add();
+
+        return new TermExpr( ModuloArithmetic.bvmul(((TermExpr) left).term, ((TermExpr) right).term), getBVType(bitLength));
+    }
     public ProverExpr mkBVSub(ProverExpr left, ProverExpr right,  int bitLength) {
         //ap.theories.bitvectors.ModuloArithmetic.bvadd() //ap.theories.bitvectors.ModuloArithmetic.bv_add();
 
         return new TermExpr( ModuloArithmetic.bvsub(((TermExpr) left).term, ((TermExpr) right).term), getBVType(bitLength));
+    }
+    public ProverExpr mkBVXOR(ProverExpr left, ProverExpr right, int bitLength)
+    {
+        return new TermExpr( ModuloArithmetic.bvxor(((TermExpr) left).term, ((TermExpr) right).term), getBVType(bitLength));
     }
 	public ProverExpr mkPlus(ProverExpr[] args) {
 		final ArrayBuffer<ITerm> argsBuf = new ArrayBuffer<ITerm>();

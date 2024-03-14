@@ -98,6 +98,9 @@ public class BinaryExpression extends Expression {
 						|| (op == BinaryOperator.Le && (right.getType() == FloatType.instance()))
 						|| (op == BinaryOperator.Le && (left.getType() == FloatType.instance()))
 						|| (op == BinaryOperator.Eq && (right.getType() == DoubleType.instance()))
+						|| (op == BinaryOperator.Plus && (left.getType() == DoubleType.instance() || right.getType() == DoubleType.instance()))
+						|| (op == BinaryOperator.Mul && (left.getType() == DoubleType.instance() || right.getType() == DoubleType.instance()))
+						|| (op == BinaryOperator.Le && (left instanceof UnaryExpression || right instanceof UnaryExpression))
 						|| (op == BinaryOperator.ToDouble)
 						|| (op == BinaryOperator.ToFloat)
 						|| op == BinaryOperator.CharAt || op == BinaryOperator.IndexInString

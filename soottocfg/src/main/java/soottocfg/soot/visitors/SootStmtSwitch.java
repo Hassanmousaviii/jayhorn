@@ -983,7 +983,7 @@ public class SootStmtSwitch implements StmtSwitch {
 
 		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: double nondetDouble()>")
 				|| methodSignature.equals("<java.util.Random: double nextDouble()>")) {
-			translateRandomNondet(RefType.v("java.lang.Double"), optionalLhs, call,true, Double.doubleToLongBits(Double.MIN_VALUE),Double.doubleToLongBits(Double.MAX_VALUE));
+			translateRandomNondet(RefType.v("java.lang.Double"), optionalLhs, call,true, Double.doubleToLongBits(Double.MIN_NORMAL),Double.doubleToLongBits(Double.MAX_VALUE));
 			return true;
 		} else if (methodSignature.equals("<org.sosy_lab.sv_benchmarks.Verifier: float nondetFloat()>")
 				|| methodSignature.equals("<java.util.Random: float nextFloat()>")) {
@@ -1084,10 +1084,10 @@ public class SootStmtSwitch implements StmtSwitch {
 													SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
 															"$double(" + lower + ")",
 															SootTranslationHelpers.v().getMemoryModel().lookupType(DoubleType.v()))
-													, -upper), idLhs),
+													, lower), new UnaryExpression(loc,UnaryOperator.ABS,idLhs) ),
 									new BinaryExpression(
 											loc, BinaryOperator.Le,
-											idLhs,new DoubleLiteral(loc,
+											new UnaryExpression(loc,UnaryOperator.ABS,idLhs),new DoubleLiteral(loc,
 											SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
 													"$double(" + upper + ")",
 													SootTranslationHelpers.v().getMemoryModel().lookupType(DoubleType.v()))
@@ -1119,7 +1119,7 @@ public class SootStmtSwitch implements StmtSwitch {
 											,  upper))));
 					Expression itemExpr = new IdentifierExpression(loc,SootTranslationHelpers.v().getProgram().lookupGlobalVariable(idLhs.getVariable().getName()+"_tmp",SootTranslationHelpers.v().getMemoryModel().lookupType(BooleanType.v())));
 					Expression assumeExpr = assumeStatement.getExpression();
-					Expression rhs = new BinaryExpression(loc, BinaryOperator.AssumeDouble, itemExpr, assumeExpr);
+					Expression rhs = new BinaryExpression(loc, BinaryOperator.AssumeFloat, itemExpr, assumeExpr);
 
 					currentBlock.addStatement(new AssumeStatement(loc, rhs));
 				}

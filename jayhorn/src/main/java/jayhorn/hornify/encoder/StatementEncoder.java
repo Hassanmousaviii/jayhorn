@@ -102,9 +102,11 @@ public class StatementEncoder {
      */
     public List<ProverHornClause> statementToClause(Statement s, HornPredicate prePred, HornPredicate postPred, Method m) {
 
+
         final Map<Variable, ProverExpr> varMap = new HashMap<Variable, ProverExpr>();
         // First create the atom for prePred.
         HornHelper.hh().findOrCreateProverVar(p, prePred.variables, varMap);
+
         final ProverExpr preAtom = prePred.instPredicate(varMap);
         HornHelper.hh().findOrCreateProverVar(p, postPred.variables, varMap);
 

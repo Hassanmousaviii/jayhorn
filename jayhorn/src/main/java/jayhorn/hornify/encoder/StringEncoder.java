@@ -62,6 +62,7 @@ public class StringEncoder {
     }
 
     private ProverExpr lit(int value) {
+
         return p.mkLiteral(value);
     }
 

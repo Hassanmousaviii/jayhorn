@@ -19,6 +19,10 @@ public interface Prover {
 
 	ProverType getIntType();
 
+
+
+	public ProverType getBVType(int arity);
+
 	ProverType getArrayType(ProverType[] argTypes, ProverType resType);
 
 	ProverType getTupleType(ProverType[] subTypes);
@@ -77,11 +81,19 @@ public interface Prover {
 
 	public ProverExpr mkBV(BigInteger value, int bitLength);
 
+	public ProverExpr mkBVToNat(ProverExpr expr);
+
+	public ProverExpr mkCastToBv(ProverExpr expr, int bitLength);
+
+	public ProverExpr mkNatToBV(ProverExpr expr, int bitLength);
+
 	public ProverExpr mkBVExtract(int from, int to, ProverExpr expr);
 
 	public ProverExpr mkBVZeroExtend(int count, ProverExpr expr, int bitLength);
 
 	public ProverExpr mkBVlshr(ProverExpr expr, ProverExpr count,int bitLength);
+
+	public ProverExpr mkBVshl(ProverExpr expr, ProverExpr count,int bitLength);
 
 	public ProverExpr mkSignedBVLiteral(ProverExpr expr, int bitLength);
 
@@ -131,6 +143,7 @@ public interface Prover {
 	ProverExpr mkBVLeq(ProverExpr left, ProverExpr right);
 
 	ProverExpr mkBVUge(ProverExpr left, ProverExpr right);
+	ProverExpr mkBVUle(ProverExpr left, ProverExpr right);
 
 	ProverExpr mkBVUlt(ProverExpr left, ProverExpr right);
 	ProverExpr mkBVUgt(ProverExpr left, ProverExpr right);

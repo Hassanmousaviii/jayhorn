@@ -173,13 +173,13 @@ public class ExpressionEncoder {
 
 					if (tLeft.getArity() == 4)
 						if (((PrincessADTType) tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
-							final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
-							ProverExpr leftSign = FloatingPointADT.mkSelExpr(0, 0, tLeft.getSubExpr(3));
-							ProverExpr leftExponent = FloatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3));
-							ProverExpr leftMantisa = FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3));
-							ProverExpr rightSign = FloatingPointADT.mkSelExpr(0, 0, tRight.getSubExpr(3));
-							ProverExpr rightExponent = FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3));
-							ProverExpr rightMantisa = FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3));
+							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
 
 							return p.mkTuple(new ProverExpr[]{tLeft.getSubExpr(0),tLeft.getSubExpr(1), tLeft.getSubExpr(2),
 									p.mkIte(
@@ -236,13 +236,13 @@ public class ExpressionEncoder {
 
 					if(tLeft.getArity() == 4)
 						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
-							final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
-							ProverExpr leftSign = FloatingPointADT.mkSelExpr(0, 0, tLeft.getSubExpr(3));
-							ProverExpr leftExponent = FloatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3));
-							ProverExpr leftMantisa = FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3));
-							ProverExpr rightSign = FloatingPointADT.mkSelExpr(0, 0, tRight.getSubExpr(3));
-							ProverExpr rightExponent = FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3));
-							ProverExpr rightMantisa = FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3));
+							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
 
 							return p.mkTuple(new ProverExpr[]{tLeft.getSubExpr(0), tLeft.getSubExpr(1), tLeft.getSubExpr(2),
 									p.mkIte(p.mkEq(
@@ -347,13 +347,13 @@ public class ExpressionEncoder {
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
 					if(tLeft.getArity() == 4)
 						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
-							final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
-							ProverExpr leftSign = FloatingPointADT.mkSelExpr(0, 0, tLeft.getSubExpr(3));
-							ProverExpr leftExponent = FloatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3));
-							ProverExpr leftMantisa = FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3));
-							ProverExpr rightSign = FloatingPointADT.mkSelExpr(0, 0, tRight.getSubExpr(3));
-							ProverExpr rightExponent = FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3));
-							ProverExpr rightMantisa = FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3));
+							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
 							return p.mkIte(p.mkEq(leftSign,rightSign),
 									p.mkIte(p.mkEq(leftExponent,rightExponent),
 											p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUlt(leftMantisa,rightMantisa),p.mkBVUgt(leftMantisa,rightMantisa)),
@@ -370,13 +370,13 @@ public class ExpressionEncoder {
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
 					if(tLeft.getArity() == 4)
 						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
-							final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
-							ProverExpr leftSign = FloatingPointADT.mkSelExpr(0, 0, tLeft.getSubExpr(3));
-							ProverExpr leftExponent = FloatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3));
-							ProverExpr leftMantisa = FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3));
-							ProverExpr rightSign = FloatingPointADT.mkSelExpr(0, 0, tRight.getSubExpr(3));
-							ProverExpr rightExponent = FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3));
-							ProverExpr rightMantisa = FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3));
+							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
 							return p.mkIte(p.mkEq(tLeft.getSubExpr(3), tRight.getSubExpr(3)),
 									p.mkLiteral(true),
 									p.mkIte(p.mkEq(leftSign,rightSign),
@@ -397,13 +397,13 @@ public class ExpressionEncoder {
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
 					if(tLeft.getArity() == 4)
 						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
-							final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
-							ProverExpr leftSign = FloatingPointADT.mkSelExpr(0, 0, tLeft.getSubExpr(3));
-							ProverExpr leftExponent = FloatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3));
-							ProverExpr leftMantisa = FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3));
-							ProverExpr rightSign = FloatingPointADT.mkSelExpr(0, 0, tRight.getSubExpr(3));
-							ProverExpr rightExponent = FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3));
-							ProverExpr rightMantisa = FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3));
+							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
 							return p.mkIte(p.mkEq(leftSign,rightSign),
 											p.mkIte(p.mkEq(leftExponent,rightExponent),
 													p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUgt(leftMantisa,rightMantisa),p.mkBVUlt(leftMantisa,rightMantisa)),
@@ -420,13 +420,13 @@ public class ExpressionEncoder {
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
 					if(tLeft.getArity() == 4)
 						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
-							final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
-							ProverExpr leftSign = FloatingPointADT.mkSelExpr(0, 0, tLeft.getSubExpr(3));
-							ProverExpr leftExponent = FloatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3));
-							ProverExpr leftMantisa = FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3));
-							ProverExpr rightSign = FloatingPointADT.mkSelExpr(0, 0, tRight.getSubExpr(3));
-							ProverExpr rightExponent = FloatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3));
-							ProverExpr rightMantisa = FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3));
+							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
 							return p.mkIte(p.mkEq(tLeft.getSubExpr(3), tRight.getSubExpr(3)),
 									       p.mkLiteral(true),
 									       p.mkIte(p.mkEq(leftSign,rightSign),
@@ -501,9 +501,10 @@ public class ExpressionEncoder {
 					ProverTupleExpr tSubExpr = (ProverTupleExpr) subExpr;
 					if (tSubExpr.getArity() == 4)
 						if (((PrincessADTType) tSubExpr.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
-							final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
-							ProverExpr exponent = FloatingPointADT.mkSelExpr(0, 1, tSubExpr.getSubExpr(3));
-							ProverExpr mantissa = FloatingPointADT.mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
+							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+							ProverExpr exponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tSubExpr.getSubExpr(3));
+							ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
+							//ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 							return p.mkTuple(new ProverExpr[]{tSubExpr.getSubExpr(0), tSubExpr.getSubExpr(1), tSubExpr.getSubExpr(2)
 									, doubleFloatingPointEnCoder.mkDoublePE(p.mkBV(0, 1), exponent, mantissa)});
 						}
@@ -513,6 +514,7 @@ public class ExpressionEncoder {
 			}
 		} else if (e instanceof IteExpression) {
 			final IteExpression ie = (IteExpression) e;
+
 			final ProverExpr condExpr = exprToProverExpr(ie.getCondition(), varMap);
 			final ProverExpr thenExpr = exprToProverExpr(ie.getThenExpr(), varMap);
 			final ProverExpr elseExpr = exprToProverExpr(ie.getElseExpr(), varMap);

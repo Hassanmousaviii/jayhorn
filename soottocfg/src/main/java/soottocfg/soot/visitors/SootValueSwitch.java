@@ -81,10 +81,7 @@ import soottocfg.cfg.expression.IdentifierExpression;
 import soottocfg.cfg.expression.IteExpression;
 import soottocfg.cfg.expression.UnaryExpression;
 import soottocfg.cfg.expression.UnaryExpression.UnaryOperator;
-import soottocfg.cfg.expression.literal.BooleanLiteral;
-import soottocfg.cfg.expression.literal.DoubleLiteral;
-import soottocfg.cfg.expression.literal.IntegerLiteral;
-import soottocfg.cfg.expression.literal.StringLiteral;
+import soottocfg.cfg.expression.literal.*;
 import soottocfg.cfg.type.ReferenceType;
 import soottocfg.cfg.variable.ClassVariable;
 import soottocfg.soot.memory_model.MemoryModel;
@@ -131,6 +128,17 @@ public class SootValueSwitch implements JimpleValueSwitch {
 
 		String op = arg0.getSymbol().trim();
 		if (op.compareTo("+") == 0) {
+
+			if(lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals( "java.lang.Double")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Double"))) {
+				this.expressionStack
+						.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.AddDouble, lhs, rhs));
+				return;
+			}
+			if(lhs instanceof FloatLiteral || rhs instanceof FloatLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals("java.lang.Float")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Float"))) {
+				this.expressionStack
+						.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.AddFloat, lhs, rhs));
+				return;
+			}
 			this.expressionStack
 					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Plus, lhs, rhs));
 			return;
@@ -139,6 +147,17 @@ public class SootValueSwitch implements JimpleValueSwitch {
 					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Minus, lhs, rhs));
 			return;
 		} else if (op.compareTo("*") == 0) {
+
+			if(lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals("java.lang.Double")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Double"))) {
+				this.expressionStack
+						.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.MulDouble, lhs, rhs));
+				return;
+			}
+			if(lhs instanceof FloatLiteral || rhs instanceof FloatLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals("java.lang.Float")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Float"))) {
+				this.expressionStack
+						.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.MulFloat, lhs, rhs));
+				return;
+			}
 			this.expressionStack
 					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Mul, lhs, rhs));
 			return;
@@ -156,7 +175,10 @@ public class SootValueSwitch implements JimpleValueSwitch {
 			 * using ITE expressions as: (lhs<=rhs)?((lhs==rhs)?0:-1):1
 			 */
 			Expression ite = new IteExpression(statementSwitch.getCurrentLoc(),
-					new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Le, lhs, rhs),
+					((lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString() == "java.lang.Double") || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString() == "java.lang.Double")) ?
+							new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.LeDouble, lhs, rhs)
+			:
+					new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Le, lhs, rhs)),
 					new IteExpression(statementSwitch.getCurrentLoc(),
 							new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Eq, lhs, rhs),
 							IntegerLiteral.zero(), new UnaryExpression(statementSwitch.getCurrentLoc(),

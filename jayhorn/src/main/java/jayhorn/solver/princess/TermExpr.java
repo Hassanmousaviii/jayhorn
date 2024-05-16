@@ -69,6 +69,7 @@ class TermExpr extends PrincessProverExpr {
 		throw new RuntimeException();
 	}
 
+
 	public boolean getBooleanLiteralValue() {
 		throw new RuntimeException();
 	}

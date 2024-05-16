@@ -26,8 +26,13 @@ public class Variable implements Serializable {
 	protected Type type; //don't make the type final because java.lang.Class is recursive
 	protected final boolean inlineable, unique;
 
+	protected final int arrity;
+
 	public Variable(String name, Type t) {
 		this(name, t, false, false);
+	}
+	public Variable(String name, Type t, int arity) {
+		this(name, t, arity, false, false);
 	}
 
 	public Variable(String name, Type t, boolean inlineable, boolean unique) {
@@ -36,6 +41,15 @@ public class Variable implements Serializable {
 		this.type = t;
 		this.inlineable = inlineable;
 		this.unique = unique;
+		this.arrity = 0;
+	}
+	public Variable(String name, Type t, int arity, boolean inlineable, boolean unique) {
+		Preconditions.checkNotNull(t);
+		this.variableName = name;
+		this.type = t;
+		this.inlineable = inlineable;
+		this.unique = unique;
+		this.arrity = arity;
 	}
 
 	public IdentifierExpression mkExp(SourceLocation loc) {
@@ -46,6 +60,7 @@ public class Variable implements Serializable {
 		return this.variableName;
 	}
 
+	public int getArrity(){return  this.arrity;}
 	public Type getType() {
 		return this.type;
 	}

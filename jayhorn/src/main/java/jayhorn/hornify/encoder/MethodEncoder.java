@@ -165,7 +165,7 @@ public class MethodEncoder {
      * @param sortedVars
      * @return Horn Predicate of arity |precondition.variables| + |sortedVars|
      */
-    private HornPredicate freshHornPredicate(String name, List<Variable> sortedVars) {
+    private HornPredicate  freshHornPredicate(String name, List<Variable> sortedVars) {
         // add types for the method arguments, which
         // are later needed for the post-conditions
         final List<Variable> allArgs = new LinkedList<Variable>();

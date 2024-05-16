@@ -98,6 +98,7 @@ public class PrincessProver implements Prover {
 	public ProverType getIntType() {
 		return IntType.INSTANCE;
 	}
+
     public ProverType getBVType(int arity){
         return new BitVectorType(arity);
     }
@@ -351,6 +352,7 @@ public class PrincessProver implements Prover {
 	}
 
 	public ProverExpr mkLiteral(int value) {
+
 		return new TermExpr(new IIntLit(IdealInt$.MODULE$.apply(value)), getIntType());
 	}
 
@@ -362,6 +364,7 @@ public class PrincessProver implements Prover {
     {
 
         //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
+
         return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bv(bitLength, IdealInt$.MODULE$.apply(value)) , getBVType(bitLength));
     }
     public ProverExpr mkSignedBVLiteral(ProverExpr expr, int bitLength)
@@ -382,6 +385,20 @@ public class PrincessProver implements Prover {
         //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
         return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bv(bitLength,IdealInt$.MODULE$.apply(value)) , getBVType(bitLength));
     }
+    public ProverExpr mkBVToNat(ProverExpr expr)
+    {
+
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.cast2Int(((TermExpr)expr).term),getIntType());
+    }
+    public ProverExpr mkCastToBv(ProverExpr expr, int bitLength)
+    {
+
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.cast2UnsignedBV(bitLength,((TermExpr)expr).term),getBVType(bitLength));
+    }
+    public ProverExpr mkNatToBV(ProverExpr expr,int bitLength)
+    {
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.cast2UnsignedBV(bitLength,((TermExpr)expr).term),getBVType(bitLength));
+    }
     public ProverExpr mkBVExtract(int from, int to, ProverExpr expr)
     {
 
@@ -396,7 +413,10 @@ public class PrincessProver implements Prover {
 
         return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bvlshr(((TermExpr)expr).term, ((TermExpr)count).term),getBVType(bitLength));
     }
-
+    public ProverExpr mkBVshl(ProverExpr expr, ProverExpr count,int bitLength)
+    {
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bvshl(((TermExpr)expr).term, ((TermExpr)count).term),getBVType(bitLength));
+    }
 	public ProverExpr mkPlus(ProverExpr left, ProverExpr right) {
        //ap.theories.bitvectors.ModuloArithmetic.bvadd() //ap.theories.bitvectors.ModuloArithmetic.bv_add();
 		return new TermExpr(new IPlus(((TermExpr) left).term, ((TermExpr) right).term), getIntType());
@@ -478,6 +498,10 @@ public class PrincessProver implements Prover {
     }
     public ProverExpr mkBVUge(ProverExpr left, ProverExpr right) {
         return  new FormulaExpr(ModuloArithmetic.bvuge(((TermExpr) left).term, ((TermExpr) right).term));
+    }
+    public ProverExpr mkBVUle(ProverExpr left, ProverExpr right)
+    {
+        return  new FormulaExpr(ModuloArithmetic.bvule(((TermExpr) left).term, ((TermExpr) right).term));
     }
     public ProverExpr mkBVUlt(ProverExpr left, ProverExpr right)
     {

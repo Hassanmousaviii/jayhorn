@@ -13,6 +13,7 @@ import soottocfg.cfg.type.*;
 import soottocfg.cfg.type.BoolType;
 import soottocfg.cfg.type.IntType;
 import soottocfg.cfg.variable.Variable;
+import soottocfg.soot.SootToCfg;
 
 public class HornHelper {
 
@@ -94,6 +95,8 @@ public class HornHelper {
 		if (t == BoolType.instance()) {
 			return p.getBooleanType();
 		}
+
+
 		if (t instanceof ReferenceType) {
 			ReferenceType rt = (ReferenceType) t;
 			final ProverType[] subTypes = new ProverType[rt.getElementTypeList().size()];
@@ -109,6 +112,15 @@ public class HornHelper {
 		}
 
 		throw new IllegalArgumentException("don't know what to do with " + t);
+	}
+	public ProverType getProverType(Prover p, Type t,int arrity) {
+		if(t == Type.instance())
+		{
+			return p.getBVType(arrity);
+		}
+		else
+			return getProverType(p,t);
+
 	}
 	
 	public ProverTupleExpr mkNullExpression(Prover p, ProverType[] types, ExpressionEncoder expEncoder) {
@@ -136,7 +148,11 @@ public class HornHelper {
 	public ProverFun genHornPredicate(Prover p, String name, List<Variable> sortedVars) {
 		final List<ProverType> types = new LinkedList<ProverType>();
 		for (Variable v : sortedVars) {
-			types.add(getProverType(p, v.getType()));
+			if(v.getType() != Type.instance())
+				types.add(getProverType(p, v.getType()));
+			else types.add(getProverType(p, v.getType(),v.getArrity()));
+
+
 		}
 		return p.mkHornPredicate(name, types.toArray(new ProverType[types.size()]));
 	}
@@ -174,7 +190,7 @@ public class HornHelper {
 	}
 
 	public ProverExpr createVariable(Prover p, Variable v) {
-		ProverType pt = getProverType(p, v.getType());
+		ProverType pt = getProverType(p, v.getType(),v.getArrity());
 		return p.mkHornVariable(v.getName() + "_" + newVarNum(), pt);
 	}
 

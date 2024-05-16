@@ -198,6 +198,12 @@ public class SpacerProver implements Prover {
 	}
 
 	@Override
+	public ProverType getBVType(int arity)
+	{
+		throw new RuntimeException("not implemented");
+	}
+
+	@Override
 	public ProverType getArrayType(ProverType[] argTypes, ProverType resType) {
 		try {
 			if (argTypes.length == 0) {
@@ -552,7 +558,21 @@ public class SpacerProver implements Prover {
 	{
 		throw new RuntimeException("not implemented");
 	}
-
+	@Override
+	public ProverExpr mkBVToNat(ProverExpr expr)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkCastToBv(ProverExpr expr, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkNatToBV(ProverExpr expr, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
 	@Override
 	public ProverExpr mkSignedBVLiteral(ProverExpr expr, int bitLength) {
 		throw new RuntimeException("not implemented");
@@ -569,6 +589,11 @@ public class SpacerProver implements Prover {
 	}
 	@Override
 	public ProverExpr mkBVUge(ProverExpr left, ProverExpr right) {
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVUle(ProverExpr left, ProverExpr right)
+	{
 		throw new RuntimeException("not implemented");
 	}
 	@Override
@@ -592,6 +617,11 @@ public class SpacerProver implements Prover {
 	}
 	@Override
 	public ProverExpr mkBVlshr(ProverExpr expr, ProverExpr count,int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVshl(ProverExpr expr, ProverExpr count,int bitLength)
 	{
 		throw new RuntimeException("not implemented");
 	}

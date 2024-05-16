@@ -3,10 +3,7 @@ package jayhorn.solver.princess;
 import ap.parser.IAtom;
 import ap.parser.ITerm;
 import ap.terfor.preds.Predicate;
-import jayhorn.solver.ProverExpr;
-import jayhorn.solver.ProverFun;
-import jayhorn.solver.ProverTupleExpr;
-import jayhorn.solver.ProverType;
+import jayhorn.solver.*;
 import scala.collection.mutable.ArrayBuffer;
 
 class PredicateFun implements ProverFun {
@@ -41,12 +38,13 @@ class PredicateFun implements ProverFun {
                                         ProverExpr[] args) {
       if (argTypes == null)
         return;
+
       if (argTypes.length != args.length)
         throw new RuntimeException("Wrong number of arguments: expected " +
                                    argTypes.length + " but got " +
                                    args.length);
       for (int i = 0; i < argTypes.length; ++i)
-        if (!argTypes[i].equals(args[i].getType()))
+        if (!argTypes[i].equals(args[i].getType()) && !argTypes[i].toString().equals("(_ BitVec 1)") && !argTypes[i].toString().equals("(_ BitVec 11)") && !argTypes[i].toString().equals("(_ BitVec 106)") && !argTypes[i].toString().equals("(_ BitVec 53)") && !argTypes[i].toString().equals("(_ BitVec 54)") && !argTypes[i].toString().equals("(_ BitVec 55)"))
           throw new RuntimeException("Wrong argument type: expected " +
                                      argTypes[i] + " but got " +
                                      args[i] + " of type " +

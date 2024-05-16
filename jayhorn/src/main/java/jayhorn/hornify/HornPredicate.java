@@ -9,6 +9,7 @@ import jayhorn.solver.ProverFun;
 import jayhorn.solver.ProverTupleExpr;
 import jayhorn.solver.ProverTupleType;
 import jayhorn.solver.ProverType;
+import soottocfg.cfg.type.Type;
 import soottocfg.cfg.variable.Variable;
 
 public class HornPredicate {
@@ -23,6 +24,7 @@ public class HornPredicate {
 		this.p = p;
 		variables = vars;
 		predicate = HornHelper.hh().genHornPredicate(p, name, vars);
+
 	}
 
 	public String toString() {
@@ -41,7 +43,7 @@ public class HornPredicate {
 		 * with subtyping etc.
 		 */
 		for (int i = 0; i<variables.size(); i++) {
-			ProverType pt = HornHelper.hh().getProverType(p,variables.get(i).getType());
+			ProverType pt = variables.get(i).getType() != Type.instance() ? HornHelper.hh().getProverType(p,variables.get(i).getType()) : HornHelper.hh().getProverType(p,variables.get(i).getType(),variables.get(i).getArrity());
 			if (pt instanceof ProverTupleType) {
 				ProverTupleType ptt = (ProverTupleType)pt;
 				ProverTupleExpr pte = (ProverTupleExpr)exprs[i];

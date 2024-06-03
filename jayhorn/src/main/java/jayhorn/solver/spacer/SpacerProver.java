@@ -559,6 +559,16 @@ public class SpacerProver implements Prover {
 		throw new RuntimeException("not implemented");
 	}
 	@Override
+	public ProverExpr mkBVNeg(ProverExpr expr, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVNot(ProverExpr expr, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
 	public ProverExpr mkBVToNat(ProverExpr expr)
 	{
 		throw new RuntimeException("not implemented");

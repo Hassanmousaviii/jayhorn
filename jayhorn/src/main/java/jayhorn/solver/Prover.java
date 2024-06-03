@@ -81,6 +81,10 @@ public interface Prover {
 
 	public ProverExpr mkBV(BigInteger value, int bitLength);
 
+	public ProverExpr mkBVNeg(ProverExpr expr, int bitLength);
+
+	public ProverExpr mkBVNot(ProverExpr expr, int bitLength);
+
 	public ProverExpr mkBVToNat(ProverExpr expr);
 
 	public ProverExpr mkCastToBv(ProverExpr expr, int bitLength);

@@ -385,6 +385,14 @@ public class PrincessProver implements Prover {
         //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
         return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bv(bitLength,IdealInt$.MODULE$.apply(value)) , getBVType(bitLength));
     }
+    public ProverExpr mkBVNeg(ProverExpr expr, int bitLength)
+    {
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bvneg(((TermExpr)expr).term),getBVType(bitLength));
+    }
+    public ProverExpr mkBVNot(ProverExpr expr, int bitLength)
+    {
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bvnot(((TermExpr)expr).term),getBVType(bitLength));
+    }
     public ProverExpr mkBVToNat(ProverExpr expr)
     {
 

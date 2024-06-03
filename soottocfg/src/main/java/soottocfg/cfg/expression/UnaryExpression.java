@@ -25,7 +25,7 @@ public class UnaryExpression extends Expression {
 	private final UnaryOperator op;
 
 	public enum UnaryOperator {
-		Neg("-"), LNot("!"), Len("<len>"), ABS("<ABS>");
+		Neg("-"), LNot("!"), Len("<len>"), ABS("<ABS>"), NegDouble("NegDouble"), NegFloat("NegFloat");
 		private final String name;
 
 		private UnaryOperator(String s) {

@@ -493,6 +493,19 @@ public class ExpressionEncoder {
 			*/
 			switch (ue.getOp()) {
 			case Neg:
+				if (subExpr instanceof ProverTupleExpr) {
+					ProverTupleExpr tSubExpr = (ProverTupleExpr) subExpr;
+					if (tSubExpr.getArity() == 4)
+						if (((PrincessADTType) tSubExpr.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
+							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+							ProverExpr sign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tSubExpr.getSubExpr(3));
+							ProverExpr exponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tSubExpr.getSubExpr(3));
+							ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
+							//ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
+							return p.mkTuple(new ProverExpr[]{tSubExpr.getSubExpr(0), tSubExpr.getSubExpr(1), tSubExpr.getSubExpr(2)
+									, doubleFloatingPointEnCoder.mkDoublePE(p.mkBVNeg(sign, 1), exponent, mantissa)});
+						}
+				}
 				return p.mkNeg(subExpr);
 			case LNot:
 				return p.mkNot(subExpr);

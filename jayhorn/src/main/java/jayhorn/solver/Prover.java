@@ -64,6 +64,8 @@ public interface Prover {
 
 	ProverExpr mkOr(ProverExpr left, ProverExpr right);
 
+
+
 	ProverExpr mkOr(ProverExpr ... args);
 
 	ProverExpr mkImplies(ProverExpr left, ProverExpr right);
@@ -109,6 +111,10 @@ public interface Prover {
 
 	public ProverExpr mkBVMul(ProverExpr left, ProverExpr right,  int bitLength) ;
 	ProverExpr mkBVXOR(ProverExpr left, ProverExpr right, int bitLength);
+
+	ProverExpr mkBVOR(ProverExpr left, ProverExpr right, int bitLength);
+
+	ProverExpr mkBVAND(ProverExpr left, ProverExpr right, int bitLength);
 
 	ProverExpr mkPlus(ProverExpr[] args);
 

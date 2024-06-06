@@ -26,6 +26,14 @@ public class HornHelper {
 	private ProverADT singleFloatingPointADT;
 
 	private ProverADT doubleFloatingPointADT;
+
+	private ProverADT singleTempFloatingPointADT;
+
+	private ProverADT doubleTempFloatingPointADT;
+
+	private ProverADT singleTempFloatingPointOperandsADT;
+
+	private ProverADT doubleTempFloatingPointOperandsADT;
 	
 	public static void resetInstance() {
 		hh = null;
@@ -50,6 +58,18 @@ public class HornHelper {
 	public void setDoubleFloatingPointADT(ProverADT doubleFloatingPointADT) {
 		this.doubleFloatingPointADT = doubleFloatingPointADT;
 	}
+	public void setSingleTempFloatingPointADT(ProverADT singleTempFloatingPointADT) {
+		this.singleTempFloatingPointADT = singleTempFloatingPointADT;
+	}
+	public void setDoubleTempFloatingPointADT(ProverADT doubleTempFloatingPointADT) {
+		this.doubleTempFloatingPointADT = doubleTempFloatingPointADT;
+	}
+	public void setSingleTempFloatingOperandsPointADT(ProverADT singleTempFloatingPointOperandsADT) {
+		this.singleTempFloatingPointOperandsADT = singleTempFloatingPointOperandsADT;
+	}
+	public void setDoubleTempFloatingPointOperandsADT(ProverADT doubleTempFloatingPointOperandsADT) {
+		this.doubleTempFloatingPointOperandsADT = doubleTempFloatingPointOperandsADT;
+	}
 
 	public ProverADT getStringADT() {
 		return stringADT;
@@ -61,6 +81,22 @@ public class HornHelper {
 
 	public ProverADT getDoubleFloatingPointADT() {
 		return doubleFloatingPointADT;
+	}
+
+	public ProverADT getSingleTempFloatingPointADT() {
+		return singleTempFloatingPointADT;
+	}
+
+	public ProverADT getDoubleTempFloatingPointADT() {
+		return doubleTempFloatingPointADT;
+	}
+
+	public ProverADT getSingleTempFloatingPointOperandsADT() {
+		return singleTempFloatingPointOperandsADT;
+	}
+
+	public ProverADT getDoubleTempFloatingPointOperandsADT() {
+		return doubleTempFloatingPointOperandsADT;
 	}
 
 	/**

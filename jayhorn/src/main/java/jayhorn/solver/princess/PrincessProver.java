@@ -330,6 +330,7 @@ public class PrincessProver implements Prover {
 				((PrincessProverExpr) right).toFormula()));
 	}
 
+
 	public ProverExpr mkOr(ProverExpr ... args) {
 		final ArrayBuffer<IFormula> argsBuf = new ArrayBuffer<IFormula>();
 		for (int i = 0; i < args.length; ++i)
@@ -448,6 +449,14 @@ public class PrincessProver implements Prover {
     public ProverExpr mkBVXOR(ProverExpr left, ProverExpr right, int bitLength)
     {
         return new TermExpr( ModuloArithmetic.bvxor(((TermExpr) left).term, ((TermExpr) right).term), getBVType(bitLength));
+    }
+    public ProverExpr mkBVOR(ProverExpr left, ProverExpr right, int bitLength)
+    {
+        return new TermExpr( ModuloArithmetic.bvor(((TermExpr) left).term, ((TermExpr) right).term), getBVType(bitLength));
+    }
+    public ProverExpr mkBVAND(ProverExpr left, ProverExpr right, int bitLength)
+    {
+        return new TermExpr( ModuloArithmetic.bvand(((TermExpr) left).term, ((TermExpr) right).term), getBVType(bitLength));
     }
 	public ProverExpr mkPlus(ProverExpr[] args) {
 		final ArrayBuffer<ITerm> argsBuf = new ArrayBuffer<ITerm>();

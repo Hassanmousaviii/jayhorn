@@ -52,8 +52,8 @@ public class ExpressionEncoder {
 		this.p = p;
 		this.hornContext = hornContext;
 		this.stringEncoder = new StringEncoder(p, HornHelper.hh().getStringADT());
-		this.singleFloatingPointEnCoder = new FloatingPointEncoder(p,HornHelper.hh().getSingleFloatingPointADT(), FloatingPointEncoder.Precision.Single);
-		this.doubleFloatingPointEnCoder = new FloatingPointEncoder(p,HornHelper.hh().getDoubleFloatingPointADT(), FloatingPointEncoder.Precision.Double);
+		this.singleFloatingPointEnCoder = new FloatingPointEncoder(p,HornHelper.hh().getSingleFloatingPointADT(), HornHelper.hh().getSingleTempFloatingPointADT(), HornHelper.hh().getSingleTempFloatingPointOperandsADT(),FloatingPointEncoder.Precision.Single);
+		this.doubleFloatingPointEnCoder = new FloatingPointEncoder(p,HornHelper.hh().getDoubleFloatingPointADT(),HornHelper.hh().getDoubleTempFloatingPointADT(), HornHelper.hh().getDoubleTempFloatingPointOperandsADT(), FloatingPointEncoder.Precision.Double);
 
 	}
 
@@ -64,6 +64,8 @@ public class ExpressionEncoder {
 	public FloatingPointEncoder getSingleFloatingPointEnCoder(){return singleFloatingPointEnCoder;}
 
 	public FloatingPointEncoder getDoubleFloatingPointEnCoder(){return doubleFloatingPointEnCoder;}
+
+
 
 	public HornEncoderContext getContext() {
 		return this.hornContext;
@@ -171,15 +173,19 @@ public class ExpressionEncoder {
 					ProverTupleExpr tRight = (ProverTupleExpr) right;
 					//((PrincessADTType) tLeft.getSubExpr(3))
 
-					if (tLeft.getArity() == 4)
+					/*if (tLeft.getArity() == 4)
 						if (((PrincessADTType) tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
 							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
 							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
 							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
 							ProverExpr leftMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr leftIsNan = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 3, tLeft.getSubExpr(3));
+							ProverExpr leftIsInf = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 4, tLeft.getSubExpr(3));
 							ProverExpr rightSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
 							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
 							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
+							ProverExpr rightIsNan = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
+							ProverExpr rightIsInf = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
 
 							return p.mkTuple(new ProverExpr[]{tLeft.getSubExpr(0),tLeft.getSubExpr(1), tLeft.getSubExpr(2),
 									p.mkIte(
@@ -224,7 +230,7 @@ public class ExpressionEncoder {
 									)});
 							//ProverExpr [] subExprs = {tLeft.getSubExpr(0),tLeft.getSubExpr(1), tLeft.getSubExpr(2),BVaddExpr};
 							//return p.mkTuple(subExprs);
-						}
+						}*/
 				}
 				return p.mkPlus(left, right);
 			case Minus:
@@ -234,7 +240,7 @@ public class ExpressionEncoder {
 					ProverTupleExpr tLeft = (ProverTupleExpr)left;
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
 
-					if(tLeft.getArity() == 4)
+					/*if(tLeft.getArity() == 4)
 						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
 							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
 							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
@@ -302,7 +308,7 @@ public class ExpressionEncoder {
 							});
 
 
-						}
+						}*/
 				}
 				return p.mkMult(left, right);
 			case Div:
@@ -431,9 +437,9 @@ public class ExpressionEncoder {
 									       p.mkLiteral(true),
 									       p.mkIte(p.mkEq(leftSign,rightSign),
 												   p.mkIte(p.mkEq(leftExponent,rightExponent),
-														   p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUgt(leftMantisa,rightMantisa),p.mkBVUlt(leftMantisa,rightMantisa)),
-														   p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUgt(leftExponent,rightExponent),p.mkBVUlt(leftExponent,rightExponent))),
-												   p.mkIte(p.mkBVUlt(leftSign,rightSign),p.mkLiteral(false),p.mkLiteral(true))
+														   p.mkIte(p.mkEq(leftSign,p.mkLiteral(1)),p.mkBVUgt(leftMantisa,rightMantisa),p.mkBVUlt(leftMantisa,rightMantisa)),
+														   p.mkIte(p.mkEq(leftSign,p.mkLiteral(1)),p.mkBVUgt(leftExponent,rightExponent),p.mkBVUlt(leftExponent,rightExponent))),
+												   p.mkIte(p.mkEq(leftSign,p.mkLiteral(0)),p.mkLiteral(false),p.mkLiteral(true))
 												   )
 							);
 
@@ -501,9 +507,11 @@ public class ExpressionEncoder {
 							ProverExpr sign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tSubExpr.getSubExpr(3));
 							ProverExpr exponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tSubExpr.getSubExpr(3));
 							ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
+							ProverExpr isNaN = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 3, tSubExpr.getSubExpr(3));
+							ProverExpr isInf = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 4, tSubExpr.getSubExpr(3));
 							//ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 							return p.mkTuple(new ProverExpr[]{tSubExpr.getSubExpr(0), tSubExpr.getSubExpr(1), tSubExpr.getSubExpr(2)
-									, doubleFloatingPointEnCoder.mkDoublePE(p.mkBVNeg(sign, 1), exponent, mantissa)});
+									, doubleFloatingPointEnCoder.mkDoublePE(p.mkNot(sign), exponent, mantissa, isNaN, isInf)});
 						}
 				}
 				return p.mkNeg(subExpr);
@@ -517,9 +525,10 @@ public class ExpressionEncoder {
 							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
 							ProverExpr exponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tSubExpr.getSubExpr(3));
 							ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
-							//ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
+							ProverExpr isNaN = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 3, tSubExpr.getSubExpr(3));
+							ProverExpr isInf = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 4, tSubExpr.getSubExpr(3));
 							return p.mkTuple(new ProverExpr[]{tSubExpr.getSubExpr(0), tSubExpr.getSubExpr(1), tSubExpr.getSubExpr(2)
-									, doubleFloatingPointEnCoder.mkDoublePE(p.mkBV(0, 1), exponent, mantissa)});
+									, doubleFloatingPointEnCoder.mkDoublePE(p.mkLiteral(0), exponent, mantissa, isNaN, isInf)});
 						}
 					return p.mkIte(p.mkAnd(p.mkLeq(subExpr, p.mkLiteral(0)), p.mkNot(p.mkEq(subExpr, p.mkLiteral(0)))), p.mkNeg(subExpr), subExpr);
 				}

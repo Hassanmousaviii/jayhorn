@@ -11,10 +11,7 @@ import java.util.Set;
 
 import jayhorn.Log;
 import jayhorn.hornify.encoder.MethodEncoder;
-import jayhorn.solver.Prover;
-import jayhorn.solver.ProverFactory;
-import jayhorn.solver.ProverFun;
-import jayhorn.solver.ProverHornClause;
+import jayhorn.solver.*;
 import jayhorn.solver.princess.PrincessFloatingPointType;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.method.Method;
@@ -53,8 +50,18 @@ public class Hornify {
 		prover = factory.spawn();
 		prover.setHornLogic(true);
 
-		
-		HornEncoderContext hornContext = new HornEncoderContext(prover, program, factory.spawnStringADT(), factory.spawnFloatingPointADT(PrincessFloatingPointType.Precision.Single), factory.spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double), explicitHeapSize, generatedAssertions);
+
+		ProverADT tempFloatingPointADT = factory.spawnTempFloatingPointADT(PrincessFloatingPointType.Precision.Single);
+		ProverADT tempDoubleFloatingPointADT = factory.spawnTempFloatingPointADT(PrincessFloatingPointType.Precision.Double);
+		HornEncoderContext hornContext = new HornEncoderContext(prover, program,
+				factory.spawnStringADT(),
+				factory.spawnFloatingPointADT(PrincessFloatingPointType.Precision.Single),
+				factory.spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double),
+				tempFloatingPointADT,
+				tempDoubleFloatingPointADT,
+				factory.spawnTempFloatingPointOperandsADT(PrincessFloatingPointType.Precision.Single,tempFloatingPointADT),
+				factory.spawnTempFloatingPointOperandsADT(PrincessFloatingPointType.Precision.Double,tempDoubleFloatingPointADT),
+				explicitHeapSize, generatedAssertions);
 
 		Log.info("Transform Program Methods into Horn Clauses ... ");
 

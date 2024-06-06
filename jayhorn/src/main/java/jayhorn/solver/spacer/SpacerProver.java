@@ -406,6 +406,7 @@ public class SpacerProver implements Prover {
 		}
 	}
 
+
 	@Override
 	public ProverExpr mkOr(ProverExpr... args) {
 		try {
@@ -483,6 +484,16 @@ public class SpacerProver implements Prover {
 	}
 	@Override
 	public ProverExpr mkBVXOR(ProverExpr left, ProverExpr right, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVOR(ProverExpr left, ProverExpr right, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkBVAND(ProverExpr left, ProverExpr right, int bitLength)
 	{
 		throw new RuntimeException("not implemented");
 	}

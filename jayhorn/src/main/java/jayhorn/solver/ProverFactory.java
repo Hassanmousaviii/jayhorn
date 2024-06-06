@@ -12,4 +12,7 @@ public interface ProverFactory {
 
 	public ProverADT spawnFloatingPointADT(PrincessFloatingPointType.Precision precision);
 
+	public ProverADT spawnTempFloatingPointADT(PrincessFloatingPointType.Precision precision);
+	public ProverADT spawnTempFloatingPointOperandsADT(PrincessFloatingPointType.Precision precision, ProverADT tempFloatingPointADT);
+
 }

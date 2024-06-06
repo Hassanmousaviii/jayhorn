@@ -8,6 +8,15 @@ public class ADTTempType implements ProverType {
 	private static final HashMap<Integer, ADTTempType> idx2type = new HashMap<Integer, ADTTempType>(1);
 	public static final int ListADTTypeIndex = 0;
 
+	public static final int FloatingPointADTTypeIndex = 1;
+	public static final int DoubleFloatingPointADTTypeIndex = 2;
+
+	public static final int TempFloatingPointADTTypeIndex = 3;
+	public static final int TempDoubleFloatingPointADTTypeIndex = 4;
+
+	public static final int TempFloatingPointOperandsADTTypeIndex = 5;
+	public static final int TempDoubleFloatingPointOperandsADTTypeIndex = 6;
+
 	public final int typeIndex;
 
 	/**

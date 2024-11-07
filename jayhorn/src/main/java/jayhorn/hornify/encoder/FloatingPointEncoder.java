@@ -516,7 +516,10 @@ public class FloatingPointEncoder {
          isNaNTemp= tempFloatingPointADT.mkSelExpr(0,3,tempDoubleFPEP);
          isInfTemp = tempFloatingPointADT.mkSelExpr(0,4,tempDoubleFPEP);
         Cond = p.mkEq(p.mkBVExtract(52,52,varMap.get(tempDoubleFP)),p.mkBV(1,1));
-        ProverExpr subResult = p.mkTupleUpdate(idLhsTExpr,3, mkDoublePE(signTemp, p.mkBVSub(exponentTemp,p.mkBVExtract(10,0,varMap.get(leadingZerosCnt)),11),p.mkBVExtract(52,0,mantissaTemp),isNaNTemp,isInfTemp));
+        ProverExpr subResult = p.mkTupleUpdate(idLhsTExpr,3,
+                mkDoublePE(signTemp,
+                        p.mkBVSub(exponentTemp,p.mkBVExtract(10,0,varMap.get(leadingZerosCnt)),11)
+                        ,p.mkBVExtract(52,0,mantissaTemp),isNaNTemp,isInfTemp));
         varMap.put(idLhs.getVariable(),subResult);
         postAtom = postPred.instPredicate(varMap);
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{postAtom4}, Cond));

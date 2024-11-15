@@ -290,8 +290,9 @@ public class SootRunner {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			soot.G.v().out = new PrintStream(baos, true, "utf-8");
 			// Now load the soot classes.
-
+			//
 			Scene.v().loadBasicClasses();
+
 			// if (resolvedClassNames.isEmpty()) {
 			Scene.v().loadNecessaryClasses();
 			// } else {

@@ -11,7 +11,7 @@ public class PrincessFloatingPointADTFactory implements FloatingPointADTFactory 
                 new int[]{
                         ADTTempType.ListADTTypeIndex
                 },
-                new ProverType[][]{{BoolType.INSTANCE, new BitVectorType(precision == PrincessFloatingPointType.Precision.Single ? 8 : 11), new BitVectorType(precision == PrincessFloatingPointType.Precision.Single ? 23 : 53),BoolType.INSTANCE, BoolType.INSTANCE}},
-                new String[][]{{"sign", "exponent", "mantissa","isNan", "isInfinity"}});
+                new ProverType[][]{{BoolType.INSTANCE, new BitVectorType(precision == PrincessFloatingPointType.Precision.Single ? 8 : 11), new BitVectorType(precision == PrincessFloatingPointType.Precision.Single ? 24 : 53),BoolType.INSTANCE, BoolType.INSTANCE,BoolType.INSTANCE,BoolType.INSTANCE}},
+                new String[][]{{"sign", "exponent", "mantissa","isNan", "isInfinity","OVF","UDF"}});
     }
 }

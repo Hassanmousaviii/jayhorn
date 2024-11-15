@@ -417,6 +417,10 @@ public class PrincessProver implements Prover {
     {
         return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.zero_extend(count, ((TermExpr)expr).term), getBVType(bitLength+count) );
     }
+    public ProverExpr mkBVConcat(ProverExpr lExpr, ProverExpr rExpr,int bitLength)
+    {
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.concat(((TermExpr)lExpr).term, ((TermExpr)rExpr).term), getBVType(bitLength) );
+    }
     public ProverExpr mkBVlshr(ProverExpr expr, ProverExpr count,int bitLength)
     {
 

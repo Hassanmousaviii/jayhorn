@@ -175,10 +175,15 @@ public class SootValueSwitch implements JimpleValueSwitch {
 			 * using ITE expressions as: (lhs<=rhs)?((lhs==rhs)?0:-1):1
 			 */
 			Expression ite = new IteExpression(statementSwitch.getCurrentLoc(),
-					((lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString() == "java.lang.Double") || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString() == "java.lang.Double")) ?
+					(
+							(lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString() == "java.lang.Double") || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString() == "java.lang.Double")) ?
 							new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.LeDouble, lhs, rhs)
-			:
-					new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Le, lhs, rhs)),
+					: (
+									(lhs instanceof FloatLiteral || rhs instanceof FloatLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString() == "java.lang.Float") || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString() == "java.lang.Float")) ?
+											new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.LeFloat, lhs, rhs)
+											:
+					new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Le, lhs, rhs) )
+					),
 					new IteExpression(statementSwitch.getCurrentLoc(),
 							new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Eq, lhs, rhs),
 							IntegerLiteral.zero(), new UnaryExpression(statementSwitch.getCurrentLoc(),
@@ -261,7 +266,12 @@ public class SootValueSwitch implements JimpleValueSwitch {
 
 	@Override
 	public void caseFloatConstant(FloatConstant arg0) {
-		this.expressionStack.add(this.memoryModel.mkFloatConstant(arg0));
+		this.expressionStack.add( new FloatLiteral(statementSwitch.getCurrentLoc(),
+				SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+						"$float(" + arg0.value + ")",
+						SootTranslationHelpers.v().getMemoryModel().lookupType(arg0.getType()))
+				,arg0.value)
+		);
 	}
 
 	@Override

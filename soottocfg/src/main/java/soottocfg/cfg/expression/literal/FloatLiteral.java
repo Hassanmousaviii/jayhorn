@@ -40,7 +40,8 @@ public class FloatLiteral extends IdentifierExpression{
     }
     public FloatLiteral(SourceLocation loc, Variable variable,@Nullable long value) {
         super(loc,variable);
-        this.value =(float) value; //Long.valueOf(value);
+
+        this.value = Float.intBitsToFloat((int)value); //Long.valueOf(value);
     }
 
     @Override

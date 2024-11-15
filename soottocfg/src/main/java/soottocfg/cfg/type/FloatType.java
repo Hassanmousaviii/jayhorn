@@ -20,6 +20,6 @@ public class FloatType extends PrimitiveType{
     }
 
     public String toString() {
-        return "Float";
+        return "FloatType";
     }
 }

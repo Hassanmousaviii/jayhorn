@@ -95,6 +95,8 @@ public interface Prover {
 
 	public ProverExpr mkBVExtract(int from, int to, ProverExpr expr);
 
+	public ProverExpr mkBVConcat(ProverExpr lExpr, ProverExpr rExpr,int bitLength);
+
 	public ProverExpr mkBVZeroExtend(int count, ProverExpr expr, int bitLength);
 
 	public ProverExpr mkBVlshr(ProverExpr expr, ProverExpr count,int bitLength);

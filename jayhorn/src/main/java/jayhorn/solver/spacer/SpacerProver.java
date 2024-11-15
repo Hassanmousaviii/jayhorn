@@ -631,6 +631,10 @@ public class SpacerProver implements Prover {
 	{
 		throw new RuntimeException("not implemented");
 	}
+	public ProverExpr mkBVConcat(ProverExpr lExpr, ProverExpr rExpr,int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
 	@Override
 	public ProverExpr mkBVZeroExtend(int count, ProverExpr expr, int bitLength)
 	{

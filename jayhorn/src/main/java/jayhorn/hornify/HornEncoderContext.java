@@ -14,11 +14,10 @@ import com.google.common.base.Verify;
 
 import jayhorn.Log;
 import jayhorn.Options;
-import jayhorn.solver.Prover;
-import jayhorn.solver.ProverADT;
-import jayhorn.solver.ProverType;
-import jayhorn.solver.ProverExpr;
+import jayhorn.solver.*;
 import jayhorn.utils.GhostRegister;
+import lazabs.horn.global.Horn;
+import lazabs.horn.parser.HornLexer;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.method.Method;
 import soottocfg.cfg.type.IntType;
@@ -191,24 +190,141 @@ public class HornEncoderContext {
         }
     }
 
-    public HornEncoderContext(Prover p, Program prog,
+
+    public HornEncoderContext(Prover p,
+                              Program prog,
                               ProverADT stringADT,
-                              ProverADT singleFlotingPointADT,
-                              ProverADT doubleFloatingPointADT,
-                              ProverADT singleTempFloatingPointADT,
-                              ProverADT doubleTempFloatingPointADT,
+
+
                               ProverADT singleTempFloatingPointOperandsADT,
                               ProverADT doubleTempFloatingPointOperandsADT,
+
+                              ProverFun requiredRoundingUp,
+
+                              ProverADT singleFlotingPointADT,
+                              ProverADT singleTempFloatingPointADT,
+                              ProverFun xORSingleSigns,
+                              ProverFun isOVFSingleExp,
+                              ProverFun isUDFSingleExp,
+                              ProverFun isOVFSingleSigInAdd,
+                              ProverFun isOVFSingleSigInMul,
+                              ProverFun extractSingleSigLSBInMul,
+                              ProverFun extractSingleSigGInMul,
+                              ProverFun extractSingleSigRInMul,
+                              ProverFun computeSingleSigStickyInMul,
+                              ProverFun roundUpSingleSigInMul,
+                              ProverFun makeSingleOVFFun,
+                              ProverFun makeSingleUDFFun,
+                              ProverFun existSingleZeroFun,
+                              ProverFun existSingleInfFun,
+                              ProverFun existSingleNaNFun,
+                              ProverFun singleOperandsEqInfFun,
+                              ProverFun singleOperandsEqZeroFun,
+                              ProverFun isSingleNegFun,
+                              ProverFun areEqSingleSignsFun,
+                              ProverFun isSingleInf,
+                              ProverFun isSingleNaN,
+                              ProverFun makeSingleNaNFun,
+                              ProverFun negateSingleFun,
+                              ProverFun makeSingleInfFun,
+                              ProverFun existSpecCasForSingleInMul,
+
+                              ProverADT doubleFloatingPointADT,
+                              ProverADT doubleTempFloatingPointADT,
+                              ProverFun xORDoubleSigns,
+                              ProverFun isOVFDoubleExp,
+                              ProverFun isUDFDoubleExp,
+                              ProverFun isOVFDoubleSigInAdd,
+                              ProverFun isOVFDoubleSigInMul,
+                              ProverFun extractDoubleSigLSBInMul,
+                              ProverFun extractDoubleSigGInMul,
+                              ProverFun extractDoubleSigRInMul,
+                              ProverFun computeDoubleSigStickyInMul,
+                              ProverFun roundUpDoubleSigInMul,
+                              ProverFun makeDoubleOVFFun,
+                              ProverFun makeDoubleUDFFun,
+                              ProverFun existDoubleZeroFun,
+                              ProverFun existDoubleInfFun,
+                              ProverFun existDoubleNaNFun,
+                              ProverFun doubleOperandsEqInfFun,
+                              ProverFun doubleOperandsEqZeroFun,
+                              ProverFun isDoubleNegFun,
+                              ProverFun areEqDoubleSignsFun,
+                              ProverFun isDoubleInf,
+                              ProverFun isDoubleNaN,
+                              ProverFun makeDoubleNaNFun,
+                              ProverFun negateDoubleFun,
+                              ProverFun makeDoubleInfFun,
+                              ProverFun existSpecCasForDoubleInMul,
+
                               int explicitHeapSize, GeneratedAssertions generatedAssertions) {
         this.program = prog;
         this.p = p;
         HornHelper.hh().setStringADT(stringADT);
-        HornHelper.hh().setSingleFloatingPointADT(singleFlotingPointADT);
-        HornHelper.hh().setDoubleFloatingPointADT(doubleFloatingPointADT);
-        HornHelper.hh().setSingleTempFloatingPointADT(singleTempFloatingPointADT);
-        HornHelper.hh().setDoubleTempFloatingPointADT(doubleTempFloatingPointADT);
+
+
         HornHelper.hh().setSingleTempFloatingOperandsPointADT(singleTempFloatingPointOperandsADT);
         HornHelper.hh().setDoubleTempFloatingPointOperandsADT(doubleTempFloatingPointOperandsADT);
+
+        HornHelper.hh().setRequiredRoundingUp(requiredRoundingUp);
+
+        HornHelper.hh().setSingleFloatingPointADT(singleFlotingPointADT);
+        HornHelper.hh().setSingleTempFloatingPointADT(singleTempFloatingPointADT);
+        HornHelper.hh().setxOrSingleSigns(xORSingleSigns);
+        HornHelper.hh().setIsOVFSingleExp(isOVFSingleExp);
+        HornHelper.hh().setIsUDFSingleExp(isUDFSingleExp);
+        HornHelper.hh().setIsOVFSingleSigInAdd(isOVFSingleSigInAdd);
+        HornHelper.hh().setIsOVFSingleSigInMul(isOVFSingleSigInMul);
+        HornHelper.hh().setExtractSingleSigLSBInMul(extractSingleSigLSBInMul);
+        HornHelper.hh().setExtractSingleSigGInMul(extractSingleSigGInMul);
+        HornHelper.hh().setExtractSingleSigRInMul(extractSingleSigRInMul);
+        HornHelper.hh().setComputeSingleSigStickyInMul(computeSingleSigStickyInMul);
+        HornHelper.hh().setRoundUpSingleSigInMul(roundUpSingleSigInMul);
+        HornHelper.hh().setMakeSingleOVFFun(makeSingleOVFFun);
+        HornHelper.hh().setMakeSingleUDFFun(makeSingleUDFFun);
+        HornHelper.hh().setExistSingleZeroFun(existSingleZeroFun);
+        HornHelper.hh().setExistSingleInfFun(existSingleInfFun);
+        HornHelper.hh().setExistSingleNaNFun(existSingleNaNFun);
+        HornHelper.hh().setSingleOperandsEqInfFun(singleOperandsEqInfFun);
+        HornHelper.hh().setSingleOperandsEqZeroFun(singleOperandsEqZeroFun);
+        HornHelper.hh().setIsSingleNegFun(isSingleNegFun);
+        HornHelper.hh().setAreEqSingleSignsFun(areEqSingleSignsFun);
+        HornHelper.hh().setIsSingleInf(isSingleInf);
+        HornHelper.hh().setIsSingleNaN(isSingleNaN);
+        HornHelper.hh().setMakeSingleNaN(makeSingleNaNFun);
+        HornHelper.hh().setNegateSingleFun(negateSingleFun);
+        HornHelper.hh().setMakeSingleInfFun(makeSingleInfFun);
+        HornHelper.hh().setExistSpecCasForSingleInMul(existSpecCasForSingleInMul);
+
+        HornHelper.hh().setDoubleFloatingPointADT(doubleFloatingPointADT);
+        HornHelper.hh().setDoubleTempFloatingPointADT(doubleTempFloatingPointADT);
+        HornHelper.hh().setxOrDoubleSigns(xORDoubleSigns);
+        HornHelper.hh().setIsOVFDoubleExp(isOVFDoubleExp);
+        HornHelper.hh().setIsUDFDoubleExp(isUDFDoubleExp);
+        HornHelper.hh().setIsOVFDoubleSigInAdd(isOVFDoubleSigInAdd);
+        HornHelper.hh().setIsOVFDoubleSigInMul(isOVFDoubleSigInMul);
+        HornHelper.hh().setExtractDoubleSigLSBInMul(extractDoubleSigLSBInMul);
+        HornHelper.hh().setExtractDoubleSigGInMul(extractDoubleSigGInMul);
+        HornHelper.hh().setExtractDoubleSigRInMul(extractDoubleSigRInMul);
+        HornHelper.hh().setComputeDoubleSigStickyInMul(computeDoubleSigStickyInMul);
+        HornHelper.hh().setRoundUpDoubleSigInMul(roundUpDoubleSigInMul);
+        HornHelper.hh().setMakeDoubleOVFFun(makeDoubleOVFFun);
+        HornHelper.hh().setMakeDoubleUDFFun(makeDoubleUDFFun);
+        HornHelper.hh().setExistDoubleZeroFun(existDoubleZeroFun);
+        HornHelper.hh().setExistDoubleInfFun(existDoubleInfFun);
+        HornHelper.hh().setExistDoubleNaNFun(existDoubleNaNFun);
+        HornHelper.hh().setDoubleOperandsEqInfFun(doubleOperandsEqInfFun);
+        HornHelper.hh().setDoubleOperandsEqZeroFun(doubleOperandsEqZeroFun);
+        HornHelper.hh().setIsDoubleNegFun(isDoubleNegFun);
+        HornHelper.hh().setAreEqDoubleSignsFun(areEqDoubleSignsFun);
+        HornHelper.hh().setIsDoubleInf(isDoubleInf);
+        HornHelper.hh().setIsDoubleNaN(isDoubleNaN);
+        HornHelper.hh().setMakeDoubleNaN(makeDoubleNaNFun);
+        HornHelper.hh().setNegateDoubleFun(negateDoubleFun);
+        HornHelper.hh().setMakeDoubleInfFun(makeDoubleInfFun);
+        HornHelper.hh().setExistSpecCasForDoubleInMul(existSpecCasForDoubleInMul);
+
+
         this.explicitHeapSize = explicitHeapSize;
         this.genAssertions = generatedAssertions;
         for (ClassVariable var : program.getTypeGraph().vertexSet()) {

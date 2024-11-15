@@ -34,6 +34,85 @@ public class HornHelper {
 	private ProverADT singleTempFloatingPointOperandsADT;
 
 	private ProverADT doubleTempFloatingPointOperandsADT;
+
+	private ProverFun xOrSingleSigns;
+
+	private ProverFun xOrDoubleSigns;
+
+	private ProverFun isOVFSingleExp;
+
+	private ProverFun isUDFSingleExp;
+
+	private ProverFun isUDFDoubleExp;
+
+	private ProverFun isOVFDoubleExp;
+
+	private ProverFun isOVFSingleSigInAdd;
+	private ProverFun isOVFSingleSigInMul;
+
+	private ProverFun isOVFDoubleSigInAdd;
+	private ProverFun isOVFDoubleSigInMul;
+
+	private ProverFun extractSingleSigLSBInMul;
+
+	private ProverFun extractSingleSigGInMul;
+
+	private ProverFun extractSingleSigRInMul;
+
+	private ProverFun computeSingleSigStickyInMul;
+
+	private ProverFun extractDoubleSigLSBInMul;
+
+	private ProverFun extractDoubleSigGInMul;
+
+	private ProverFun extractDoubleSigRInMul;
+
+	private ProverFun computeDoubleSigStickyInMul;
+
+    private ProverFun requiredRoundingUp;
+
+	private  ProverFun roundUpSingleSigInMul;
+	private  ProverFun roundUpDoubleSigInMul;
+
+	private ProverFun makeSingleOVFFun;
+	private ProverFun makeDoubleOVFFun;
+
+	private ProverFun makeSingleUDFFun;
+
+	private ProverFun makeDoubleUDFFun;
+
+	private ProverFun existSingleZeroFun;
+	private ProverFun existDoubleZeroFun;
+	private ProverFun existSingleInfFun;
+	private ProverFun existDoubleInfFun;
+	private ProverFun existSingleNaNFun;
+	private ProverFun existDoubleNaNFun;
+	private ProverFun singleOperandsEqInfFun;
+	private ProverFun doubleOperandsEqInfFun;
+	private ProverFun singleOperandsEqZeroFun;
+	private ProverFun doubleOperandsEqZeroFun;
+	private ProverFun isSingleNegFun;
+	private ProverFun isDoubleNegFun;
+	private ProverFun areEqSingleSignsFun;
+	private ProverFun areEqDoubleSignsFun;
+
+	private ProverFun isSingleInf;
+	private ProverFun isDoubleInf;
+	private ProverFun isSingleNaN;
+	private ProverFun isDoubleNaN;
+
+	private ProverFun makeSingleNaN;
+
+	private ProverFun makeDoubleNaN;
+
+	private ProverFun negateSingleFun;
+	private ProverFun negateDoubleFun;
+	private ProverFun makeSingleInfFun;
+	private ProverFun makeDoubleInfFun;
+
+	private ProverFun existSpecCasForSingleInMul;
+	private ProverFun existSpecCasForDoubleInMul;
+
 	
 	public static void resetInstance() {
 		hh = null;
@@ -70,6 +149,212 @@ public class HornHelper {
 	public void setDoubleTempFloatingPointOperandsADT(ProverADT doubleTempFloatingPointOperandsADT) {
 		this.doubleTempFloatingPointOperandsADT = doubleTempFloatingPointOperandsADT;
 	}
+	public void setxOrSingleSigns(ProverFun xOrSingleSigns)
+	{
+		this.xOrSingleSigns = xOrSingleSigns;
+	}
+	public void setxOrDoubleSigns(ProverFun xOrDoubleSigns)
+	{
+		this.xOrDoubleSigns = xOrDoubleSigns;
+	}
+	public void  setIsOVFSingleExp(ProverFun isOVFSingleExp)
+	{
+		this.isOVFSingleExp = isOVFSingleExp;
+	}
+	public void  setIsUDFSingleExp(ProverFun isUDFSingleExp)
+	{
+		this.isUDFSingleExp = isUDFSingleExp;
+	}
+	public void  setIsOVFDoubleExp(ProverFun isOVFDoubleExp)
+	{
+		this.isOVFDoubleExp = isOVFDoubleExp;
+	}
+	public void setIsUDFDoubleExp(ProverFun isUDFDoubleExp)
+	{
+		this.isUDFDoubleExp = isUDFDoubleExp;
+	}
+
+	public void  setIsOVFSingleSigInAdd(ProverFun isOVFSingleSigInAdd)
+	{
+		this.isOVFSingleSigInAdd = isOVFSingleSigInAdd;
+	}
+	public void  setIsOVFSingleSigInMul(ProverFun isOVFSingleSigInMul)
+	{
+		this.isOVFSingleSigInMul = isOVFSingleSigInMul;
+	}
+	public void  setIsOVFDoubleSigInAdd(ProverFun isOVFDoubleSigInAdd)
+	{
+		this.isOVFDoubleSigInAdd = isOVFDoubleSigInAdd;
+	}
+	public void  setIsOVFDoubleSigInMul(ProverFun isOVFDoubleSigInMul)
+	{
+		this.isOVFDoubleSigInMul = isOVFDoubleSigInMul;
+	}
+	public void setExtractSingleSigLSBInMul(ProverFun extractSingleSigLSBInMul)
+	{
+		this.extractSingleSigLSBInMul = extractSingleSigLSBInMul;
+	}
+	public void setExtractSingleSigGInMul(ProverFun extractSingleSigGInMul)
+	{
+		this.extractSingleSigGInMul = extractSingleSigGInMul;
+	}
+	public void setExtractSingleSigRInMul(ProverFun extractSingleSigRInMul)
+	{
+		this.extractSingleSigRInMul = extractSingleSigRInMul;
+	}
+	public void setComputeSingleSigStickyInMul(ProverFun computeSingleSigStickyInMul)
+	{
+		this.computeSingleSigStickyInMul = computeSingleSigStickyInMul;
+	}
+	public void setExtractDoubleSigLSBInMul(ProverFun extractDoubleSigLSBInMul)
+	{
+		this.extractDoubleSigLSBInMul = extractDoubleSigLSBInMul;
+	}
+
+	public void setExtractDoubleSigGInMul(ProverFun extractDoubleSigGInMul)
+	{
+		this.extractDoubleSigGInMul = extractDoubleSigGInMul;
+	}
+	public void setExtractDoubleSigRInMul(ProverFun extractDoubleSigRInMul)
+	{
+		this.extractDoubleSigRInMul = extractDoubleSigRInMul;
+	}
+	public void setComputeDoubleSigStickyInMul(ProverFun computeDoubleSigStickyInMul)
+	{
+		this.computeDoubleSigStickyInMul = computeDoubleSigStickyInMul;
+	}
+	public void  setRequiredRoundingUp(ProverFun requiredRoundingUp)
+	{
+		this.requiredRoundingUp = requiredRoundingUp;
+	}
+	public void setRoundUpSingleSigInMul(ProverFun roundUpSingleSigInMul)
+	{
+		this.roundUpSingleSigInMul = roundUpSingleSigInMul;
+	}
+	public void setRoundUpDoubleSigInMul(ProverFun roundUpDoubleSigInMul)
+	{
+		this.roundUpDoubleSigInMul = roundUpDoubleSigInMul;
+	}
+	public void  setMakeSingleOVFFun(ProverFun makeSingleOVFFun)
+	{
+		this.makeSingleOVFFun = makeSingleOVFFun;
+	}
+	public void setMakeDoubleOVFFun(ProverFun makeDoubleOVFFun)
+	{
+		this.makeDoubleOVFFun = makeDoubleOVFFun;
+	}
+	public void setMakeSingleUDFFun(ProverFun makeSingleUDFFun)
+	{
+		this.makeSingleUDFFun = makeSingleUDFFun;
+	}
+	public void setMakeDoubleUDFFun(ProverFun makeDoubleUDFFun)
+	{
+		this.makeDoubleUDFFun = makeDoubleUDFFun;
+	}
+	public void setExistSingleZeroFun(ProverFun existSingleZeroFun)
+	{
+		this.existSingleZeroFun = existSingleZeroFun;
+	}
+	public void setExistDoubleZeroFun(ProverFun existDoubleZeroFun)
+	{
+		this.existDoubleZeroFun = existDoubleZeroFun;
+	}
+	public void setExistSingleInfFun(ProverFun existSingleInfFun)
+	{
+		this.existSingleInfFun = existSingleInfFun;
+	}
+	public void  setExistDoubleInfFun(ProverFun existDoubleInfFun)
+	{
+		this.existDoubleInfFun = existDoubleInfFun;
+	}
+	public void setExistSingleNaNFun(ProverFun existSingleNaNFun)
+	{
+		this.existSingleNaNFun = existSingleNaNFun;
+	}
+	public void setExistDoubleNaNFun(ProverFun existDoubleNaNFun)
+	{
+		this.existDoubleNaNFun = existDoubleNaNFun;
+	}
+	public void setSingleOperandsEqInfFun(ProverFun singleOperandsEqInfFun)
+	{
+		this.singleOperandsEqInfFun = singleOperandsEqInfFun;
+	}
+	public void setSingleOperandsEqZeroFun(ProverFun singleOperandsEqZeroFun)
+	{
+		this.singleOperandsEqZeroFun = singleOperandsEqZeroFun;
+	}
+	public void setIsSingleNegFun(ProverFun isSingleNegFun)
+	{
+		this.isSingleNegFun = isSingleNegFun;
+	}
+	public void setAreEqSingleSignsFun(ProverFun areEqSingleSignsFun)
+	{
+		this.areEqSingleSignsFun = areEqSingleSignsFun;
+	}
+	public void setDoubleOperandsEqInfFun(ProverFun doubleOperandsEqInfFun)
+	{
+		this.doubleOperandsEqInfFun = doubleOperandsEqInfFun;
+	}
+	public void setDoubleOperandsEqZeroFun(ProverFun doubleOperandsEqZeroFun)
+	{
+		this.doubleOperandsEqZeroFun = doubleOperandsEqZeroFun;
+	}
+	public void setIsDoubleNegFun(ProverFun isDoubleNegFun)
+	{
+		this.isDoubleNegFun = isDoubleNegFun;
+	}
+	public void setAreEqDoubleSignsFun(ProverFun areEqDoubleSignsFun)
+	{
+		this.areEqDoubleSignsFun = areEqDoubleSignsFun;
+	}
+	public void setIsSingleNaN(ProverFun isSingleNaN)
+	{
+		this.isSingleNaN = isSingleNaN;
+	}
+	public void setIsSingleInf(ProverFun isSingleInf)
+	{
+		this.isSingleInf = isSingleInf;
+	}
+	public void setIsDoubleNaN(ProverFun isDoubleNaN)
+	{
+		this.isDoubleNaN = isDoubleNaN;
+	}
+	public void setIsDoubleInf(ProverFun isDoubleInf)
+	{
+		this.isDoubleInf = isDoubleInf;
+	}
+	public void setMakeSingleNaN(ProverFun makeSingleNaN)
+	{
+		this.makeSingleNaN = makeSingleNaN;
+	}
+	public void setMakeDoubleNaN(ProverFun makeDoubleNaN)
+	{
+		this.makeDoubleNaN = makeDoubleNaN;
+	}
+	public void setNegateSingleFun(ProverFun negateSingleFun)
+	{
+		this.negateSingleFun = negateSingleFun;
+	}
+	public void setNegateDoubleFun(ProverFun negateDoubleFun)
+	{
+		this.negateDoubleFun = negateDoubleFun;
+	}
+	public void setMakeSingleInfFun(ProverFun makeSingleInfFun)
+	{
+		this.makeSingleInfFun = makeSingleInfFun;
+	}
+	public void setMakeDoubleInfFun(ProverFun makeDoubleInfFun)
+	{
+		this.makeDoubleInfFun = makeDoubleInfFun;
+	}
+	public void setExistSpecCasForSingleInMul(ProverFun existSpecCasForSingleInMul)
+	{
+		this.existSpecCasForSingleInMul = existSpecCasForSingleInMul;
+	}
+	public void setExistSpecCasForDoubleInMul(ProverFun existSpecCasForDoubleInMul)
+	{
+		this.existSpecCasForDoubleInMul = existSpecCasForDoubleInMul;
+	}
 
 	public ProverADT getStringADT() {
 		return stringADT;
@@ -98,6 +383,68 @@ public class HornHelper {
 	public ProverADT getDoubleTempFloatingPointOperandsADT() {
 		return doubleTempFloatingPointOperandsADT;
 	}
+
+	public ProverFun getxOrSingleSigns(){return xOrSingleSigns;}
+
+	public ProverFun getxOrDoubleSigns(){return xOrDoubleSigns;}
+
+	public ProverFun getIsOVFSingleExp(){return isOVFSingleExp;}
+	public ProverFun getIsUDFSingleExp(){return  isUDFSingleExp;}
+
+	public ProverFun getIsOVFDoubleExp(){return isOVFDoubleExp;}
+	public ProverFun getIsUDFDoubleExp(){return isUDFDoubleExp;}
+
+    public ProverFun getIsOVFSingleSigInAdd(){return isOVFSingleSigInAdd;}
+	public ProverFun getIsOVFSingleSigInMul(){return isOVFSingleSigInMul;}
+	public ProverFun getIsOVFDoubleSigInAdd(){return isOVFDoubleSigInAdd;}
+	public  ProverFun getIsOVFDoubleSigInMul(){return isOVFDoubleSigInMul;}
+
+	public ProverFun getExtractSingleSigLSBInMul(){return extractSingleSigLSBInMul;}
+	public ProverFun getExtractSingleSigGInMul(){return extractSingleSigGInMul;}
+	public ProverFun getExtractSingleSigRInMul(){return extractSingleSigRInMul;}
+
+	public ProverFun getComputeSingleSigStickyInMul(){return computeSingleSigStickyInMul;}
+	public ProverFun getExtractDoubleSigLSBInMul(){return extractDoubleSigLSBInMul;}
+	public ProverFun getExtractDoubleSigGInMul(){return extractDoubleSigGInMul;}
+	public ProverFun getExtractDoubleSigRInMul(){return extractDoubleSigRInMul;}
+
+	public ProverFun getComputeDoubleSigStickyInMul(){return computeDoubleSigStickyInMul;}
+	public ProverFun getRequiredRoundingUp(){return requiredRoundingUp;}
+	public ProverFun getRoundUpSingleSigInMul(){return roundUpSingleSigInMul;}
+	public ProverFun getRoundUpDoubleSigInMul(){return roundUpDoubleSigInMul;}
+	public ProverFun getMakeSingleOVFFun(){return makeSingleOVFFun;}
+	public ProverFun getMakeDoubleOVFFun(){return makeDoubleOVFFun;}
+	public ProverFun getMakeSingleUDFFun(){return makeSingleUDFFun;}
+	public ProverFun getMakeDoubleUDFFun(){return makeDoubleUDFFun;}
+	public ProverFun getExistSingleZeroFun(){return existSingleZeroFun;}
+	public ProverFun getExistDoubleZeroFun(){return existDoubleZeroFun;}
+	public ProverFun getExistSingleInfFun(){return existSingleInfFun;}
+	public ProverFun getExistDoubleInfFun(){return existDoubleInfFun;}
+	public ProverFun getExistSingleNaNFun(){return existSingleNaNFun;}
+	public ProverFun getExistDoubleNaNFun(){return existDoubleNaNFun;}
+	public ProverFun getSingleOperandsEqInfFun(){return singleOperandsEqInfFun;}
+	public ProverFun getSingleOperandsEqZeroFun(){return singleOperandsEqZeroFun;}
+
+	public ProverFun getIsSingleNegFun(){return isSingleNegFun;}
+	public ProverFun getAreEqSingleSignsFun(){return areEqSingleSignsFun;}
+	public ProverFun getDoubleOperandsEqInfFun(){return doubleOperandsEqInfFun;}
+	public ProverFun getDoubleOperandsEqZeroFun(){return doubleOperandsEqZeroFun;}
+	public ProverFun getIsDoubleNegFun(){return isDoubleNegFun;}
+	public ProverFun getAreEqDoubleSignsFun(){return areEqDoubleSignsFun;}
+	public ProverFun getIsSingleInf(){return isSingleInf;}
+	public ProverFun getIsSingleNaN(){return isSingleNaN;}
+
+	public ProverFun getIsDoubleInf(){return isDoubleInf;}
+	public ProverFun getIsDoubleNaN(){return isDoubleNaN;}
+	public ProverFun getMakeSingleNaN(){return makeSingleNaN;}
+	public ProverFun getMakeDoubleNaN(){return makeDoubleNaN;}
+	public ProverFun getNegateSingleFun(){return negateSingleFun;}
+	public ProverFun getNegateDoubleFun(){return negateDoubleFun;}
+
+	public ProverFun getMakeSingleInfFun(){return makeSingleInfFun;}
+	public ProverFun getMakeDoubleInfFun(){return makeDoubleInfFun;}
+	public ProverFun getExistSpecCasForSingleInMul(){return existSpecCasForSingleInMul;}
+	public ProverFun getExistSpecCasForDoubleInMul(){return existSpecCasForDoubleInMul;}
 
 	/**
 	 * Creates a ProverType from a Type.
@@ -172,7 +519,12 @@ public class HornHelper {
 			} else if (types[i] instanceof jayhorn.solver.ProverADTType
 					&& types[i].toString().equals("DoubleFloatingPoint")) {	// TODO: better check
 				subExprs[i] = expEncoder.getDoubleFloatingPointEnCoder().mkDoublePE(0.0);
-			} else if (types[i] instanceof ProverTupleType) {				
+			}
+			else if (types[i] instanceof jayhorn.solver.ProverADTType
+					&& types[i].toString().equals("FloatingPoint")) {	// TODO: better check
+				subExprs[i] = expEncoder.getSingleFloatingPointEnCoder().mkFloatPE(0.0F);
+			}
+			else if (types[i] instanceof ProverTupleType) {
 				subExprs[i] = mkNullExpression(p, ((ProverTupleType)types[i]).getSubTypes(), expEncoder);
 			} else {
 				throw new RuntimeException("Not implemented " + types[i].getClass());

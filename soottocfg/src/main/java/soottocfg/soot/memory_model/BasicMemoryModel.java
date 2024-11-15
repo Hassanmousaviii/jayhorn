@@ -34,10 +34,7 @@ import soottocfg.Options;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.expression.Expression;
 import soottocfg.cfg.expression.IdentifierExpression;
-import soottocfg.cfg.expression.literal.DoubleLiteral;
-import soottocfg.cfg.expression.literal.IntegerLiteral;
-import soottocfg.cfg.expression.literal.NullLiteral;
-import soottocfg.cfg.expression.literal.StringLiteral;
+import soottocfg.cfg.expression.literal.*;
 import soottocfg.cfg.method.Method;
 import soottocfg.cfg.statement.CallStatement;
 import soottocfg.cfg.type.*;
@@ -187,8 +184,18 @@ public abstract class BasicMemoryModel extends MemoryModel {
 		if (!constantDictionary.containsKey(arg0)) {
 			constantDictionary.put(arg0, SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
 					"$float" + constantDictionary.size(), lookupType(arg0.getType())));
+			putExpression(constantDictionary.get(arg0),
+					new FloatLiteral(statementSwitch.getCurrentLoc(),
+							SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+									"$float(" + arg0.value + ")",
+									SootTranslationHelpers.v().getMemoryModel().lookupType(arg0.getType()))
+							,arg0.value));
 		}
-		return new IdentifierExpression(this.statementSwitch.getCurrentLoc(), constantDictionary.get(arg0));
+		return new FloatLiteral(this.statementSwitch.getCurrentLoc(),
+				SootTranslationHelpers.v().getProgram().lookupGlobalVariable(
+						"$float(" + arg0.value + ")",
+						SootTranslationHelpers.v().getMemoryModel().lookupType(arg0.getType()))
+				,arg0.value);
 	}
 
 	// @Override
@@ -263,6 +270,11 @@ public abstract class BasicMemoryModel extends MemoryModel {
 			if (typeSootClass.equals(Scene.v().getSootClass("java.lang.Double"))) {
 				LinkedHashMap<String, Type> elementTypes = ReferenceType.mkDefaultElementTypes();
 				elementTypes.put("$Double", DoubleType.instance());
+				return new ReferenceType(lookupClassVariable(SootTranslationHelpers.v().getClassConstant(t)), elementTypes);
+			}
+			if (typeSootClass.equals(Scene.v().getSootClass("java.lang.Float"))) {
+				LinkedHashMap<String, Type> elementTypes = ReferenceType.mkDefaultElementTypes();
+				elementTypes.put("$Float", FloatType.instance());
 				return new ReferenceType(lookupClassVariable(SootTranslationHelpers.v().getClassConstant(t)), elementTypes);
 			}
 			return new ReferenceType(lookupClassVariable(SootTranslationHelpers.v().getClassConstant(t)));

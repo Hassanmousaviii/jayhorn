@@ -445,6 +445,10 @@ public class PrincessProver implements Prover {
 
         return new TermExpr( ModuloArithmetic.bvmul(((TermExpr) left).term, ((TermExpr) right).term), getBVType(bitLength));
     }
+    public ProverExpr mkBVDiv(ProverExpr left, ProverExpr right,  int bitLength)
+    {
+        return new TermExpr(ModuloArithmetic.bvudiv(((TermExpr) left).term, ((TermExpr) right).term),getBVType(bitLength));
+    }
     public ProverExpr mkBVSub(ProverExpr left, ProverExpr right,  int bitLength) {
         //ap.theories.bitvectors.ModuloArithmetic.bvadd() //ap.theories.bitvectors.ModuloArithmetic.bv_add();
 

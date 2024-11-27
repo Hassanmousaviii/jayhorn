@@ -228,6 +228,15 @@ public class HornEncoderContext {
                               ProverFun negateSingleFun,
                               ProverFun makeSingleInfFun,
                               ProverFun existSpecCasForSingleInMul,
+                              ProverFun needsNormalizationInSingleDiv,
+                              ProverFun subSingleExponentsInDiv,
+                              ProverFun divSingleSigs,
+                              ProverFun normalizeSingleExSigInDiv,
+                              ProverFun roundingUpInSingleDiv,
+                              ProverFun extractLSBInSingleDivResult,
+                              ProverFun extractGInSingleDivResult,
+                              ProverFun extractRInSingleDivResult,
+                              ProverFun computeSInSingleDivResult,
 
                               ProverADT doubleFloatingPointADT,
                               ProverADT doubleTempFloatingPointADT,
@@ -256,6 +265,15 @@ public class HornEncoderContext {
                               ProverFun negateDoubleFun,
                               ProverFun makeDoubleInfFun,
                               ProverFun existSpecCasForDoubleInMul,
+                              ProverFun needsNormalizationInDoubleDiv,
+                              ProverFun subDoubleExponentsInDiv,
+                              ProverFun divDoubleSigs,
+                              ProverFun normalizeDoubleExSigInDiv,
+                              ProverFun roundingUpInDoubleDiv,
+                              ProverFun extractLSBInDoubleDivResult,
+                              ProverFun extractGInDoubleDivResult,
+                              ProverFun extractRInDoubleDivResult,
+                              ProverFun computeSInDoubleDivResult,
 
                               int explicitHeapSize, GeneratedAssertions generatedAssertions) {
         this.program = prog;
@@ -295,6 +313,17 @@ public class HornEncoderContext {
         HornHelper.hh().setNegateSingleFun(negateSingleFun);
         HornHelper.hh().setMakeSingleInfFun(makeSingleInfFun);
         HornHelper.hh().setExistSpecCasForSingleInMul(existSpecCasForSingleInMul);
+        HornHelper.hh().setNeedsNormalizationInSingleDiv(needsNormalizationInSingleDiv);
+        HornHelper.hh().setSubSingleExponentsInDiv(subSingleExponentsInDiv);
+        HornHelper.hh().setDivSingleSigs(divSingleSigs);
+        HornHelper.hh().setNormalizeSingleExSigInDiv(normalizeSingleExSigInDiv);
+        HornHelper.hh().setRoundingUpInSingleDiv(roundingUpInSingleDiv);
+        HornHelper.hh().setExtractLSBInSingleDivResult(extractLSBInSingleDivResult);
+        HornHelper.hh().setExtractGInSingleDivResult(extractGInSingleDivResult);
+        HornHelper.hh().setExtractRInSingleDivResult(extractRInSingleDivResult);
+        HornHelper.hh().setComputeSInSingleDivResult(computeSInSingleDivResult);
+
+
 
         HornHelper.hh().setDoubleFloatingPointADT(doubleFloatingPointADT);
         HornHelper.hh().setDoubleTempFloatingPointADT(doubleTempFloatingPointADT);
@@ -323,6 +352,15 @@ public class HornEncoderContext {
         HornHelper.hh().setNegateDoubleFun(negateDoubleFun);
         HornHelper.hh().setMakeDoubleInfFun(makeDoubleInfFun);
         HornHelper.hh().setExistSpecCasForDoubleInMul(existSpecCasForDoubleInMul);
+        HornHelper.hh().setNeedsNormalizationInDoubleDiv(needsNormalizationInDoubleDiv);
+        HornHelper.hh().setSubDoubleExponentsInDiv(subDoubleExponentsInDiv);
+        HornHelper.hh().setDivDoubleSigs(divDoubleSigs);
+        HornHelper.hh().setNormalizeDoubleExSigInDiv(normalizeDoubleExSigInDiv);
+        HornHelper.hh().setRoundingUpInDoubleDiv(roundingUpInDoubleDiv);
+        HornHelper.hh().setExtractLSBInDoubleDivResult(extractLSBInDoubleDivResult);
+        HornHelper.hh().setExtractGInDoubleDivResult(extractGInDoubleDivResult);
+        HornHelper.hh().setExtractRInDoubleDivResult(extractRInDoubleDivResult);
+        HornHelper.hh().setComputeSInDoubleDivResult(computeSInDoubleDivResult);
 
 
         this.explicitHeapSize = explicitHeapSize;

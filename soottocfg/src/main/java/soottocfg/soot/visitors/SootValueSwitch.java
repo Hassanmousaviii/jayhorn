@@ -162,6 +162,17 @@ public class SootValueSwitch implements JimpleValueSwitch {
 					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Mul, lhs, rhs));
 			return;
 		} else if (op.compareTo("/") == 0) {
+
+			if(lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals("java.lang.Double")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Double"))) {
+				this.expressionStack
+						.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.DivDouble, lhs, rhs));
+				return;
+			}
+			if(lhs instanceof FloatLiteral || rhs instanceof FloatLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals("java.lang.Float")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Float"))) {
+				this.expressionStack
+						.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.DivFloat, lhs, rhs));
+				return;
+			}
 			this.expressionStack
 					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Div, lhs, rhs));
 			return;
@@ -176,7 +187,7 @@ public class SootValueSwitch implements JimpleValueSwitch {
 			 */
 			Expression ite = new IteExpression(statementSwitch.getCurrentLoc(),
 					(
-							(lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString() == "java.lang.Double") || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString() == "java.lang.Double")) ?
+							(lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral  || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString() == "java.lang.Double") || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString() == "java.lang.Double")) ?
 							new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.LeDouble, lhs, rhs)
 					: (
 									(lhs instanceof FloatLiteral || rhs instanceof FloatLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString() == "java.lang.Float") || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString() == "java.lang.Float")) ?

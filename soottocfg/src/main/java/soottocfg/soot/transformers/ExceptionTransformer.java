@@ -32,35 +32,7 @@ import soot.Trap;
 import soot.Unit;
 import soot.Value;
 import soot.dava.toolkits.base.misc.ConditionFlipper;
-import soot.jimple.AnyNewExpr;
-import soot.jimple.ArrayRef;
-import soot.jimple.BinopExpr;
-import soot.jimple.CastExpr;
-import soot.jimple.CaughtExceptionRef;
-import soot.jimple.ConditionExpr;
-import soot.jimple.DefinitionStmt;
-import soot.jimple.DivExpr;
-import soot.jimple.ExitMonitorStmt;
-import soot.jimple.IdentityRef;
-import soot.jimple.IfStmt;
-import soot.jimple.InstanceFieldRef;
-import soot.jimple.InstanceInvokeExpr;
-import soot.jimple.InstanceOfExpr;
-import soot.jimple.IntConstant;
-import soot.jimple.InvokeExpr;
-import soot.jimple.InvokeStmt;
-import soot.jimple.Jimple;
-import soot.jimple.JimpleBody;
-import soot.jimple.LengthExpr;
-import soot.jimple.NullConstant;
-import soot.jimple.Ref;
-import soot.jimple.RemExpr;
-import soot.jimple.ReturnStmt;
-import soot.jimple.StaticFieldRef;
-import soot.jimple.Stmt;
-import soot.jimple.SwitchStmt;
-import soot.jimple.ThrowStmt;
-import soot.jimple.UnopExpr;
+import soot.jimple.*;
 import soot.jimple.toolkits.annotation.nullcheck.NullnessAnalysis;
 import soot.jimple.internal.AbstractNewArrayExpr;
 import soot.tagkit.Host;
@@ -984,6 +956,16 @@ public class ExceptionTransformer extends AbstractSceneTransformer {
 		if (divisor instanceof IntConstant) {
 			IntConstant divint = (IntConstant) divisor;
 			if (divint.value != 0)
+				return true;
+		}
+		else if(divisor instanceof DoubleConstant)
+		{
+			DoubleConstant divDouble = (DoubleConstant) divisor;
+			if(divDouble.value != 0.0)
+				return true;
+		} else if (divisor instanceof FloatConstant) {
+			FloatConstant divFloat = (FloatConstant) divisor;
+			if(divFloat.value != 0.0F)
 				return true;
 		}
 		return false;

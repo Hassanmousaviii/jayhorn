@@ -35,7 +35,7 @@ public class BinaryExpression extends Expression {
 		Ne("!="), Gt(">"), Ge(">="), Lt("<"), Le("<="), Shl("<<"), Shr(">>"), Ushr("u>>"), BOr("|"), BAnd("&"),
 		PoLeq("<:"), StringEq("==="), StringConcat("+++"), StringCompareTo("<?>"), StartsWith("startsWith"), EndsWith("endsWith"), CharAt("charAt"),
 		ToString("<str>"), BoolToString("<str_b>"), CharToString("<str_c>"), IndexInString("<idx_str>"), StringIndexOf("<idx_of>"), StringIndexOfChar("<idx_of_char>"),
-		StringLastIndexOf("<last_idx_of>"), StringLastIndexOfChar("<last_idx_of_char>"), ToDouble("<double>"), ToFloat("<float>"), AssumeDouble("<AssumeDouble>"),AssumeFloat("<AssumeFloat>"), MulDouble("<MulDouble>"), MulFloat("<MulFloat>"), AddDouble("<AddDouble>"), AddFloat("<AddFloat>"), LeDouble("<LeDouble>"), LeFloat("LeFloat"), MinusDouble("MinusDouble"), MinusFloat("MinusFloat");	// TODO: not an actual BinaryExpression
+		StringLastIndexOf("<last_idx_of>"), StringLastIndexOfChar("<last_idx_of_char>"), ToDouble("<double>"), ToFloat("<float>"), AssumeDouble("<AssumeDouble>"),AssumeFloat("<AssumeFloat>"), MulDouble("<MulDouble>"), MulFloat("<MulFloat>"), AddDouble("<AddDouble>"), AddFloat("<AddFloat>"), DivDouble("<DivDouble>"), DivFloat("<DivFloat>"), LeDouble("<LeDouble>"), LeFloat("LeFloat"), MinusDouble("MinusDouble"), MinusFloat("MinusFloat");	// TODO: not an actual BinaryExpression
 
 		private final String name;
 
@@ -96,11 +96,14 @@ public class BinaryExpression extends Expression {
 						|| (op == BinaryOperator.Le && (right.getType() == DoubleType.instance() || right.getType() == FloatType.instance()))
 						|| (op == BinaryOperator.Le && (left.getType() == DoubleType.instance() || left.getType() == FloatType.instance()))
 						|| (op == BinaryOperator.Eq && (right.getType() == DoubleType.instance() || right.getType() == FloatType.instance()))
+						|| (op == BinaryOperator.Eq && (left.getType() == DoubleType.instance() || left.getType() == FloatType.instance()))
 						|| (op == BinaryOperator.Plus && (left.getType() == DoubleType.instance() || right.getType() == DoubleType.instance()))
 						|| (op == BinaryOperator.MulDouble && (left.getType() == DoubleType.instance() || right.getType() == DoubleType.instance()))
+						|| (op == BinaryOperator.DivDouble && (left.getType() == DoubleType.instance() || right.getType() == DoubleType.instance()))
 						|| (op == BinaryOperator.AddDouble && (left.getType() == DoubleType.instance() || right.getType() == DoubleType.instance()))
 						|| (op == BinaryOperator.LeDouble && (left.getType() == DoubleType.instance() || right.getType() == DoubleType.instance()))
 						|| (op == BinaryOperator.MulFloat && (left.getType() == FloatType.instance() || right.getType() == FloatType.instance()))
+						|| (op == BinaryOperator.DivFloat && (left.getType() == FloatType.instance() || right.getType() == FloatType.instance()))
 						|| (op == BinaryOperator.AddFloat && (left.getType() == FloatType.instance() || right.getType() == FloatType.instance()))
 						|| (op == BinaryOperator.LeFloat && (left.getType() == FloatType.instance() || right.getType() == FloatType.instance()))
 						|| (op == BinaryOperator.Le && (left instanceof UnaryExpression || right instanceof UnaryExpression))

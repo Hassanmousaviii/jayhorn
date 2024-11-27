@@ -483,6 +483,11 @@ public class SpacerProver implements Prover {
 		throw new RuntimeException("not implemented");
 	}
 	@Override
+	public ProverExpr mkBVDiv(ProverExpr left, ProverExpr right,  int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
 	public ProverExpr mkBVXOR(ProverExpr left, ProverExpr right, int bitLength)
 	{
 		throw new RuntimeException("not implemented");

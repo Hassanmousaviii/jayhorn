@@ -84,7 +84,16 @@ public class ExpressionEncoder {
 				HornHelper.hh().getMakeSingleNaN(),
 				HornHelper.hh().getMakeSingleInfFun(),
 				HornHelper.hh().getNegateSingleFun(),
-				HornHelper.hh().getExistSpecCasForSingleInMul()
+				HornHelper.hh().getExistSpecCasForSingleInMul(),
+				HornHelper.hh().getNeedsNormalizationInSingleDiv(),
+				HornHelper.hh().getSubSingleExponentsInDiv(),
+				HornHelper.hh().getDivSingleSigs(),
+				HornHelper.hh().getNormalizeSingleExSigInDiv(),
+				HornHelper.hh().getRoundingUpInSingleDiv(),
+				HornHelper.hh().getExtractLSBInSingleDivResult(),
+				HornHelper.hh().getExtractGInSingleDivResult(),
+				HornHelper.hh().getExtractRInSingleDivResult(),
+				HornHelper.hh().getComputeSInSingleDivResult()
 		);
 		this.doubleFloatingPointEnCoder = new FloatingPointEncoder(
 				p,
@@ -117,7 +126,16 @@ public class ExpressionEncoder {
 				HornHelper.hh().getMakeDoubleNaN(),
 				HornHelper.hh().getMakeDoubleInfFun(),
 				HornHelper.hh().getNegateDoubleFun(),
-				HornHelper.hh().getExistSpecCasForDoubleInMul()
+				HornHelper.hh().getExistSpecCasForDoubleInMul(),
+				HornHelper.hh().getNeedsNormalizationInDoubleDiv(),
+				HornHelper.hh().getSubDoubleExponentsInDiv(),
+				HornHelper.hh().getDivDoubleSigs(),
+				HornHelper.hh().getNormalizeDoubleExSigInDiv(),
+				HornHelper.hh().getRoundingUpInDoubleDiv(),
+				HornHelper.hh().getExtractLSBInDoubleDivResult(),
+				HornHelper.hh().getExtractGInDoubleDivResult(),
+				HornHelper.hh().getExtractRInDoubleDivResult(),
+				HornHelper.hh().getComputeSInDoubleDivResult()
 		);
 
 	}

@@ -78,7 +78,8 @@ public class Hornify {
 				)
 		);
 		ProverFun requiredRoundingUp = prover.mkDefinedFunction("requiredRoundingUp" //LSB,G,R,S
-				,new ProverType[] {prover.getBVType(1),prover.getBVType(1),prover.getBVType(1),prover.getBVType(1)},
+				,new ProverType[] {prover.getBVType(1),
+						prover.getBVType(1),prover.getBVType(1),prover.getBVType(1)},
 				//prover.mkIte(
 						prover.mkEq( //G.(LSB + (R+S)) = 1
 								prover.mkBVAND(
@@ -477,6 +478,163 @@ public class Hornify {
 										prover.mkBoundVariable(1,floatingPointADT.getType(0))
 								)
 						));
+		ProverFun needsNormalizationInSingleDiv = prover.mkDefinedFunction("needsNormalizationInSingleDiv",
+				new ProverType[] {prover.getBVType(24), prover.getBVType(24)},
+
+						prover.mkBVUlt(
+								prover.mkBoundVariable(0, prover.getBVType(24)),
+								prover.mkBoundVariable(1, prover.getBVType(24))
+								)
+				);
+
+		ProverFun subSingleExponentsInDiv = prover.mkDefinedFunction( "subSingleExponentsInDiv",
+				new ProverType[] {prover.getBVType(8), prover.getBVType(8)},
+				prover.mkBVPlus(
+						prover.mkBVZeroExtend(1,
+								prover.mkBVPlus(
+										prover.mkBoundVariable(0,prover.getBVType(8)),
+										prover.mkBVNeg(prover.mkBoundVariable(1,prover.getBVType(8)),8),
+										8
+								),
+								8
+						),
+						prover.mkBV(127,9),
+						9
+				)
+		);
+
+		ProverFun divSingleSigs = prover.mkDefinedFunction("divSingleSigs",
+				new ProverType[] {prover.getBVType(24), prover.getBVType(24)},
+				prover.mkBVDiv(
+						prover.mkBVConcat(
+								prover.mkBoundVariable(0,prover.getBVType(24)),
+								prover.mkBV(0,48),
+								72
+								),
+						prover.mkBVZeroExtend(
+								48,
+								prover.mkBoundVariable(1,prover.getBVType(24)),
+								24
+						),
+						72
+				)
+		);
+
+		ProverFun normalizeSingleExSigInDiv = prover.mkDefinedFunction("normalizeSingleExSigInDiv",
+				new ProverType[] {prover.getBVType(72)},
+				prover.mkBVshl(
+						prover.mkBoundVariable(1,prover.getBVType(72)),
+						prover.mkBV(1,72),
+						72
+				)
+		);
+
+		ProverFun roundingUpInSingleDiv = prover.mkDefinedFunction("roundingUpInSingleDiv",
+				new ProverType[] {floatingPointADT.getType(0)},
+				floatingPointADT.mkCtorExpr(0,new ProverExpr[]{
+						floatingPointADT.mkSelExpr(
+								0,
+								0,
+								prover.mkBoundVariable(0,floatingPointADT.getType(0))
+						),//Sign
+						floatingPointADT.mkSelExpr(
+								0,
+								1,
+								prover.mkBoundVariable(0,floatingPointADT.getType(0))
+						), //exponent
+						prover.mkBVPlus(
+								floatingPointADT.mkSelExpr(
+										0,
+										2,
+										prover.mkBoundVariable(0,floatingPointADT.getType(0))
+								),
+								prover.mkBV(1,24),
+								24
+						), //mantissa
+						floatingPointADT.mkSelExpr(
+								0,
+								3,
+								prover.mkBoundVariable(0,floatingPointADT.getType(0))
+						), //Inf
+						floatingPointADT.mkSelExpr(
+								0,
+								4,
+								prover.mkBoundVariable(0,floatingPointADT.getType(0))
+						), //NaN
+						floatingPointADT.mkSelExpr(
+								0,
+								5,
+								prover.mkBoundVariable(0,floatingPointADT.getType(0))
+						), //OVF
+						floatingPointADT.mkSelExpr(
+								0,
+								6,
+								prover.mkBoundVariable(0,floatingPointADT.getType(0))
+						) //UDF
+				})
+		);
+
+		ProverFun extractLSBInSingleDivResult = prover.mkDefinedFunction("extractLSBInSingleDivResult",
+				new ProverType[] {prover.getBVType(72)},
+				prover.mkIte(
+						prover.mkEq(
+								prover.mkBVExtract(48,48,prover.mkBoundVariable(0,prover.getBVType(72))),
+								prover.mkBV(1,1)
+						),
+						prover.mkBVExtract(25,25,prover.mkBoundVariable(0,prover.getBVType(72))),
+						prover.mkBVExtract(24,24,prover.mkBoundVariable(0,prover.getBVType(72)))
+				)
+		);
+
+		ProverFun extractGInSingleDivResult = prover.mkDefinedFunction("extractGInSingleDivResult",
+				new ProverType[] {prover.getBVType(72)},
+				prover.mkIte(
+						prover.mkEq(
+								prover.mkBVExtract(48,48,prover.mkBoundVariable(0,prover.getBVType(72))),
+								prover.mkBV(1,1)
+						),
+						prover.mkBVExtract(24,24,prover.mkBoundVariable(0,prover.getBVType(72))),
+						prover.mkBVExtract(23,23,prover.mkBoundVariable(0,prover.getBVType(72)))
+				)
+		);
+
+		ProverFun extractRInSingleDivResult = prover.mkDefinedFunction("extractRInSingleDivResult",
+				new ProverType[] {prover.getBVType(72)},
+				prover.mkIte(
+						prover.mkEq(
+								prover.mkBVExtract(48,48,prover.mkBoundVariable(0,prover.getBVType(72))),
+								prover.mkBV(1,1)
+						),
+						prover.mkBVExtract(23,23,prover.mkBoundVariable(0,prover.getBVType(72))),
+						prover.mkBVExtract(22,22,prover.mkBoundVariable(0,prover.getBVType(72)))
+				)
+		);
+
+		ProverFun computeSInSingleDivResult = prover.mkDefinedFunction("computeSInSingleDivResult",
+				new ProverType[] {prover.getBVType(72)},
+				prover.mkIte(
+						prover.mkEq(
+								prover.mkBVExtract(48,48,prover.mkBoundVariable(0,prover.getBVType(72))),
+								prover.mkBV(1,1)
+						),
+						prover.mkIte(
+								prover.mkEq(
+										prover.mkBVExtract(22,0,prover.mkBoundVariable(0,prover.getBVType(72))),
+										prover.mkBV(0,23)
+								),
+								prover.mkBV(0,1),
+								prover.mkBV(1,1)
+						),
+						prover.mkIte(
+								prover.mkEq(
+										prover.mkBVExtract(21,0,prover.mkBoundVariable(0,prover.getBVType(49))),
+										prover.mkBV(0,22)
+								),
+								prover.mkBV(0,1),
+								prover.mkBV(1,1)
+						)
+				)
+		);
 
 		//Functions for Double Precision
 		ProverFun xORDoubleSigns = prover.mkDefinedFunction("xORDoubleSigns",
@@ -900,6 +1058,158 @@ public class Hornify {
 						),
 						prover.mkLiteral(true), prover.mkLiteral(false)
 				));
+		ProverFun needsNormalizationInDoubleDiv = prover.mkDefinedFunction("needsNormalizationInDoubleDiv",
+				new ProverType[] {prover.getBVType(53), prover.getBVType(53)},
+				prover.mkEq(
+						prover.mkBVUlt(
+								prover.mkBoundVariable(0, prover.getBVType(53)),
+								prover.mkBoundVariable(1, prover.getBVType(53))
+						),
+						prover.mkLiteral(1)
+				)
+		);
+		ProverFun subDoubleExponentsInDiv = prover.mkDefinedFunction( "subDoubleExponentsInDiv",
+				new ProverType[] {prover.getBVType(11), prover.getBVType(11)},
+				prover.mkBVPlus(
+						prover.mkBVZeroExtend(1,
+								prover.mkBVPlus(
+										prover.mkBoundVariable(0,prover.getBVType(11)),
+										prover.mkBVNeg(prover.mkBoundVariable(1,prover.getBVType(11)),8),
+										11
+								),
+								11
+						),
+						prover.mkBV(1023,12),
+						12
+				)
+		);
+		ProverFun divDoubleSigs = prover.mkDefinedFunction("divDoubleSigs",
+				new ProverType[] {prover.getBVType(53), prover.getBVType(53)},
+				prover.mkBVDiv(
+						prover.mkBVConcat(
+								prover.mkBoundVariable(0,prover.getBVType(53)),
+								prover.mkBV(0,106),
+								159
+						),
+						prover.mkBVZeroExtend(
+								106,
+								prover.mkBoundVariable(1,prover.getBVType(53)),
+								53
+						),
+						159
+				)
+		);
+		ProverFun normalizeDoubleExSigInDiv = prover.mkDefinedFunction("normalizeDoubleExSigInDiv",
+				new ProverType[] {prover.getBVType(159)},
+				prover.mkBVshl(
+						prover.mkBoundVariable(1,prover.getBVType(159)),
+						prover.mkBV(1,159),
+						159
+				)
+		);
+		ProverFun roundingUpInDoubleDiv = prover.mkDefinedFunction("roundingUpInDoubleDiv",
+				new ProverType[] {doubleFloatingPointADT.getType(0)},
+				doubleFloatingPointADT.mkCtorExpr(0,new ProverExpr[]{
+						doubleFloatingPointADT.mkSelExpr(
+								0,
+								0,
+								prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+						),//Sign
+						doubleFloatingPointADT.mkSelExpr(
+								0,
+								1,
+								prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+						), //exponent
+						prover.mkBVPlus(
+								doubleFloatingPointADT.mkSelExpr(
+										0,
+										2,
+										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+								),
+								prover.mkBV(1,53),
+								53
+						), //mantissa
+						doubleFloatingPointADT.mkSelExpr(
+								0,
+								3,
+								prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+						), //Inf
+						doubleFloatingPointADT.mkSelExpr(
+								0,
+								4,
+								prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+						), //NaN
+						doubleFloatingPointADT.mkSelExpr(
+								0,
+								5,
+								prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+						), //OVF
+						doubleFloatingPointADT.mkSelExpr(
+								0,
+								6,
+								prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+						) //UDF
+				})
+		);
+		ProverFun extractLSBInDoubleDivResult = prover.mkDefinedFunction("extractLSBInDoubleDivResult",
+				new ProverType[] {prover.getBVType(107)},
+				prover.mkIte(
+						prover.mkEq(
+								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(107))),
+								prover.mkBV(1,1)
+						),
+						prover.mkBVExtract(54,54,prover.mkBoundVariable(0,prover.getBVType(107))),
+						prover.mkBVExtract(53,53,prover.mkBoundVariable(0,prover.getBVType(107)))
+				)
+		);
+		ProverFun extractGInDoubleDivResult = prover.mkDefinedFunction("extractGInDoubleDivResult",
+				new ProverType[] {prover.getBVType(107)},
+				prover.mkIte(
+						prover.mkEq(
+								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(107))),
+								prover.mkBV(1,1)
+						),
+						prover.mkBVExtract(53,53,prover.mkBoundVariable(0,prover.getBVType(107))),
+						prover.mkBVExtract(52,52,prover.mkBoundVariable(0,prover.getBVType(107)))
+				)
+		);
+		ProverFun extractRInDoubleDivResult = prover.mkDefinedFunction("extractRInDoubleDivResult",
+				new ProverType[] {prover.getBVType(107)},
+				prover.mkIte(
+						prover.mkEq(
+								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(107))),
+								prover.mkBV(1,1)
+						),
+						prover.mkBVExtract(52,52,prover.mkBoundVariable(0,prover.getBVType(107))),
+						prover.mkBVExtract(51,51,prover.mkBoundVariable(0,prover.getBVType(107)))
+				)
+		);
+		ProverFun computeSInDoubleDivResult = prover.mkDefinedFunction("computeSInDoubleDivResult",
+				new ProverType[] {prover.getBVType(107)},
+				prover.mkIte(
+						prover.mkEq(
+								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(107))),
+								prover.mkBV(1,1)
+						),
+						prover.mkIte(
+								prover.mkEq(
+										prover.mkBVExtract(51,0,prover.mkBoundVariable(0,prover.getBVType(107))),
+										prover.mkBV(0,52)
+								),
+								prover.mkBV(0,1),
+								prover.mkBV(1,1)
+						),
+						prover.mkIte(
+								prover.mkEq(
+										prover.mkBVExtract(50,0,prover.mkBoundVariable(0,prover.getBVType(107))),
+										prover.mkBV(0,51)
+								),
+								prover.mkBV(0,1),
+								prover.mkBV(1,1)
+						)
+				)
+		);
+
 
 		HornEncoderContext hornContext = new HornEncoderContext(
 				prover,
@@ -937,6 +1247,15 @@ public class Hornify {
 				negateSingleFun,
 				makeSingleInfFun,
 				existSpecCasForSingleInMul,
+				needsNormalizationInSingleDiv,
+				subSingleExponentsInDiv,
+				divSingleSigs,
+				normalizeSingleExSigInDiv,
+				roundingUpInSingleDiv,
+				extractLSBInSingleDivResult,
+				extractGInSingleDivResult,
+				extractRInSingleDivResult,
+				computeSInSingleDivResult,
 
 				doubleFloatingPointADT,
 				extendedDoubleFloatingPointADT,
@@ -965,7 +1284,15 @@ public class Hornify {
 				negateDoubleFun,
 				makeDoubleInfFun,
 				existSpecCasForDoubleInMul,
-
+				needsNormalizationInDoubleDiv,
+				subDoubleExponentsInDiv,
+				divDoubleSigs,
+				normalizeDoubleExSigInDiv,
+				roundingUpInDoubleDiv,
+				extractLSBInDoubleDivResult,
+				extractGInDoubleDivResult,
+				extractRInDoubleDivResult,
+				computeSInDoubleDivResult,
 				explicitHeapSize, generatedAssertions);
 
 		Log.info("Transform Program Methods into Horn Clauses ... ");

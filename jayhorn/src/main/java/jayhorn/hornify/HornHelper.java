@@ -112,6 +112,25 @@ public class HornHelper {
 
 	private ProverFun existSpecCasForSingleInMul;
 	private ProverFun existSpecCasForDoubleInMul;
+	private ProverFun needsNormalizationInSingleDiv;
+	private ProverFun subSingleExponentsInDiv;
+	private ProverFun divSingleSigs;
+	private ProverFun normalizeSingleExSigInDiv;
+	private ProverFun roundingUpInSingleDiv;
+	private ProverFun extractLSBInSingleDivResult;
+	private ProverFun extractGInSingleDivResult;
+	private ProverFun extractRInSingleDivResult;
+	private ProverFun computeSInSingleDivResult;
+
+	private ProverFun needsNormalizationInDoubleDiv;
+	private ProverFun subDoubleExponentsInDiv;
+	private ProverFun divDoubleSigs;
+	private ProverFun normalizeDoubleExSigInDiv;
+	private ProverFun roundingUpInDoubleDiv;
+	private ProverFun extractLSBInDoubleDivResult;
+	private ProverFun extractGInDoubleDivResult;
+	private ProverFun extractRInDoubleDivResult;
+	private ProverFun computeSInDoubleDivResult;
 
 	
 	public static void resetInstance() {
@@ -355,6 +374,78 @@ public class HornHelper {
 	{
 		this.existSpecCasForDoubleInMul = existSpecCasForDoubleInMul;
 	}
+	public void setNeedsNormalizationInSingleDiv(ProverFun needsNormalizationInSingleDiv)
+	{
+		this.needsNormalizationInSingleDiv = needsNormalizationInSingleDiv;
+	}
+	public void setNormalizeSingleExSigInDiv(ProverFun normalizeSingleExSigInDiv)
+	{
+		this.normalizeSingleExSigInDiv = normalizeSingleExSigInDiv;
+	}
+	public void  setDivSingleSigs(ProverFun divSingleSigs)
+	{
+		this.divSingleSigs = divSingleSigs;
+	}
+	public void setSubSingleExponentsInDiv(ProverFun subSingleExponentsInDiv)
+	{
+		this.subSingleExponentsInDiv = subSingleExponentsInDiv;
+	}
+	public void setRoundingUpInSingleDiv(ProverFun roundingUpInSingleDiv)
+	{
+		this.roundingUpInSingleDiv = roundingUpInSingleDiv;
+	}
+	public  void setExtractLSBInSingleDivResult(ProverFun extractLSBInSingleDivResult)
+	{
+		this.extractLSBInSingleDivResult = extractLSBInSingleDivResult;
+	}
+	public void setExtractGInSingleDivResult(ProverFun extractGInSingleDivResult)
+	{
+		this.extractGInSingleDivResult = extractGInSingleDivResult;
+	}
+	public void setExtractRInSingleDivResult(ProverFun extractRInSingleDivResult)
+	{
+		this.extractRInSingleDivResult = extractRInSingleDivResult;
+	}
+	public void setComputeSInSingleDivResult(ProverFun computeSInSingleDivResult)
+	{
+		this.computeSInSingleDivResult = computeSInSingleDivResult;
+	}
+	public void setNeedsNormalizationInDoubleDiv(ProverFun needsNormalizationInDoubleDiv)
+	{
+		this.needsNormalizationInDoubleDiv = needsNormalizationInDoubleDiv;
+	}
+	public void setDivDoubleSigs(ProverFun divDoubleSigs)
+	{
+		this.divDoubleSigs = divDoubleSigs;
+	}
+	public void setSubDoubleExponentsInDiv(ProverFun subDoubleExponentsInDiv)
+	{
+		this.subDoubleExponentsInDiv = subDoubleExponentsInDiv;
+	}
+	public void setNormalizeDoubleExSigInDiv(ProverFun normalizeDoubleExSigInDiv)
+	{
+		this.normalizeDoubleExSigInDiv = normalizeDoubleExSigInDiv;
+	}
+	public void setRoundingUpInDoubleDiv(ProverFun roundingUpInDoubleDiv)
+	{
+		this.roundingUpInDoubleDiv = roundingUpInDoubleDiv;
+	}
+	public void  setExtractLSBInDoubleDivResult(ProverFun extractLSBInDoubleDivResult)
+	{
+		this.extractLSBInDoubleDivResult = extractLSBInDoubleDivResult;
+	}
+	public void setExtractGInDoubleDivResult(ProverFun extractGInDoubleDivResult)
+	{
+		this.extractGInDoubleDivResult = extractGInDoubleDivResult;
+	}
+	public void setExtractRInDoubleDivResult(ProverFun extractRInDoubleDivResult)
+	{
+		this.extractRInDoubleDivResult = extractRInDoubleDivResult;
+	}
+	public void setComputeSInDoubleDivResult(ProverFun computeSInDoubleDivResult)
+	{
+		this.computeSInDoubleDivResult = computeSInDoubleDivResult;
+	}
 
 	public ProverADT getStringADT() {
 		return stringADT;
@@ -445,6 +536,25 @@ public class HornHelper {
 	public ProverFun getMakeDoubleInfFun(){return makeDoubleInfFun;}
 	public ProverFun getExistSpecCasForSingleInMul(){return existSpecCasForSingleInMul;}
 	public ProverFun getExistSpecCasForDoubleInMul(){return existSpecCasForDoubleInMul;}
+
+	public ProverFun getNeedsNormalizationInSingleDiv(){return needsNormalizationInSingleDiv;}
+	public ProverFun getDivSingleSigs(){return divSingleSigs;}
+	public ProverFun getSubSingleExponentsInDiv(){return subSingleExponentsInDiv;}
+	public  ProverFun getNormalizeSingleExSigInDiv(){return  normalizeSingleExSigInDiv;}
+	public ProverFun getRoundingUpInSingleDiv(){return  roundingUpInSingleDiv;}
+	public ProverFun getExtractLSBInSingleDivResult(){return extractLSBInSingleDivResult;}
+	public ProverFun getExtractGInSingleDivResult(){return extractGInSingleDivResult;}
+	public ProverFun getExtractRInSingleDivResult(){return extractRInSingleDivResult;}
+	public ProverFun getComputeSInSingleDivResult(){return computeSInSingleDivResult;}
+	public ProverFun getNeedsNormalizationInDoubleDiv(){return needsNormalizationInDoubleDiv;}
+	public ProverFun getSubDoubleExponentsInDiv(){return subDoubleExponentsInDiv;}
+	public ProverFun getDivDoubleSigs(){return divDoubleSigs;}
+	public ProverFun getNormalizeDoubleExSigInDiv(){return normalizeDoubleExSigInDiv;}
+	public ProverFun getRoundingUpInDoubleDiv(){return roundingUpInDoubleDiv;}
+	public ProverFun getExtractLSBInDoubleDivResult(){return extractLSBInDoubleDivResult;}
+	public ProverFun getExtractGInDoubleDivResult(){return extractGInDoubleDivResult;}
+	public ProverFun getExtractRInDoubleDivResult(){return extractRInDoubleDivResult;}
+	public ProverFun getComputeSInDoubleDivResult(){return computeSInDoubleDivResult;}
 
 	/**
 	 * Creates a ProverType from a Type.

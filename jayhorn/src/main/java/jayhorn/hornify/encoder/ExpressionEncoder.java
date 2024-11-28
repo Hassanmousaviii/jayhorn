@@ -450,8 +450,8 @@ public class ExpressionEncoder {
 				if (left instanceof ProverTupleExpr) {
 					ProverTupleExpr tLeft = (ProverTupleExpr)left;
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
-					if(tLeft.getArity() == 4)
-						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
+					if(tLeft.getArity() == 4) {
+						if (((PrincessADTType) tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
 							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
 							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
 							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
@@ -459,22 +459,36 @@ public class ExpressionEncoder {
 							ProverExpr rightSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
 							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
 							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
-							return p.mkIte(p.mkEq(leftSign,rightSign),
-									p.mkIte(p.mkEq(leftExponent,rightExponent),
-											p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUlt(leftMantisa,rightMantisa),p.mkBVUgt(leftMantisa,rightMantisa)),
-											p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUlt(leftExponent,rightExponent),p.mkBVUgt(leftExponent,rightExponent))),
-									p.mkIte(p.mkBVUlt(leftSign,rightSign),p.mkLiteral(true),p.mkLiteral(false))
+							return p.mkIte(p.mkEq(leftSign, rightSign),
+									p.mkIte(p.mkEq(leftExponent, rightExponent),
+											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)),
+											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))),
+									p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(true), p.mkLiteral(false))
 							);
 
+						} else if (((PrincessADTType) tLeft.getSubExpr(3).getType()).sort.name().equals("FloatingPoint")) {
+							ProverExpr leftSign = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
+							return p.mkIte(p.mkEq(leftSign, rightSign),
+									p.mkIte(p.mkEq(leftExponent, rightExponent),
+											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)),
+											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))),
+									p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(true), p.mkLiteral(false))
+							);
 						}
+					}
 				}
 				return p.mkGt(left, right);
 			case Ge:
 				if (left instanceof ProverTupleExpr) {
 					ProverTupleExpr tLeft = (ProverTupleExpr)left;
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
-					if(tLeft.getArity() == 4)
-						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
+					if(tLeft.getArity() == 4) {
+						if (((PrincessADTType) tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
 							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
 							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
 							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
@@ -484,24 +498,42 @@ public class ExpressionEncoder {
 							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
 							return p.mkIte(p.mkEq(tLeft.getSubExpr(3), tRight.getSubExpr(3)),
 									p.mkLiteral(true),
-									p.mkIte(p.mkEq(leftSign,rightSign),
-											p.mkIte(p.mkEq(leftExponent,rightExponent),
-													p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUlt(leftMantisa,rightMantisa),p.mkBVUgt(leftMantisa,rightMantisa)),
-													p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUlt(leftExponent,rightExponent),p.mkBVUgt(leftExponent,rightExponent))),
-											p.mkIte(p.mkBVUlt(leftSign,rightSign),p.mkLiteral(true),p.mkLiteral(false))
+									p.mkIte(p.mkEq(leftSign, rightSign),
+											p.mkIte(p.mkEq(leftExponent, rightExponent),
+													p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)),
+													p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))),
+											p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(true), p.mkLiteral(false))
 									)
 							);
 							/*return p.mkBVLeq(FloatingPointADT.mkSelExpr(0, 2, tLeft.getSubExpr(3)),
 									FloatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3)));*/
 						}
+						else if (((PrincessADTType) tLeft.getSubExpr(3).getType()).sort.name().equals("FloatingPoint")) {
+							ProverExpr leftSign = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
+							return p.mkIte(p.mkEq(tLeft.getSubExpr(3), tRight.getSubExpr(3)),
+									p.mkLiteral(true),
+									p.mkIte(p.mkEq(leftSign, rightSign),
+											p.mkIte(p.mkEq(leftExponent, rightExponent),
+													p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)),
+													p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))),
+											p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(true), p.mkLiteral(false))
+									)
+							);
+						}
+					}
 				}
 				return p.mkGeq(left, right);
 			case Lt:
 				if (left instanceof ProverTupleExpr) {
 					ProverTupleExpr tLeft = (ProverTupleExpr)left;
 					ProverTupleExpr tRight = (ProverTupleExpr)right;
-					if(tLeft.getArity() == 4)
-						if(((PrincessADTType)tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
+					if(tLeft.getArity() == 4) {
+						if (((PrincessADTType) tLeft.getSubExpr(3).getType()).sort.name().equals("DoubleFloatingPoint")) {
 							//final ProverADT FloatingPointADT = (new PrincessFloatingPointADTFactory()).spawnFloatingPointADT(PrincessFloatingPointType.Precision.Double);
 							ProverExpr leftSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
 							ProverExpr leftExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
@@ -509,14 +541,29 @@ public class ExpressionEncoder {
 							ProverExpr rightSign = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
 							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
 							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
-							return p.mkIte(p.mkEq(leftSign,rightSign),
-											p.mkIte(p.mkEq(leftExponent,rightExponent),
-													p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)),p.mkBVUgt(leftMantisa,rightMantisa),p.mkBVUlt(leftMantisa,rightMantisa)),
-													p.mkIte(p.mkEq(leftSign,p.mkBV(1,1)), p.mkBVUgt(leftExponent,rightExponent),p.mkBVUlt(leftExponent,rightExponent))),
-											p.mkIte(p.mkBVUlt(leftSign,rightSign),p.mkLiteral(false),p.mkLiteral(true))
-									);
+							return p.mkIte(p.mkEq(leftSign, rightSign),
+									p.mkIte(p.mkEq(leftExponent, rightExponent),
+											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
+											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
+									p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(false), p.mkLiteral(true))
+							);
 
 						}
+						else if (((PrincessADTType) tLeft.getSubExpr(3).getType()).sort.name().equals("FloatingPoint")) {
+							ProverExpr leftSign = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tLeft.getSubExpr(3));
+							ProverExpr leftExponent = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tLeft.getSubExpr(3));
+							ProverExpr leftMantisa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tLeft.getSubExpr(3));
+							ProverExpr rightSign = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tRight.getSubExpr(3));
+							ProverExpr rightExponent = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tRight.getSubExpr(3));
+							ProverExpr rightMantisa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tRight.getSubExpr(3));
+							return p.mkIte(p.mkEq(leftSign, rightSign),
+									p.mkIte(p.mkEq(leftExponent, rightExponent),
+											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
+											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
+									p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(false), p.mkLiteral(true))
+							);
+						}
+					}
 				}
 				return p.mkLt(left, right);
 			case Le:

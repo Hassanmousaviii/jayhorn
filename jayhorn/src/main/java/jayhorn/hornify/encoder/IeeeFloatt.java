@@ -150,6 +150,7 @@ public class IeeeFloatt {
             NaNFlag = false;
             infinityFlag = false;
             fraction = fraction.add(new BigInteger("2").pow(spec.f)); // hidden bit!
+            //fraction.floatValue()
             double fr = fraction.doubleValue();
             exponent = exponent.subtract(spec.bias()); // un-bias
         }
@@ -338,9 +339,9 @@ public class IeeeFloatt {
         return a.f;
     }
     public void fromFloat(float f) {
-        spec.setF(23);
-        spec.setE(8);
-        assert spec.width() == 32;
+       // spec.setF(23);
+       // spec.setE(8);
+       // assert spec.width() == 32;
         BigInteger i = BigInteger.valueOf(Float.floatToIntBits(f));
 
         unpack(i);

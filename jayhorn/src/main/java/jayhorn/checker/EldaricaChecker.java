@@ -214,7 +214,16 @@ public class EldaricaChecker extends Checker {
                 prover.checkSat(false);
                 result = prover.getResult(timeoutInMsec);
             } else {
+                // Start measuring execution time
+                long startTime = System.nanoTime();
                 result = prover.checkSat(true);
+                // Stop measuring execution time
+                long endTime = System.nanoTime();
+                long executionTime
+                        = (endTime - startTime) / 1000000;
+
+                System.out.println("Eldarica takes "
+                        + executionTime + "ms to check the given benchmark!");
             }
             if (Options.v().solution) {
                 if (result == ProverResult.Sat) {

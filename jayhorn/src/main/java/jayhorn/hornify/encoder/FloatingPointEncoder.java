@@ -222,8 +222,9 @@ public class FloatingPointEncoder {
 
             //ProverExpr finalExpr = p.mkIte(condExpr, thenExpr, elseExpr);
             switch (be.getOp()) {
-                case LeDouble:
-                    return mkLeDoubleFromExpression(leftExpr, idLhs, rightExpr, varMap, postPred, prePred, preAtom, thenExpr, elseExpr);
+                    case LeDouble:
+                         return mkLeDoubleFromExpression(leftExpr, idLhs, rightExpr, varMap, postPred, prePred, preAtom, thenExpr, elseExpr);
+
                     case LeFloat:
                         return floatLeFromExp(leftExpr, idLhs, rightExpr, varMap, postPred, prePred, preAtom, thenExpr, elseExpr);
                 default:
@@ -401,7 +402,7 @@ public class FloatingPointEncoder {
         // First create the atom for prePred.
         HornHelper.hh().findOrCreateProverVar(p, postPred1Vars, varMap);
 
-        HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_1", postPred1Vars);
+        HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_11", postPred1Vars);
         ProverExpr postAtom1 = postPred1.instPredicate(varMap);
         ProverExpr Cond = p.mkNot(p.mkEq(((ProverTupleExpr) left).getSubExpr(3), ((ProverTupleExpr) right).getSubExpr(3)));
         clauses.add(p.mkHornClause(postAtom1, new ProverExpr[]{preAtom}, Cond));
@@ -409,7 +410,7 @@ public class FloatingPointEncoder {
 
 
         List<Variable> postPred2Vars = new ArrayList<>(prePred.variables);
-        HornPredicate postPred2 = new HornPredicate(p, prePred.name + "_2", postPred2Vars);
+        HornPredicate postPred2 = new HornPredicate(p, prePred.name + "_12", postPred2Vars);
         ProverExpr postAtom2 = postPred2.instPredicate(varMap);
         Cond = p.mkEq(leftSign, rightSign);
         clauses.add(p.mkHornClause(postAtom2, new ProverExpr[]{postAtom1}, Cond));
@@ -461,7 +462,7 @@ public class FloatingPointEncoder {
         varMap.put(exponentsDiff,eLeft_eRight_diff);
 
         HornHelper.hh().findOrCreateProverVar(p, postPred1Vars, varMap);
-        HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_1", postPred1Vars);
+        HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_11", postPred1Vars);
 
         ProverExpr postAtom1 = postPred1.instPredicate(varMap);
         ProverExpr Cond = p.mkLiteral(true);//p.mkAnd(p.mkNot(bothZero), noNaNInf);
@@ -489,7 +490,7 @@ public class FloatingPointEncoder {
         postPred2Vars.add(lfp);
         postPred2Vars.add(rfp);
         HornHelper.hh().findOrCreateProverVar(p, postPred2Vars, varMap);
-        HornPredicate postPred2 = new HornPredicate(p, prePred.name + "_2", postPred2Vars);
+        HornPredicate postPred2 = new HornPredicate(p, prePred.name + "_12", postPred2Vars);
         //varMap.put(exponentsDiff,p.mkBVNeg(varMap.get(exponentsDiff),11));
         varMap.put(lfp, rightfp);
         varMap.put(rfp, leftfp);
@@ -501,13 +502,14 @@ public class FloatingPointEncoder {
 
 
         // post2 (lfp,rfp,neg(exponentsDiff)) --> post1 (lfp,rfp, exponentsDiff) & exponentsDiff < 0
+        Cond = p.mkEq(p.mkBVExtract(10,10,varMap.get(exponentsDiff)),p.mkBV(1,1));
         varMap.put(exponentsDiff,p.mkBVNeg(varMap.get(exponentsDiff),11));
         ProverExpr lfpTemp = varMap.get(lfp);
         varMap.put(lfp, varMap.get(rfp));
         varMap.put(rfp, lfpTemp);
         postAtom2 = postPred2.instPredicate(varMap);
 
-        Cond = p.mkEq(p.mkBVExtract(10,10,varMap.get(exponentsDiff)),p.mkBV(1,1));
+
 
         clauses.add(p.mkHornClause(postAtom2, new ProverExpr[]{postAtom1}, Cond));
 
@@ -561,7 +563,7 @@ public class FloatingPointEncoder {
         varMap.put(lefp, leftEFP);
         varMap.put(refp, rightEFP);
         HornHelper.hh().findOrCreateProverVar(p, postPred3Vars, varMap);
-        HornPredicate postPred3 = new HornPredicate(p, prePred.name + "_3", postPred3Vars);
+        HornPredicate postPred3 = new HornPredicate(p, prePred.name + "_13", postPred3Vars);
         ProverExpr postAtom3 = postPred3.instPredicate(varMap);
 
         Cond = p.mkLiteral(true);
@@ -596,7 +598,7 @@ public class FloatingPointEncoder {
                 p.mkLiteral(0)
         );
         varMap.put(efp, extendedFPInAdd);
-        HornPredicate postPred4 = new HornPredicate(p, prePred.name + "_4", postPred4Vars);
+        HornPredicate postPred4 = new HornPredicate(p, prePred.name + "_14", postPred4Vars);
         ProverExpr postAtom4 = postPred4.instPredicate(varMap);
         clauses.add(p.mkHornClause(postAtom4, new ProverExpr[]{postAtom3}, Cond));
 
@@ -609,7 +611,7 @@ public class FloatingPointEncoder {
         Cond = p.mkEq(p.mkBVExtract(105,105,extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(efp))),p.mkBV(0,1));
 
         List<Variable> postPred6Vars = new ArrayList<>(postPred4.variables);
-        HornPredicate postPred6 = new HornPredicate(p, prePred.name + "_6", postPred6Vars);
+        HornPredicate postPred6 = new HornPredicate(p, prePred.name + "_16", postPred6Vars);
         ProverExpr postAtom6 = postPred6.instPredicate(varMap);
 
         clauses.add(p.mkHornClause(postAtom6, new ProverExpr[]{postAtom4}, Cond));
@@ -672,7 +674,7 @@ public class FloatingPointEncoder {
         );
         varMap.put(efp, extendedFPInSub);
         varMap.put(lzc,p.mkBV(0,53));
-        HornPredicate postPred5 = new HornPredicate(p, prePred.name + "_5", postPred5Vars);
+        HornPredicate postPred5 = new HornPredicate(p, prePred.name + "_15", postPred5Vars);
         ProverExpr postAtom5 = postPred5.instPredicate(varMap);
         clauses.add(p.mkHornClause(postAtom5, new ProverExpr[]{postAtom3}, Cond));
 
@@ -766,7 +768,7 @@ public class FloatingPointEncoder {
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{postAtom6}, Cond));
 
         // postAtom (makeUDFExp()) --> post6 (efp) & UDFExp(efp) //
-        //varMap = new HashMap<Variable, ProverExpr>();
+        varMap = new HashMap<Variable, ProverExpr>();
         HornHelper.hh().findOrCreateProverVar(p, postPred6Vars, varMap);
         postAtom6 = postPred6.instPredicate(varMap);
 
@@ -780,7 +782,7 @@ public class FloatingPointEncoder {
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{postAtom6}, Cond));
 
         // post7 (efp) --> post6 (efp) & !OVFExp(efp) & !UDFExp(efp) //
-        //varMap = new HashMap<Variable, ProverExpr>();
+        varMap = new HashMap<Variable, ProverExpr>();
         HornHelper.hh().findOrCreateProverVar(p, postPred6Vars, varMap);
         postAtom6 = postPred6.instPredicate(varMap);
 
@@ -816,7 +818,7 @@ public class FloatingPointEncoder {
         varMap.put(R,p.mkBVExtract(50,50,mantissa)); // R
         varMap.put(S, p.mkIte(p.mkEq(p.mkBVExtract(49,0, mantissa),p.mkBV(0,50)),p.mkBV(0,1),p.mkBV(1,1)));
 
-        HornPredicate postPred7 = new HornPredicate(p, prePred.name + "_7", postPred7Vars);
+        HornPredicate postPred7 = new HornPredicate(p, prePred.name + "_17", postPred7Vars);
         ProverExpr postAtom7 = postPred7.instPredicate(varMap);
 
         clauses.add(p.mkHornClause(postAtom7, new ProverExpr[]{postAtom6}, Cond));
@@ -892,7 +894,7 @@ public class FloatingPointEncoder {
         varMap.put(exponentsDiff,eLeft_eRight_diff);
 
         HornHelper.hh().findOrCreateProverVar(p, postPred1Vars, varMap);
-        HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_1", postPred1Vars);
+        HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_11", postPred1Vars);
 
         ProverExpr postAtom1 = postPred1.instPredicate(varMap);
         ProverExpr Cond = p.mkLiteral(true);//p.mkAnd(p.mkNot(bothZero), noNaNInf);
@@ -923,7 +925,7 @@ public class FloatingPointEncoder {
         postPred2Vars.add(lfp);
         postPred2Vars.add(rfp);
         HornHelper.hh().findOrCreateProverVar(p, postPred2Vars, varMap);
-        HornPredicate postPred2 = new HornPredicate(p, prePred.name + "_2", postPred2Vars);
+        HornPredicate postPred2 = new HornPredicate(p, prePred.name + "_12", postPred2Vars);
 
         varMap.put(lfp, rightfp);
         varMap.put(rfp, leftfp);
@@ -935,13 +937,14 @@ public class FloatingPointEncoder {
 
 
         // post2 (lfp,rfp,neg(exponentsDiff)) --> post1 (lfp,rfp, exponentsDiff) & exponentsDiff < 0
+        Cond = p.mkEq(p.mkBVExtract(7,7,varMap.get(exponentsDiff)),p.mkBV(1,1));
         varMap.put(exponentsDiff,p.mkBVNeg(varMap.get(exponentsDiff),8));
         ProverExpr lfpTemp = varMap.get(lfp);
         varMap.put(lfp, varMap.get(rfp));
         varMap.put(rfp, lfpTemp);
         postAtom2 = postPred2.instPredicate(varMap);
 
-        Cond = p.mkEq(p.mkBVExtract(7,7,varMap.get(exponentsDiff)),p.mkBV(1,1));
+
 
         clauses.add(p.mkHornClause(postAtom2, new ProverExpr[]{postAtom1}, Cond));
 
@@ -995,7 +998,7 @@ public class FloatingPointEncoder {
         varMap.put(lefp, leftEFP);
         varMap.put(refp, rightEFP);
         HornHelper.hh().findOrCreateProverVar(p, postPred3Vars, varMap);
-        HornPredicate postPred3 = new HornPredicate(p, prePred.name + "_3", postPred3Vars);
+        HornPredicate postPred3 = new HornPredicate(p, prePred.name + "_13", postPred3Vars);
         ProverExpr postAtom3 = postPred3.instPredicate(varMap);
 
         Cond = p.mkLiteral(true);
@@ -1030,7 +1033,7 @@ public class FloatingPointEncoder {
                 p.mkLiteral(0)
         );
         varMap.put(efp, extendedFPInAdd);
-        HornPredicate postPred4 = new HornPredicate(p, prePred.name + "_4", postPred4Vars);
+        HornPredicate postPred4 = new HornPredicate(p, prePred.name + "_14", postPred4Vars);
         ProverExpr postAtom4 = postPred4.instPredicate(varMap);
         clauses.add(p.mkHornClause(postAtom4, new ProverExpr[]{postAtom3}, Cond));
 
@@ -1043,7 +1046,7 @@ public class FloatingPointEncoder {
         Cond = p.mkEq(p.mkBVExtract(47,47,extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(efp))),p.mkBV(0,1));
 
         List<Variable> postPred6Vars = new ArrayList<>(postPred4.variables);
-        HornPredicate postPred6 = new HornPredicate(p, prePred.name + "_6", postPred6Vars);
+        HornPredicate postPred6 = new HornPredicate(p, prePred.name + "_16", postPred6Vars);
         ProverExpr postAtom6 = postPred6.instPredicate(varMap);
 
         clauses.add(p.mkHornClause(postAtom6, new ProverExpr[]{postAtom4}, Cond));
@@ -1106,7 +1109,7 @@ public class FloatingPointEncoder {
         );
         varMap.put(efp, extendedFPInSub);
         varMap.put(lzc,p.mkBV(0,24));
-        HornPredicate postPred5 = new HornPredicate(p, prePred.name + "_5", postPred5Vars);
+        HornPredicate postPred5 = new HornPredicate(p, prePred.name + "_15", postPred5Vars);
         ProverExpr postAtom5 = postPred5.instPredicate(varMap);
         clauses.add(p.mkHornClause(postAtom5, new ProverExpr[]{postAtom3}, Cond));
 
@@ -1200,7 +1203,7 @@ public class FloatingPointEncoder {
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{postAtom6}, Cond));
 
         // postAtom (makeUDFExp()) --> post6 (efp) & UDFExp(efp) //
-        //varMap = new HashMap<Variable, ProverExpr>();
+        varMap = new HashMap<Variable, ProverExpr>();
         HornHelper.hh().findOrCreateProverVar(p, postPred6Vars, varMap);
         postAtom6 = postPred6.instPredicate(varMap);
 
@@ -1214,7 +1217,7 @@ public class FloatingPointEncoder {
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{postAtom6}, Cond));
 
         // post7 (efp) --> post6 (efp) & !OVFExp(efp) & !UDFExp(efp) //
-        //varMap = new HashMap<Variable, ProverExpr>();
+        varMap = new HashMap<Variable, ProverExpr>();
         HornHelper.hh().findOrCreateProverVar(p, postPred6Vars, varMap);
         postAtom6 = postPred6.instPredicate(varMap);
 
@@ -1250,7 +1253,7 @@ public class FloatingPointEncoder {
         varMap.put(R,p.mkBVExtract(21,21,mantissa)); // R
         varMap.put(S, p.mkIte(p.mkEq(p.mkBVExtract(20,0, mantissa),p.mkBV(0,21)),p.mkBV(0,1),p.mkBV(1,1)));
 
-        HornPredicate postPred7 = new HornPredicate(p, prePred.name + "_7", postPred7Vars);
+        HornPredicate postPred7 = new HornPredicate(p, prePred.name + "_17", postPred7Vars);
         ProverExpr postAtom7 = postPred7.instPredicate(varMap);
 
         clauses.add(p.mkHornClause(postAtom7, new ProverExpr[]{postAtom6}, Cond));
@@ -2155,7 +2158,7 @@ public class FloatingPointEncoder {
         postPred1Vars.add(resultSignVar);
         postPred1Vars.add(ee);
 
-        HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_1", postPred1Vars);
+        HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_11", postPred1Vars);
         ProverExpr postAtom1 = postPred1.instPredicate(varMap);
         Cond = p.mkLiteral(true);//p.mkNot(existSpecCasInMul(lFP,rFP)); //!existSpecCase(lFP, rFP)
         clauses.add(p.mkHornClause(postAtom1, new ProverExpr[]{preAtom}, Cond)); // p1(s, ee, lFP, rFP) <-- !existSpecCase(lFP, rFP)
@@ -2210,7 +2213,7 @@ public class FloatingPointEncoder {
                 )
         );
 
-        HornPredicate postPred2 = new HornPredicate(p, prePred.name + "_2", postPred2Vars);
+        HornPredicate postPred2 = new HornPredicate(p, prePred.name + "_12", postPred2Vars);
         ProverExpr postAtom2 = postPred2.instPredicate(varMap);
 
         Cond = p.mkAnd(p.mkNot(isOVFExp(varMap.get(ee))),p.mkNot(isUDFExp(varMap.get(ee))));
@@ -2225,7 +2228,7 @@ public class FloatingPointEncoder {
         List<Variable> postPred3Vars = new ArrayList<>(postPred2Vars);
 
         Cond = p.mkNot(isOVFSigInMul(extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(extendedFP))));
-        HornPredicate postPred3 = new HornPredicate(p, prePred.name + "_3", postPred3Vars);
+        HornPredicate postPred3 = new HornPredicate(p, prePred.name + "_13", postPred3Vars);
         ProverExpr postAtom3 = postPred3.instPredicate(varMap);
 
         clauses.add(p.mkHornClause(postAtom3, new ProverExpr[]{postAtom2}, Cond)); //p3(efp) <-- p2(efp) & !isOVFSig(m(efp))
@@ -2307,7 +2310,7 @@ public class FloatingPointEncoder {
         varMap.put(R,extractSigRInMul( extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(extendedFP))));
         varMap.put(S, computeStickyInMul( extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(extendedFP))));
 
-        HornPredicate postPred4 = new HornPredicate(p, prePred.name + "_4", postPred4Vars);
+        HornPredicate postPred4 = new HornPredicate(p, prePred.name + "_14", postPred4Vars);
         ProverExpr postAtom4 = postPred4.instPredicate(varMap);
 
         Cond =p.mkAnd(
@@ -2354,7 +2357,7 @@ public class FloatingPointEncoder {
     public List<ProverHornClause>  floatDivFromExp2(Expression FloatExpr, IdentifierExpression idLhs,Expression lhsRefExpr, Map<Variable, ProverExpr> varMap, HornPredicate postPred, HornPredicate prePred, ProverExpr preAtom)
     {
         List<ProverHornClause> clauses = new LinkedList<ProverHornClause>();
-        ReferenceType lhsRefExprType = (ReferenceType) (lhsRefExpr instanceof FloatLiteral ? ((FloatLiteral)lhsRefExpr).getVariable().getType() : lhsRefExpr.getType());
+       // ReferenceType lhsRefExprType = (ReferenceType) (lhsRefExpr instanceof FloatLiteral ? ((FloatLiteral)lhsRefExpr).getVariable().getType() : lhsRefExpr.getType());
 
         final ProverExpr internalFloat = selectFloatingPoint(FloatExpr, varMap);
         if (internalFloat == null)
@@ -2378,20 +2381,21 @@ public class FloatingPointEncoder {
         ProverExpr rightExponent = floatingPointADT.mkSelExpr(0, 1, tRight.getSubExpr(3));
         ProverExpr rightMantisa = floatingPointADT.mkSelExpr(0, 2, tRight.getSubExpr(3));
 
+        // p1(s, ee, lFP, rFP) <-- !existSpecCase(lFP, rFP)
         Variable resultSignVar = new Variable("resultSignVar", IntType.instance());
-        ProverExpr subExponents = p.mkBVPlus(
-                p.mkBVZeroExtend(1,
-                        p.mkBVPlus(
-                                leftExponent,
-                                p.mkBVNeg(rightExponent,8),
-                                8
-                        ),
-                        8
-                ),
-                p.mkBV(127,9),
-                9
-        );
-                //subExponentsInDiv(leftExponent, rightExponent);
+        ProverExpr subExponents =
+                p.mkBVPlus(
+                    p.mkBVZeroExtend(1,
+                            p.mkBVPlus(
+                                    leftExponent,
+                                    p.mkBVNeg(rightExponent,8),
+                                    8
+                            ),
+                            8
+                    ),
+                    p.mkBV(127,9),
+                    9
+                );
 
         ProverExpr leftS_xor_rightS = XORSigns(lFP, rFP);
         varMap.put(resultSignVar, leftS_xor_rightS);
@@ -2406,18 +2410,16 @@ public class FloatingPointEncoder {
         HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_1", postPred1Vars);
         ProverExpr postAtom1 = postPred1.instPredicate(varMap);
         ProverExpr Cond = p.mkLiteral(true);//p.mkNot(existSpecCasInMul(lFP,rFP)); //!existSpecCase(lFP, rFP)
-        clauses.add(p.mkHornClause(postAtom1, new ProverExpr[]{preAtom}, Cond)); // p1(s, ee, lFP, rFP) <-- !existSpecCase(lFP, rFP)
+        clauses.add(p.mkHornClause(postAtom1, new ProverExpr[]{preAtom}, Cond)); //
 
 
-
+        // p2(s, ee ,div(mleft, mright)) <-- p1(s, ee, lFP, rFP)
         varMap = new HashMap<Variable, ProverExpr>();
         // First create the atom for prePred.
         HornHelper.hh().findOrCreateProverVar(p, postPred1Vars, varMap);
-
         postAtom1 = postPred1.instPredicate(varMap);
 
         left = expEncoder.exprToProverExpr(FloatExpr, varMap);
-
         right = expEncoder.exprToProverExpr(lhsRefExpr, varMap);
         tLeft = (ProverTupleExpr)left;
         tRight = (ProverTupleExpr)right;
@@ -2430,7 +2432,6 @@ public class FloatingPointEncoder {
         Variable em = new Variable("em", Type.instance(), 72);
         List<Variable> postPred2Vars = new ArrayList<>(postPred1Vars);
         postPred2Vars.add(em);
-        //varMap.put(em, divSigs(leftMantisa, rightMantisa));
         varMap.put(em,
                 p.mkBVDiv(
                         p.mkBVConcat(
@@ -2445,13 +2446,14 @@ public class FloatingPointEncoder {
                         ),
                         72
                 )
-                );
+        );
         HornPredicate postPred2 = new HornPredicate(p, prePred.name + "_2", postPred2Vars);
         ProverExpr postAtom2 = postPred2.instPredicate(varMap);
         Cond = p.mkLiteral(true);
 
-        clauses.add(p.mkHornClause(postAtom2, new ProverExpr[]{postAtom1}, Cond)); // p2(s, ee ,div(mleft, mright)) <-- p1(s, ee, lFP, rFP)
+        clauses.add(p.mkHornClause(postAtom2, new ProverExpr[]{postAtom1}, Cond));
 
+        //p3(s, ee, em) <-- p2 (s, ee, em) & em[48] = 1
         varMap = new HashMap<Variable, ProverExpr>();
         // First create the atom for prePred.
         HornHelper.hh().findOrCreateProverVar(p, postPred2Vars, varMap);
@@ -2462,20 +2464,32 @@ public class FloatingPointEncoder {
 
         List<Variable> postPred3Vars = new ArrayList<>(postPred2Vars);
         HornPredicate postPred3 = new HornPredicate(p, prePred.name + "_3", postPred3Vars);
+
         ProverExpr postAtom3 = postPred3.instPredicate(varMap);
         clauses.add(p.mkHornClause(postAtom3, new ProverExpr[]{postAtom2}, Cond));
 
+        //p5(s, ee, em) <-- p2 (s, ee, em) & !(em[48] = 1)
+        varMap = new HashMap<Variable, ProverExpr>();
+        // First create the atom for prePred.
+        HornHelper.hh().findOrCreateProverVar(p, postPred2Vars, varMap);
+        postAtom2 = postPred2.instPredicate(varMap);
 
-        Cond = p.mkEq(p.mkBVExtract(48,48,varMap.get(em)),p.mkBV(0,1));//p.mkNot(p.mkEq(p.mkBVExtract(48,48,varMap.get(em)),p.mkBV(1,1)));
+        Cond = p.mkNot(p.mkEq(p.mkBVExtract(48,48,varMap.get(em)),p.mkBV(1,1)));//p.mkNot(p.mkEq(p.mkBVExtract(48,48,varMap.get(em)),p.mkBV(1,1)))
+        //HornHelper.hh().findOrCreateProverVar(p, postPred3Vars, varMap);
         varMap.put(em,p.mkBVshl(varMap.get(em),p.mkBV(1,72),72));
         varMap.put(ee, p.mkBVSub(varMap.get(ee),p.mkBV(1,9),9));
-        postAtom3 = postPred3.instPredicate(varMap);
-        clauses.add(p.mkHornClause(postAtom3, new ProverExpr[]{postAtom2}, Cond));
+        List<Variable> postPred5Vars = new ArrayList<>(postPred2Vars);
 
+        HornPredicate postPred5 = new HornPredicate(p, prePred.name + "_5", postPred5Vars);
+        ProverExpr postAtom5 = postPred5.instPredicate(varMap);
+        clauses.add(p.mkHornClause(postAtom5, new ProverExpr[]{postAtom2}, Cond));
+
+        //p4(FP(s, ee[7:0],em[48:25],...), ... ,  ) <-- p3 (s, ee, em)
         varMap = new HashMap<Variable, ProverExpr>();
         // First create the atom for prePred.
         HornHelper.hh().findOrCreateProverVar(p, postPred3Vars, varMap);
         postAtom3 = postPred3.instPredicate(varMap);
+
         Variable resultFP = new Variable("resultFP", new WrappedProverType(floatingPointADT.getType(0)));
         Variable LSB = new Variable("LSB", Type.instance(),1);
         Variable G = new Variable("G", Type.instance(),1);
@@ -2502,70 +2516,99 @@ public class FloatingPointEncoder {
                         p.mkLiteral(0)
                 )
         );
-        varMap.put(LSB, extractLSBInDivResult(varMap.get(em)));
-        varMap.put(G, extractGInDivResult( varMap.get(em)));
-        varMap.put(R,extractRInDivResult( varMap.get(em)));
-        varMap.put(S, computeSInDivResult(varMap.get(em)));
+        varMap.put(LSB, p.mkBVExtract(25,25,varMap.get(em)));
+        varMap.put(G, p.mkBVExtract(24,24,varMap.get(em)));
+        varMap.put(R, p.mkBVExtract(23,23,varMap.get(em)));
+        varMap.put(S,
+                        p.mkIte(
+                                p.mkEq(
+                                        p.mkBVExtract(22,0,varMap.get(em)),
+                                        p.mkBV(0,23)
+                                ),
+                                p.mkBV(0,1),
+                                p.mkBV(1,1)
+                        )
+        );
 
         Cond = p.mkLiteral(true);
         HornPredicate postPred4 = new HornPredicate(p, prePred.name + "_4", postPred4Vars);
         ProverExpr postAtom4 = postPred4.instPredicate(varMap);
         clauses.add(p.mkHornClause(postAtom4, new ProverExpr[]{postAtom3}, Cond));
 
+
+
+        //p4(FP(s, ee[7:0],em[48:25],...), ... ,  ) <-- p5 (s, ee, em)
+        varMap = new HashMap<Variable, ProverExpr>();
+        // First create the atom for prePred.
+        HornHelper.hh().findOrCreateProverVar(p, postPred5Vars, varMap);
+        postAtom5 = postPred5.instPredicate(varMap);
+
+        varMap.put(
+                resultFP,
+                mkDoublePE(
+                        varMap.get(resultSignVar),
+                        p.mkBVExtract(7,0,varMap.get(ee)),
+                        p.mkBVExtract(48,25, varMap.get(em)),
+                        p.mkLiteral(0),
+                        p.mkLiteral(0),
+                        p.mkLiteral(0),
+                        p.mkLiteral(0)
+                )
+        );
+        varMap.put(LSB, p.mkBVExtract(24,24,varMap.get(em)));
+        varMap.put(G, p.mkBVExtract(23,23,varMap.get(em)));
+        varMap.put(R, p.mkBVExtract(22,22,varMap.get(em)));
+        varMap.put(S,
+                p.mkIte(
+                        p.mkEq(
+                                p.mkBVExtract(21,0,varMap.get(em)),
+                                p.mkBV(0,22)
+                        ),
+                        p.mkBV(0,1),
+                        p.mkBV(1,1)
+                )
+        );
+        //varMap = new HashMap<Variable, ProverExpr>();
+        HornHelper.hh().findOrCreateProverVar(p, postPred4Vars, varMap);
+        postAtom4 = postPred4.instPredicate(varMap);
+        clauses.add(p.mkHornClause(postAtom4, new ProverExpr[]{postAtom5}, Cond));
+
+
         varMap = new HashMap<Variable, ProverExpr>();
         // First create the atom for prePred.
         HornHelper.hh().findOrCreateProverVar(p, postPred4Vars, varMap);
         postAtom4 = postPred4.instPredicate(varMap);
 
-        ProverExpr Cond1 = //p.mkNot(
-                p.mkEq( //G.(LSB + (R+S)) = 1
-                        p.mkBVAND(
-                                varMap.get(G), //G
-                                p.mkBVOR(
-                                        varMap.get(LSB), //LSB
-                                        p.mkBVOR(
-                                                varMap.get(R), //R
-                                                varMap.get(S), //S
-                                                1
-                                        ),
-                                        1
-                                ),
-                                1
-                        ),
-                        p.mkBV(0,1)
+        ProverExpr Cond1 = //G = 0 or (LSB = 0 and R = 0 and S = 0)
+                p.mkOr(
+                        p.mkEq(varMap.get(G),p.mkBV(0,1)),
+                        p.mkAnd(p.mkEq(varMap.get(LSB), p.mkBV(0,1)),p.mkEq(varMap.get(R),p.mkBV(0,1)),p.mkEq(varMap.get(S),p.mkBV(0,1)))
                 );
-                //requiredRoundingUp(varMap.get(LSB),varMap.get(G), varMap.get(R), varMap.get(S))
-       // );
-        //p.mkNot(requiredRoundingUp(p.mkBV(0,1),p.mkBV(0,1), p.mkBV(0,1), p.mkBV(0,1)));//
-       // idLhsExpr = varMap.get(idLhs.getVariable());
-       //idLhsTExpr = (ProverTupleExpr)  idLhsExpr;
+
         ProverExpr divResult1 = p.mkTupleUpdate(idLhsTExpr,3, varMap.get(resultFP));
+        HornHelper.hh().findOrCreateProverVar(p, postPred.variables, varMap);
         varMap.put(idLhs.getVariable(),divResult1);
         ProverExpr postAtom = postPred.instPredicate(varMap);
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{postAtom4}, Cond1)); // postAtom(FP) <-- p4(FP, LSB, G, R, S) & !requiredRoundingUp(LSB, G, R, S)
 
+      //
+        varMap = new HashMap<Variable, ProverExpr>();
+        // First create the atom for prePred.
+        HornHelper.hh().findOrCreateProverVar(p, postPred4Vars, varMap);
+        postAtom4 = postPred4.instPredicate(varMap);
 
-        ProverExpr Cond2 =   p.mkEq( //G.(LSB + (R+S)) = 1
-                p.mkBVAND(
-                        varMap.get(G), //G
-                        p.mkBVOR(
-                                varMap.get(LSB), //LSB
-                                p.mkBVOR(
-                                        varMap.get(R), //R
-                                        varMap.get(S), //S
-                                        1
-                                ),
-                                1
-                        ),
-                        1
-                ),
-                p.mkBV(1,1)
-        );
+        ProverExpr Cond2 =   // G = 1 and (LSB = 1 or R = 1 or S = 1)
+                p.mkAnd(
+                        p.mkEq(varMap.get(G), p.mkBV(1,1)), //G
+                        p.mkOr(
+                                p.mkEq(varMap.get(LSB),p.mkBV(1,1)), //LSB
+                                p.mkEq(varMap.get(R), p.mkBV(1,1)), //R
+                                p.mkEq(varMap.get(S),p.mkBV(1,1)) //S
 
-                //requiredRoundingUp(varMap.get(LSB),varMap.get(G), varMap.get(R), varMap.get(S));//requiredRoundingUp(p.mkBV(0,1),p.mkBV(0,1), p.mkBV(0,1), p.mkBV(0,1));//requiredRoundingUp(varMap.get(LSB),varMap.get(G), varMap.get(R), varMap.get(S));
+                        )
+                );
 
         varMap.put(resultFP,
-                //roundingUpInDiv( varMap.get(resultFP))
                 floatingPointADT.mkCtorExpr(0,new ProverExpr[]{
                         floatingPointADT.mkSelExpr(
                                 0,
@@ -2609,28 +2652,31 @@ public class FloatingPointEncoder {
                 })
         );
 
-        List<Variable> postPred5Vars = new ArrayList<>(postPred4Vars);
-        postPred5Vars.remove(LSB);
-        postPred5Vars.remove(G);
-        postPred5Vars.remove(R);
-        postPred5Vars.remove(S);
-        HornPredicate postPred5 = new HornPredicate(p, prePred.name + "_5", postPred5Vars);
-
-       // varMap.put(resultFP, roundingUpInDiv(varMap.get(resultFP)));
-        ProverExpr postAtom5 = postPred5.instPredicate(varMap);
-        clauses.add(p.mkHornClause(postAtom5, new ProverExpr[]{postAtom4}, Cond2));
+        List<Variable> postPred6Vars = new ArrayList<>(postPred4Vars);
+        postPred6Vars.remove(LSB);
+        postPred6Vars.remove(G);
+        postPred6Vars.remove(R);
+        postPred6Vars.remove(S);
+        HornPredicate postPred6 = new HornPredicate(p, prePred.name + "_6", postPred6Vars);
+        ProverExpr postAtom6 = postPred6.instPredicate(varMap);
+        clauses.add(p.mkHornClause(postAtom6, new ProverExpr[]{postAtom4}, Cond2));
 
 
            varMap = new HashMap<Variable, ProverExpr>();
         // First create the atom for prePred.
-        HornHelper.hh().findOrCreateProverVar(p, postPred5Vars, varMap);
-        postAtom5 = postPred5.instPredicate(varMap);
+        HornHelper.hh().findOrCreateProverVar(p, postPred6Vars, varMap);
+        postAtom6 = postPred6.instPredicate(varMap);
 
-        //idLhsExpr = varMap.get(idLhs.getVariable());
-        //idLhsTExpr = (ProverTupleExpr)  idLhsExpr;
+
         ProverExpr divRes = p.mkTupleUpdate(idLhsTExpr,3,varMap.get(resultFP));
+
+        Cond2 = p.mkLiteral(true);
+        HornHelper.hh().findOrCreateProverVar(p, postPred.variables, varMap);
         varMap.put(idLhs.getVariable(),divRes);
         postAtom = postPred.instPredicate(varMap);
+
+        clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{postAtom6}, Cond2));
+
         return clauses;
     }
     public List<ProverHornClause>  floatMulFromExp2(Expression FloatExpr, IdentifierExpression idLhs,Expression lhsRefExpr, Map<Variable, ProverExpr> varMap, HornPredicate postPred, HornPredicate prePred, ProverExpr preAtom)
@@ -2796,6 +2842,11 @@ public class FloatingPointEncoder {
 
         clauses.add(p.mkHornClause(postAtom3, new ProverExpr[]{postAtom2}, Cond)); //p3(efp) <-- p2(efp) & !isOVFSig(m(efp))
 
+        varMap = new HashMap<Variable, ProverExpr>();
+        // First create the atom for prePred.
+        HornHelper.hh().findOrCreateProverVar(p, postPred2Vars, varMap);
+
+        postAtom2 = postPred2.instPredicate(varMap);
         Cond = isOVFSigInMul(extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(extendedFP)));
         varMap.put(
                 extendedFP,
@@ -2834,6 +2885,12 @@ public class FloatingPointEncoder {
         Cond = isOVFExp(extendedFloatingPointADT.mkSelExpr(0,1,varMap.get(extendedFP)));
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{postAtom3}, Cond)); // postAtom(makeOVF) <-- p3(efp) & isOVFExp(e(efp))
 
+        varMap = new HashMap<Variable, ProverExpr>();
+        // First create the atom for prePred.
+        HornHelper.hh().findOrCreateProverVar(p, postPred3Vars, varMap);
+
+        postAtom3 = postPred3.instPredicate(varMap);
+
         mulResult =p.mkTupleUpdate(idLhsTExpr,3, makeUDF(extendedFloatingPointADT.mkSelExpr(0,0,varMap.get(extendedFP))));
         varMap.put(idLhs.getVariable(),mulResult);
         postAtom = postPred.instPredicate(varMap);
@@ -2841,6 +2898,12 @@ public class FloatingPointEncoder {
         Cond = isUDFExp(extendedFloatingPointADT.mkSelExpr(0,1,varMap.get(extendedFP)));
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{postAtom3}, Cond)); // postAtom(makeUDF) <-- p3(efp) & isUDFExp(e(efp))
 
+
+        varMap = new HashMap<Variable, ProverExpr>();
+        // First create the atom for prePred.
+        HornHelper.hh().findOrCreateProverVar(p, postPred3Vars, varMap);
+
+        postAtom3 = postPred3.instPredicate(varMap);
 
         Variable resultFP = new Variable("resultFP", new WrappedProverType(floatingPointADT.getType(0)));
         Variable LSB = new Variable("LSB", Type.instance(),1);
@@ -3141,7 +3204,7 @@ public class FloatingPointEncoder {
         ieeeOne.fromDouble(value);
 
         sign = p.mkLiteral(!ieeeOne.get_sign()  ? 0 : 1);//BVLit( new BigInteger(ieeeOne.get_sign() ? "1" : "0"),1);
-        exponent = value > 0 ? BVLit(ieeeOne.get_exponent().add(ieeeOne.getSpec().maxExponent()),e) : BVLit(ieeeOne.get_exponent().add(ieeeOne.getSpec().maxExponent()).subtract(BigInteger.ONE),e);
+        exponent = value > 0 ? BVLit(ieeeOne.get_exponent().add(ieeeOne.getSpec().bias()),e) : BVLit(ieeeOne.get_exponent().add(ieeeOne.getSpec().maxExponent()).subtract(BigInteger.ONE),e);
         isNan = p.mkLiteral(ieeeOne.NaN_flag == null || !ieeeOne.NaN_flag ? 0 : 1);
         isInf = p.mkLiteral(ieeeOne.infinity_flag == null || !ieeeOne.infinity_flag  ? 0 : 1);
 
@@ -3164,7 +3227,7 @@ public class FloatingPointEncoder {
         ieeeOne.fromFloat(value);
 
         sign = p.mkLiteral(!ieeeOne.get_sign()  ? 0 : 1);//BVLit( new BigInteger(ieeeOne.get_sign() ? "1" : "0"),1);
-        exponent = value > 0 ? BVLit(ieeeOne.get_exponent().add(ieeeOne.getSpec().maxExponent()),e) : BVLit(ieeeOne.get_exponent().add(ieeeOne.getSpec().maxExponent()).subtract(BigInteger.ONE),e);
+        exponent = value > 0 ? BVLit(ieeeOne.get_exponent().add(ieeeOne.getSpec().bias()),e) : BVLit(ieeeOne.get_exponent().add(ieeeOne.getSpec().maxExponent()).subtract(BigInteger.ONE),e);
         isNan = p.mkLiteral(ieeeOne.NaN_flag == null || !ieeeOne.NaN_flag ? 0 : 1);
         isInf = p.mkLiteral(ieeeOne.infinity_flag == null || !ieeeOne.infinity_flag  ? 0 : 1);
 

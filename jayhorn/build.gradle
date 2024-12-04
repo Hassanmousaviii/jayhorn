@@ -23,7 +23,7 @@ configurations{
 repositories {
     mavenCentral()
     maven {
-          url "http://logicrunch.research.it.uu.se/maven/"
+          url "https://eldarica.org/maven/"
     }        
 }
 

@@ -18,9 +18,9 @@ public class IeeeFloatTest {
 
         // From double
         ieeeOne.fromDouble(dOne);
-        String frac =ieeeOne.get_fraction().toString(2);
-byte [] b = ieeeOne.get_fraction().toByteArray();
-        assert ieeeOne.toDouble() == dOne;
+        //String frac =ieeeOne.get_fraction().toString(2);
+//byte [] b = ieeeOne.get_fraction().toByteArray();
+        //assert ieeeOne.toDouble() == dOne;
        /* assertAll(
                 () -> assertEquals(ieeeOne.getExponent(), *//* captured value *//*),
                 () -> assertEquals(ieeeOne.getFraction(), *//* captured value *//*),

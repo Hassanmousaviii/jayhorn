@@ -41,7 +41,7 @@ public class DoubleLiteral extends IdentifierExpression{
         super(loc,variable);
         this.value = value; //Long.valueOf(value);
     }
-    public DoubleLiteral(SourceLocation loc,Variable variable,@Nullable Long value) {
+    public DoubleLiteral(SourceLocation loc,Variable variable, Long value) {
         super(loc,variable);
         this.value = Double.longBitsToDouble(value); //Long.valueOf(value);
     }
@@ -77,7 +77,7 @@ public class DoubleLiteral extends IdentifierExpression{
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Double) {
+        if (other instanceof DoubleLiteral) {
             return ((DoubleLiteral) other).getValue().equals(this.value);
         }
         return false;

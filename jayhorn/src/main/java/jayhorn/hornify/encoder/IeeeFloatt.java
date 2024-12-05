@@ -72,7 +72,7 @@ public class IeeeFloatt {
     void divide_and_round(BigInteger fraction, BigInteger factor)
     {
         BigInteger remainder = fraction.mod(factor);// fraction % factor;
-        fraction = fraction.divide(factor); //fraction /= factor;
+        //fraction = fraction.divide(factor); //fraction /= factor;
 
         if (remainder.compareTo(BigInteger.valueOf(0)) != 0) //remainder != 0
         {
@@ -87,12 +87,12 @@ public class IeeeFloatt {
                     }
                     else if (remainder.compareTo(factor_middle) == 1 ) //remainder > factor_middle
                     {
-                        fraction.add(BigInteger.valueOf(1));//++fraction;
+                        //fraction = fraction.add(BigInteger.valueOf(1));//++fraction;
                     }
                     else // exactly in the middle -- go to even
                     {
-                        if (fraction.mod(BigInteger.valueOf(2)).compareTo(BigInteger.valueOf(0)) != 0) //(fraction % 2) != 0
-                            fraction.add(BigInteger.valueOf(1));//++fraction;
+                        //if (fraction.mod(BigInteger.valueOf(2)).compareTo(BigInteger.valueOf(0)) != 0) //(fraction % 2) != 0
+                           // fraction = fraction.add(BigInteger.valueOf(1));//++fraction;
                     }
                 }
                 break;
@@ -102,13 +102,13 @@ public class IeeeFloatt {
                     break;
 
                 case ROUND_TO_MINUS_INF:
-                    if (sign_flag)
-                        fraction.add(BigInteger.valueOf(1));//++fraction;
+                    //if (sign_flag)
+                        //fraction = fraction.add(BigInteger.valueOf(1));//++fraction;
                     break;
 
                 case ROUND_TO_PLUS_INF:
-                    if (!sign_flag)
-                        fraction.add(BigInteger.valueOf(1));//++fraction;
+                    //if (!sign_flag)
+                        //fraction = fraction.add(BigInteger.valueOf(1));//++fraction;
                     break;
 
                 default:
@@ -129,7 +129,7 @@ public class IeeeFloatt {
 
         BigInteger pe = new BigInteger("2").pow(spec.e);
         exponent = tmp.mod(pe);
-        tmp = tmp.divide(pe);
+        //tmp = tmp.divide(pe);
 
         signFlag = (i.signum() == -1);//!tmp.equals(new BigInteger("0"));
 
@@ -151,7 +151,7 @@ public class IeeeFloatt {
             infinityFlag = false;
             fraction = fraction.add(new BigInteger("2").pow(spec.f)); // hidden bit!
             //fraction.floatValue()
-            double fr = fraction.doubleValue();
+            //double fr = fraction.doubleValue();
             exponent = exponent.subtract(spec.bias()); // un-bias
         }
     }
@@ -215,12 +215,12 @@ public class IeeeFloatt {
         BigInteger exponent_offset = new BigInteger("0");
 
         if (lowPower2 < spec.f) { // too small
-            exponent_offset.subtract(BigInteger.valueOf(spec.f - lowPower2));
+            exponent_offset = exponent_offset.subtract(BigInteger.valueOf(spec.f - lowPower2));
 
             assert fraction.multiply(new BigInteger("2").pow(spec.f - lowPower2)).compareTo(f_power) >= 0;
             assert fraction.multiply(new BigInteger("2").pow(spec.f - lowPower2)).compareTo(f_power_next) < 0;
         } else if (lowPower2 > spec.f) { // too large
-            exponent_offset.add(BigInteger.valueOf(lowPower2 - spec.f));
+            exponent_offset = exponent_offset.add(BigInteger.valueOf(lowPower2 - spec.f));
 
             assert fraction.divide(new BigInteger("2").pow(lowPower2 - spec.f)).compareTo(f_power) >= 0;
             assert fraction.divide(new BigInteger("2").pow(lowPower2 - spec.f)).compareTo(f_power_next) < 0;
@@ -269,7 +269,7 @@ public class IeeeFloatt {
             exponent_offset = new_exponent.subtract(exponent);
         }
 
-        exponent.add(exponent_offset); //+= exponent_offset.intValue();
+        exponent = exponent.add(exponent_offset); //+= exponent_offset.intValue();
 
         if (exponent_offset.intValue() > 0) {
             divide_and_round(fraction, new BigInteger("2").pow(exponent_offset.intValue()));
@@ -277,7 +277,7 @@ public class IeeeFloatt {
             // rounding might make the fraction too big!
             if (fraction.compareTo(f_power_next) == 0 /*fraction == f_power_next.intValue()*/) { // fraction == f_power_next
                 fraction = f_power;//.intValue();
-                exponent.add(BigInteger.valueOf(1));//exponent++;
+                exponent = exponent.add(BigInteger.valueOf(1));//exponent++;
             }
         } else if (exponent_offset.intValue() < 0)
             fraction = fraction.multiply(new BigInteger("2").pow(-exponent_offset.intValue()));

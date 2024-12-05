@@ -815,6 +815,55 @@ public class SootStmtSwitch implements StmtSwitch {
 			} // else: ignore
 			return true;
 		}
+		if(methodSignature.contains("<java.lang.Double: boolean isNaN(double)>")){
+
+
+			assert (call instanceof StaticInvokeExpr);
+			if (optionalLhs != null) {
+				Expression itemExpr = valueToExpr(call.getArg(0));
+				Expression lhs = valueToExpr(optionalLhs);
+				Expression rhs = new UnaryExpression(srcLoc,UnaryOperator.IsNaNDouble,itemExpr);//new BinaryExpression(srcLoc, BinaryOperator.ToDouble, itemExpr, lhs);
+				currentBlock.addStatement(new AssignStatement(srcLoc, lhs, rhs));
+			}
+			return true;
+
+		}
+		if(methodSignature.contains("<java.lang.Double: boolean isInfinite(double)>"))
+		{
+			assert (call instanceof StaticInvokeExpr);
+			if (optionalLhs != null) {
+				Expression itemExpr = valueToExpr(call.getArg(0));
+				Expression lhs = valueToExpr(optionalLhs);
+				Expression rhs = new UnaryExpression(srcLoc,UnaryOperator.IsInfDouble,itemExpr);//new BinaryExpression(srcLoc, BinaryOperator.ToDouble, itemExpr, lhs);
+				currentBlock.addStatement(new AssignStatement(srcLoc, lhs, rhs));
+			}
+			return true;
+
+		}
+		if(methodSignature.contains("<java.lang.Float: boolean isNaN(float)>")){
+			assert (call instanceof StaticInvokeExpr);
+			if (optionalLhs != null) {
+				Expression itemExpr = valueToExpr(call.getArg(0));
+				Expression lhs = valueToExpr(optionalLhs);
+				Expression rhs = new UnaryExpression(srcLoc,UnaryOperator.IsNaNFloat,itemExpr);//new BinaryExpression(srcLoc, BinaryOperator.ToDouble, itemExpr, lhs);
+				currentBlock.addStatement(new AssignStatement(srcLoc, lhs, rhs));
+			}
+			return true;
+
+		}
+		if(methodSignature.contains("<java.lang.Float: boolean isInfinite(float)>"))
+		{
+			assert (call instanceof StaticInvokeExpr);
+			if (optionalLhs != null) {
+				Expression itemExpr = valueToExpr(call.getArg(0));
+				Expression lhs = valueToExpr(optionalLhs);
+				Expression rhs = new UnaryExpression(srcLoc,UnaryOperator.IsInfFloat,itemExpr);//new BinaryExpression(srcLoc, BinaryOperator.ToDouble, itemExpr, lhs);
+				currentBlock.addStatement(new AssignStatement(srcLoc, lhs, rhs));
+			}
+			return true;
+
+		}
+
 		if (methodSignature.contains("<java.lang.Float: float floatValue()>") ) {
 			assert (call instanceof StaticInvokeExpr);
 			if (optionalLhs != null) {
@@ -831,7 +880,7 @@ public class SootStmtSwitch implements StmtSwitch {
 			if (optionalLhs != null) {
 				Expression itemExpr = valueToExpr(call.getArg(0));
 				Expression lhs = valueToExpr(optionalLhs);
-				Expression rhs = new BinaryExpression(srcLoc, BinaryOperator.ToFloat, itemExpr, lhs);
+				//Expression rhs = new BinaryExpression(srcLoc, BinaryOperator.ToFloat, itemExpr, lhs);
 				currentBlock.addStatement(new AssignStatement(srcLoc, lhs, itemExpr));
 			} // else: ignore
 			return true;
@@ -1085,7 +1134,7 @@ public class SootStmtSwitch implements StmtSwitch {
 			if (addBounds) {
 				if(t.toString().equals("java.lang.Double"))
 				{
-					AssumeStatement assumeStatement = new AssumeStatement(loc,
+					/*AssumeStatement assumeStatement = new AssumeStatement(loc,
 							new BinaryExpression(
 									loc, BinaryOperator.And,
 									new BinaryExpression(
@@ -1104,13 +1153,15 @@ public class SootStmtSwitch implements StmtSwitch {
 											, upper))));
 					Expression itemExpr = new IdentifierExpression(loc,SootTranslationHelpers.v().getProgram().lookupGlobalVariable(idLhs.getVariable().getName()+"_tmp",SootTranslationHelpers.v().getMemoryModel().lookupType(BooleanType.v())));
 					Expression assumeExpr = assumeStatement.getExpression();
-					Expression rhs = new BinaryExpression(loc, BinaryOperator.AssumeDouble, itemExpr, assumeExpr);
+					Expression rhs = new BinaryExpression(loc, BinaryOperator.AssumeDouble, itemExpr, assumeExpr);*/
 
-					currentBlock.addStatement(new AssumeStatement(loc, rhs));
+					Expression exp = new UnaryExpression(loc,UnaryOperator.IsNormalDouble,idLhs);
+					currentBlock.addStatement(new AssumeStatement(loc,exp));
+					//currentBlock.addStatement(new AssumeStatement(loc, rhs));
 				}
 				else if(t.toString().equals("java.lang.Float"))
 				{
-					AssumeStatement assumeStatement = new AssumeStatement(loc,
+					/*AssumeStatement assumeStatement = new AssumeStatement(loc,
 							new BinaryExpression(
 									loc, BinaryOperator.And,
 									new BinaryExpression(
@@ -1127,11 +1178,13 @@ public class SootStmtSwitch implements StmtSwitch {
 													"$float(" + upper + ")",
 													SootTranslationHelpers.v().getMemoryModel().lookupType(FloatType.v()))
 											,  upper))));
-					Expression itemExpr = new IdentifierExpression(loc,SootTranslationHelpers.v().getProgram().lookupGlobalVariable(idLhs.getVariable().getName()+"_tmp",SootTranslationHelpers.v().getMemoryModel().lookupType(BooleanType.v())));
-					Expression assumeExpr = assumeStatement.getExpression();
-					Expression rhs = new BinaryExpression(loc, BinaryOperator.AssumeFloat, itemExpr, assumeExpr);
-
-					currentBlock.addStatement(new AssumeStatement(loc, rhs));
+					//Expression itemExpr = new IdentifierExpression(loc,SootTranslationHelpers.v().getProgram().lookupGlobalVariable(idLhs.getVariable().getName()+"_tmp",SootTranslationHelpers.v().getMemoryModel().lookupType(BooleanType.v())));
+					//Expression assumeExpr = assumeStatement.getExpression();
+					//Expression rhs = new BinaryExpression(loc, BinaryOperator.AssumeFloat, itemExpr, assumeExpr);
+*/
+					Expression exp = new UnaryExpression(loc,UnaryOperator.IsNormalFloat,idLhs);
+					currentBlock.addStatement(new AssumeStatement(loc,exp));
+					//currentBlock.addStatement(new AssumeStatement(loc, rhs));
 				}
 				else {
 					currentBlock.addStatement(

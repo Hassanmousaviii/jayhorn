@@ -435,7 +435,7 @@ public class StatementEncoder {
         if (Options.v().strictlySound() && hornContext.elimOverApprox() &&
             calledMethod.isArrayGet()) {
             for (Variable v : receiverVars) {
-                if (v.getType().toString().equals("java.lang.String") || v.getType().equals("java.lang.Double") || v.getType().equals("java.lang.Float")) {
+                if (v.getType().toString().equals( "java.lang.String") || v.getType().toString().equals("java.lang.Double") || v.getType().toString().equals("java.lang.Float")) {
                     Log.info("Dropping call to over-approximated " +
                              calledMethod.getMethodName());
                     hornContext.droppedApproximatedStatement();

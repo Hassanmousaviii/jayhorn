@@ -930,7 +930,7 @@ public class Hornify {
 				));
 		ProverFun isDoubleNaN = prover.mkDefinedFunction("isDoubleNaN"
 				,new ProverType[] {doubleFloatingPointADT.getType(0)},
-				prover.mkIte(
+				//prover.mkIte(
 						prover.mkOr(
 								prover.mkEq(
 										doubleFloatingPointADT.mkSelExpr(
@@ -938,7 +938,7 @@ public class Hornify {
 												4,
 												prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
 										),
-										prover.mkLiteral(true)
+										prover.mkLiteral(1)
 								), //isNaN = true
 								prover.mkAnd( //e=11...1 and m != 0
 										prover.mkEq(
@@ -959,21 +959,21 @@ public class Hornify {
 														prover.mkBV(0,53))
 										)
 								)
-						),
+						));/*,
 						prover.mkLiteral(true), prover.mkLiteral(false)
-				));
+				));*/
 		ProverFun existDoubleNaN = prover.mkDefinedFunction("existDoubleNaN"
 				,new ProverType[] {doubleFloatingPointADT.getType(0),doubleFloatingPointADT.getType(0)},
-				prover.mkIte(
+				//prover.mkIte(
 						prover.mkOr(
 								isDoubleNaN.mkExpr(prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))),
 								isDoubleNaN.mkExpr(prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0)))
-						),
+						));/*,
 						prover.mkLiteral(true), prover.mkLiteral(false)
-				));
+				));*/
 		ProverFun isDoubleInf = prover.mkDefinedFunction("isDoubleInf"
 				,new ProverType[] {doubleFloatingPointADT.getType(0)},
-				prover.mkIte(
+				//prover.mkIte(
 						prover.mkOr(
 								prover.mkEq(
 										doubleFloatingPointADT.mkSelExpr(
@@ -981,7 +981,7 @@ public class Hornify {
 												3,
 												prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
 										),
-										prover.mkLiteral(true)
+										prover.mkLiteral(1)
 								), //IsInf = true
 								prover.mkAnd( //e=11...1 and m = 0
 										prover.mkEq(
@@ -1002,19 +1002,19 @@ public class Hornify {
 										)
 
 								)
-						),
+						));/*,
 						prover.mkLiteral(true), prover.mkLiteral(false)
-				));
+				));*/
 
 		ProverFun existDoubleInf = prover.mkDefinedFunction("existDoubleInf"
 				,new ProverType[] {doubleFloatingPointADT.getType(0),doubleFloatingPointADT.getType(0)},
-				prover.mkIte(
+				//prover.mkIte(
 						prover.mkOr(
 								isDoubleInf.mkExpr(prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))),
 								isDoubleInf.mkExpr(prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0)))
-						),
+						));/*,
 						prover.mkLiteral(true), prover.mkLiteral(false)
-				));
+				));*/
 		ProverFun doubleOperandsEqZero = prover.mkDefinedFunction("doubleOperandsEqZero"
 				,new ProverType[] {doubleFloatingPointADT.getType(0),doubleFloatingPointADT.getType(0)},
 				prover.mkIte(
@@ -1045,7 +1045,7 @@ public class Hornify {
 				));
 		ProverFun existSpecCasForDoubleInMul = prover.mkDefinedFunction("existSpecCasForDoubleInMul"
 				,new ProverType[] {doubleFloatingPointADT.getType(0),doubleFloatingPointADT.getType(0)},
-				prover.mkIte(
+			//
 						prover.mkOr(
 								existDoubleNaN.mkExpr(
 										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0)),
@@ -1055,9 +1055,9 @@ public class Hornify {
 										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0)),
 										prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
 								)
-						),
+						));/*,
 						prover.mkLiteral(true), prover.mkLiteral(false)
-				));
+				));*/
 		ProverFun needsNormalizationInDoubleDiv = prover.mkDefinedFunction("needsNormalizationInDoubleDiv",
 				new ProverType[] {prover.getBVType(53), prover.getBVType(53)},
 				prover.mkEq(

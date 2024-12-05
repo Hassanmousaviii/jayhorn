@@ -17,7 +17,7 @@ import jayhorn.Options;
 import jayhorn.solver.*;
 import jayhorn.utils.GhostRegister;
 import lazabs.horn.global.Horn;
-import lazabs.horn.parser.HornLexer;
+//import lazabs.horn.parser.HornLexer;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.method.Method;
 import soottocfg.cfg.type.IntType;

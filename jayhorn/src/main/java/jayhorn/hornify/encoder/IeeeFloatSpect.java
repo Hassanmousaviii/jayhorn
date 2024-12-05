@@ -77,7 +77,12 @@ public class IeeeFloatSpect {
    /* public Type2tc getType() {
         return new floatbvType2tc(f, e);
     }*/
-    public boolean equals(IeeeFloatSpect other) {
-        return f == other.f;
+    public boolean equals(Object other) {
+
+        if(other instanceof IeeeFloatSpect)
+         return (this.f == ((IeeeFloatSpect)other).f) && (this.e == ((IeeeFloatSpect)other).e);
+        else return false;
     }
+
+    public int  hashCode() {return 0;}
 }

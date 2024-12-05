@@ -6,17 +6,17 @@ import jayhorn.solver.ProverType;
 
 public class PrincessFloatingPointType implements ProverType {
 
-    BoolType sign, isNan, isInfinity;
-    BitVectorType  exponent, mantissa;
-    public static enum Precision {Single, Double};
+   // BoolType sign, isNan, isInfinity;
+   // BitVectorType  exponent, mantissa;
+   public static enum Precision {Single, Double};
 
-    public PrincessFloatingPointType(Precision precision )
+    public PrincessFloatingPointType( )
     {
-        sign =  BoolType.INSTANCE;
+        /*sign =  BoolType.INSTANCE;
         isNan = BoolType.INSTANCE;
         isInfinity = BoolType.INSTANCE;// new BitVectorType(1);
         exponent = new BitVectorType(precision == Precision.Single ? 8 : 11);
-        mantissa = new BitVectorType(precision == Precision.Single ? 23 : 53);
+        mantissa = new BitVectorType(precision == Precision.Single ? 23 : 53);*/
     }
 
 }

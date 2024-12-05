@@ -74,7 +74,7 @@ public class FloatLiteral extends IdentifierExpression{
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof Double) {
+        if (other instanceof FloatLiteral) {
             return ((FloatLiteral) other).getValue().equals(this.value);
         }
         return false;

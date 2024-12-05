@@ -25,7 +25,7 @@ public class UnaryExpression extends Expression {
 	private final UnaryOperator op;
 
 	public enum UnaryOperator {
-		Neg("-"), LNot("!"), Len("<len>"), ABS("<ABS>"), NegDouble("NegDouble"), NegFloat("NegFloat");
+		Neg("-"), LNot("!"), Len("<len>"), ABS("<ABS>"), NegDouble("NegDouble"), NegFloat("NegFloat"),IsNormalDouble("<IsNormalDouble>"),IsNormalFloat("<IsNormalFloat>"),IsNaNFloat("<IsNaNFloat>"),IsNaNDouble("<IsNaNDouble>"),IsInfFloat("<IsInfFloat>"),IsInfDouble("<IsInfFloat>");
 		private final String name;
 
 		private UnaryOperator(String s) {
@@ -92,6 +92,24 @@ public class UnaryExpression extends Expression {
 			}
 			case ABS: {
 				return DoubleType.instance();
+			}
+			case IsNormalDouble:{
+				return BoolType.instance();
+			}
+			case IsNormalFloat:{
+				return BoolType.instance();
+			}
+			case IsNaNDouble:{
+				return BoolType.instance();
+			}
+			case IsInfDouble:{
+				return BoolType.instance();
+			}
+			case IsNaNFloat:{
+				return BoolType.instance();
+			}
+			case IsInfFloat:{
+				return BoolType.instance();
 			}
 		}
 		throw new RuntimeException("Unknown case " + op);

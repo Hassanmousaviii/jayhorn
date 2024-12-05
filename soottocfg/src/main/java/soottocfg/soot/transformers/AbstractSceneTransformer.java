@@ -15,12 +15,7 @@ import soot.SootMethod;
 import soot.Type;
 import soot.Unit;
 import soot.Value;
-import soot.jimple.GotoStmt;
-import soot.jimple.IfStmt;
-import soot.jimple.IntConstant;
-import soot.jimple.InvokeStmt;
-import soot.jimple.Jimple;
-import soot.jimple.JimpleBody;
+import soot.jimple.*;
 import soot.tagkit.Host;
 
 /**
@@ -101,6 +96,12 @@ public abstract class AbstractSceneTransformer {
 
 	protected Value jimpleNeZero(Value v) {
 		return Jimple.v().newNeExpr(v, IntConstant.v(0));
+	}
+	protected Value jimpleNeDoubleZero(Value v) {
+		return Jimple.v().newNeExpr(v, DoubleConstant.v(0));
+	}
+	protected Value jimpleNeFloatZero(Value v) {
+		return Jimple.v().newNeExpr(v, FloatConstant.v(0));
 	}
 
 	private long counter = 0;

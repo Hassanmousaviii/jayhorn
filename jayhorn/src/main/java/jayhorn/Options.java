@@ -154,7 +154,7 @@ public class Options {
 	public boolean solution = false;
 
 	@Option(name = "-graphml-witness", usage = "Witness for unsat results", required = false)
-	public String violationWitness;
+	public String violationWitness="";
 
 
 

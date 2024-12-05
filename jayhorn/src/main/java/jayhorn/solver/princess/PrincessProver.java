@@ -182,7 +182,7 @@ public class PrincessProver implements Prover {
         } else if (sort instanceof ArraySort) {
             return new ArrayType(((ArraySort)sort).arity());
         } else if (sort instanceof ModuloArithmetic.ModSort) {
-           int arity = Integer.valueOf(sort.toString().substring(3,sort.toString().indexOf("]")));
+           int arity = Integer.parseInt(sort.toString().substring(3,sort.toString().indexOf("]")));
             return new BitVectorType(arity);
         }
 

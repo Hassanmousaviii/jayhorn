@@ -16,21 +16,7 @@ import java.util.Set;
 
 import com.google.common.base.Verify;
 
-import soot.Body;
-import soot.BooleanType;
-import soot.Hierarchy;
-import soot.Immediate;
-import soot.IntType;
-import soot.Local;
-import soot.PatchingChain;
-import soot.PrimType;
-import soot.RefType;
-import soot.Scene;
-import soot.SootClass;
-import soot.SootMethod;
-import soot.Trap;
-import soot.Unit;
-import soot.Value;
+import soot.*;
 import soot.dava.toolkits.base.misc.ConditionFlipper;
 import soot.jimple.*;
 import soot.jimple.toolkits.annotation.nullcheck.NullnessAnalysis;
@@ -777,7 +763,16 @@ public class ExceptionTransformer extends AbstractSceneTransformer {
 			if (negated) {
 				result.add(new Pair<Value, List<Unit>>(jimpleEqZero(val),
 						new LinkedList<Unit>()));
-			} else {
+			}
+			else if (val.getType() instanceof DoubleType){
+				result.add(new Pair<Value, List<Unit>>(jimpleNeDoubleZero(val),
+						new LinkedList<Unit>()));
+			}
+			else if (val.getType() instanceof FloatType){
+				result.add(new Pair<Value, List<Unit>>(jimpleNeFloatZero(val),
+						new LinkedList<Unit>()));
+			}
+			else {
 				result.add(new Pair<Value, List<Unit>>(jimpleNeZero(val),
 					new LinkedList<Unit>()));
 			}

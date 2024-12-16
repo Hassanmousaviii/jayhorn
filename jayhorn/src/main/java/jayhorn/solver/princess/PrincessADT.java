@@ -125,7 +125,9 @@ public class PrincessADT implements ProverADT {
                     new ADT.CtorSignature(args, resSort)));
         }
 
-        final ADT adt = new ADT(sortNames, ctors, ADT.TermMeasure$.MODULE$.Size());
+        final ADT adt =
+            new ADT(sortNames, ctors, ADT.TermMeasure$.MODULE$.Size(),
+                    scala.Option$.MODULE$.empty());
         return new PrincessADT(adt);
     }
 

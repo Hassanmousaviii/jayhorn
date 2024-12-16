@@ -9,7 +9,7 @@ import jayhorn.hornify.encoder.S2H;
 import jayhorn.solver.ProverExpr;
 import jayhorn.solver.ProverFun;
 import jayhorn.solver.ProverHornClause;
-import lazabs.horn.bottomup.Util;
+import lazabs.horn.Util;
 import scala.Tuple2;
 import soottocfg.cfg.SourceLocation;
 import soottocfg.cfg.statement.Statement;

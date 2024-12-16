@@ -18,9 +18,9 @@ import java.util.concurrent.TimeoutException;
 import com.google.common.base.Verify;
 
 import ap.DialogUtil$;
-import ap.SimpleAPI;
-import ap.SimpleAPI$;
-import ap.SimpleAPI.ProverStatus$;
+import ap.api.SimpleAPI;
+import ap.api.SimpleAPI$;
+import ap.api.SimpleAPI.ProverStatus$;
 import ap.basetypes.IdealInt$;
 import ap.parser.ConstantSubstVisitor$;
 import ap.parser.IAtom;
@@ -54,7 +54,7 @@ import ap.theories.ADT.CtorSignature;
 import ap.theories.ADT.CtorArgSort;
 import ap.theories.ADT.OtherSort;
 import ap.theories.ADT.ADTSort;
-import ap.theories.SimpleArray.ArraySort;
+import ap.theories.arrays.SimpleArray.ArraySort;
 import ap.types.Sort;
 import ap.types.Sort$;
 import ap.types.Sort.Integer$;
@@ -64,7 +64,7 @@ import jayhorn.solver.*;
 import lazabs.horn.bottomup.HornClauses;
 import lazabs.horn.bottomup.HornClauses.Clause;
 import lazabs.horn.bottomup.SimpleWrapper;
-import lazabs.horn.bottomup.Util.Dag;
+import lazabs.horn.Util.Dag;
 import scala.Tuple2;
 import scala.collection.Iterator;
 import scala.collection.Seq;
@@ -141,7 +141,9 @@ public class PrincessProver implements Prover {
             }
 
             final ADT adt =
-                new ADT (sortNames, ctors, TermMeasure$.MODULE$.Size());
+                new ADT (sortNames, ctors,
+                         TermMeasure$.MODULE$.Size(),
+                         scala.Option$.MODULE$.empty());
             return new PrincessADT(adt);
         }
 
@@ -912,10 +914,13 @@ System.out.println("all preds: " + allPreds);
             PrintStream newOut = new PrintStream(baos);
             scala.Console.setOut(newOut);
 
-            ap.parser.SMTLineariser.apply("JayHorn-clauses", "HORN", "unknown",
-                                          new ArrayBuffer(),
-                                          allPreds.toSeq(), // .sortBy(_.name),
-                                          clauseFors);
+            ap.parser.SMTLineariser.printWithDecls
+                (clauseFors,
+                 new ArrayBuffer(),   // constsToDeclare
+                 allPreds.toSeq(),    // .sortBy(_.name), predsToDeclare
+                 new ArrayBuffer(),   // funsToDeclare
+                 new ArrayBuffer(),   // extraTheories
+                 "JayHorn-clauses", "HORN", "unknown");
 
             scala.Console.flush();
             scala.Console.setOut(originalOut);

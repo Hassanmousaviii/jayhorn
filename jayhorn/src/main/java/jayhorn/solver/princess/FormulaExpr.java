@@ -2,7 +2,7 @@ package jayhorn.solver.princess;
 
 import java.math.BigInteger;
 
-import ap.SimpleAPI$;
+import ap.api.SimpleAPI$;
 import ap.basetypes.IdealInt$;
 import ap.parser.IBoolLit;
 import ap.parser.IExpression;

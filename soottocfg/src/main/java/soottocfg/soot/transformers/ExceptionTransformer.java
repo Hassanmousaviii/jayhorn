@@ -511,12 +511,10 @@ public class ExceptionTransformer extends AbstractSceneTransformer {
 
 	/**
 	 * Handle an exception that has a catch block
-	 * 
-	 * @param b
 	 *            Body of the procedure
 	 * @param u
 	 *            The unit that throws the exception
-	 * @param ce
+	 * @param v
 	 *            The ConditionalException
 	 * @param t
 	 *            The trap that catches this exception
@@ -563,19 +561,7 @@ public class ExceptionTransformer extends AbstractSceneTransformer {
 		return excCreation.get(0);
 	}
 
-	/**
-	 * Handle an exception that has no catch block but is declared in the
-	 * procedures throws clause.
-	 * 
-	 * @param b
-	 *            Body of the procedure
-	 * @param u
-	 *            The unit that throws the exception
-	 * @param ce
-	 *            The ConditionalException
-	 * @param tc
-	 *            The class in the throws clause
-	 */
+
 	protected void handleUncaughtRuntimeException(Unit u, Value v, SootClass exception) {
 		// runtime exceptions that also occur in the throws clause get re-thrown
 		if (!treatUncaughtExceptionsAsAssertions) {

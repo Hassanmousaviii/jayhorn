@@ -47,7 +47,6 @@ public class PrincessADT implements ProverADT {
     }
 
     public ProverType getType(int typeIndex) {
-
         return new PrincessADTType (adt.sorts().apply(typeIndex));
     }
 
@@ -126,7 +125,9 @@ public class PrincessADT implements ProverADT {
                     new ADT.CtorSignature(args, resSort)));
         }
 
-        final ADT adt = new ADT(sortNames, ctors, ADT.TermMeasure$.MODULE$.Size());
+        final ADT adt =
+            new ADT(sortNames, ctors, ADT.TermMeasure$.MODULE$.Size(),
+                    scala.Option$.MODULE$.empty());
         return new PrincessADT(adt);
     }
 

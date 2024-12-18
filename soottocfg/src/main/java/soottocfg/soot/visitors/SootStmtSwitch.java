@@ -724,9 +724,7 @@ public class SootStmtSwitch implements StmtSwitch {
 				}
 				return true;
 			}
-
 		}
-
 		if (methodSignature.contains("<java.lang.String: boolean startsWith(java.lang.String)>")) {
 			assert (call instanceof InstanceInvokeExpr);
 			if (optionalLhs != null) {
@@ -1329,7 +1327,6 @@ public class SootStmtSwitch implements StmtSwitch {
 				if (left instanceof IdentifierExpression && right instanceof StringLiteral) { // TODO: find a better way
 					SootTranslationHelpers.v().getMemoryModel().putExpression(((IdentifierExpression) left).getVariable(), right);
 				}
-
 				currentBlock.addStatement(
 						new AssignStatement(SootTranslationHelpers.v().getSourceLocation(def), left, right));
 			}

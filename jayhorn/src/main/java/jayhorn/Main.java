@@ -152,7 +152,7 @@ public class Main {
 		}
 	}
 
-	public static String getVersion() {
+	private static String getVersion() {
 	final Package[] packages = Package.getPackages();
 		for (final Package pkg : packages)
 		{

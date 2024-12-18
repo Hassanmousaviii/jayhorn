@@ -2,7 +2,7 @@ package jayhorn.solver.princess;
 
 import java.math.BigInteger;
 
-import ap.SimpleAPI$;
+import ap.api.SimpleAPI$;
 import ap.parser.IExpression;
 import ap.parser.IExpression$;
 import ap.parser.IFormula;

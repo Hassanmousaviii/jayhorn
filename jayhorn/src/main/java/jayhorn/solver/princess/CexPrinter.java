@@ -1,28 +1,71 @@
 package jayhorn.solver.princess;
 
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 
+import jayhorn.Options;
 import jayhorn.hornify.HornEncoderContext;
 import jayhorn.hornify.encoder.S2H;
-import jayhorn.solver.*;
-import jayhorn.witness.NodeData;
-import jayhorn.witness.Witness;
-import lazabs.horn.bottomup.Util;
+import jayhorn.solver.ProverExpr;
+import jayhorn.solver.ProverFun;
+import jayhorn.solver.ProverHornClause;
+import lazabs.horn.Util;
 import scala.Tuple2;
 import soottocfg.cfg.SourceLocation;
-import soottocfg.cfg.statement.HavocStatement;
 import soottocfg.cfg.statement.Statement;
-import jayhorn.Options;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 
 public class CexPrinter {
 
+    public String proverCexToCext(Util.Dag<Tuple2<ProverFun, ProverExpr[]>> cex,
+                                  HornEncoderContext hornContext) {
+        final List<Statement> trace = new ArrayList<>();
+        Statement lastStatement = null;
+        scala.collection.Iterator<Tuple2<ProverFun, ProverExpr[]>> iter =
+            cex.iterator();
+        while (iter.hasNext()) {
+            final Tuple2<ProverFun, ProverExpr[]> tuple = iter.next();
 
+            if (tuple != null && tuple._1() != null) {
+                final ProverFun proverFun = tuple._1();
+                final Statement stmt = findStatement(proverFun);
+                // for helper statements, we might not have a location.
+
+                if (stmt != null && stmt.getSourceLocation() != null &&
+                    stmt.getSourceLocation().getSourceFileName() != null
+                    && stmt.getSourceLocation().getLineNumber() > 0) {
+
+                    /*                    if (lastStatement != null &&
+                        lastStatement.getSourceLocation() != null &&
+                        stmt.getSourceLocation()
+                            .getSourceFileName()
+                            .equals(lastStatement.getSourceLocation().getSourceFileName()) &&
+                        stmt.getSourceLocation().getLineNumber() ==
+                        lastStatement.getSourceLocation().getLineNumber()) */
+
+                    if (lastStatement == stmt) {
+                        // do not add the same statement several times in a row.
+                    } else {
+                        trace.add(stmt);
+                    }
+                    lastStatement = stmt;
+                }
+            }
+        }
+
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Counterexample Trace:\n");
+        for (int i = trace.size() - 1; i >= 0; --i) {
+            Statement stmt = trace.get(i);
+            final SourceLocation loc = stmt.getSourceLocation();
+            stringBuilder.append(String.format("%20s:%-5d %s%n",
+                                               loc.getSourceFileName(),
+                                               loc.getLineNumber(),
+                                               stmt.toString()));
+        }
+        return stringBuilder.toString();
+    }
     public Stack<ProverExpr[]> argsVal = new Stack<ProverExpr[]>();
     public Stack<Map.Entry<Statement, List<ProverHornClause>>> havocStatementEntries = new Stack<Map.Entry<Statement, List<ProverHornClause>>>();
 
@@ -37,14 +80,14 @@ public class CexPrinter {
             Statement stmt = trace.get(i);
             final SourceLocation loc = stmt.getSourceLocation();
             stringBuilder.append(String.format("%20s:%-5d %s%n",
-                                               loc.getSourceFileName(),
-                                               loc.getLineNumber(),
-                                               stmt.toString()));
+                    loc.getSourceFileName(),
+                    loc.getLineNumber(),
+                    stmt.toString()));
         }
 
         return stringBuilder.toString();
     }
-    public List<Statement> getProverCexTrace(Util.Dag<Tuple2<ProverFun, ProverExpr[]>> cex,HornEncoderContext hornContext)
+   /* public List<Statement> getProverCexTrace(Util.Dag<Tuple2<ProverFun, ProverExpr[]>> cex,HornEncoderContext hornContext)
     {
 
 
@@ -67,17 +110,17 @@ public class CexPrinter {
                 if (stmt != null && stmt.getSourceLocation() != null &&
                         stmt.getSourceLocation().getSourceFileName() != null
                         && stmt.getSourceLocation().getLineNumber() > 0) {
-                    /*                    if (lastStatement != null &&
+                    *//*                    if (lastStatement != null &&
                         lastStatement.getSourceLocation() != null &&
                         stmt.getSourceLocation()
                             .getSourceFileName()
                             .equals(lastStatement.getSourceLocation().getSourceFileName()) &&
                         stmt.getSourceLocation().getLineNumber() ==
-                        lastStatement.getSourceLocation().getLineNumber()) */
+                        lastStatement.getSourceLocation().getLineNumber()) *//*
 
                     if (lastStatement == stmt) {
                         // do not add the same statement several times in a row.
-                                //PushNonDefunctInvocation(tuple._2(), entry);
+                        //PushNonDefunctInvocation(tuple._2(), entry);
                     } else {
                         trace.add(stmt);
                         if(Options.v().violationWitness != null && !Options.v().violationWitness.isEmpty())
@@ -93,8 +136,8 @@ public class CexPrinter {
         }
         return trace;
 
-    }
-   // private   List<Map.Entry<Statement, List<ProverHornClause>>> getEntries
+    }*/
+    // private   List<Map.Entry<Statement, List<ProverHornClause>>> getEntries
   /*  private void GenerateWitnessViolation()
     {
         try {
@@ -180,15 +223,14 @@ public class CexPrinter {
         }
         return "";
     }*/
-    private Map.Entry<Statement, List<ProverHornClause>> findStatement(final ProverFun proverFun) {
+    private Statement findStatement(final ProverFun proverFun) {
         for (Map.Entry<Statement, List<ProverHornClause>> entry : S2H.sh().getStatToClause().entrySet()) {
             for (ProverHornClause hc : entry.getValue()) {
                 if (hc.getHeadFun() != null && hc.getHeadFun().equals(proverFun)) {
-                    return entry;//entry.getKey();
+                    return entry.getKey();
                 }
             }
         }
         return null;
-
     }
 }

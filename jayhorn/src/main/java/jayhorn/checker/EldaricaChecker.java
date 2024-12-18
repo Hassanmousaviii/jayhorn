@@ -1,7 +1,12 @@
 package jayhorn.checker;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 import com.google.common.base.Preconditions;
@@ -238,9 +243,9 @@ public class EldaricaChecker extends Checker {
             if (Options.v().fullCEX && result == ProverResult.Unsat)
                 ((PrincessProver) prover).prettyPrintLastCEX();
 
-           if((Options.v().trace ||!Options.v().violationWitness.isEmpty() ) && result == ProverResult.Unsat ){
+          /* if((Options.v().trace ||!Options.v().violationWitness.isEmpty() ) && result == ProverResult.Unsat ){
                trace = cexPrinter.getProverCexTrace(((PrincessProver) prover).getLastCEX(),hornContext);
-           }
+           }*/
 
             if (Options.v().trace && result == ProverResult.Unsat) {
 

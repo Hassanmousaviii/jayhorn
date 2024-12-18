@@ -3,7 +3,10 @@ package jayhorn.solver.princess;
 import ap.parser.IAtom;
 import ap.parser.ITerm;
 import ap.terfor.preds.Predicate;
-import jayhorn.solver.*;
+import jayhorn.solver.ProverExpr;
+import jayhorn.solver.ProverFun;
+import jayhorn.solver.ProverTupleExpr;
+import jayhorn.solver.ProverType;
 import scala.collection.mutable.ArrayBuffer;
 
 class PredicateFun implements ProverFun {
@@ -38,7 +41,6 @@ class PredicateFun implements ProverFun {
                                         ProverExpr[] args) {
       if (argTypes == null)
         return;
-
       if (argTypes.length != args.length)
         throw new RuntimeException("Wrong number of arguments: expected " +
                                    argTypes.length + " but got " +

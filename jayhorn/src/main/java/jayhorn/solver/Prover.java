@@ -64,8 +64,6 @@ public interface Prover {
 
 	ProverExpr mkOr(ProverExpr left, ProverExpr right);
 
-
-
 	ProverExpr mkOr(ProverExpr ... args);
 
 	ProverExpr mkImplies(ProverExpr left, ProverExpr right);

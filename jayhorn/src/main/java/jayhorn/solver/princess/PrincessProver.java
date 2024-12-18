@@ -20,10 +20,39 @@ import ap.parser.*;
 import com.google.common.base.Verify;
 
 import ap.DialogUtil$;
-import ap.SimpleAPI;
-import ap.SimpleAPI$;
-import ap.SimpleAPI.ProverStatus$;
+import ap.api.SimpleAPI;
+import ap.api.SimpleAPI$;
+import ap.api.SimpleAPI.ProverStatus$;
 import ap.basetypes.IdealInt$;
+import com.google.common.base.Verify;
+
+import ap.DialogUtil$;
+import ap.api.SimpleAPI;
+import ap.api.SimpleAPI$;
+import ap.api.SimpleAPI.ProverStatus$;
+import ap.basetypes.IdealInt$;
+import ap.parser.ConstantSubstVisitor$;
+import ap.parser.IAtom;
+import ap.parser.IAtom$;
+import ap.parser.IBinFormula;
+import ap.parser.IBinJunctor;
+import ap.parser.IBoolLit;
+import ap.parser.IConstant;
+import ap.parser.IConstant$;
+import ap.parser.IExpression;
+import ap.parser.IExpression$;
+import ap.parser.IFormula;
+import ap.parser.IFormulaITE;
+import ap.parser.IFunApp;
+import ap.parser.IIntLit;
+import ap.parser.INot;
+import ap.parser.IPlus;
+import ap.parser.ITerm;
+import ap.parser.ITermITE;
+import ap.parser.IVariable;
+import ap.parser.ISortedVariable;
+import ap.parser.PredicateSubstVisitor$;
+import ap.parser.SymbolCollector$;
 import ap.terfor.ConstantTerm;
 import ap.terfor.preds.Predicate;
 import ap.theories.ADT;
@@ -35,7 +64,7 @@ import ap.theories.ADT.CtorSignature;
 import ap.theories.ADT.CtorArgSort;
 import ap.theories.ADT.OtherSort;
 import ap.theories.ADT.ADTSort;
-import ap.theories.SimpleArray.ArraySort;
+import ap.theories.arrays.SimpleArray.ArraySort;
 import ap.types.Sort;
 import ap.types.Sort$;
 import ap.types.Sort.Integer$;
@@ -67,22 +96,12 @@ import soottocfg.ast.Absyn.Constant;
 public class PrincessProver implements Prover {
 
 	private SimpleAPI api;
-    ConstantTerm s = ModuloArithmetic.UnsignedBVSort$.MODULE$.apply(9).newConstant("bvf");
-   // ASTree.BVadd
 
-
-
-//BitVector bv = new BitVector(8);
-   /* public void setBvSort$(ModuloArithmetic.UnsignedBVSort$ bvSort$) {
-        this.bvSort$ = bvSort$;
-    }*/
-
-    public PrincessProver() {
+	public PrincessProver() {
 		ap.util.Debug.enableAllAssertions(false);
 		api = SimpleAPI.spawnNoSanitise();
 		// api = SimpleAPI.spawnWithScalaLog();
 		// api = SimpleAPI.spawnWithAssertions();
-
 	}
 
 	public PrincessProver(String basename) {
@@ -144,7 +163,9 @@ public class PrincessProver implements Prover {
             }
 
             final ADT adt =
-                new ADT (sortNames, ctors, TermMeasure$.MODULE$.Size());
+                new ADT (sortNames, ctors,
+                         TermMeasure$.MODULE$.Size(),
+                         scala.Option$.MODULE$.empty());
             return new PrincessADT(adt);
         }
 
@@ -169,7 +190,6 @@ public class PrincessProver implements Prover {
                                                         type2Sort(type)),
                                     type);
             }
-
 	}
 
     protected static ProverType sort2Type(Sort sort) {
@@ -356,7 +376,6 @@ public class PrincessProver implements Prover {
 
 		return new TermExpr(new IIntLit(IdealInt$.MODULE$.apply(value)), getIntType());
 	}
-
 
 	public ProverExpr mkLiteral(BigInteger value) {
 		return new TermExpr(new IIntLit(IdealInt$.MODULE$.apply(value.toString())), getIntType());
@@ -1071,10 +1090,13 @@ System.out.println("all preds: " + allPreds);
             PrintStream newOut = new PrintStream(baos);
             scala.Console.setOut(newOut);
 
-            ap.parser.SMTLineariser.apply("JayHorn-clauses", "HORN", "unknown",
-                                          new ArrayBuffer(),
-                                          allPreds.toSeq(), // .sortBy(_.name),
-                                          clauseFors);
+            ap.parser.SMTLineariser.printWithDecls
+                (clauseFors,
+                 new ArrayBuffer(),   // constsToDeclare
+                 allPreds.toSeq(),    // .sortBy(_.name), predsToDeclare
+                 new ArrayBuffer(),   // funsToDeclare
+                 new ArrayBuffer(),   // extraTheories
+                 "JayHorn-clauses", "HORN", "unknown");
 
             scala.Console.flush();
             scala.Console.setOut(originalOut);

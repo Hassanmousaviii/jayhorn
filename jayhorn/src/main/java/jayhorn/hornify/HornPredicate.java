@@ -24,7 +24,6 @@ public class HornPredicate {
 		this.p = p;
 		variables = vars;
 		predicate = HornHelper.hh().genHornPredicate(p, name, vars);
-
 	}
 
 	public String toString() {

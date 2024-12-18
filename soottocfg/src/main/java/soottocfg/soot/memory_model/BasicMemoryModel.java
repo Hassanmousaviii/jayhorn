@@ -22,6 +22,7 @@ import soot.SootField;
 import soot.SootMethod;
 import soot.Unit;
 import soot.Value;
+
 import soot.jimple.ArrayRef;
 import soot.jimple.ClassConstant;
 import soot.jimple.Constant;
@@ -34,13 +35,24 @@ import soottocfg.Options;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.expression.Expression;
 import soottocfg.cfg.expression.IdentifierExpression;
-import soottocfg.cfg.expression.literal.*;
+import soottocfg.cfg.expression.literal.IntegerLiteral;
+import soottocfg.cfg.expression.literal.NullLiteral;
+import soottocfg.cfg.expression.literal.StringLiteral;
 import soottocfg.cfg.method.Method;
 import soottocfg.cfg.statement.CallStatement;
-import soottocfg.cfg.type.*;
+import soottocfg.cfg.type.BoolType;
+import soottocfg.cfg.type.IntType;
+import soottocfg.cfg.type.StringType;
+import soottocfg.cfg.type.ReferenceType;
+import soottocfg.cfg.type.Type;
+import soottocfg.cfg.type.TypeType;
 import soottocfg.cfg.variable.ClassVariable;
 import soottocfg.cfg.variable.Variable;
 import soottocfg.soot.util.SootTranslationHelpers;
+import soottocfg.cfg.expression.literal.DoubleLiteral;
+import soottocfg.cfg.expression.literal.FloatLiteral;
+import soottocfg.cfg.type.DoubleType;
+import soottocfg.cfg.type.FloatType;
 
 /**
  * @author schaef

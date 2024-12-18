@@ -77,7 +77,9 @@ import lazabs.ast.ASTree;
 import lazabs.horn.bottomup.HornClauses;
 import lazabs.horn.bottomup.HornClauses.Clause;
 import lazabs.horn.bottomup.SimpleWrapper;
-import lazabs.horn.bottomup.Util.Dag;
+//import lazabs.horn.bottomup.Util.Dag;
+import lazabs.horn.Util.Dag;
+
 import lazabs.viewer.HornPrinter$;
 import scala.Tuple2;
 import scala.collection.Iterator;

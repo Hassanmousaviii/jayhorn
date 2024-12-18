@@ -35,6 +35,7 @@ import soottocfg.cfg.statement.Statement;
 import soottocfg.cfg.type.IntType;
 import soottocfg.cfg.variable.ClassVariable;
 import soottocfg.cfg.variable.Variable;
+import  lazabs.horn.Util.Dag;
 
 /**
  * @author teme

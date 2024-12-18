@@ -14,6 +14,7 @@ import com.google.common.base.Verify;
 
 import jayhorn.Log;
 import jayhorn.Options;
+import jayhorn.solver.ProverFun;
 import jayhorn.solver.Prover;
 import jayhorn.solver.ProverADT;
 import jayhorn.solver.ProverType;

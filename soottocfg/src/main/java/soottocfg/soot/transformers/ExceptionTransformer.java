@@ -761,6 +761,17 @@ public class ExceptionTransformer extends AbstractSceneTransformer {
 			return result;
 		} else if (exception == arithmeticExceptionClass) {
 			if (negated) {
+				if(val.getType() instanceof DoubleType)
+				{
+					result.add(new Pair<Value, List<Unit>>(jimpleEqDoubleZero(val),
+							new LinkedList<Unit>()));
+				}
+				else if(val.getType() instanceof FloatType)
+				{
+					result.add(new Pair<Value, List<Unit>>(jimpleEqFloatZero(val),
+							new LinkedList<Unit>()));
+				}
+				else
 				result.add(new Pair<Value, List<Unit>>(jimpleEqZero(val),
 						new LinkedList<Unit>()));
 			}

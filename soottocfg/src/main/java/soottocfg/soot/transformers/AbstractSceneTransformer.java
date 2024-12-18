@@ -93,6 +93,12 @@ public abstract class AbstractSceneTransformer {
 	protected Value jimpleEqZero(Value v) {
 		return Jimple.v().newEqExpr(v, IntConstant.v(0));
 	}
+	protected Value jimpleEqDoubleZero(Value v) {
+		return Jimple.v().newEqExpr(v, DoubleConstant.v(0));
+	}
+	protected Value jimpleEqFloatZero(Value v) {
+		return Jimple.v().newEqExpr(v, FloatConstant.v(0.0F));
+	}
 
 	protected Value jimpleNeZero(Value v) {
 		return Jimple.v().newNeExpr(v, IntConstant.v(0));

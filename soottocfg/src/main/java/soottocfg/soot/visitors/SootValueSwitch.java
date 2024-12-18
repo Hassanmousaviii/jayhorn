@@ -143,6 +143,16 @@ public class SootValueSwitch implements JimpleValueSwitch {
 					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Plus, lhs, rhs));
 			return;
 		} else if (op.compareTo("-") == 0) {
+			if(lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals( "java.lang.Double")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Double"))) {
+				this.expressionStack
+						.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.MinusDouble, lhs, rhs));
+				return;
+			}
+			if(lhs instanceof FloatLiteral || rhs instanceof FloatLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals("java.lang.Float")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Float"))) {
+				this.expressionStack
+						.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.MinusFloat, lhs, rhs));
+				return;
+			}
 			this.expressionStack
 					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Minus, lhs, rhs));
 			return;

@@ -103,9 +103,9 @@ else
   java -jar jayhorn.jar \$BENCHMARK "\$@"
 fi
 """
-        project.exec {
+        /*project.exec {
             commandLine('chmod',  '+x', '../build/libs/jayhorn')
-        }
+        }*/
     }
 }
 assemble.dependsOn createRunScript

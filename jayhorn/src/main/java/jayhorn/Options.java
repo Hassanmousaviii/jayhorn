@@ -158,8 +158,8 @@ public class Options {
 
 
 
-	@Option(name = "-dot-cex", usage = "Output counter-examples in GraphViz format", required = false)
-	public boolean dotCEX = false;
+	/*@Option(name = "-dot-cex", usage = "Output counter-examples in GraphViz format", required = false)
+	public boolean dotCEX = false;*/
 	
     @Option(name = "-full-cex", usage = "Output full internal counter-examples in textual format", required = false, depends = {"-solution"})
 	public boolean fullCEX = false;
@@ -172,6 +172,10 @@ public class Options {
 
     @Option(name = "-jimple", usage = "Prints the jimple of the bytecode", required = false, hidden=true)
         public boolean printJimple = false;
+
+
+	@Option(name = "-symex", usage = "Use symex backend", required = false, hidden=true)
+	public boolean useSymex = false;
 
 	
 	/*

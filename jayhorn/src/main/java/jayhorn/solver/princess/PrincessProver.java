@@ -74,6 +74,8 @@ import jayhorn.solver.*;
 import jdk.nashorn.internal.runtime.BitVector;
 import lazabs.GlobalParameters$;
 import lazabs.ast.ASTree;
+import lazabs.horn.HornAPI;
+import lazabs.horn.HornAPI$;
 import lazabs.horn.bottomup.HornClauses;
 import lazabs.horn.bottomup.HornClauses.Clause;
 import lazabs.horn.bottomup.SimpleWrapper;
@@ -699,6 +701,13 @@ public class PrincessProver implements Prover {
                                             java.util.Map<Predicate, ProverType[]> fullHornTypes,
                                             java.util.Map<String, String> lastSolution,
                                             Dag<Tuple2<ProverFun, ProverExpr[]>>[] lastCEXAr) {
+
+
+        HornAPI.Options options = Options.v().useSymex ? new HornAPI.SymexOptions(){@Override public boolean debuggingOutput() {return  true;}} : new HornAPI.CEGAROptions(){@Override public boolean debuggingOutput() {return  true;}};
+        HornAPI hornAPI = new HornAPI(options);
+
+
+
         final ArrayBuffer<HornClauses.Clause> clauses = new ArrayBuffer<HornClauses.Clause>();
         for (HornExpr clause : assertedClauses)
             clauses.$plus$eq(clause.clause);
@@ -707,14 +716,15 @@ public class PrincessProver implements Prover {
         //GlobalParameters$.MODULE$.get().set
 
         if (Options.v().solution) {
-                                	               	
+
+
             final Either<Map<Predicate, IFormula>, Dag<Tuple2<IAtom, Clause>>> result =
-                SimpleWrapper.solve(clauses,
+                    hornAPI.solve(clauses/*,
                                     scala.collection.immutable.Map$.MODULE$.<Predicate, Seq<IFormula>> empty(),
                                     Options.v().getSolverOptions().contains("abstract"),
                                     Options.v().getSolverOptions().contains("debug"),
                                     Options.v().dotCEX,
-                                    Options.v().getSolverOptions().contains("abstractPO"));
+                                    Options.v().getSolverOptions().contains("abstractPO")*/);
             
             if (result.isLeft()) {
                 StringBuffer sol = new StringBuffer();
@@ -736,9 +746,11 @@ public class PrincessProver implements Prover {
                     .map(new scala.runtime.AbstractFunction1<Tuple2<IAtom, Clause>,
                                                              Tuple2<ProverFun, ProverExpr[]>>() {
                             public Tuple2<ProverFun, ProverExpr[]> apply(Tuple2<IAtom, Clause> p) {
-                                if (p._1().equals(SimpleWrapper.FALSEAtom()))
+                              /*  if (p._1().equals(SimpleWrapper.FALSEAtom()))
                                     // encode FALSE as null
-                                    return null;
+                                    return null;*/
+                                if (p._1().toString().equals("FALSE")) return null;
+
                                 final Predicate pred = p._1().pred();
                                 final ProverType[] types = fullHornTypes.get(pred);
                                 final ProverType[] flatTypes = ProverTupleType.flatten(types);
@@ -757,11 +769,11 @@ public class PrincessProver implements Prover {
                 return ProverResult.Unsat;
             }
         } else {
-            if (SimpleWrapper.isSat(clauses,
+            if (hornAPI.isSat(clauses/*,
                                     scala.collection.immutable.Map$.MODULE$.<Predicate, Seq<IFormula>> empty(),
                                     Options.v().getSolverOptions().contains("abstract"),
                                     Options.v().getSolverOptions().contains("debug"),
-                                    Options.v().getSolverOptions().contains("abstractPO")))
+                                    Options.v().getSolverOptions().contains("abstractPO"))*/))
                 return ProverResult.Sat;
             else
                 return ProverResult.Unsat;

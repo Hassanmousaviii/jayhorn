@@ -317,16 +317,6 @@ public class Hornify {
 				}));
 		ProverFun isSingleNaN = prover.mkDefinedFunction("isSingleNaN" //FP
 				,new ProverType[] {floatingPointADT.getType(0)},
-
-						prover.mkOr(
-								prover.mkEq( //isNaN = true
-										floatingPointADT.mkSelExpr(
-												0,
-												4,
-												prover.mkBoundVariable(0,floatingPointADT.getType(0))
-										), //isNaN
-										prover.mkLiteral(1)
-								),
 								prover.mkAnd(  //e=11...1 and m != 0
 										prover.mkEq(
 												floatingPointADT.mkSelExpr(
@@ -347,7 +337,7 @@ public class Hornify {
 												)
 										)
 								)
-						)
+						//)
 		);
 		ProverFun isSingleInf = prover.mkDefinedFunction("isSingleInf" //FP
 				,new ProverType[] {floatingPointADT.getType(0)},
@@ -930,16 +920,6 @@ public class Hornify {
 				));
 		ProverFun isDoubleNaN = prover.mkDefinedFunction("isDoubleNaN"
 				,new ProverType[] {doubleFloatingPointADT.getType(0)},
-				//prover.mkIte(
-						prover.mkOr(
-								prover.mkEq(
-										doubleFloatingPointADT.mkSelExpr(
-												0,
-												4,
-												prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
-										),
-										prover.mkLiteral(1)
-								), //isNaN = true
 								prover.mkAnd( //e=11...1 and m != 0
 										prover.mkEq(
 												doubleFloatingPointADT.mkSelExpr(
@@ -959,8 +939,9 @@ public class Hornify {
 														prover.mkBV(0,53))
 										)
 								)
-						));/*,
-						prover.mkLiteral(true), prover.mkLiteral(false)
+						);
+		//);/*,
+						/*prover.mkLiteral(true), prover.mkLiteral(false)
 				));*/
 		ProverFun existDoubleNaN = prover.mkDefinedFunction("existDoubleNaN"
 				,new ProverType[] {doubleFloatingPointADT.getType(0),doubleFloatingPointADT.getType(0)},

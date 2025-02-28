@@ -197,14 +197,14 @@ public class SootValueSwitch implements JimpleValueSwitch {
 			 */
 			Expression ite = new IteExpression(statementSwitch.getCurrentLoc(),
 					//(
-							/*(lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral  || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals("java.lang.Double")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Double"))) ?
+							(lhs instanceof DoubleLiteral || rhs instanceof DoubleLiteral  || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals("java.lang.Double")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Double"))) ?
 							new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.LeDouble, lhs, rhs)
 					: (
 									(lhs instanceof FloatLiteral || rhs instanceof FloatLiteral || (lhs instanceof IdentifierExpression && ((IdentifierExpression)lhs).getVariable().getType().toString().equals("java.lang.Float")) || (rhs instanceof IdentifierExpression && ((IdentifierExpression)rhs).getVariable().getType().toString().equals("java.lang.Float"))) ?
-											new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Le, lhs, rhs)
-											:*/
-					new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Le, lhs, rhs) ,
-					//),
+											new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.LeFloat, lhs, rhs)
+											:
+					new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Le, lhs, rhs) //,
+					),
 					new IteExpression(statementSwitch.getCurrentLoc(),
 							new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Eq, lhs, rhs),
 							IntegerLiteral.zero(), new UnaryExpression(statementSwitch.getCurrentLoc(),

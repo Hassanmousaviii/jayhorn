@@ -17,6 +17,7 @@ import java.util.concurrent.TimeoutException;
 
 import ap.basetypes.IdealInt;
 import ap.parser.*;
+import ap.theories.bitvectors.ModuloArithmetic$;
 import com.google.common.base.Verify;
 
 import ap.DialogUtil$;

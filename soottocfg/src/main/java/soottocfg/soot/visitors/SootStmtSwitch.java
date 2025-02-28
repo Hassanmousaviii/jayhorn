@@ -878,8 +878,9 @@ public class SootStmtSwitch implements StmtSwitch {
 			if (optionalLhs != null) {
 				Expression itemExpr = valueToExpr(call.getArg(0));
 				Expression lhs = valueToExpr(optionalLhs);
-				//Expression rhs = new BinaryExpression(srcLoc, BinaryOperator.ToFloat, itemExpr, lhs);
-				currentBlock.addStatement(new AssignStatement(srcLoc, lhs, itemExpr));
+				Expression rhs = new BinaryExpression(srcLoc, BinaryOperator.ToFloat, itemExpr, lhs);
+				currentBlock.addStatement(new AssignStatement(srcLoc, lhs, rhs));
+				//currentBlock.addStatement(new AssignStatement(srcLoc, lhs, itemExpr));
 			} // else: ignore
 			return true;
 		}

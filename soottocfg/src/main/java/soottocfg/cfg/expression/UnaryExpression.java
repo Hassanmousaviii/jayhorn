@@ -106,7 +106,7 @@ public class UnaryExpression extends Expression {
 				return BoolType.instance();
 			}
 			case IsNaNFloat:{
-				return BoolType.instance();
+				return IntType.instance();
 			}
 			case IsInfFloat:{
 				return BoolType.instance();

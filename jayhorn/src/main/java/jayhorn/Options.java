@@ -22,6 +22,8 @@ package jayhorn;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+
+import jayhorn.hornify.encoder.FloatingPointEncoder;
 import jayhorn.hornify.encoder.StringEncoder;
 
 import org.kohsuke.args4j.Option;
@@ -100,6 +102,27 @@ public class Options {
 
 	public void setStringDirection(StringEncoder.StringDirection stringDirection) {
 		this.stringDirection = stringDirection;
+	}
+
+	@Option(name = "-rounding-encoding", usage = "Sets floating-point rounding encoding method")
+	private FloatingPointEncoder.RoundingEncoding roundingEncoding = FloatingPointEncoder.RoundingEncoding.loop_free;
+
+	public FloatingPointEncoder.RoundingEncoding getRoundingEncoding() {
+		return roundingEncoding;
+	}
+
+	public void setRoundingEncoding(FloatingPointEncoder.RoundingEncoding roundingEncoding) {
+		this.roundingEncoding = roundingEncoding;
+	}
+	@Option(name = "-normalization-encoding", usage = "Sets floating-point normalization encoding method")
+	private FloatingPointEncoder.NormalizationEncoding normalizationEncoding = FloatingPointEncoder.NormalizationEncoding.loop_free;
+
+	public FloatingPointEncoder.NormalizationEncoding getNormalizationEncoding() {
+		return normalizationEncoding;
+	}
+
+	public void setNormalizationEncoding(FloatingPointEncoder.NormalizationEncoding normalizationEncoding) {
+		this.normalizationEncoding = normalizationEncoding;
 	}
 
 	/**

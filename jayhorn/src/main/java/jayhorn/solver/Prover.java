@@ -322,4 +322,17 @@ public interface Prover {
     String toSMTLIBScript(List<ProverHornClause> clauses);
 
     void parseSMTLIBFormula(final String formula);
+
+
+	default ProverExpr mkIntToUnsignedBV(ProverExpr pe, int i )
+	{
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+	default ProverExpr mkCastToInt(ProverExpr pe){
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+//		TODO: remove
+
+
+
 }

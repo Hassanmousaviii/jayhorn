@@ -1143,4 +1143,10 @@ System.out.println("all preds: " + allPreds);
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    @Override
+    public ProverExpr mkIntToUnsignedBV(ProverExpr pe, int i ){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+//     TODO: remmove
 }

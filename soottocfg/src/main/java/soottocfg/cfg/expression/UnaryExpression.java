@@ -25,7 +25,16 @@ public class UnaryExpression extends Expression {
 	private final UnaryOperator op;
 
 	public enum UnaryOperator {
-		Neg("-"), LNot("!"), Len("<len>"), ABS("<ABS>"), NegDouble("NegDouble"), NegFloat("NegFloat"),IsNormalDouble("<IsNormalDouble>"),IsNormalFloat("<IsNormalFloat>"),IsNaNFloat("<IsNaNFloat>"),IsNaNDouble("<IsNaNDouble>"),IsInfFloat("<IsInfFloat>"),IsInfDouble("<IsInfFloat>");
+		Neg("-"), LNot("!"), Len("<len>"), ABS("<ABS>"), NegDouble("NegDouble"), NegFloat("NegFloat"),IsNormalDouble("<IsNormalDouble>"),IsNormalFloat("<IsNormalFloat>"),IsNaNFloat("<IsNaNFloat>"),IsNaNDouble("<IsNaNDouble>"),IsInfFloat("<IsInfFloat>"),IsInfDouble("<IsInfFloat>")
+		,intBitsToFloat("intBitsToFloat"),
+		DoubleToLongBit("DoubleToLongBit"),
+		FloatToIntBit("FloatToIntBit"),
+		CastToLong("CastToLong"),
+		CastToInt("CastToInt"),
+		CastToFloat("CastToFloat"),
+		CastToDouble("CastToDouble"),
+		CastLongToDouble("CastLongToDouble"),
+		longBitsToDouble("longBitsToDouble");// TODO: remove;
 		private final String name;
 
 		private UnaryOperator(String s) {

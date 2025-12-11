@@ -1,30 +1,33 @@
 package jayhorn.solver.spacer;
 
+import com.microsoft.z3.Context;
 import jayhorn.solver.*;
 import jayhorn.solver.princess.PrincessFloatingPointType;
-import com.microsoft.z3.Context;
 
-public class SpacerFloatingPointADTFactory implements FloatingPointADTFactory {
+public class SpacerTempFloatingPointADTFactory implements TempFloatingPointADTFactory {
 
     private final Context ctx;
 
-    public SpacerFloatingPointADTFactory(Context ctx) {
+    /**
+     * Constructor that takes a Context from SpacerProver
+     * @param ctx Z3 Context instance
+     */
+    public SpacerTempFloatingPointADTFactory(Context ctx) {
         this.ctx = ctx;
     }
 
 
     @Override
-    public ProverADT spawnFloatingPointADT(PrincessFloatingPointType.Precision precision) {
-        // Determine bit widths based on precision
+    public ProverADT spawnTempFloatingPointADT(PrincessFloatingPointType.Precision precision) {
         boolean isSingle = (precision == PrincessFloatingPointType.Precision.Single);
-        int exponentWidth = isSingle ? 8 : 11;
-        int mantissaWidth = isSingle ? 24 : 53;
+        int exponentWidth = isSingle ? 9 : 12;
+        int mantissaWidth = isSingle ? 48 : 106;
 
         ProverType exponentType = new BitVectorType(exponentWidth);
         ProverType mantissaType = new BitVectorType(mantissaWidth);
 
 
-        String typeName = isSingle ? "FloatingPoint" : "DoubleFloatingPoint";
+        String typeName = isSingle ? "ExtendedFloatingPoint" : "ExtendedDoubleFloatingPoint";
 
         return SpacerADT.mkSimpleADT(
                 ctx,
@@ -39,7 +42,7 @@ public class SpacerFloatingPointADTFactory implements FloatingPointADTFactory {
                         BoolType.INSTANCE,    // OVF (overflow)
                         BoolType.INSTANCE     // UDF (underflow)
                 },
-                new String[]{"sign", "exponent", "mantissa", "isNan", "isInfinity", "OVF", "UDF"}
+                new String[]{"esign", "eexponent", "emantissa", "eisNan", "eisInfinity", "eOVF", "eUDF"}
         );
     }
 }

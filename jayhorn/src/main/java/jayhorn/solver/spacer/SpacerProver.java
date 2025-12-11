@@ -172,6 +172,10 @@ public class SpacerProver implements Prover {
 		}
 	}
 
+	public Context getCtx() {
+		return this.ctx;
+	}
+
 	@Override
 	public ProverType getBooleanType() {
 		return BoolType.INSTANCE;

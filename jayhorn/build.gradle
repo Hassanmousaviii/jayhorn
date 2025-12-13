@@ -15,6 +15,9 @@ task wrapper(type: Wrapper) {
 tasks.withType(Test) {
   systemProperty  'java.library.path', nativeLibFile.absolutePath
 }
+tasks.withType(JavaExec) {
+    jvmArgs "-Djava.library.path=${nativeLibFile.absolutePath}"
+}
 
 configurations{
     common
@@ -160,4 +163,17 @@ task soundness_test(type: Test) {
 task copyDeps(type: Copy) {
   from configurations.runtime
   into 'build/lib'
+}
+
+
+tasks.withType(Test) {
+    environment "LD_LIBRARY_PATH", nativeLibFile.absolutePath
+    environment "DYLD_LIBRARY_PATH", nativeLibFile.absolutePath
+    environment "PATH", nativeLibFile.absolutePath + File.pathSeparator + System.getenv("PATH")
+}
+
+tasks.withType(JavaExec) {
+    environment "LD_LIBRARY_PATH", nativeLibFile.absolutePath
+    environment "DYLD_LIBRARY_PATH", nativeLibFile.absolutePath
+    environment "PATH", nativeLibFile.absolutePath + File.pathSeparator + System.getenv("PATH")
 }

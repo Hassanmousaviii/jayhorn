@@ -50,8 +50,6 @@ public class SpacerADT implements ProverADT {
                 selectors[i][j] = new SpacerFun[numSels];
                 for (int k = 0; k < numSels; k++) {
                     FuncDecl selDecl = accessorDecls[k];
-                    // Note: We need access to SpacerProver instance to call pack()
-                    // For now, we'll handle the type conversion inline
                     Sort selSort = selDecl.getRange();
                     ProverType selType;
                     try {

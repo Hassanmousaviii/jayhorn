@@ -16,17 +16,7 @@ import com.google.common.base.Verify;
 import com.microsoft.z3.*;
 
 import jayhorn.Options;
-import jayhorn.solver.BoolType;
-import jayhorn.solver.IntType;
-import jayhorn.solver.Prover;
-import jayhorn.solver.ProverExpr;
-import jayhorn.solver.ProverFun;
-import jayhorn.solver.ProverHornClause;
-import jayhorn.solver.ProverListener;
-import jayhorn.solver.ProverResult;
-import jayhorn.solver.ProverTupleExpr;
-import jayhorn.solver.ProverTupleType;
-import jayhorn.solver.ProverType;
+import jayhorn.solver.*;
 
 
 /**
@@ -152,6 +142,11 @@ public class SpacerProver implements Prover {
 			return ctx.getBoolSort();
 		} else if (type instanceof SpacerArrayType) {
 			return ((SpacerArrayType) type).getSort();
+		} else if (type instanceof SpacerADTType) {
+			return ((SpacerADTType) type).getSort(); //??
+		}else if (type instanceof BitVectorType) {
+			int arity = ((BitVectorType) type).arity;
+			return ctx.mkBitVecSort(arity); //??
 		}
 		throw new RuntimeException( type + "not implemented");
 	}
@@ -189,7 +184,7 @@ public class SpacerProver implements Prover {
 	@Override
 	public ProverType getBVType(int arity)
 	{
-		throw new RuntimeException("not implemented");
+		return new BitVectorType(arity);
 	}
 
 	@Override
@@ -460,36 +455,78 @@ public class SpacerProver implements Prover {
     @Override
 	public ProverExpr mkBVPlus(ProverExpr left, ProverExpr right, int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr lterm = (BitVecExpr) ((SpacerTermExpr) left).term,
+					rterm = (BitVecExpr) ((SpacerTermExpr) right).term;
+			return new SpacerTermExpr(ctx.mkBVAdd(lterm, rterm), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVSub(ProverExpr left, ProverExpr right,  int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr lterm = (BitVecExpr) ((SpacerTermExpr) left).term,
+					rterm = (BitVecExpr) ((SpacerTermExpr) right).term;
+			return new SpacerTermExpr(ctx.mkBVSub(lterm, rterm), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVMul(ProverExpr left, ProverExpr right,  int bitLength) {
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr lterm = (BitVecExpr) ((SpacerTermExpr) left).term,
+					rterm = (BitVecExpr) ((SpacerTermExpr) right).term;
+			return new SpacerTermExpr(ctx.mkBVMul(lterm, rterm), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVDiv(ProverExpr left, ProverExpr right,  int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr lterm = (BitVecExpr) ((SpacerTermExpr) left).term,
+					rterm = (BitVecExpr) ((SpacerTermExpr) right).term;
+			return new SpacerTermExpr(ctx.mkBVUDiv(lterm, rterm), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVXOR(ProverExpr left, ProverExpr right, int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr lterm = (BitVecExpr) ((SpacerTermExpr) left).term,
+					rterm = (BitVecExpr) ((SpacerTermExpr) right).term;
+			return new SpacerTermExpr(ctx.mkBVXOR(lterm, rterm), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVOR(ProverExpr left, ProverExpr right, int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr lterm = (BitVecExpr) ((SpacerTermExpr) left).term,
+					rterm = (BitVecExpr) ((SpacerTermExpr) right).term;
+			return new SpacerTermExpr(ctx.mkBVOR(lterm, rterm), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVAND(ProverExpr left, ProverExpr right, int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr lterm = (BitVecExpr) ((SpacerTermExpr) left).term,
+					rterm = (BitVecExpr) ((SpacerTermExpr) right).term;
+			return new SpacerTermExpr(ctx.mkBVAND(lterm, rterm), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkPlus(ProverExpr[] args)  {
@@ -556,12 +593,20 @@ public class SpacerProver implements Prover {
 	@Override
 	public ProverExpr mkBV(int value, int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			return new SpacerTermExpr(ctx.mkBV(value, bitLength), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBV(BigInteger value, int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			return new SpacerTermExpr(ctx.mkBV(value.longValue(), bitLength), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVNeg(ProverExpr expr, int bitLength)
@@ -631,16 +676,34 @@ public class SpacerProver implements Prover {
 	}
 	public ProverExpr mkBVExtract(int from, int to, ProverExpr expr)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr exprterm = (BitVecExpr) ((SpacerTermExpr) expr).term;
+			return new SpacerTermExpr(ctx.mkExtract( from, to, exprterm), this.getBVType(from - to + 1));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	public ProverExpr mkBVConcat(ProverExpr lExpr, ProverExpr rExpr,int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr lterm = (BitVecExpr) ((SpacerTermExpr) lExpr).term,
+					rterm = (BitVecExpr) ((SpacerTermExpr) rExpr).term;
+			return new SpacerTermExpr(ctx.mkConcat(lterm, rterm), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVZeroExtend(int count, ProverExpr expr, int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr exprterm = (BitVecExpr) ((SpacerTermExpr) expr).term;
+			BitVectorType btype = (BitVectorType) ((SpacerTermExpr) expr).type;
+			int arity = btype.arity;
+			return new SpacerTermExpr(ctx.mkZeroExt( count, exprterm), this.getBVType(count + arity));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVlshr(ProverExpr expr, ProverExpr count,int bitLength)

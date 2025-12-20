@@ -65,7 +65,12 @@ public class SpacerADT implements ProverADT {
                             ArraySort as = (ArraySort) selSort;
                             // Recursive conversion needed - simplified for now
                             throw new RuntimeException("Array selectors not yet implemented");
-                        } else {
+                        } else if (selSort instanceof BitVecSort){
+                            BitVecSort bvs = (BitVecSort) selSort;
+                            int width = bvs.getSize();
+                            selType = new BitVectorType(width);
+                        }
+                        else {
                             throw new RuntimeException("Unknown selector type: " + selSort);
                         }
                     } catch (Exception e) {
@@ -276,6 +281,7 @@ public class SpacerADT implements ProverADT {
                 selectorSorts[i] = null;
                 selectorRefs[i] = ((ADTTempType) argType).typeIndex;
             } else {
+
                 throw new RuntimeException("Unknown ProverType: " + argType);
             }
         }

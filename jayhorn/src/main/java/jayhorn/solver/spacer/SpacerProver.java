@@ -611,7 +611,12 @@ public class SpacerProver implements Prover {
 	@Override
 	public ProverExpr mkBVNeg(ProverExpr expr, int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr bvexpr = (BitVecExpr) ((SpacerTermExpr) expr).term;
+			return new SpacerTermExpr(ctx.mkBVNeg(bvexpr), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkBVNot(ProverExpr expr, int bitLength)
@@ -713,7 +718,14 @@ public class SpacerProver implements Prover {
 	@Override
 	public ProverExpr mkBVshl(ProverExpr expr, ProverExpr count,int bitLength)
 	{
-		throw new RuntimeException("not implemented");
+		try {
+			BitVecExpr bvexpr = (BitVecExpr) ((SpacerTermExpr) expr).term;
+			BitVecExpr bvcount = (BitVecExpr) ((SpacerTermExpr) count).term;
+
+			return new SpacerTermExpr(ctx.mkBVSHL(bvexpr, bvcount), this.getBVType(bitLength));
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 	@Override
 	public ProverExpr mkMult(ProverExpr left, ProverExpr right)  {

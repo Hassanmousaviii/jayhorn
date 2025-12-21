@@ -8,6 +8,8 @@ import jayhorn.hornify.HornPredicate;
 import jayhorn.hornify.WrappedProverType;
 import jayhorn.solver.*;
 import jayhorn.solver.princess.PrincessADTType;
+import jayhorn.solver.spacer.SpacerADT;
+import jayhorn.solver.spacer.SpacerADTType;
 import polyglot.ast.Cast;
 import scala.Int;
 import soottocfg.cfg.expression.*;
@@ -146,7 +148,14 @@ public class FloatingPointEncoder {
             final BinaryExpression be = (BinaryExpression) e;
             Expression leftExpr = be.getLeft();
             Expression rightExpr = be.getRight();
-            if(((PrincessADTType)floatingPointADT.getType(0)).sort.name().equals("DoubleFloatingPoint")) {
+            String sortName = null;
+            if (floatingPointADT.getType(0) instanceof PrincessADTType) {
+                sortName = ((PrincessADTType)floatingPointADT.getType(0)).sort.name();
+            }
+            else if (floatingPointADT.getType(0) instanceof SpacerADTType) {
+                sortName = ((SpacerADTType) floatingPointADT.getType(0)).getSort().getName().toString();
+            }
+            if(sortName.equals("DoubleFloatingPoint")) {
                 if (rightExpr instanceof FloatLiteral || rightExpr.getType().toString().equals("java.lang.Float")) return null;
             }
             switch (be.getOp()) {

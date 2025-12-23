@@ -357,7 +357,7 @@ public class FloatingPointEncoder {
                 varMap.get(sign), //sign
                 p.mkBVExtract(intType-2,intType-e-1, varMap.get(intBv)),//exponent
                 p.mkBVConcat(p.mkBV(1,1),p.mkBVExtract(intType-e-2,0, varMap.get(intBv)),f),//mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -1059,7 +1059,7 @@ public class FloatingPointEncoder {
         List<ProverHornClause> clauses = new LinkedList<ProverHornClause>();
 
 
-        ProverExpr signExpr = p.mkIte(p.mkGeq(intExpr,p.mkLiteral(0)),p.mkLiteral(false),p.mkLiteral(true));
+        ProverExpr signExpr = p.mkIte(p.mkGeq(intExpr,p.mkLiteral(0)),p.mkLiteral(false),p.mkLiteral(true));  // TODO: recheck
         ProverExpr intBVExpr = p.mkIntToUnsignedBV(p.mkIte(p.mkGeq(intExpr,p.mkLiteral(0)), intExpr,p.mkNeg(intExpr)),intType);
 
         List<Variable> postPred1Vars = new ArrayList<>(prePred.variables);
@@ -1165,7 +1165,7 @@ public class FloatingPointEncoder {
                                 intType
                         )
                         ),//mantissa
-                p.mkLiteral(false),
+                        p.mkLiteral(false),  // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -2061,7 +2061,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(refp)),
                         106
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -2137,7 +2137,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(refp)),
                         106
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -2166,7 +2166,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(lefp)),
                         106
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -2547,7 +2547,7 @@ public class FloatingPointEncoder {
                 p.mkLiteral(false), //sign
                 p.mkBV(0,e), //exponent
                p.mkBV(0,f), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -2578,7 +2578,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(refp)),
                         2 * this.f
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -2607,7 +2607,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(lefp)),
                         2*this.f
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -3197,7 +3197,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(refp)),
                         106
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -3412,7 +3412,7 @@ public class FloatingPointEncoder {
                 p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkEq(p.mkBVExtract(f-2,0,leftMantissa),p.mkBV(0,f-1)),
                 p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))
         );
-        resultFP = mkDoublePE(p.mkLiteral(false),
+        resultFP = mkDoublePE(p.mkLiteral(false),  // TODO: recheck
                 p.mkBV(2*bias+1,e),
 
                 p.mkBV(f == 24 ? new BigInteger("c00000",16): new BigInteger("18000000000000",16),f),
@@ -3440,7 +3440,7 @@ public class FloatingPointEncoder {
                 p.mkBV(2*bias+1,e),
 
                 p.mkBV(f == 24 ? new BigInteger("c00000",16): new BigInteger("18000000000000",16),f),
-                p.mkLiteral(true),
+                p.mkLiteral(true),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -3713,7 +3713,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(refp)),
                         2 * this.f
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false), // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -4037,7 +4037,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(refp)),
                         48
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false), // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -4114,7 +4114,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(refp)),
                         48
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false), // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -4142,7 +4142,7 @@ public class FloatingPointEncoder {
                         extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(lefp)),
                         48
                 ), //mantissa
-                p.mkLiteral(false),
+                p.mkLiteral(false),  // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -5213,7 +5213,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         p.mkBVExtract(10,0,varMap.get(ee)),
                         p.mkBVExtract(106,54, varMap.get(em)),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -5252,7 +5252,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         p.mkBVExtract(10,0,varMap.get(ee)),
                         p.mkBVExtract(106,54, varMap.get(em)),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -5529,7 +5529,7 @@ public class FloatingPointEncoder {
                     p.mkBVMul(
                             p.mkBVZeroExtend(53,leftMantisa,53),
                             p.mkBVZeroExtend(53,rightMantisa,53),106),
-                    p.mkLiteral(false),
+                    p.mkLiteral(false), // TODO: recheck
                     p.mkLiteral(false),
                     p.mkLiteral(false),
                     p.mkLiteral(false)
@@ -5866,7 +5866,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         p.mkBVExtract(7,0,varMap.get(ee)),
                         p.mkBVExtract(48,25, varMap.get(em)),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -5905,7 +5905,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         p.mkBVExtract(7,0,varMap.get(ee)),
                         p.mkBVExtract(48,25, varMap.get(em)),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -6187,7 +6187,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         varMap.get(ee),
                         varMap.get(em),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -6481,7 +6481,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         varMap.get(ee),
                         varMap.get(em),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -6790,7 +6790,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         p.mkBVExtract(10,0,varMap.get(ee)),
                         p.mkBVExtract(106,54, varMap.get(em)),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -6831,7 +6831,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         p.mkBVExtract(10,0,varMap.get(ee)),
                         p.mkBVExtract(106,54, varMap.get(em)),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -7109,7 +7109,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         p.mkBVExtract(7,0,varMap.get(ee)),
                         p.mkBVExtract(48,25, varMap.get(em)),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -7384,7 +7384,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         p.mkBVExtract(7,0,varMap.get(ee)),
                         p.mkBVExtract(48,25, varMap.get(em)),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -7425,7 +7425,7 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         p.mkBVExtract(7,0,varMap.get(ee)),
                         p.mkBVExtract(48,25, varMap.get(em)),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -7617,7 +7617,7 @@ public class FloatingPointEncoder {
                 p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantissa),p.mkBV(0,f-1)))),
                 p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))
         );
-        ProverExpr resultFP = mkDoublePE(p.mkLiteral(false),
+        ProverExpr resultFP = mkDoublePE(p.mkLiteral(false),  // TODO: recheck
                 p.mkBV(2*bias+1,e),
 
                 p.mkBV(f == 24 ? new BigInteger("c00000",16): new BigInteger("18000000000000",16),f),
@@ -7645,7 +7645,7 @@ public class FloatingPointEncoder {
                         p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))
                 )
         );
-        resultFP = mkDoublePE(p.mkLiteral(false),
+        resultFP = mkDoublePE(p.mkLiteral(false), // TODO: recheck
                 p.mkBV(2*bias+1,e),
 
                 p.mkBV(f == 24 ? new BigInteger("c00000",16): new BigInteger("18000000000000",16),f),
@@ -7677,7 +7677,7 @@ public class FloatingPointEncoder {
                 p.mkIte(p.mkEq(leftSign,rightSign),leftSign,p.mkLiteral(true)),
                 p.mkBV(0,e),
                 p.mkBV(0,f),
-                p.mkLiteral(false),
+                p.mkLiteral(false), // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -7701,7 +7701,7 @@ public class FloatingPointEncoder {
                 p.mkIte(p.mkEq(leftSign,rightSign),leftSign,p.mkLiteral(true)),
                 p.mkBV(2*bias+1,e),
                 p.mkBV(0,f),
-                p.mkLiteral(false),
+                p.mkLiteral(false), // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -7727,7 +7727,7 @@ public class FloatingPointEncoder {
                 p.mkIte(p.mkEq(leftSign,rightSign),leftSign,p.mkLiteral(true)),
                 p.mkBV(2*bias+1,e),
                 p.mkBV(0,f),
-                p.mkLiteral(false),
+                p.mkLiteral(false), // TODO: recheck
                 p.mkLiteral(false),
                 p.mkLiteral(false),
                 p.mkLiteral(false)
@@ -7889,7 +7889,7 @@ public class FloatingPointEncoder {
                         p.mkBVMul(
                                 p.mkBVZeroExtend(this.f,leftMantisa,this.f),
                                 p.mkBVZeroExtend(this.f,rightMantisa,this.f),2*this.f),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -8318,7 +8318,7 @@ public class FloatingPointEncoder {
                         p.mkBVMul(
                                 p.mkBVZeroExtend(53,leftMantisa,53),
                                 p.mkBVZeroExtend(53,rightMantisa,53),106),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -8748,7 +8748,7 @@ public class FloatingPointEncoder {
                         p.mkBVMul(
                                 p.mkBVZeroExtend(53,leftMantisa,53),
                                 p.mkBVZeroExtend(53,rightMantisa,53),106),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -9152,7 +9152,7 @@ public class FloatingPointEncoder {
                         p.mkBVMul(
                                 p.mkBVZeroExtend(53,leftMantisa,53),
                                 p.mkBVZeroExtend(53,rightMantisa,53),106),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)
@@ -9523,7 +9523,7 @@ public class FloatingPointEncoder {
                         p.mkBVMul(
                                 p.mkBVZeroExtend(24,leftMantisa,24),
                                 p.mkBVZeroExtend(24,rightMantisa,24),48),
-                        p.mkLiteral(false),
+                        p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
                         p.mkLiteral(false)

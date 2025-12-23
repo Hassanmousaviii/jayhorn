@@ -874,12 +874,12 @@ public class Hornify {
 								doubleFloatingPointADT.mkSelExpr(
 										0,
 										1,
-										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0)) //TODO: recheck
 								),
 								doubleFloatingPointADT.mkSelExpr(
 										0,
 										1,
-										prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
+										prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0)) //TODO: recheck
 								)
 						),
 						prover.mkLiteral(true), prover.mkLiteral(false) // TODO: recheck

@@ -1515,8 +1515,8 @@ public class FloatingPointEncoder {
         ProverExpr postAtom = postPred.instPredicate(varMap);
 
         ProverExpr Cond = p.mkOr(
-                p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantisa),p.mkBV(0,f-1)))),
-                p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))
+                p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantisa),p.mkBV(0,f-1)))), // TODO: recheck
+                p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))// TODO: recheck
         );
         clauses.add(p.mkHornClause(postAtom, new ProverExpr[]{preAtom}, Cond));
 
@@ -1543,8 +1543,8 @@ public class FloatingPointEncoder {
         HornPredicate postPred1 = new HornPredicate(p, prePred.name + "_11", postPred1Vars);
         ProverExpr postAtom1 = postPred1.instPredicate(varMap);
          Cond = p.mkAnd(
-                 p.mkNot(p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantisa),p.mkBV(0,f-1))))),
-                 p.mkNot(p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))),
+                 p.mkNot(p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantisa),p.mkBV(0,f-1))))), // TODO: recheck
+                 p.mkNot(p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))),// TODO: recheck
                  p.mkNot(p.mkEq(((ProverTupleExpr) left).getSubExpr(3), ((ProverTupleExpr) right).getSubExpr(3))),
                  p.mkNot(
                          p.mkAnd(
@@ -1614,8 +1614,8 @@ public class FloatingPointEncoder {
         varMap.put(idLhs.getVariable(), p.mkLiteral(0)/*thenExpr*/);
         postAtom = postPred.instPredicate(varMap);
         Cond = p.mkAnd(
-                p.mkNot(p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantisa),p.mkBV(0,f-1))))),
-                p.mkNot(p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))),
+                p.mkNot(p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantisa),p.mkBV(0,f-1))))), // TODO: recheck
+                p.mkNot(p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))),// TODO: recheck
                 p.mkEq(((ProverTupleExpr) left).getSubExpr(3), ((ProverTupleExpr) right).getSubExpr(3))
         );
 
@@ -3433,8 +3433,8 @@ public class FloatingPointEncoder {
         // NaN + a or a + NaN --> result = NAN
 
         Cond1 = p.mkOr(
-               p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantissa),p.mkBV(0,f-1)))),
-               p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))
+               p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantissa),p.mkBV(0,f-1)))), // TODO: recheck
+               p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))// TODO: recheck
         );
         resultFP = mkDoublePE(p.mkLiteral(false),
                 p.mkBV(2*bias+1,e),
@@ -7614,8 +7614,8 @@ public class FloatingPointEncoder {
         // NaN + a or a + NaN --> result = NAN
 
         ProverExpr Cond1 = p.mkOr(
-                p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantissa),p.mkBV(0,f-1)))),
-                p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))
+                p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantissa),p.mkBV(0,f-1)))),// TODO: recheck
+                p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))// TODO: recheck
         );
         ProverExpr resultFP = mkDoublePE(p.mkLiteral(false),  // TODO: recheck
                 p.mkBV(2*bias+1,e),

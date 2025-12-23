@@ -49,4 +49,9 @@ public class PrincessADTType implements ProverADTType {
         return sort.toString();
     }
 
+
+    @Override
+    public String getName() {
+        return sort.name();
+    }
 }

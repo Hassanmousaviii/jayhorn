@@ -6,7 +6,7 @@ import com.microsoft.z3.*;
 /**
  * Represents an ADT type in the Spacer prover
  */
-public class SpacerADTType implements ProverType {
+public class SpacerADTType implements ProverADTType {
 
     private final DatatypeSort sort;
     private final int typeIndex;
@@ -39,5 +39,10 @@ public class SpacerADTType implements ProverType {
     @Override
     public int hashCode() {
         return 31 * sort.hashCode() + typeIndex;
+    }
+
+    @Override
+    public String getName() {
+        return this.sort.getName().toString();
     }
 }

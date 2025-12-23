@@ -202,7 +202,8 @@ public class Hornify {
 				,new ProverType[] {prover.getBooleanType()},
 				floatingPointADT.mkCtorExpr(0,
 						new ProverExpr[]{
-								prover.mkBoundVariable(0,prover.getBooleanType()),
+//								prover.mkBoundVariable(0,prover.getBooleanType()),
+								prover.mkLiteral(false), //sing
 								prover.mkBV(255,8),
 								prover.mkBV(0,24),
 								prover.mkLiteral(true), //Inf
@@ -215,7 +216,8 @@ public class Hornify {
 		ProverFun makeSingleUDFFun = prover.mkDefinedFunction("makeSingleUDFFun" //sign
 				,new ProverType[] {prover.getBooleanType()},
 				floatingPointADT.mkCtorExpr(0,new ProverExpr[]{
-						prover.mkBoundVariable(0,prover.getBooleanType()),
+//						prover.mkBoundVariable(0,prover.getBooleanType()),
+						prover.mkLiteral(false),
 						prover.mkBV(0,8),
 						prover.mkBV(0,24),
 						prover.mkLiteral(false), //Inf
@@ -749,7 +751,8 @@ public class Hornify {
 		ProverFun makeDoubleOVFFun = prover.mkDefinedFunction("makeDoubleOVFFun" //sign
 				,new ProverType[] {prover.getBooleanType()},
 				doubleFloatingPointADT.mkCtorExpr(0,new ProverExpr[]{
-						prover.mkBoundVariable(0,prover.getBooleanType()),
+//						prover.mkBoundVariable(0,prover.getBooleanType()),
+						prover.mkLiteral(false), //sign
 						prover.mkBV(2047,11),
 						prover.mkBV(0,53),
 						prover.mkLiteral(true), //Inf
@@ -761,7 +764,8 @@ public class Hornify {
 		ProverFun makeDoubleUDFFun = prover.mkDefinedFunction("makeDoubleUDFFun" //sign
 				,new ProverType[] {prover.getBooleanType()},
 				doubleFloatingPointADT.mkCtorExpr(0,new ProverExpr[]{
-						prover.mkBoundVariable(0,prover.getBooleanType()),
+//						prover.mkBoundVariable(0,prover.getBooleanType()),
+						prover.mkLiteral(false), //sign
 						prover.mkBV(0,11),
 						prover.mkBV(0,53),
 						prover.mkLiteral(false), //Inf

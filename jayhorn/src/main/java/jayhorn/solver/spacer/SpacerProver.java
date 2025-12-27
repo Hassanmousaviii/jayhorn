@@ -1394,7 +1394,12 @@ public class SpacerProver implements Prover {
     }
 
     public ProverExpr getCex(){
+//		return (ProverExpr) fx.getAnswer();
     	throw new UnsupportedOperationException();
+     }
+	 public String getFXAnswer(){
+//		return (ProverExpr) fx.getAnswer();
+    	return fx.getAnswer().toString();
      }
     /**
      * Retrieve explanation why fixedpoint engine returned status Unknown.

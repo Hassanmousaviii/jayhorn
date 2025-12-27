@@ -24,6 +24,7 @@ import jayhorn.solver.ProverExpr;
 import jayhorn.solver.ProverFactory;
 import jayhorn.solver.ProverHornClause;
 import jayhorn.solver.ProverResult;
+import jayhorn.solver.spacer.SpacerProver;
 import jayhorn.utils.GhostRegister;
 import jayhorn.utils.HeapCounterTransformer;
 import jayhorn.utils.Stats;
@@ -179,7 +180,8 @@ public class SpacerChecker extends Checker{
 
 	private void cex(){
 		//work in progress
-		System.out.println(prover.getCex());
+//		System.out.println(prover.getCex());
+		System.out.println(((SpacerProver) prover).getFXAnswer());
 	}
 	
 //	private void removeUnreachableMethods(Program program) {

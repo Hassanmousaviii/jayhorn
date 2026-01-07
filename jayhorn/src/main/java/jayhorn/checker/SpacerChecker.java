@@ -3,6 +3,8 @@
  */
 package jayhorn.checker;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -107,6 +109,7 @@ public class SpacerChecker extends Checker{
 				//System.out.println(hf.writeHorn());
 				prover.printRules();
 			}
+
 			
 			// Bounds Check
 //			if (Options.v().getHeapLimit() > -1) {
@@ -144,6 +147,9 @@ public class SpacerChecker extends Checker{
 			    String propLine = "Property@Line"+props.getValue();
 			    if (result == ProverResult.Unsat) {
 			    	Stats.stats().add(propLine, "SAFE");
+					if (Options.v().solution){
+						cex();
+					}
 			    } else if (result == ProverResult.Sat){
 			    	Stats.stats().add(propLine, "UNSAFE");
 			    	if (Options.v().solution){
@@ -155,8 +161,10 @@ public class SpacerChecker extends Checker{
 				results.put(prop, result);
 			}
 
-			
-			Stats.stats().add("CheckSatTime", String.valueOf(satTimer.stop()));
+			String stopTime =  String.valueOf(satTimer.stop());
+			Stats.stats().add("CheckSatTime", stopTime);
+			System.out.println("Spacer takes "
+					+ stopTime + " to check the given benchmark!");
 			
 		} catch (Throwable t) {
 			
@@ -181,7 +189,15 @@ public class SpacerChecker extends Checker{
 	private void cex(){
 		//work in progress
 //		System.out.println(prover.getCex());
-		System.out.println(((SpacerProver) prover).getFXAnswer());
+
+		String c = ((SpacerProver) prover).getFXAnswer();
+		try {
+		FileWriter myWriter = new FileWriter("cex generated.txt");
+		myWriter.write(c);
+			myWriter.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 //	private void removeUnreachableMethods(Program program) {

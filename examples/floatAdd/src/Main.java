@@ -5,10 +5,9 @@ public class Main {
 	
 			Double x = Verifier.nondetDouble();
 			Double y = Verifier.nondetDouble();
-			if (x + y < 1.0 &&  0.0 < y ){
-				assert(x + y < 1.0 + y);
+			if (2.0 < y < 100.0 ){
+				assert(x < x + y);
 			}
 	}
 }
 
-//  p1(a , b) p2(a,b,c)

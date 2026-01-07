@@ -7694,7 +7694,7 @@ public class FloatingPointEncoder {
         Cond1 =
                 p.mkAnd(
                         p.mkNot(p.mkAnd(p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,leftMantissa),p.mkBV(0,f-1))))), // not NaN
-                        p.mkNot(p.mkAnd(p.mkEq(leftExponent,p.mkBV(0,e)), p.mkEq(leftExponent,p.mkBV(0,f)))), //Not 0
+                        p.mkNot(p.mkAnd(p.mkEq(leftExponent,p.mkBV(0,e)), p.mkEq(leftExponent,p.mkBV(0,e)))), //todo: recheck. the last e was f //Not 0
                         p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1)) // rf = Inf
                 );
         resultFP = mkDoublePE(
@@ -7720,7 +7720,7 @@ public class FloatingPointEncoder {
                 p.mkAnd(
                         p.mkEq(leftExponent,p.mkBV(2*bias+1,e)), p.mkEq(p.mkBVExtract(f-2,0,leftMantissa),p.mkBV(0,f-1)), // lf = Inf
                         p.mkNot(p.mkAnd(p.mkEq(rightExponent,p.mkBV(2*bias+1,e)), p.mkNot(p.mkEq(p.mkBVExtract(f-2,0,rightMantisa),p.mkBV(0,f-1))))), // not NaN
-                        p.mkNot(p.mkAnd(p.mkEq(rightExponent,p.mkBV(0,e)), p.mkEq(rightExponent,p.mkBV(0,f)))) //Not 0
+                        p.mkNot(p.mkAnd(p.mkEq(rightExponent,p.mkBV(0,e)), p.mkEq(rightExponent,p.mkBV(0,e)))) //todo: recheck. the last e was f //Not 0
 
                 );
         resultFP = mkDoublePE(
@@ -7789,7 +7789,7 @@ public class FloatingPointEncoder {
 
 */
 
-        Variable resultSignVar = new Variable("resultSignVar", IntType.instance());
+        Variable resultSignVar = new Variable("resultSignVar", BoolType.instance()); // Todo: recheck
 
 
          leftExponent = floatingPointADT.mkSelExpr(0, 1, lFP);
@@ -8234,7 +8234,7 @@ public class FloatingPointEncoder {
 
 */
 
-        Variable resultSignVar = new Variable("resultSignVar", IntType.instance());
+        Variable resultSignVar = new Variable("resultSignVar", BoolType.instance()); //todo: recheck
 
 
         ProverExpr leftExponent = floatingPointADT.mkSelExpr(0, 1, lFP);
@@ -8664,7 +8664,7 @@ public class FloatingPointEncoder {
 
 */
 
-        Variable resultSignVar = new Variable("resultSignVar", IntType.instance());
+        Variable resultSignVar = new Variable("resultSignVar", BoolType.instance());
 
 
         ProverExpr leftExponent = floatingPointADT.mkSelExpr(0, 1, lFP);
@@ -9069,7 +9069,7 @@ public class FloatingPointEncoder {
 
 */
 
-        Variable resultSignVar = new Variable("resultSignVar", IntType.instance());
+        Variable resultSignVar = new Variable("resultSignVar", BoolType.instance());
 
 
         ProverExpr leftExponent = floatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3));
@@ -9440,7 +9440,7 @@ public class FloatingPointEncoder {
 
 */
 
-        Variable resultSignVar = new Variable("resultSignVar", IntType.instance());
+        Variable resultSignVar = new Variable("resultSignVar", BoolType.instance());
 
 
         ProverExpr leftExponent = floatingPointADT.mkSelExpr(0, 1, tLeft.getSubExpr(3));

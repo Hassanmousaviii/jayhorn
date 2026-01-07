@@ -1,0 +1,6889 @@
+1:54:02 PM: Executing ':jayhorn:Main.main()'...
+
+Installing pre-commit hook for WINDOWS
+Requires cabal, alex, happy, and bnfc to be installed.
+:soottocfg:compileJava UP-TO-DATE
+:soottocfg:processResources NO-SOURCE
+:soottocfg:classes UP-TO-DATE
+:soottocfg:jar UP-TO-DATE
+:jayhorn:compileJava UP-TO-DATE
+:jayhorn:processResources UP-TO-DATE
+:jayhorn:classes UP-TO-DATE
+:jayhorn:Main.main()
+[root] - ---   JayHorn : Static Analyzer for Java Programs   ---
+[root] - Horn solver: spacer
+[root] - Building CFG  ...
+[root] - Safety Verification ...
+[root] - Hornify  ...
+com.microsoft.z3.Z3Exception: unknown parameter 'use_heavy_mev'
+Legal parameters are:
+  bmc.linear_unrolling_depth (unsigned int) (default: 4294967295)
+  ctrl_c (bool) (default: true)
+  datalog.all_or_nothing_deltas (bool) (default: false)
+  datalog.check_relation (symbol) (default: null)
+  datalog.compile_with_widening (bool) (default: false)
+  datalog.dbg_fpr_nonempty_relation_signature (bool) (default: false)
+  datalog.default_relation (symbol) (default: pentagon)
+  datalog.default_table (symbol) (default: sparse)
+  datalog.default_table_checked (bool) (default: false)
+  datalog.default_table_checker (symbol) (default: null)
+  datalog.explanations_on_relation_level (bool) (default: false)
+  datalog.generate_explanations (bool) (default: false)
+  datalog.initial_restart_timeout (unsigned int) (default: 0)
+  datalog.magic_sets_for_queries (bool) (default: false)
+  datalog.output_profile (bool) (default: false)
+  datalog.print.tuples (bool) (default: true)
+  datalog.profile_timeout_milliseconds (unsigned int) (default: 0)
+  datalog.similarity_compressor (bool) (default: true)
+  datalog.similarity_compressor_threshold (unsigned int) (default: 11)
+  datalog.subsumption (bool) (default: true)
+  datalog.timeout (unsigned int) (default: 0)
+  datalog.unbound_compressor (bool) (default: true)
+  datalog.use_map_names (bool) (default: true)
+  engine (symbol) (default: auto-config)
+  generate_proof_trace (bool) (default: false)
+  print_aig (symbol) (default: )
+  print_answer (bool) (default: false)
+  print_boogie_certificate (bool) (default: false)
+  print_certificate (bool) (default: false)
+  print_fixedpoint_extensions (bool) (default: true)
+  print_low_level_smt2 (bool) (default: false)
+  print_statistics (bool) (default: false)
+  print_with_variable_declarations (bool) (default: true)
+  spacer.blast_term_ite_inflation (unsigned int) (default: 3)
+  spacer.ctp (bool) (default: true)
+  spacer.dump_benchmarks (bool) (default: false)
+  spacer.dump_threshold (double) (default: 5.0)
+  spacer.elim_aux (bool) (default: true)
+  spacer.eq_prop (bool) (default: true)
+  spacer.gpdr (bool) (default: false)
+  spacer.gpdr.bfs (bool) (default: true)
+  spacer.ground_pobs (bool) (default: true)
+  spacer.iuc (unsigned int) (default: 1)
+  spacer.iuc.arith (unsigned int) (default: 1)
+  spacer.iuc.debug_proof (bool) (default: false)
+  spacer.iuc.old_hyp_reducer (bool) (default: false)
+  spacer.iuc.print_farkas_stats (bool) (default: false)
+  spacer.iuc.split_farkas_literals (bool) (default: false)
+  spacer.keep_proxy (bool) (default: true)
+  spacer.max_level (unsigned int) (default: 4294967295)
+  spacer.max_num_contexts (unsigned int) (default: 500)
+  spacer.mbqi (bool) (default: true)
+  spacer.min_level (unsigned int) (default: 0)
+  spacer.native_mbp (bool) (default: true)
+  spacer.order_children (unsigned int) (default: 0)
+  spacer.p3.share_invariants (bool) (default: false)
+  spacer.p3.share_lemmas (bool) (default: false)
+  spacer.print_json (symbol) (default: )
+  spacer.propagate (bool) (default: true)
+  spacer.push_pob (bool) (default: false)
+  spacer.push_pob_max_depth (unsigned int) (default: 4294967295)
+  spacer.q3 (bool) (default: true)
+  spacer.q3.instantiate (bool) (default: true)
+  spacer.q3.qgen.normalize (bool) (default: true)
+  spacer.q3.use_qgen (bool) (default: false)
+  spacer.random_seed (unsigned int) (default: 0)
+  spacer.reach_dnf (bool) (default: true)
+  spacer.reset_pob_queue (bool) (default: true)
+  spacer.restart_initial_threshold (unsigned int) (default: 10)
+  spacer.restarts (bool) (default: false)
+  spacer.simplify_lemmas_post (bool) (default: false)
+  spacer.simplify_lemmas_pre (bool) (default: false)
+  spacer.simplify_pob (bool) (default: false)
+  spacer.use_array_eq_generalizer (bool) (default: true)
+  spacer.use_bg_invs (bool) (default: false)
+  spacer.use_derivations (bool) (default: true)
+  spacer.use_euf_gen (bool) (default: false)
+  spacer.use_inc_clause (bool) (default: true)
+  spacer.use_inductive_generalizer (bool) (default: true)
+  spacer.use_lemma_as_cti (bool) (default: false)
+  spacer.use_lim_num_gen (bool) (default: false)
+  spacer.validate_lemmas (bool) (default: false)
+  spacer.weak_abs (bool) (default: true)
+  tab.selection (symbol) (default: weight)
+  timeout (unsigned int) (default: 4294967295)
+  validate (bool) (default: false)
+  xform.array_blast (bool) (default: false)
+  xform.array_blast_full (bool) (default: false)
+  xform.bit_blast (bool) (default: false)
+  xform.coalesce_rules (bool) (default: false)
+  xform.coi (bool) (default: true)
+  xform.compress_unbound (bool) (default: true)
+  xform.elim_term_ite (bool) (default: false)
+  xform.elim_term_ite.inflation (unsigned int) (default: 3)
+  xform.fix_unbound_vars (bool) (default: false)
+  xform.inline_eager (bool) (default: true)
+  xform.inline_linear (bool) (default: true)
+  xform.inline_linear_branch (bool) (default: false)
+  xform.instantiate_arrays (bool) (default: false)
+  xform.instantiate_arrays.enforce (bool) (default: false)
+  xform.instantiate_arrays.nb_quantifier (unsigned int) (default: 1)
+  xform.instantiate_arrays.slice_technique (symbol) (default: no-slicing)
+  xform.instantiate_quantifiers (bool) (default: false)
+  xform.karr (bool) (default: false)
+  xform.magic (bool) (default: false)
+  xform.quantify_arrays (bool) (default: false)
+  xform.scale (bool) (default: false)
+  xform.slice (bool) (default: true)
+  xform.subsumption_checker (bool) (default: true)
+  xform.tail_simplifier_pve (bool) (default: true)
+  xform.transform_arrays (bool) (default: false)
+  xform.unfold_rules (unsigned int) (default: 0)
+
+	at com.microsoft.z3.Native.fixedpointSetParams(Native.java:5162)
+	at com.microsoft.z3.Fixedpoint.setParameters(Fixedpoint.java:45)
+	at jayhorn.solver.spacer.SpacerProver.createSolver(SpacerProver.java:96)
+	at jayhorn.solver.spacer.SpacerProver.<init>(SpacerProver.java:65)
+	at jayhorn.solver.spacer.SpacerProverFactory.spawn(SpacerProverFactory.java:32)
+	at jayhorn.hornify.Hornify.toHorn(Hornify.java:51)
+	at jayhorn.hornify.Hornify.toHorn(Hornify.java:41)
+	at jayhorn.checker.SpacerChecker.checkProgram(SpacerChecker.java:83)
+	at jayhorn.Main.safetyAnalysis(Main.java:72)
+	at jayhorn.Main.main(Main.java:130)
+com.microsoft.z3.Z3Exception: unknown parameter 'use_heavy_mev'
+Legal parameters are:
+  bmc.linear_unrolling_depth (unsigned int) (default: 4294967295)
+  ctrl_c (bool) (default: true)
+  datalog.all_or_nothing_deltas (bool) (default: false)
+  datalog.check_relation (symbol) (default: null)
+  datalog.compile_with_widening (bool) (default: false)
+  datalog.dbg_fpr_nonempty_relation_signature (bool) (default: false)
+  datalog.default_relation (symbol) (default: pentagon)
+  datalog.default_table (symbol) (default: sparse)
+  datalog.default_table_checked (bool) (default: false)
+  datalog.default_table_checker (symbol) (default: null)
+  datalog.explanations_on_relation_level (bool) (default: false)
+  datalog.generate_explanations (bool) (default: false)
+  datalog.initial_restart_timeout (unsigned int) (default: 0)
+  datalog.magic_sets_for_queries (bool) (default: false)
+  datalog.output_profile (bool) (default: false)
+  datalog.print.tuples (bool) (default: true)
+  datalog.profile_timeout_milliseconds (unsigned int) (default: 0)
+  datalog.similarity_compressor (bool) (default: true)
+  datalog.similarity_compressor_threshold (unsigned int) (default: 11)
+  datalog.subsumption (bool) (default: true)
+  datalog.timeout (unsigned int) (default: 0)
+  datalog.unbound_compressor (bool) (default: true)
+  datalog.use_map_names (bool) (default: true)
+  engine (symbol) (default: auto-config)
+  generate_proof_trace (bool) (default: false)
+  print_aig (symbol) (default: )
+  print_answer (bool) (default: false)
+  print_boogie_certificate (bool) (default: false)
+  print_certificate (bool) (default: false)
+  print_fixedpoint_extensions (bool) (default: true)
+  print_low_level_smt2 (bool) (default: false)
+  print_statistics (bool) (default: false)
+  print_with_variable_declarations (bool) (default: true)
+  spacer.blast_term_ite_inflation (unsigned int) (default: 3)
+  spacer.ctp (bool) (default: true)
+  spacer.dump_benchmarks (bool) (default: false)
+  spacer.dump_threshold (double) (default: 5.0)
+  spacer.elim_aux (bool) (default: true)
+  spacer.eq_prop (bool) (default: true)
+  spacer.gpdr (bool) (default: false)
+  spacer.gpdr.bfs (bool) (default: true)
+  spacer.ground_pobs (bool) (default: true)
+  spacer.iuc (unsigned int) (default: 1)
+  spacer.iuc.arith (unsigned int) (default: 1)
+  spacer.iuc.debug_proof (bool) (default: false)
+  spacer.iuc.old_hyp_reducer (bool) (default: false)
+  spacer.iuc.print_farkas_stats (bool) (default: false)
+  spacer.iuc.split_farkas_literals (bool) (default: false)
+  spacer.keep_proxy (bool) (default: true)
+  spacer.max_level (unsigned int) (default: 4294967295)
+  spacer.max_num_contexts (unsigned int) (default: 500)
+  spacer.mbqi (bool) (default: true)
+  spacer.min_level (unsigned int) (default: 0)
+  spacer.native_mbp (bool) (default: true)
+  spacer.order_children (unsigned int) (default: 0)
+  spacer.p3.share_invariants (bool) (default: false)
+  spacer.p3.share_lemmas (bool) (default: false)
+  spacer.print_json (symbol) (default: )
+  spacer.propagate (bool) (default: true)
+  spacer.push_pob (bool) (default: false)
+  spacer.push_pob_max_depth (unsigned int) (default: 4294967295)
+  spacer.q3 (bool) (default: true)
+  spacer.q3.instantiate (bool) (default: true)
+  spacer.q3.qgen.normalize (bool) (default: true)
+  spacer.q3.use_qgen (bool) (default: false)
+  spacer.random_seed (unsigned int) (default: 0)
+  spacer.reach_dnf (bool) (default: true)
+  spacer.reset_pob_queue (bool) (default: true)
+  spacer.restart_initial_threshold (unsigned int) (default: 10)
+  spacer.restarts (bool) (default: false)
+  spacer.simplify_lemmas_post (bool) (default: false)
+  spacer.simplify_lemmas_pre (bool) (default: false)
+  spacer.simplify_pob (bool) (default: false)
+  spacer.use_array_eq_generalizer (bool) (default: true)
+  spacer.use_bg_invs (bool) (default: false)
+  spacer.use_derivations (bool) (default: true)
+  spacer.use_euf_gen (bool) (default: false)
+  spacer.use_inc_clause (bool) (default: true)
+  spacer.use_inductive_generalizer (bool) (default: true)
+  spacer.use_lemma_as_cti (bool) (default: false)
+  spacer.use_lim_num_gen (bool) (default: false)
+  spacer.validate_lemmas (bool) (default: false)
+  spacer.weak_abs (bool) (default: true)
+  tab.selection (symbol) (default: weight)
+  timeout (unsigned int) (default: 4294967295)
+  validate (bool) (default: false)
+  xform.array_blast (bool) (default: false)
+  xform.array_blast_full (bool) (default: false)
+  xform.bit_blast (bool) (default: false)
+  xform.coalesce_rules (bool) (default: false)
+  xform.coi (bool) (default: true)
+  xform.compress_unbound (bool) (default: true)
+  xform.elim_term_ite (bool) (default: false)
+  xform.elim_term_ite.inflation (unsigned int) (default: 3)
+  xform.fix_unbound_vars (bool) (default: false)
+  xform.inline_eager (bool) (default: true)
+  xform.inline_linear (bool) (default: true)
+  xform.inline_linear_branch (bool) (default: false)
+  xform.instantiate_arrays (bool) (default: false)
+  xform.instantiate_arrays.enforce (bool) (default: false)
+  xform.instantiate_arrays.nb_quantifier (unsigned int) (default: 1)
+  xform.instantiate_arrays.slice_technique (symbol) (default: no-slicing)
+  xform.instantiate_quantifiers (bool) (default: false)
+  xform.karr (bool) (default: false)
+  xform.magic (bool) (default: false)
+  xform.quantify_arrays (bool) (default: false)
+  xform.scale (bool) (default: false)
+  xform.slice (bool) (default: true)
+  xform.subsumption_checker (bool) (default: true)
+  xform.tail_simplifier_pve (bool) (default: true)
+  xform.transform_arrays (bool) (default: false)
+  xform.unfold_rules (unsigned int) (default: 0)
+
+	at com.microsoft.z3.Native.fixedpointSetParams(Native.java:5162)
+	at com.microsoft.z3.Fixedpoint.setParameters(Fixedpoint.java:45)
+	at jayhorn.solver.spacer.SpacerProver.createSolver(SpacerProver.java:96)
+	at jayhorn.solver.spacer.SpacerProver.setHornLogic(SpacerProver.java:1264)
+	at jayhorn.hornify.Hornify.toHorn(Hornify.java:52)
+	at jayhorn.hornify.Hornify.toHorn(Hornify.java:41)
+	at jayhorn.checker.SpacerChecker.checkProgram(SpacerChecker.java:83)
+	at jayhorn.Main.safetyAnalysis(Main.java:72)
+	at jayhorn.Main.main(Main.java:130)
+[root] - Transform Program Methods into Horn Clauses ...
+[root] - Running from entry point: <Main: void main(JayArray_java_lang_String)>
+; Generated by JayHorn
+; Number of rules:116
+(declare-datatypes ((DoubleFloatingPoint 0)) (((DoubleFloatingPoint (sign Bool) (exponent (_ BitVec 11)) (mantissa (_ BitVec 53)) (isNan Bool) (isInfinity Bool) (OVF Bool) (UDF Bool)))))
+(declare-datatypes ((ExtendedDoubleFloatingPoint 0)) (((ExtendedDoubleFloatingPoint (esign Bool) (eexponent (_ BitVec 12)) (emantissa (_ BitVec 106)) (eisNan Bool) (eisInfinity Bool) (eOVF Bool) (eUDF Bool)))))
+(declare-rel Main_void_clinit_pre (Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_25 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_12 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_14 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel JayHornAssertions_void_clinit_Block0 (Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_5 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel inv_JayArray_java_lang_String_103 (Int Int Int Int Int Int Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_17 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block4 (Int Int Int Int Int Int Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11_16_S (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int DoubleFloatingPoint (_ BitVec 1) (_ BitVec 1) (_ BitVec 1) (_ BitVec 51) Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_3 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel |Assert_#0_Main.java,_line_6| ())
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11_13 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int ExtendedDoubleFloatingPoint ExtendedDoubleFloatingPoint))
+(declare-rel Main_void_clinit_post (Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_24 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11_16_LSBR (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int DoubleFloatingPoint (_ BitVec 1) (_ BitVec 1) (_ BitVec 1) (_ BitVec 51)))
+(declare-rel |Assert_#10_Main.java,_line_9| ())
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_12_12 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11_16 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int ExtendedDoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_19 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel JayHornAssertions_void_clinit_pre (Int))
+(declare-rel JayHornAssertions_void_clinit_post (Int Int Int Int Int))
+(declare-rel |Assert_#1_Main.java,_line_6| ())
+(declare-rel |Assert_#7_Main.java,_line_11| ())
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_10 (Int Int Int Int Int Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_12 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_10 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_1 (Int Int Int Int Int Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel |Assert_#9_Main.java,_line_11| ())
+(declare-rel Main_void_mainJayArray_java_lang_String_Block4_1 (Int Int Int Int Int Int Int Int Int Int Int))
+(declare-rel |Assert_#8_Main.java,_line_11| ())
+(declare-rel Main_void_clinit_Block1_1 (Int Int Int Int Int))
+(declare-rel inv_$StaticFields_Main_2 (Int Int Int Int Bool))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_9 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_2 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int))
+(declare-rel Main_void_clinit_Block1_3 (Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_24_11 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1 (Int Int Int Int Int Bool Bool Bool Bool Bool Bool Bool Bool Bool Bool Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int))
+(declare-rel Main_void_clinit_Block0 (Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_18 (Int Int Int Int Int Bool Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_21 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block2 (Int Int Int Int Int Int Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_3 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_12_11 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_4 (Int Int Int Int Int Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel |Assert_#3_Main.java,_line_7| ())
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_5 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel |Assert_#5_Main.java,_line_8| ())
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_7 (Int Int Int Int Int Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11_12 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int (_ BitVec 11) DoubleFloatingPoint DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11_13_15 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int ExtendedDoubleFloatingPoint (_ BitVec 53)))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_23 (Int Int Int Int Int Bool Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_11 (Int Int Int Int Int Bool Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_6 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_clinit_Block1 (Int Int Int Int Int))
+(declare-rel JayHornAssertions_void_clinit_Block1 (Int Int))
+(declare-rel JayHornAssertions_void_clinit_Block1_1 (Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block0 (Int Int Int Int Int Int Int Int Int))
+(declare-rel JayHornAssertions_void_clinit_Block1_2 (Int Int Int Int Int))
+(declare-rel |Assert_#6_Main.java,_line_11| ())
+(declare-rel Main_void_mainJayArray_java_lang_String_pre (Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_20 (Int Int Int Int Int Bool Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_2 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_8 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_22 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11_14 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int ExtendedDoubleFloatingPoint))
+(declare-rel |Assert_#2_Main.java,_line_7| ())
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_8 (Int Int Int Int Int Bool Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_9 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_13 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_7 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel |Assert_#4_Main.java,_line_8| ())
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_4 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11_16_Bits (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int DoubleFloatingPoint (_ BitVec 1) (_ BitVec 1) (_ BitVec 1) (_ BitVec 51)))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_13 (Int Int Int Int Int Int Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_16 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_post (Int Int Int Int Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_6 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_clinit_Block1_2 (Int Int Int Int Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_24_12 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_1 (Int Int Int Int Int Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block3_11_11 (Int Int Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int (_ BitVec 11)))
+(declare-rel Main_void_mainJayArray_java_lang_String_Block1_15 (Int Int Int Int Int Bool Bool Bool Bool Bool Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint Int Int Int Int Int Int Int DoubleFloatingPoint Int Int Int DoubleFloatingPoint))
+(declare-var A DoubleFloatingPoint)
+(declare-var B Bool)
+(declare-var C Int)
+(declare-var D Int)
+(declare-var E Int)
+(declare-var F Int)
+(declare-var G Int)
+(declare-var H Int)
+(declare-var I Int)
+(declare-var J DoubleFloatingPoint)
+(declare-var K Int)
+(declare-var L Int)
+(declare-var M Int)
+(declare-var N Int)
+(declare-var O Int)
+(declare-var P Int)
+(declare-var Q Int)
+(declare-var R Int)
+(declare-var S DoubleFloatingPoint)
+(declare-var T Int)
+(declare-var U Int)
+(declare-var V Int)
+(declare-var W Int)
+(declare-var X Int)
+(declare-var Y Int)
+(declare-var Z Int)
+(declare-var A1 Bool)
+(declare-var B1 Int)
+(declare-var C1 Int)
+(declare-var D1 Int)
+(declare-var E1 Int)
+(declare-var F1 Int)
+(declare-var G1 Bool)
+(declare-var H1 Int)
+(declare-var I1 Int)
+(declare-var J1 DoubleFloatingPoint)
+(declare-var K1 DoubleFloatingPoint)
+(declare-var L1 Bool)
+(declare-var M1 DoubleFloatingPoint)
+(declare-var N1 Int)
+(declare-var O1 Bool)
+(declare-var P1 Int)
+(declare-var Q1 Bool)
+(declare-var R1 Bool)
+(declare-var S1 Int)
+(declare-var T1 Int)
+(declare-var U1 Int)
+(declare-var V1 Bool)
+(declare-var W1 Bool)
+(declare-var X1 Int)
+(declare-var Y1 Int)
+(declare-var Z1 DoubleFloatingPoint)
+(declare-var A2 DoubleFloatingPoint)
+(declare-var B2 Int)
+(declare-var C2 Int)
+(declare-var D2 Int)
+(declare-var E2 Int)
+(declare-var F2 Int)
+(declare-var G2 Int)
+(declare-var H2 DoubleFloatingPoint)
+(declare-var I2 Int)
+(declare-var J2 Bool)
+(declare-var K2 (_ BitVec 11))
+(declare-var L2 ExtendedDoubleFloatingPoint)
+(declare-var M2 ExtendedDoubleFloatingPoint)
+(declare-var N2 (_ BitVec 53))
+(declare-var O2 (_ BitVec 1))
+(declare-var P2 (_ BitVec 1))
+(declare-var Q2 (_ BitVec 51))
+(declare-var R2 (_ BitVec 1))
+(rule (=> (Main_void_mainJayArray_java_lang_String_pre W Q B2 E T)
+    (Main_void_mainJayArray_java_lang_String_Block1
+      W
+      Q
+      B2
+      E
+      T
+      R1
+      W1
+      L1
+      G1
+      B
+      O1
+      A1
+      Q1
+      J2
+      V1
+      D
+      D2
+      L
+      T1
+      G2
+      J
+      C2
+      E1
+      Y1
+      S
+      X
+      R
+      C1
+      A
+      N
+      H1
+      C
+      K1
+      V
+      I1
+      H
+      M1
+      X1
+      B1
+      F2
+      A2
+      F
+      I2
+      M
+      Z1
+      F1
+      Z
+      U
+      W
+      Q
+      B2
+      E
+      N1
+      S1
+      O
+      U1
+      Y
+      H2
+      K
+      I
+      P
+      J1
+      E2
+      P1
+      G
+      D1)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1
+      K
+      D1
+      N1
+      F
+      O
+      Q1
+      L1
+      J2
+      B
+      W1
+      A1
+      R1
+      V1
+      G1
+      O1
+      B1
+      Y
+      C1
+      S1
+      Y1
+      Z1
+      R
+      E2
+      G
+      A2
+      E1
+      G2
+      I1
+      K1
+      H
+      B2
+      Q
+      H2
+      V
+      L
+      D
+      S
+      C
+      N
+      W
+      J1
+      P
+      C2
+      H1
+      J
+      D2
+      X
+      P1
+      K
+      D1
+      N1
+      F
+      U1
+      F1
+      E
+      T1
+      I
+      M1
+      X1
+      U
+      Z
+      A
+      I2
+      T
+      M
+      F2)
+    (Main_void_mainJayArray_java_lang_String_Block1_1
+      K
+      D1
+      N1
+      F
+      O
+      L1
+      W1
+      R1
+      G1
+      Y
+      E1
+      G2
+      I1
+      K1
+      H
+      B2
+      Q
+      H2
+      V
+      L
+      D
+      S
+      C
+      N
+      W
+      J1
+      P
+      C2
+      H1
+      J
+      K
+      D1
+      N1
+      F
+      U1
+      1
+      E
+      T1
+      I
+      M1
+      X1
+      U
+      Z
+      A
+      I2
+      T
+      M
+      F2)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_1
+           C
+           C1
+           F1
+           V
+           E1
+           G1
+           A1
+           B
+           L1
+           I1
+           M
+           K
+           S1
+           J1
+           B1
+           Z
+           L
+           M1
+           D
+           U
+           T1
+           J
+           I
+           D1
+           O
+           K1
+           W
+           Y
+           T
+           Z1
+           C
+           C1
+           F1
+           V
+           H1
+           N
+           X
+           P
+           P1
+           S
+           H
+           R
+           E
+           A
+           Q
+           G
+           N1
+           F)
+         (or false (= C1 137))
+         (>= V 0)
+         (= C 1))
+    (Main_void_mainJayArray_java_lang_String_Block1_2
+      C
+      C1
+      F1
+      V
+      E1
+      G1
+      A1
+      B
+      L1
+      I1
+      M
+      K
+      S1
+      J1
+      B1
+      Z
+      L
+      M1
+      D
+      U
+      T1
+      J
+      I
+      D1
+      O
+      K1
+      W
+      Y
+      T
+      Z1
+      C
+      C1
+      F1
+      V
+      N
+      X
+      P
+      P1
+      S
+      H
+      R
+      E
+      A
+      Q
+      G
+      N1
+      F)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_2
+      X
+      N
+      T1
+      I1
+      H
+      A1
+      B
+      G1
+      L1
+      N1
+      B1
+      D1
+      E1
+      S
+      F
+      U1
+      K
+      Z1
+      Z
+      S1
+      T
+      J
+      G
+      U
+      Q
+      M1
+      M
+      Y
+      P
+      K1
+      X
+      N
+      T1
+      I1
+      V
+      C
+      L
+      D
+      J1
+      O
+      I
+      H1
+      A
+      C1
+      R
+      P1
+      W)
+    (inv_JayArray_java_lang_String_103 X N T1 I1 F1 E I1 C1 R P1 W)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_2
+      W
+      M
+      P1
+      F1
+      G
+      A1
+      B
+      G1
+      L1
+      I1
+      Z
+      C1
+      D1
+      S
+      E
+      S1
+      I
+      Z1
+      Y
+      N1
+      R
+      J
+      F
+      T
+      Q
+      M1
+      L
+      X
+      O
+      K1
+      W
+      M
+      P1
+      F1
+      V
+      C
+      K
+      D
+      J1
+      N
+      H
+      E1
+      A
+      B1
+      P
+      H1
+      U)
+    (Main_void_mainJayArray_java_lang_String_Block1_3
+      W
+      M
+      P1
+      F1
+      G
+      A1
+      B
+      G1
+      L1
+      I1
+      Z
+      C1
+      D1
+      S
+      E
+      S1
+      I
+      Z1
+      Y
+      N1
+      R
+      J
+      F
+      T
+      Q
+      M1
+      L
+      X
+      O
+      K1
+      V
+      C
+      K
+      D
+      J1
+      N
+      H
+      E1
+      A)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_3
+      D
+      X
+      E1
+      V
+      L
+      G1
+      A1
+      L1
+      B
+      T
+      P
+      M
+      O
+      J
+      B1
+      Q
+      Z
+      Z1
+      K
+      Y
+      H1
+      S
+      E
+      C
+      G
+      K1
+      D1
+      I
+      N
+      M1
+      U
+      F1
+      C1
+      R
+      J1
+      F
+      H
+      W
+      A)
+    (Main_void_clinit_pre U)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_3
+           D
+           Z
+           N1
+           X
+           M
+           G1
+           A1
+           L1
+           B
+           V
+           R
+           N
+           Q
+           J
+           E1
+           T
+           C1
+           Z1
+           L
+           B1
+           S1
+           S
+           E
+           C
+           H
+           K1
+           I1
+           K
+           O
+           M1
+           W
+           P1
+           F1
+           U
+           J1
+           F
+           I
+           Y
+           A)
+         (Main_void_clinit_post W H1 D1 P G))
+    (Main_void_mainJayArray_java_lang_String_Block1_4
+      D
+      Z
+      N1
+      X
+      M
+      G1
+      A1
+      L1
+      B
+      V
+      R
+      N
+      Q
+      J
+      E1
+      T
+      C1
+      Z1
+      L
+      B1
+      S1
+      S
+      E
+      C
+      H
+      K1
+      I1
+      K
+      O
+      M1
+      G
+      P1
+      F1
+      U
+      J1
+      F
+      I
+      Y
+      A)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_4
+      F
+      L
+      I
+      K
+      H1
+      G1
+      A1
+      L1
+      B
+      C
+      C1
+      B1
+      D1
+      S
+      W
+      R
+      P
+      M1
+      U
+      Q
+      E
+      J
+      Z
+      F1
+      D
+      J1
+      E1
+      T
+      M
+      A
+      O
+      H
+      X
+      Y
+      K1
+      V
+      G
+      N
+      Z1)
+    (JayHornAssertions_void_clinit_pre O)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_4
+           F
+           L
+           I
+           K
+           S1
+           G1
+           A1
+           L1
+           B
+           C
+           H1
+           F1
+           I1
+           S
+           W
+           R
+           P
+           M1
+           U
+           Q
+           E
+           J
+           E1
+           P1
+           D
+           J1
+           N1
+           T
+           M
+           A
+           N
+           H
+           X
+           Y
+           K1
+           V
+           G
+           O
+           Z1)
+         (JayHornAssertions_void_clinit_post N C1 Z D1 B1))
+    (Main_void_mainJayArray_java_lang_String_Block1_5
+      F
+      L
+      I
+      K
+      S1
+      G1
+      A1
+      L1
+      B
+      C
+      H1
+      F1
+      I1
+      S
+      W
+      R
+      P
+      M1
+      U
+      Q
+      E
+      J
+      E1
+      P1
+      D
+      J1
+      N1
+      T
+      M
+      A
+      C1
+      Z
+      D1
+      B1
+      H
+      X
+      Y
+      K1
+      V
+      G
+      O
+      Z1)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_5
+      C1
+      Z
+      E1
+      F
+      D1
+      L1
+      G1
+      B
+      A1
+      X
+      Y
+      G
+      D
+      J1
+      Q
+      P
+      O
+      K1
+      C
+      N
+      N1
+      Z1
+      T
+      T1
+      U1
+      S
+      L
+      I1
+      H1
+      M1
+      E
+      I
+      M
+      V
+      S1
+      B1
+      K
+      A2
+      F1
+      H
+      U
+      A)
+    (Main_void_mainJayArray_java_lang_String_Block1_6
+      C1
+      Z
+      E1
+      F
+      D1
+      L1
+      G1
+      B
+      A1
+      X
+      W
+      P1
+      R
+      J
+      Y
+      G
+      D
+      J1
+      Q
+      P
+      O
+      K1
+      C
+      N
+      N1
+      Z1
+      T
+      T1
+      U1
+      S
+      L
+      I1
+      H1
+      M1
+      E
+      I
+      M
+      V
+      S1
+      B1
+      K
+      A2
+      F1
+      H
+      U
+      A)))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block1_6
+                  B1
+                  K
+                  N1
+                  U
+                  G
+                  B
+                  G1
+                  L1
+                  A1
+                  Y
+                  F
+                  V
+                  Z
+                  J1
+                  U1
+                  E
+                  W
+                  J
+                  N
+                  M
+                  D
+                  K1
+                  T1
+                  S1
+                  T
+                  A2
+                  C
+                  H1
+                  E1
+                  S
+                  L
+                  Q
+                  I1
+                  A
+                  P1
+                  C1
+                  F1
+                  O
+                  D1
+                  H
+                  I
+                  Z1
+                  R
+                  X
+                  P
+                  M1)
+                (= ((_ extract 52 52) (mantissa J1)) #b1))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block1_7
+        B1
+        K
+        N1
+        U
+        G
+        B
+        G1
+        L1
+        A1
+        Y
+        F
+        V
+        Z
+        J1
+        U1
+        E
+        W
+        J
+        N
+        M
+        D
+        K1
+        T1
+        S1
+        T
+        A2
+        C
+        H1
+        E1
+        S
+        L
+        Q
+        I1
+        A
+        P1
+        C1
+        F1
+        O
+        D1
+        H
+        I
+        Z1
+        R
+        X
+        P
+        M1))))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_7
+      X
+      T1
+      O
+      E1
+      H1
+      B
+      L1
+      G1
+      A1
+      P1
+      W
+      F1
+      L
+      A
+      C
+      G
+      Q
+      Z1
+      V
+      P
+      I
+      A2
+      Y
+      D1
+      F
+      J1
+      H
+      C1
+      E
+      S
+      D
+      K
+      M
+      M1
+      T
+      U1
+      S1
+      U
+      B1
+      Z
+      R
+      K1
+      I1
+      N
+      N1
+      J)
+    (Main_void_mainJayArray_java_lang_String_Block1_8
+      X
+      T1
+      O
+      E1
+      H1
+      B
+      L1
+      G1
+      A1
+      (= T 0)
+      P1
+      W
+      F1
+      L
+      A
+      C
+      G
+      Q
+      Z1
+      V
+      P
+      I
+      A2
+      Y
+      D1
+      F
+      J1
+      H
+      C1
+      E
+      S
+      D
+      K
+      M
+      M1
+      T
+      U1
+      S1
+      U
+      B1
+      Z
+      R
+      K1
+      I1
+      N
+      N1
+      J)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_8
+      I1
+      O
+      U
+      L
+      D
+      G1
+      B
+      A1
+      O1
+      L1
+      S1
+      T
+      C
+      N1
+      J1
+      P
+      E
+      Z
+      M1
+      G
+      I
+      N
+      S
+      Y
+      H
+      M
+      A
+      K
+      R
+      W
+      A2
+      C1
+      P1
+      H1
+      J
+      E1
+      U1
+      Q
+      B1
+      V
+      D1
+      F
+      K1
+      X
+      F1
+      T1
+      Z1)
+    (Main_void_mainJayArray_java_lang_String_Block1_9
+      I1
+      O
+      U
+      L
+      D
+      G1
+      B
+      A1
+      O1
+      S1
+      T
+      C
+      N1
+      J1
+      P
+      E
+      Z
+      M1
+      G
+      I
+      N
+      S
+      Y
+      H
+      M
+      A
+      K
+      R
+      W
+      A2
+      C1
+      P1
+      H1
+      J
+      E1
+      U1
+      Q
+      B1
+      V
+      D1
+      F
+      K1
+      X
+      F1
+      T1
+      Z1)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_8
+           I1
+           O
+           U
+           L
+           D
+           G1
+           B
+           A1
+           O1
+           L1
+           S1
+           T
+           C
+           N1
+           J1
+           P
+           E
+           Z
+           M1
+           G
+           I
+           N
+           S
+           Y
+           H
+           M
+           A
+           K
+           R
+           W
+           A2
+           C1
+           P1
+           H1
+           J
+           E1
+           U1
+           Q
+           B1
+           V
+           D1
+           F
+           K1
+           X
+           F1
+           T1
+           Z1)
+         (not L1))
+    |Assert_#0_Main.java,_line_6|))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_9
+           B2
+           X1
+           P
+           F1
+           I1
+           A1
+           G1
+           L1
+           B
+           P1
+           T
+           M
+           H1
+           H2
+           O
+           E1
+           Q
+           S
+           K
+           H
+           D
+           A2
+           Y
+           Y1
+           G
+           M1
+           U1
+           E
+           R
+           Z1
+           W
+           T1
+           C
+           K1
+           C1
+           U
+           F
+           S1
+           L
+           D1
+           N1
+           J
+           I
+           Z
+           X
+           A)
+         (not (= V 0))
+         (= J1 H2))
+    (Main_void_mainJayArray_java_lang_String_Block1_10
+      B2
+      X1
+      P
+      F1
+      I1
+      A1
+      G1
+      L1
+      B
+      P1
+      O
+      E1
+      Q
+      S
+      K
+      H
+      D
+      A2
+      Y
+      Y1
+      G
+      M1
+      U1
+      E
+      R
+      Z1
+      W
+      T1
+      C
+      K1
+      C1
+      U
+      F
+      S1
+      V
+      B1
+      N
+      J1
+      I
+      Z
+      X
+      A)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_10
+      H
+      E
+      N1
+      L
+      P
+      G1
+      A1
+      L1
+      B
+      I1
+      C1
+      U
+      F1
+      M1
+      O
+      G
+      W
+      J1
+      Q
+      D
+      Y
+      A
+      B1
+      R
+      N
+      J
+      Z
+      F
+      M
+      Z1
+      K
+      E1
+      D1
+      T
+      H1
+      C
+      I
+      K1
+      X
+      P1
+      V
+      S)
+    (Main_void_mainJayArray_java_lang_String_Block1_11
+      H
+      E
+      N1
+      L
+      P
+      G1
+      A1
+      L1
+      (= K 0)
+      B
+      I1
+      C1
+      U
+      F1
+      M1
+      O
+      G
+      W
+      J1
+      Q
+      D
+      Y
+      A
+      B1
+      R
+      N
+      J
+      Z
+      F
+      M
+      Z1
+      K
+      E1
+      D1
+      T
+      H1
+      C
+      I
+      K1
+      X
+      P1
+      V
+      S)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_11
+      P1
+      G
+      Z
+      R
+      V
+      O1
+      B
+      A1
+      L1
+      G1
+      Q
+      K
+      I
+      C
+      Z1
+      F
+      B1
+      E1
+      S
+      P
+      U
+      O
+      K1
+      D1
+      I1
+      H
+      M1
+      L
+      Y
+      X
+      J
+      F1
+      H1
+      E
+      N1
+      M
+      T
+      N
+      J1
+      C1
+      W
+      D
+      A)
+    (Main_void_mainJayArray_java_lang_String_Block1_12
+      P1
+      G
+      Z
+      R
+      V
+      O1
+      B
+      A1
+      G1
+      Q
+      K
+      I
+      C
+      Z1
+      F
+      B1
+      E1
+      S
+      P
+      U
+      O
+      K1
+      D1
+      I1
+      H
+      M1
+      L
+      Y
+      X
+      J
+      F1
+      H1
+      E
+      N1
+      M
+      T
+      N
+      J1
+      C1
+      W
+      D
+      A)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_11
+           P1
+           G
+           Z
+           R
+           V
+           O1
+           B
+           A1
+           L1
+           G1
+           Q
+           K
+           I
+           C
+           Z1
+           F
+           B1
+           E1
+           S
+           P
+           U
+           O
+           K1
+           D1
+           I1
+           H
+           M1
+           L
+           Y
+           X
+           J
+           F1
+           H1
+           E
+           N1
+           M
+           T
+           N
+           J1
+           C1
+           W
+           D
+           A)
+         (not L1))
+    |Assert_#1_Main.java,_line_6|))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_12
+      V
+      P1
+      T1
+      F
+      E
+      A1
+      B
+      L1
+      G1
+      S1
+      I
+      F1
+      N
+      A
+      I1
+      D
+      M
+      S
+      E1
+      D1
+      P
+      A2
+      T
+      O
+      R
+      J1
+      B1
+      C
+      L
+      J
+      H1
+      N1
+      H
+      X
+      W
+      Z
+      G
+      M1
+      U
+      Q
+      K
+      K1)
+    (Main_void_mainJayArray_java_lang_String_Block1_13
+      V
+      P1
+      T1
+      F
+      E
+      A1
+      B
+      L1
+      G1
+      S1
+      C1
+      U1
+      Y
+      Z1
+      I
+      F1
+      N
+      A
+      I1
+      D
+      M
+      S
+      E1
+      D1
+      P
+      A2
+      T
+      O
+      R
+      J1
+      B1
+      C
+      L
+      J
+      H1
+      N1
+      H
+      X
+      W
+      Z
+      G
+      M1
+      U
+      Q
+      K
+      K1)))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block1_13
+                  N
+                  M
+                  P
+                  Y
+                  R
+                  B
+                  A1
+                  G1
+                  L1
+                  C
+                  D1
+                  P1
+                  H1
+                  A
+                  U1
+                  H
+                  X
+                  J1
+                  L
+                  I1
+                  B1
+                  A2
+                  S1
+                  U
+                  Q
+                  S
+                  E
+                  T1
+                  G
+                  Z1
+                  N1
+                  F
+                  D
+                  J
+                  K
+                  E1
+                  C1
+                  V
+                  Z
+                  W
+                  T
+                  M1
+                  O
+                  F1
+                  I
+                  K1)
+                (= ((_ extract 52 52) (mantissa A)) #b1))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block1_14
+        N
+        M
+        P
+        Y
+        R
+        B
+        A1
+        G1
+        L1
+        C
+        D1
+        P1
+        H1
+        A
+        U1
+        H
+        X
+        J1
+        L
+        I1
+        B1
+        A2
+        S1
+        U
+        Q
+        S
+        E
+        T1
+        G
+        Z1
+        N1
+        F
+        D
+        J
+        K
+        E1
+        C1
+        V
+        Z
+        W
+        T
+        M1
+        O
+        F1
+        I
+        K1))))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_14
+      Y
+      F1
+      G
+      X
+      C1
+      G1
+      L1
+      B
+      A1
+      U1
+      F
+      U
+      N1
+      K1
+      T
+      I1
+      H
+      Z1
+      Z
+      E1
+      P
+      J
+      N
+      S1
+      Q
+      S
+      W
+      V
+      E
+      A2
+      P1
+      L
+      D1
+      J1
+      B1
+      M
+      O
+      H1
+      I
+      D
+      T1
+      A
+      R
+      C
+      K
+      M1)
+    (Main_void_mainJayArray_java_lang_String_Block1_15
+      Y
+      F1
+      G
+      X
+      C1
+      G1
+      (= B1 0)
+      L1
+      B
+      A1
+      U1
+      F
+      U
+      N1
+      K1
+      T
+      I1
+      H
+      Z1
+      Z
+      E1
+      P
+      J
+      N
+      S1
+      Q
+      S
+      W
+      V
+      E
+      A2
+      P1
+      L
+      D1
+      J1
+      B1
+      M
+      O
+      H1
+      I
+      D
+      T1
+      A
+      R
+      C
+      K
+      M1)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_15
+      I1
+      T1
+      W
+      L
+      P1
+      G1
+      A1
+      L1
+      B
+      O1
+      U1
+      B1
+      D
+      H
+      M1
+      T
+      G
+      F1
+      J1
+      H1
+      K
+      D1
+      A
+      C1
+      N1
+      X
+      J
+      N
+      C
+      F
+      K1
+      Y
+      I
+      V
+      A2
+      P
+      Q
+      U
+      M
+      E1
+      O
+      R
+      Z1
+      S1
+      Z
+      E
+      S)
+    (Main_void_mainJayArray_java_lang_String_Block1_16
+      I1
+      T1
+      W
+      L
+      P1
+      G1
+      L1
+      B
+      O1
+      U1
+      B1
+      D
+      H
+      M1
+      T
+      G
+      F1
+      J1
+      H1
+      K
+      D1
+      A
+      C1
+      N1
+      X
+      J
+      N
+      C
+      F
+      K1
+      Y
+      I
+      V
+      A2
+      P
+      Q
+      U
+      M
+      E1
+      O
+      R
+      Z1
+      S1
+      Z
+      E
+      S)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_15
+           I1
+           T1
+           W
+           L
+           P1
+           G1
+           A1
+           L1
+           B
+           O1
+           U1
+           B1
+           D
+           H
+           M1
+           T
+           G
+           F1
+           J1
+           H1
+           K
+           D1
+           A
+           C1
+           N1
+           X
+           J
+           N
+           C
+           F
+           K1
+           Y
+           I
+           V
+           A2
+           P
+           Q
+           U
+           M
+           E1
+           O
+           R
+           Z1
+           S1
+           Z
+           E
+           S)
+         (not A1))
+    |Assert_#2_Main.java,_line_7|))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_16
+           S1
+           K
+           E1
+           B1
+           C1
+           L1
+           A1
+           G1
+           B
+           E
+           N
+           L
+           R
+           J
+           B2
+           C
+           D1
+           M1
+           G
+           D
+           X1
+           J1
+           H1
+           I1
+           W
+           K1
+           O
+           U
+           F1
+           A
+           H
+           U1
+           X
+           S
+           V
+           T1
+           Y1
+           N1
+           T
+           Q
+           Z
+           H2
+           P
+           Y
+           F
+           Z1)
+         (not (= M 0))
+         (= A2 J))
+    (Main_void_mainJayArray_java_lang_String_Block1_17
+      S1
+      K
+      E1
+      B1
+      C1
+      L1
+      A1
+      G1
+      B
+      E
+      B2
+      C
+      D1
+      M1
+      G
+      D
+      X1
+      J1
+      H1
+      I1
+      W
+      K1
+      O
+      U
+      F1
+      A
+      H
+      U1
+      X
+      S
+      V
+      T1
+      Y1
+      N1
+      T
+      Q
+      Z
+      H2
+      M
+      I
+      P1
+      A2)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_17
+      M
+      H1
+      T
+      U
+      E
+      B
+      G1
+      L1
+      A1
+      D
+      O
+      Y
+      V
+      J1
+      P1
+      B1
+      N
+      M1
+      F1
+      I
+      N1
+      K1
+      H
+      L
+      I1
+      S
+      K
+      E1
+      R
+      A
+      W
+      F
+      Z
+      P
+      D1
+      G
+      X
+      J
+      C
+      C1
+      Q
+      Z1)
+    (Main_void_mainJayArray_java_lang_String_Block1_18
+      M
+      H1
+      T
+      U
+      E
+      B
+      (= W 0)
+      G1
+      L1
+      A1
+      D
+      O
+      Y
+      V
+      J1
+      P1
+      B1
+      N
+      M1
+      F1
+      I
+      N1
+      K1
+      H
+      L
+      I1
+      S
+      K
+      E1
+      R
+      A
+      W
+      F
+      Z
+      P
+      D1
+      G
+      X
+      J
+      C
+      C1
+      Q
+      Z1)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_18
+      F
+      C1
+      P1
+      I1
+      V
+      G1
+      L1
+      A1
+      B
+      O1
+      E
+      F1
+      N1
+      M
+      J1
+      G
+      O
+      X
+      J
+      T
+      L
+      H
+      M1
+      D1
+      H1
+      Y
+      Z1
+      D
+      Q
+      E1
+      K1
+      N
+      C
+      Z
+      R
+      K
+      U
+      P
+      S
+      B1
+      I
+      W
+      A)
+    (Main_void_mainJayArray_java_lang_String_Block1_19
+      F
+      C1
+      P1
+      I1
+      V
+      G1
+      A1
+      B
+      O1
+      E
+      F1
+      N1
+      M
+      J1
+      G
+      O
+      X
+      J
+      T
+      L
+      H
+      M1
+      D1
+      H1
+      Y
+      Z1
+      D
+      Q
+      E1
+      K1
+      N
+      C
+      Z
+      R
+      K
+      U
+      P
+      S
+      B1
+      I
+      W
+      A)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_18
+           F
+           C1
+           P1
+           I1
+           V
+           G1
+           L1
+           A1
+           B
+           O1
+           E
+           F1
+           N1
+           M
+           J1
+           G
+           O
+           X
+           J
+           T
+           L
+           H
+           M1
+           D1
+           H1
+           Y
+           Z1
+           D
+           Q
+           E1
+           K1
+           N
+           C
+           Z
+           R
+           K
+           U
+           P
+           S
+           B1
+           I
+           W
+           A)
+         (not L1))
+    |Assert_#3_Main.java,_line_7|))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_19
+      R
+      Y
+      U
+      Q
+      V
+      G1
+      A1
+      B
+      L1
+      F
+      F1
+      L
+      W
+      J1
+      C1
+      E
+      T
+      M1
+      I
+      D
+      H
+      A
+      E1
+      N
+      I1
+      K1
+      H1
+      D1
+      P1
+      J
+      C
+      B1
+      K
+      G
+      O
+      N1
+      M
+      Z1
+      P
+      X
+      Z
+      S)
+    (Main_void_mainJayArray_java_lang_String_Block1_20
+      R
+      Y
+      U
+      Q
+      V
+      (not (= P 0))
+      G1
+      A1
+      B
+      L1
+      F
+      F1
+      L
+      W
+      J1
+      C1
+      E
+      T
+      M1
+      I
+      D
+      H
+      A
+      E1
+      N
+      I1
+      K1
+      H1
+      D1
+      P1
+      J
+      C
+      B1
+      K
+      G
+      O
+      N1
+      M
+      Z1
+      P
+      X
+      Z
+      S)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_20
+      H1
+      T
+      F1
+      I1
+      F
+      L1
+      B
+      A1
+      O1
+      G1
+      R
+      Q
+      N1
+      L
+      K1
+      G
+      W
+      C
+      A
+      K
+      B1
+      V
+      J1
+      O
+      I
+      N
+      M1
+      P1
+      Y
+      X
+      Z1
+      M
+      U
+      H
+      D
+      E1
+      P
+      Z
+      S
+      D1
+      E
+      C1
+      J)
+    (Main_void_mainJayArray_java_lang_String_Block1_21
+      H1
+      T
+      F1
+      I1
+      F
+      B
+      A1
+      O1
+      G1
+      R
+      Q
+      N1
+      L
+      K1
+      G
+      W
+      C
+      A
+      K
+      B1
+      V
+      J1
+      O
+      I
+      N
+      M1
+      P1
+      Y
+      X
+      Z1
+      M
+      U
+      H
+      D
+      E1
+      P
+      Z
+      S
+      D1
+      E
+      C1
+      J)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_20
+           H1
+           T
+           F1
+           I1
+           F
+           L1
+           B
+           A1
+           O1
+           G1
+           R
+           Q
+           N1
+           L
+           K1
+           G
+           W
+           C
+           A
+           K
+           B1
+           V
+           J1
+           O
+           I
+           N
+           M1
+           P1
+           Y
+           X
+           Z1
+           M
+           U
+           H
+           D
+           E1
+           P
+           Z
+           S
+           D1
+           E
+           C1
+           J)
+         (not L1))
+    |Assert_#4_Main.java,_line_8|))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_21
+           L
+           C
+           F1
+           C1
+           Q
+           L1
+           B
+           G1
+           A1
+           V
+           D
+           N1
+           T
+           A
+           I
+           R
+           D1
+           J
+           O
+           H
+           M
+           S
+           N
+           H1
+           S1
+           M1
+           X
+           G
+           P
+           Z1
+           B1
+           W
+           K
+           Z
+           U
+           E1
+           P1
+           K1
+           Y
+           U1
+           E
+           J1)
+         (not (= I1 0))
+         (= A2 J1))
+    (Main_void_mainJayArray_java_lang_String_Block1_22
+      L
+      C
+      F1
+      C1
+      Q
+      L1
+      B
+      G1
+      A1
+      V
+      I1
+      T1
+      F
+      A2
+      I
+      R
+      D1
+      J
+      O
+      H
+      M
+      S
+      N
+      H1
+      S1
+      M1
+      X
+      G
+      P
+      Z1
+      B1
+      W
+      K
+      Z
+      U
+      E1
+      P1
+      K1
+      Y
+      U1
+      E
+      J1)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_22
+      Y
+      L
+      X
+      C
+      E1
+      G1
+      B
+      L1
+      A1
+      I1
+      G
+      F
+      O
+      J
+      Z
+      C1
+      Q
+      S
+      H
+      U
+      D
+      A
+      P
+      N
+      D1
+      Z1
+      K
+      H1
+      V
+      J1
+      R
+      E
+      N1
+      M
+      B1
+      W
+      I
+      K1
+      T
+      P1
+      F1
+      M1)
+    (Main_void_mainJayArray_java_lang_String_Block1_23
+      Y
+      L
+      X
+      C
+      E1
+      G1
+      B
+      (= R 0)
+      L1
+      A1
+      I1
+      G
+      F
+      O
+      J
+      Z
+      C1
+      Q
+      S
+      H
+      U
+      D
+      A
+      P
+      N
+      D1
+      Z1
+      K
+      H1
+      V
+      J1
+      R
+      E
+      N1
+      M
+      B1
+      W
+      I
+      K1
+      T
+      P1
+      F1
+      M1)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block1_23
+      F
+      H
+      B1
+      I
+      I1
+      G1
+      B
+      A1
+      L1
+      O1
+      V
+      W
+      Q
+      E1
+      J
+      D1
+      P1
+      O
+      S
+      C
+      G
+      F1
+      Z1
+      K
+      C1
+      Z
+      A
+      Y
+      L
+      P
+      J1
+      D
+      N1
+      E
+      M
+      N
+      R
+      T
+      M1
+      H1
+      X
+      U
+      K1)
+    (Main_void_mainJayArray_java_lang_String_Block1_24
+      F
+      H
+      B1
+      I
+      I1
+      G1
+      B
+      L1
+      O1
+      V
+      W
+      Q
+      E1
+      J
+      D1
+      P1
+      O
+      S
+      C
+      G
+      F1
+      Z1
+      K
+      C1
+      Z
+      A
+      Y
+      L
+      P
+      J1
+      D
+      N1
+      E
+      M
+      N
+      R
+      T
+      M1
+      H1
+      X
+      U
+      K1)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_23
+           F
+           H
+           B1
+           I
+           I1
+           G1
+           B
+           A1
+           L1
+           O1
+           V
+           W
+           Q
+           E1
+           J
+           D1
+           P1
+           O
+           S
+           C
+           G
+           F1
+           Z1
+           K
+           C1
+           Z
+           A
+           Y
+           L
+           P
+           J1
+           D
+           N1
+           E
+           M
+           N
+           R
+           T
+           M1
+           H1
+           X
+           U
+           K1)
+         (not A1))
+    |Assert_#5_Main.java,_line_8|))
+(rule (let ((a!1 (= ((_ extract 51 0)
+                (mantissa (DoubleFloatingPoint
+                            false
+                            #b10000000000
+                            #b10000000000000000000000000000000000000000000000000000
+                            false
+                            false
+                            false
+                            false)))
+              #x0000000000000))
+      (a!3 (not (= ((_ extract 51 0) (mantissa K1)) #x0000000000000))))
+(let ((a!2 (and (= (exponent (DoubleFloatingPoint
+                               false
+                               #b10000000000
+                               #b10000000000000000000000000000000000000000000000000000
+                               false
+                               false
+                               false
+                               false))
+                   #b11111111111)
+                (not a!1))))
+(let ((a!4 (or a!2 (and (= (exponent K1) #b11111111111) a!3))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block1_24
+             V
+             H
+             G
+             B1
+             O
+             L1
+             G1
+             B
+             A1
+             W
+             K
+             F1
+             P1
+             K1
+             C
+             I1
+             C1
+             A
+             X
+             E1
+             N1
+             Z1
+             Z
+             E
+             L
+             S
+             I
+             N
+             U
+             J
+             R
+             Y
+             P
+             M
+             H1
+             D1
+             F
+             M1
+             D
+             Q
+             T
+             J1)
+           a!4)
+      (Main_void_mainJayArray_java_lang_String_Block1_25
+        V
+        H
+        G
+        B1
+        O
+        L1
+        G1
+        B
+        A1
+        2
+        W
+        C
+        I1
+        C1
+        A
+        X
+        E1
+        N1
+        Z1
+        Z
+        E
+        L
+        S
+        I
+        N
+        U
+        J
+        R
+        Y
+        P
+        M
+        H1
+        D1
+        F
+        M1
+        D
+        Q
+        T
+        J1))))))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block1_24
+                  V
+                  H
+                  G
+                  B1
+                  O
+                  L1
+                  G1
+                  B
+                  A1
+                  W
+                  K
+                  F1
+                  P1
+                  K1
+                  C
+                  I1
+                  C1
+                  A
+                  X
+                  E1
+                  N1
+                  Z1
+                  Z
+                  E
+                  L
+                  S
+                  I
+                  N
+                  U
+                  J
+                  R
+                  Y
+                  P
+                  M
+                  H1
+                  D1
+                  F
+                  M1
+                  D
+                  Q
+                  T
+                  J1)
+                (= (exponent (DoubleFloatingPoint
+                               false
+                               #b10000000000
+                               #b10000000000000000000000000000000000000000000000000000
+                               false
+                               false
+                               false
+                               false))
+                   #b00000000000)
+                (= (mantissa (DoubleFloatingPoint
+                               false
+                               #b10000000000
+                               #b10000000000000000000000000000000000000000000000000000
+                               false
+                               false
+                               false
+                               false))
+                   #b00000000000000000000000000000000000000000000000000000)
+                (= (exponent K1) #b00000000000)
+                (= (mantissa K1)
+                   #b00000000000000000000000000000000000000000000000000000))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block1_25
+        V
+        H
+        G
+        B1
+        O
+        L1
+        G1
+        B
+        A1
+        0
+        W
+        C
+        I1
+        C1
+        A
+        X
+        E1
+        N1
+        Z1
+        Z
+        E
+        L
+        S
+        I
+        N
+        U
+        J
+        R
+        Y
+        P
+        M
+        H1
+        D1
+        F
+        M1
+        D
+        Q
+        T
+        J1))))
+(rule (let ((a!1 (= ((_ extract 51 0)
+                (mantissa (DoubleFloatingPoint
+                            false
+                            #b10000000000
+                            #b10000000000000000000000000000000000000000000000000000
+                            false
+                            false
+                            false
+                            false)))
+              #x0000000000000))
+      (a!3 (not (= ((_ extract 51 0) (mantissa K1)) #x0000000000000)))
+      (a!5 (and (= (exponent (DoubleFloatingPoint
+                               false
+                               #b10000000000
+                               #b10000000000000000000000000000000000000000000000000000
+                               false
+                               false
+                               false
+                               false))
+                   #b00000000000)
+                (= (mantissa (DoubleFloatingPoint
+                               false
+                               #b10000000000
+                               #b10000000000000000000000000000000000000000000000000000
+                               false
+                               false
+                               false
+                               false))
+                   #b00000000000000000000000000000000000000000000000000000)
+                (= (exponent K1) #b00000000000)
+                (= (mantissa K1)
+                   #b00000000000000000000000000000000000000000000000000000))))
+(let ((a!2 (and (= (exponent (DoubleFloatingPoint
+                               false
+                               #b10000000000
+                               #b10000000000000000000000000000000000000000000000000000
+                               false
+                               false
+                               false
+                               false))
+                   #b11111111111)
+                (not a!1)))
+      (a!4 (not (and (= (exponent K1) #b11111111111) a!3))))
+(let ((a!6 (and (Main_void_mainJayArray_java_lang_String_Block1_24
+                  V
+                  H
+                  G
+                  B1
+                  O
+                  L1
+                  G1
+                  B
+                  A1
+                  W
+                  K
+                  F1
+                  P1
+                  K1
+                  C
+                  I1
+                  C1
+                  A
+                  X
+                  E1
+                  N1
+                  Z1
+                  Z
+                  E
+                  L
+                  S
+                  I
+                  N
+                  U
+                  J
+                  R
+                  Y
+                  P
+                  M
+                  H1
+                  D1
+                  F
+                  M1
+                  D
+                  Q
+                  T
+                  J1)
+                (not a!2)
+                a!4
+                (not (= (DoubleFloatingPoint
+                          false
+                          #b10000000000
+                          #b10000000000000000000000000000000000000000000000000000
+                          false
+                          false
+                          false
+                          false)
+                        K1))
+                (not a!5))))
+  (=> a!6
+      (Main_void_mainJayArray_java_lang_String_Block1_24_11
+        V
+        H
+        G
+        B1
+        O
+        L1
+        G1
+        B
+        A1
+        W
+        K
+        F1
+        P1
+        K1
+        C
+        I1
+        C1
+        A
+        X
+        E1
+        N1
+        Z1
+        Z
+        E
+        L
+        S
+        I
+        N
+        U
+        J
+        R
+        Y
+        P
+        M
+        H1
+        D1
+        F
+        M1
+        D
+        Q
+        T
+        J1))))))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block1_24_11
+                  V
+                  H
+                  G
+                  B1
+                  O
+                  L1
+                  G1
+                  B
+                  A1
+                  W
+                  K
+                  F1
+                  P1
+                  K1
+                  C
+                  I1
+                  C1
+                  A
+                  X
+                  E1
+                  N1
+                  Z1
+                  Z
+                  E
+                  L
+                  S
+                  I
+                  N
+                  U
+                  J
+                  R
+                  Y
+                  P
+                  M
+                  H1
+                  D1
+                  F
+                  M1
+                  D
+                  Q
+                  T
+                  J1)
+                (= (sign (DoubleFloatingPoint
+                           false
+                           #b10000000000
+                           #b10000000000000000000000000000000000000000000000000000
+                           false
+                           false
+                           false
+                           false))
+                   (sign K1)))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block1_24_12
+        V
+        H
+        G
+        B1
+        O
+        L1
+        G1
+        B
+        A1
+        W
+        K
+        F1
+        P1
+        K1
+        C
+        I1
+        C1
+        A
+        X
+        E1
+        N1
+        Z1
+        Z
+        E
+        L
+        S
+        I
+        N
+        U
+        J
+        R
+        Y
+        P
+        M
+        H1
+        D1
+        F
+        M1
+        D
+        Q
+        T
+        J1))))
+(rule (let ((a!1 (not (= (sign (DoubleFloatingPoint
+                           false
+                           #b10000000000
+                           #b10000000000000000000000000000000000000000000000000000
+                           false
+                           false
+                           false
+                           false))
+                   (sign K1))))
+      (a!2 (not (= (sign (DoubleFloatingPoint
+                           false
+                           #b10000000000
+                           #b10000000000000000000000000000000000000000000000000000
+                           false
+                           false
+                           false
+                           false))
+                   false))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block1_24_11
+             V
+             H
+             G
+             B1
+             O
+             L1
+             G1
+             B
+             A1
+             W
+             K
+             F1
+             P1
+             K1
+             C
+             I1
+             C1
+             A
+             X
+             E1
+             N1
+             Z1
+             Z
+             E
+             L
+             S
+             I
+             N
+             U
+             J
+             R
+             Y
+             P
+             M
+             H1
+             D1
+             F
+             M1
+             D
+             Q
+             T
+             J1)
+           a!1)
+      (Main_void_mainJayArray_java_lang_String_Block1_25
+        V
+        H
+        G
+        B1
+        O
+        L1
+        G1
+        B
+        A1
+        (ite a!2 (- 1) 1)
+        W
+        C
+        I1
+        C1
+        A
+        X
+        E1
+        N1
+        Z1
+        Z
+        E
+        L
+        S
+        I
+        N
+        U
+        J
+        R
+        Y
+        P
+        M
+        H1
+        D1
+        F
+        M1
+        D
+        Q
+        T
+        J1))))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block1_24_12
+                  V
+                  H
+                  G
+                  B1
+                  O
+                  L1
+                  G1
+                  B
+                  A1
+                  W
+                  K
+                  F1
+                  P1
+                  K1
+                  C
+                  I1
+                  C1
+                  A
+                  X
+                  E1
+                  N1
+                  Z1
+                  Z
+                  E
+                  L
+                  S
+                  I
+                  N
+                  U
+                  J
+                  R
+                  Y
+                  P
+                  M
+                  H1
+                  D1
+                  F
+                  M1
+                  D
+                  Q
+                  T
+                  J1)
+                (= (exponent (DoubleFloatingPoint
+                               false
+                               #b10000000000
+                               #b10000000000000000000000000000000000000000000000000000
+                               false
+                               false
+                               false
+                               false))
+                   (exponent K1))))
+      (a!2 (not (= (sign (DoubleFloatingPoint
+                           false
+                           #b10000000000
+                           #b10000000000000000000000000000000000000000000000000000
+                           false
+                           false
+                           false
+                           false))
+                   false))))
+(let ((a!3 (ite a!2
+                (bvugt (mantissa (DoubleFloatingPoint
+                                   false
+                                   #b10000000000
+                                   #b10000000000000000000000000000000000000000000000000000
+                                   false
+                                   false
+                                   false
+                                   false))
+                       (mantissa K1))
+                (bvult (mantissa (DoubleFloatingPoint
+                                   false
+                                   #b10000000000
+                                   #b10000000000000000000000000000000000000000000000000000
+                                   false
+                                   false
+                                   false
+                                   false))
+                       (mantissa K1)))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block1_25
+        V
+        H
+        G
+        B1
+        O
+        L1
+        G1
+        B
+        A1
+        (ite a!3 (- 1) 1)
+        W
+        C
+        I1
+        C1
+        A
+        X
+        E1
+        N1
+        Z1
+        Z
+        E
+        L
+        S
+        I
+        N
+        U
+        J
+        R
+        Y
+        P
+        M
+        H1
+        D1
+        F
+        M1
+        D
+        Q
+        T
+        J1)))))
+(rule (let ((a!1 (not (= (exponent (DoubleFloatingPoint
+                               false
+                               #b10000000000
+                               #b10000000000000000000000000000000000000000000000000000
+                               false
+                               false
+                               false
+                               false))
+                   (exponent K1))))
+      (a!2 (not (= (sign (DoubleFloatingPoint
+                           false
+                           #b10000000000
+                           #b10000000000000000000000000000000000000000000000000000
+                           false
+                           false
+                           false
+                           false))
+                   false))))
+(let ((a!3 (ite a!2
+                (bvugt (exponent (DoubleFloatingPoint
+                                   false
+                                   #b10000000000
+                                   #b10000000000000000000000000000000000000000000000000000
+                                   false
+                                   false
+                                   false
+                                   false))
+                       (exponent K1))
+                (bvult (exponent (DoubleFloatingPoint
+                                   false
+                                   #b10000000000
+                                   #b10000000000000000000000000000000000000000000000000000
+                                   false
+                                   false
+                                   false
+                                   false))
+                       (exponent K1)))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block1_24_12
+             V
+             H
+             G
+             B1
+             O
+             L1
+             G1
+             B
+             A1
+             W
+             K
+             F1
+             P1
+             K1
+             C
+             I1
+             C1
+             A
+             X
+             E1
+             N1
+             Z1
+             Z
+             E
+             L
+             S
+             I
+             N
+             U
+             J
+             R
+             Y
+             P
+             M
+             H1
+             D1
+             F
+             M1
+             D
+             Q
+             T
+             J1)
+           a!1)
+      (Main_void_mainJayArray_java_lang_String_Block1_25
+        V
+        H
+        G
+        B1
+        O
+        L1
+        G1
+        B
+        A1
+        (ite a!3 (- 1) 1)
+        W
+        C
+        I1
+        C1
+        A
+        X
+        E1
+        N1
+        Z1
+        Z
+        E
+        L
+        S
+        I
+        N
+        U
+        J
+        R
+        Y
+        P
+        M
+        H1
+        D1
+        F
+        M1
+        D
+        Q
+        T
+        J1)))))
+(rule (let ((a!1 (= ((_ extract 51 0)
+                (mantissa (DoubleFloatingPoint
+                            false
+                            #b10000000000
+                            #b10000000000000000000000000000000000000000000000000000
+                            false
+                            false
+                            false
+                            false)))
+              #x0000000000000))
+      (a!3 (not (= ((_ extract 51 0) (mantissa K1)) #x0000000000000))))
+(let ((a!2 (and (= (exponent (DoubleFloatingPoint
+                               false
+                               #b10000000000
+                               #b10000000000000000000000000000000000000000000000000000
+                               false
+                               false
+                               false
+                               false))
+                   #b11111111111)
+                (not a!1)))
+      (a!4 (not (and (= (exponent K1) #b11111111111) a!3))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block1_24
+             V
+             H
+             G
+             B1
+             O
+             L1
+             G1
+             B
+             A1
+             W
+             K
+             F1
+             P1
+             K1
+             C
+             I1
+             C1
+             A
+             X
+             E1
+             N1
+             Z1
+             Z
+             E
+             L
+             S
+             I
+             N
+             U
+             J
+             R
+             Y
+             P
+             M
+             H1
+             D1
+             F
+             M1
+             D
+             Q
+             T
+             J1)
+           (not a!2)
+           a!4
+           (= (DoubleFloatingPoint
+                false
+                #b10000000000
+                #b10000000000000000000000000000000000000000000000000000
+                false
+                false
+                false
+                false)
+              K1))
+      (Main_void_mainJayArray_java_lang_String_Block1_25
+        V
+        H
+        G
+        B1
+        O
+        L1
+        G1
+        B
+        A1
+        0
+        W
+        C
+        I1
+        C1
+        A
+        X
+        E1
+        N1
+        Z1
+        Z
+        E
+        L
+        S
+        I
+        N
+        U
+        J
+        R
+        Y
+        P
+        M
+        H1
+        D1
+        F
+        M1
+        D
+        Q
+        T
+        J1)))))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_25
+           W
+           E1
+           G
+           I1
+           H1
+           L1
+           A1
+           G1
+           B
+           Z
+           B1
+           F1
+           F
+           Y
+           A
+           T
+           Q
+           E
+           S
+           L
+           D1
+           X
+           J1
+           C1
+           I
+           P
+           M1
+           R
+           K
+           U
+           V
+           N
+           H
+           M
+           J
+           D
+           C
+           O
+           K1)
+         (>= Z 0))
+    (Main_void_mainJayArray_java_lang_String_Block2 W E1 G I1 H1 Z B1 R K U V)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block1_25
+           W
+           E1
+           G
+           I1
+           H1
+           L1
+           A1
+           G1
+           B
+           Z
+           B1
+           F1
+           F
+           Y
+           A
+           U
+           Q
+           E
+           S
+           L
+           D1
+           X
+           J1
+           C1
+           I
+           P
+           M1
+           R
+           K
+           T
+           V
+           N
+           H
+           M
+           J
+           D
+           C
+           O
+           K1)
+         (not (>= Z 0)))
+    (Main_void_mainJayArray_java_lang_String_Block3
+      W
+      E1
+      G
+      I1
+      H1
+      L1
+      A1
+      G1
+      B
+      Z
+      B1
+      F1
+      F
+      Y
+      A
+      U
+      Q
+      E
+      S
+      L
+      D1
+      X
+      J1
+      C1
+      I
+      P
+      M1
+      R
+      K
+      T
+      V
+      N
+      H
+      M
+      J
+      D
+      C
+      O
+      K1)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block2 H M K N I F C G D L E)
+    (Main_void_mainJayArray_java_lang_String_Block0 H M K N I G D L E)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block3
+      V
+      I
+      X
+      P
+      Q
+      L1
+      B
+      A1
+      G1
+      D
+      E1
+      H1
+      F
+      H
+      A
+      L
+      E
+      C1
+      J1
+      C
+      N
+      F1
+      S
+      O
+      Y
+      K
+      M1
+      G
+      I1
+      U
+      Z
+      M
+      B1
+      D1
+      K1
+      R
+      T
+      W
+      J)
+    (Main_void_mainJayArray_java_lang_String_Block3_1
+      V
+      I
+      X
+      P
+      Q
+      (not (= M 0))
+      D
+      H1
+      F
+      H
+      A
+      L
+      E
+      C1
+      J1
+      C
+      N
+      F1
+      S
+      G
+      I1
+      U
+      Z
+      M
+      B1
+      D1
+      K1
+      R
+      T
+      W
+      J)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block3_1
+      T
+      I
+      Z
+      D
+      P
+      B
+      N
+      C
+      Y
+      V
+      J
+      L
+      H
+      M
+      A
+      W
+      Q
+      K
+      K1
+      X
+      U
+      C1
+      F
+      G
+      D1
+      B1
+      S
+      O
+      R
+      E
+      J1)
+    (Main_void_mainJayArray_java_lang_String_Block3_2
+      T
+      I
+      Z
+      D
+      P
+      N
+      C
+      Y
+      V
+      J
+      L
+      H
+      M
+      A
+      W
+      Q
+      K
+      K1
+      X
+      U
+      C1
+      F
+      G
+      D1
+      B1
+      S
+      O
+      R
+      E
+      J1)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_1
+           T
+           I
+           Z
+           D
+           P
+           B
+           N
+           C
+           Y
+           V
+           J
+           L
+           H
+           M
+           A
+           W
+           Q
+           K
+           K1
+           X
+           U
+           C1
+           F
+           G
+           D1
+           B1
+           S
+           O
+           R
+           E
+           J1)
+         (not B))
+    |Assert_#6_Main.java,_line_11|))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_2
+           D
+           H1
+           F1
+           H
+           K
+           C
+           O
+           I
+           N
+           S
+           U
+           Y
+           E1
+           J1
+           B1
+           X
+           T
+           J
+           Q
+           D1
+           E
+           W
+           R
+           M
+           Z
+           A
+           F
+           P
+           L
+           K1)
+         (not (= V 0))
+         (= M1 A))
+    (Main_void_mainJayArray_java_lang_String_Block3_3
+      D
+      H1
+      F1
+      H
+      K
+      C
+      V
+      C1
+      G
+      M1
+      U
+      Y
+      E1
+      J1
+      B1
+      X
+      T
+      J
+      Q
+      D1
+      E
+      W
+      R
+      M
+      Z
+      A
+      F
+      P
+      L
+      K1)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block3_3
+      D1
+      P
+      T
+      C1
+      Z
+      N
+      M
+      W
+      R
+      A
+      H
+      O
+      D
+      S
+      U
+      Y
+      V
+      J
+      L
+      E
+      G
+      Q
+      B1
+      X
+      C
+      J1
+      I
+      F
+      K
+      K1)
+    (Main_void_mainJayArray_java_lang_String_Block3_4
+      D1
+      P
+      T
+      C1
+      Z
+      (= L 0)
+      N
+      M
+      W
+      R
+      A
+      H
+      O
+      D
+      S
+      U
+      Y
+      V
+      J
+      L
+      E
+      G
+      Q
+      B1
+      X
+      C
+      J1
+      I
+      F
+      K
+      K1)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block3_4
+      Z
+      D
+      Q
+      X
+      W
+      B
+      U
+      G
+      L
+      M
+      J1
+      F
+      C
+      Y
+      K1
+      D1
+      B1
+      O
+      S
+      K
+      N
+      E
+      T
+      P
+      R
+      I
+      A
+      H
+      V
+      C1
+      J)
+    (Main_void_mainJayArray_java_lang_String_Block3_5
+      Z
+      D
+      Q
+      X
+      W
+      U
+      G
+      L
+      M
+      J1
+      F
+      C
+      Y
+      K1
+      D1
+      B1
+      O
+      S
+      K
+      N
+      E
+      T
+      P
+      R
+      I
+      A
+      H
+      V
+      C1
+      J)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_4
+           Z
+           D
+           Q
+           X
+           W
+           B
+           U
+           G
+           L
+           M
+           J1
+           F
+           C
+           Y
+           K1
+           D1
+           B1
+           O
+           S
+           K
+           N
+           E
+           T
+           P
+           R
+           I
+           A
+           H
+           V
+           C1
+           J)
+         (not B))
+    |Assert_#7_Main.java,_line_11|))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_5
+           O
+           V
+           T
+           B1
+           F1
+           N
+           M
+           H
+           Y
+           M1
+           Z
+           X
+           C1
+           J1
+           P
+           L
+           E1
+           A
+           F
+           E
+           I
+           R
+           W
+           Q
+           H1
+           S
+           G
+           C
+           D
+           J)
+         (not (= U 0))
+         (= K1 S))
+    (Main_void_mainJayArray_java_lang_String_Block3_6
+      O
+      V
+      T
+      B1
+      F1
+      N
+      M
+      H
+      Y
+      M1
+      U
+      K
+      D1
+      K1
+      P
+      L
+      E1
+      A
+      F
+      E
+      I
+      R
+      G
+      C
+      D
+      J)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block3_6
+      O
+      L
+      C
+      N
+      V
+      M
+      W
+      K
+      R
+      A
+      I
+      E
+      Z
+      J
+      U
+      D
+      X
+      J1
+      G
+      Q
+      F
+      H
+      Y
+      T
+      P
+      S)
+    (Main_void_mainJayArray_java_lang_String_Block3_7
+      O
+      L
+      C
+      N
+      V
+      (= G 0)
+      M
+      W
+      K
+      R
+      A
+      I
+      E
+      Z
+      J
+      U
+      D
+      X
+      J1
+      G
+      Q
+      F
+      H
+      Y
+      T
+      P
+      S)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block3_7
+      U
+      G
+      K
+      P
+      V
+      B
+      Z
+      L
+      O
+      H
+      J
+      N
+      X
+      E
+      J1
+      M
+      C
+      W
+      A
+      F
+      R
+      Q
+      T
+      I
+      D
+      Y
+      S)
+    (Main_void_mainJayArray_java_lang_String_Block3_8
+      U
+      G
+      K
+      P
+      V
+      Z
+      L
+      O
+      H
+      J
+      N
+      X
+      E
+      J1
+      M
+      C
+      W
+      A
+      F
+      R
+      Q
+      T
+      I
+      D
+      Y
+      S)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_7
+           U
+           G
+           K
+           P
+           V
+           B
+           Z
+           L
+           O
+           H
+           J
+           N
+           X
+           E
+           J1
+           M
+           C
+           W
+           A
+           F
+           R
+           Q
+           T
+           I
+           D
+           Y
+           S)
+         (not B))
+    |Assert_#8_Main.java,_line_11|))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_8
+           W
+           C
+           B1
+           X
+           T
+           Y
+           L
+           H
+           E
+           S
+           R
+           D
+           M
+           K1
+           U
+           Z
+           F
+           J
+           P
+           G
+           O
+           Q
+           C1
+           I
+           K
+           A)
+         (not (= D1 0))
+         (= J1 A))
+    (Main_void_mainJayArray_java_lang_String_Block3_9
+      W
+      C
+      B1
+      X
+      T
+      Y
+      L
+      H
+      E
+      S
+      R
+      D
+      M
+      K1
+      D1
+      N
+      V
+      J1
+      P
+      G
+      O
+      Q)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block3_9
+      G
+      T
+      D
+      N
+      C
+      M
+      O
+      Q
+      U
+      J
+      W
+      L
+      F
+      S
+      P
+      R
+      V
+      A
+      H
+      K
+      E
+      I)
+    (Main_void_mainJayArray_java_lang_String_Block3_10
+      G
+      T
+      D
+      N
+      C
+      (= H 0)
+      M
+      O
+      Q
+      U
+      J
+      W
+      L
+      F
+      S
+      P
+      R
+      V
+      A
+      H
+      K
+      E
+      I)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block3_10
+      R
+      Q
+      D
+      H
+      E
+      B
+      V
+      W
+      K
+      F
+      J
+      T
+      U
+      P
+      A
+      I
+      O
+      M
+      S
+      L
+      N
+      C
+      G)
+    (Main_void_mainJayArray_java_lang_String_Block3_11
+      R
+      Q
+      D
+      H
+      E
+      V
+      W
+      K
+      F
+      J
+      T
+      U
+      P
+      A
+      I
+      O
+      M
+      S
+      L
+      N
+      C
+      G)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_10
+           R
+           Q
+           D
+           H
+           E
+           B
+           V
+           W
+           K
+           F
+           J
+           T
+           U
+           P
+           A
+           I
+           O
+           M
+           S
+           L
+           N
+           C
+           G)
+         (not B))
+    |Assert_#9_Main.java,_line_11|))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11
+           P
+           G
+           C
+           R
+           X
+           W
+           I
+           T
+           N
+           J
+           O
+           M
+           D
+           S
+           V
+           Y
+           F
+           A
+           L
+           E
+           Q
+           Z)
+         (= (sign S) (sign A))
+         (= (exponent S) #b00000000000)
+         (= (mantissa S)
+            #b00000000000000000000000000000000000000000000000000000)
+         (= (exponent A) #b00000000000)
+         (= (mantissa A)
+            #b00000000000000000000000000000000000000000000000000000))
+    (Main_void_mainJayArray_java_lang_String_Block3_12
+      P
+      G
+      C
+      R
+      X
+      W
+      I
+      T
+      N
+      J
+      H
+      U
+      K
+      S
+      L
+      E
+      Q
+      Z)))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_11
+                  P
+                  G
+                  C
+                  R
+                  X
+                  W
+                  I
+                  T
+                  N
+                  J
+                  O
+                  M
+                  D
+                  S
+                  V
+                  Y
+                  F
+                  A
+                  L
+                  E
+                  Q
+                  Z)
+                (not (= (sign S) (sign A)))
+                (= (exponent S) #b00000000000)
+                (= (mantissa S)
+                   #b00000000000000000000000000000000000000000000000000000)
+                (= (exponent A) #b00000000000)
+                (= (mantissa A)
+                   #b00000000000000000000000000000000000000000000000000000)))
+      (a!2 (DoubleFloatingPoint
+             (ite (= (sign S) false) true false)
+             (exponent S)
+             (mantissa S)
+             (isNan S)
+             (isInfinity S)
+             (OVF S)
+             (UDF S))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block3_12
+        P
+        G
+        C
+        R
+        X
+        W
+        I
+        T
+        N
+        J
+        H
+        U
+        K
+        a!2
+        L
+        E
+        Q
+        Z))))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_11
+                  P
+                  G
+                  C
+                  R
+                  X
+                  W
+                  I
+                  T
+                  N
+                  J
+                  O
+                  M
+                  D
+                  S
+                  V
+                  Y
+                  F
+                  A
+                  L
+                  E
+                  Q
+                  Z)
+                (= (sign S) (sign A))
+                (= (exponent S) #b11111111111)
+                (= ((_ extract 51 0) (mantissa S)) #x0000000000000)
+                (= (exponent A) #b11111111111)
+                (= ((_ extract 51 0) (mantissa A)) #x0000000000000))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block3_12
+        P
+        G
+        C
+        R
+        X
+        W
+        I
+        T
+        N
+        J
+        H
+        U
+        K
+        S
+        L
+        E
+        Q
+        Z))))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_11
+                  P
+                  G
+                  C
+                  R
+                  X
+                  W
+                  I
+                  T
+                  N
+                  J
+                  O
+                  M
+                  D
+                  S
+                  V
+                  Y
+                  F
+                  A
+                  L
+                  E
+                  Q
+                  Z)
+                (not (= (sign S) (sign A)))
+                (= (exponent S) #b11111111111)
+                (= ((_ extract 51 0) (mantissa S)) #x0000000000000)
+                (= (exponent A) #b11111111111)
+                (= ((_ extract 51 0) (mantissa A)) #x0000000000000))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block3_12
+        P
+        G
+        C
+        R
+        X
+        W
+        I
+        T
+        N
+        J
+        H
+        U
+        K
+        (DoubleFloatingPoint
+          false
+          #b11111111111
+          #b11000000000000000000000000000000000000000000000000000
+          true
+          false
+          false
+          false)
+        L
+        E
+        Q
+        Z))))
+(rule (let ((a!1 (not (= ((_ extract 51 0) (mantissa S)) #x0000000000000)))
+      (a!2 (not (= ((_ extract 51 0) (mantissa A)) #x0000000000000))))
+(let ((a!3 (or (and (= (exponent S) #b11111111111) a!1)
+               (and (= (exponent A) #b11111111111) a!2))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11
+             P
+             G
+             C
+             R
+             X
+             W
+             I
+             T
+             N
+             J
+             O
+             M
+             D
+             S
+             V
+             Y
+             F
+             A
+             L
+             E
+             Q
+             Z)
+           a!3)
+      (Main_void_mainJayArray_java_lang_String_Block3_12
+        P
+        G
+        C
+        R
+        X
+        W
+        I
+        T
+        N
+        J
+        H
+        U
+        K
+        (DoubleFloatingPoint
+          false
+          #b11111111111
+          #b11000000000000000000000000000000000000000000000000000
+          true
+          false
+          false
+          false)
+        L
+        E
+        Q
+        Z)))))
+(rule (let ((a!1 (not (and (= (exponent A) #b00000000000)
+                     (= (mantissa A)
+                        #b00000000000000000000000000000000000000000000000000000)))))
+(let ((a!2 (and (Main_void_mainJayArray_java_lang_String_Block3_11
+                  P
+                  G
+                  C
+                  R
+                  X
+                  W
+                  I
+                  T
+                  N
+                  J
+                  O
+                  M
+                  D
+                  S
+                  V
+                  Y
+                  F
+                  A
+                  L
+                  E
+                  Q
+                  Z)
+                (= (exponent S) #b00000000000)
+                (= (mantissa S)
+                   #b00000000000000000000000000000000000000000000000000000)
+                (not (= (exponent A) #b11111111111))
+                a!1)))
+  (=> a!2
+      (Main_void_mainJayArray_java_lang_String_Block3_12
+        P
+        G
+        C
+        R
+        X
+        W
+        I
+        T
+        N
+        J
+        H
+        U
+        K
+        A
+        L
+        E
+        Q
+        Z)))))
+(rule (let ((a!1 (not (and (= (exponent S) #b00000000000)
+                     (= (mantissa S)
+                        #b00000000000000000000000000000000000000000000000000000)))))
+(let ((a!2 (and (Main_void_mainJayArray_java_lang_String_Block3_11
+                  P
+                  G
+                  C
+                  R
+                  X
+                  W
+                  I
+                  T
+                  N
+                  J
+                  O
+                  M
+                  D
+                  S
+                  V
+                  Y
+                  F
+                  A
+                  L
+                  E
+                  Q
+                  Z)
+                (= (exponent A) #b00000000000)
+                (= (mantissa A)
+                   #b00000000000000000000000000000000000000000000000000000)
+                (not (= (exponent S) #b11111111111))
+                a!1)))
+  (=> a!2
+      (Main_void_mainJayArray_java_lang_String_Block3_12
+        P
+        G
+        C
+        R
+        X
+        W
+        I
+        T
+        N
+        J
+        H
+        U
+        K
+        S
+        L
+        E
+        Q
+        Z)))))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_11
+                  P
+                  G
+                  C
+                  R
+                  X
+                  W
+                  I
+                  T
+                  N
+                  J
+                  O
+                  M
+                  D
+                  S
+                  V
+                  Y
+                  F
+                  A
+                  L
+                  E
+                  Q
+                  Z)
+                (= (exponent A) #b11111111111)
+                (= (mantissa A)
+                   #b00000000000000000000000000000000000000000000000000000)
+                (not (= (exponent S) #b11111111111)))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block3_12
+        P
+        G
+        C
+        R
+        X
+        W
+        I
+        T
+        N
+        J
+        H
+        U
+        K
+        A
+        L
+        E
+        Q
+        Z))))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_11
+                  P
+                  G
+                  C
+                  R
+                  X
+                  W
+                  I
+                  T
+                  N
+                  J
+                  O
+                  M
+                  D
+                  S
+                  V
+                  Y
+                  F
+                  A
+                  L
+                  E
+                  Q
+                  Z)
+                (= (exponent S) #b11111111111)
+                (= (mantissa S)
+                   #b00000000000000000000000000000000000000000000000000000)
+                (not (= (exponent A) #b11111111111)))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block3_12
+        P
+        G
+        C
+        R
+        X
+        W
+        I
+        T
+        N
+        J
+        H
+        U
+        K
+        S
+        L
+        E
+        Q
+        Z))))
+(rule (let ((a!1 (not (and (= (exponent S) #b00000000000)
+                     (= (mantissa S)
+                        #b00000000000000000000000000000000000000000000000000000))))
+      (a!2 (not (and (= (exponent A) #b00000000000)
+                     (= (mantissa A)
+                        #b00000000000000000000000000000000000000000000000000000))))
+      (a!4 (Main_void_mainJayArray_java_lang_String_Block3_11_11
+             G
+             O
+             F
+             M
+             T
+             R
+             P
+             N
+             D
+             J
+             E
+             C
+             H
+             S
+             Q
+             U
+             L
+             A
+             W
+             K
+             I
+             V
+             (bvadd (exponent S) (bvneg (exponent A))))))
+(let ((a!3 (and (Main_void_mainJayArray_java_lang_String_Block3_11
+                  G
+                  O
+                  F
+                  M
+                  T
+                  R
+                  P
+                  N
+                  D
+                  J
+                  E
+                  C
+                  H
+                  S
+                  Q
+                  U
+                  L
+                  A
+                  W
+                  K
+                  I
+                  V)
+                (not (= (exponent S) #b11111111111))
+                (not (= (exponent A) #b11111111111))
+                a!1
+                a!2)))
+  (=> a!3 a!4))))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_11
+           T
+           L
+           E
+           Q
+           V
+           F
+           O
+           P
+           D
+           J
+           K
+           M
+           C
+           S
+           R
+           I
+           N
+           A
+           H
+           U
+           W
+           G
+           K2)
+         (= ((_ extract 10 10) K2) #b0))
+    (Main_void_mainJayArray_java_lang_String_Block3_11_12
+      T
+      L
+      E
+      Q
+      V
+      F
+      O
+      P
+      D
+      J
+      K
+      M
+      C
+      S
+      R
+      I
+      N
+      A
+      H
+      U
+      W
+      G
+      K2
+      A
+      S)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_11
+           T
+           O
+           R
+           W
+           P
+           C
+           F
+           K
+           U
+           J
+           V
+           I
+           E
+           S
+           H
+           M
+           N
+           A
+           L
+           D
+           Q
+           G
+           K2)
+         (= ((_ extract 10 10) K2) #b1))
+    (Main_void_mainJayArray_java_lang_String_Block3_11_12
+      T
+      O
+      R
+      W
+      P
+      C
+      F
+      K
+      U
+      J
+      V
+      I
+      E
+      S
+      H
+      M
+      N
+      A
+      L
+      D
+      Q
+      G
+      (bvneg K2)
+      S
+      A)))
+(rule (let ((a!1 (bvlshr (concat ((_ zero_extend 1) (mantissa J)) #x0000000000000)
+                   ((_ zero_extend 95) K2)))
+      (a!2 (ExtendedDoubleFloatingPoint
+             (sign S)
+             ((_ zero_extend 1) (exponent S))
+             (concat ((_ zero_extend 1) (mantissa S)) #x0000000000000)
+             (isNan S)
+             (isInfinity S)
+             (OVF S)
+             (UDF S))))
+(let ((a!3 (Main_void_mainJayArray_java_lang_String_Block3_11_13
+             V
+             T
+             E
+             G
+             R
+             U
+             Q
+             L
+             H
+             J1
+             P
+             I
+             F
+             K1
+             M
+             K
+             C
+             A
+             N
+             O
+             W
+             D
+             (ExtendedDoubleFloatingPoint
+               (sign J)
+               ((_ zero_extend 1) (exponent J))
+               a!1
+               (isNan J)
+               (isInfinity J)
+               (OVF J)
+               (UDF J))
+             a!2)))
+  (=> (Main_void_mainJayArray_java_lang_String_Block3_11_12
+        V
+        T
+        E
+        G
+        R
+        U
+        Q
+        L
+        H
+        J1
+        P
+        I
+        F
+        K1
+        M
+        K
+        C
+        A
+        N
+        O
+        W
+        D
+        K2
+        J
+        S)
+      a!3))))
+(rule (let ((a!1 (Main_void_mainJayArray_java_lang_String_Block3_11_14
+             W
+             Q
+             D
+             T
+             L
+             V
+             E
+             I
+             O
+             S
+             N
+             K
+             F
+             A
+             R
+             H
+             M
+             J
+             C
+             U
+             P
+             G
+             (ExtendedDoubleFloatingPoint
+               (esign L2)
+               (eexponent M2)
+               (bvadd (emantissa L2) (emantissa M2))
+               false
+               false
+               false
+               false))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_13
+             W
+             Q
+             D
+             T
+             L
+             V
+             E
+             I
+             O
+             S
+             N
+             K
+             F
+             A
+             R
+             H
+             M
+             J
+             C
+             U
+             P
+             G
+             L2
+             M2)
+           (= (esign L2) (esign M2)))
+      a!1)))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_11_14
+                  H
+                  T
+                  V
+                  F
+                  U
+                  Q
+                  N
+                  I
+                  R
+                  J
+                  L
+                  C
+                  M
+                  A
+                  E
+                  D
+                  P
+                  S
+                  O
+                  G
+                  K
+                  W
+                  L2)
+                (= ((_ extract 105 105) (emantissa L2)) #b0))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block3_11_16
+        H
+        T
+        V
+        F
+        U
+        Q
+        N
+        I
+        R
+        J
+        L
+        C
+        M
+        A
+        E
+        D
+        P
+        S
+        O
+        G
+        K
+        W
+        L2))))
+(rule (let ((a!1 (not (= ((_ extract 105 105) (emantissa L2)) #b0)))
+      (a!2 (Main_void_mainJayArray_java_lang_String_Block3_11_16
+             H
+             T
+             V
+             F
+             U
+             Q
+             N
+             I
+             R
+             J
+             L
+             C
+             M
+             A
+             E
+             D
+             P
+             S
+             O
+             G
+             K
+             W
+             (ExtendedDoubleFloatingPoint
+               (esign L2)
+               (bvadd (eexponent L2) #x001)
+               (bvlshr (emantissa L2)
+                       #b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+               (eisNan L2)
+               (eisInfinity L2)
+               (eOVF L2)
+               (eUDF L2)))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_14
+             H
+             T
+             V
+             F
+             U
+             Q
+             N
+             I
+             R
+             J
+             L
+             C
+             M
+             A
+             E
+             D
+             P
+             S
+             O
+             G
+             K
+             W
+             L2)
+           a!1)
+      a!2)))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_11_13
+                  F
+                  W
+                  O
+                  Y
+                  Z
+                  K
+                  H
+                  L
+                  D
+                  J
+                  E
+                  P
+                  M
+                  A
+                  C
+                  T
+                  G
+                  S
+                  R
+                  U
+                  I
+                  V
+                  L2
+                  M2)
+                (not (= (esign L2) (esign M2)))
+                (= (emantissa L2) (emantissa M2))
+                (= (eexponent L2) (eexponent M2)))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block3_12
+        F
+        W
+        O
+        Y
+        Z
+        K
+        H
+        L
+        D
+        J
+        N
+        X
+        Q
+        (DoubleFloatingPoint
+          false
+          #b00000000000
+          #b00000000000000000000000000000000000000000000000000000
+          false
+          false
+          false
+          false)
+        R
+        U
+        I
+        V))))
+(rule (let ((a!1 (and (= (emantissa L2) (emantissa M2))
+                (not (= (eexponent L2) (eexponent M2)))))
+      (a!3 (Main_void_mainJayArray_java_lang_String_Block3_11_13_15
+             H
+             T
+             F
+             V
+             W
+             R
+             M
+             U
+             E
+             J
+             G
+             I
+             D
+             A
+             C
+             N
+             L
+             S
+             K
+             O
+             P
+             Q
+             (ExtendedDoubleFloatingPoint
+               (esign L2)
+               (eexponent L2)
+               (bvsub (emantissa L2) (emantissa M2))
+               false
+               false
+               false
+               false)
+             #b00000000000000000000000000000000000000000000000000000)))
+(let ((a!2 (and (Main_void_mainJayArray_java_lang_String_Block3_11_13
+                  H
+                  T
+                  F
+                  V
+                  W
+                  R
+                  M
+                  U
+                  E
+                  J
+                  G
+                  I
+                  D
+                  A
+                  C
+                  N
+                  L
+                  S
+                  K
+                  O
+                  P
+                  Q
+                  L2
+                  M2)
+                (not (= (esign L2) (esign M2)))
+                (or (bvugt (emantissa L2) (emantissa M2)) a!1))))
+  (=> a!2 a!3))))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_11_13
+                  P
+                  D
+                  O
+                  R
+                  W
+                  K
+                  H
+                  N
+                  L
+                  A
+                  M
+                  C
+                  G
+                  S
+                  V
+                  U
+                  T
+                  J
+                  E
+                  F
+                  I
+                  Q
+                  L2
+                  M2)
+                (not (= (esign L2) (esign M2)))
+                (bvult (emantissa L2) (emantissa M2))))
+      (a!2 (Main_void_mainJayArray_java_lang_String_Block3_11_13_15
+             P
+             D
+             O
+             R
+             W
+             K
+             H
+             N
+             L
+             A
+             M
+             C
+             G
+             S
+             V
+             U
+             T
+             J
+             E
+             F
+             I
+             Q
+             (ExtendedDoubleFloatingPoint
+               (esign M2)
+               (eexponent M2)
+               (bvsub (emantissa M2) (emantissa L2))
+               false
+               false
+               false
+               false)
+             #b00000000000000000000000000000000000000000000000000000)))
+  (=> a!1 a!2)))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_11_13_15
+                  N
+                  D
+                  Q
+                  V
+                  P
+                  L
+                  U
+                  G
+                  F
+                  A
+                  K
+                  W
+                  T
+                  J
+                  E
+                  M
+                  R
+                  S
+                  O
+                  H
+                  C
+                  I
+                  L2
+                  N2)
+                (= ((_ extract 104 104) (emantissa L2)) #b0)))
+      (a!2 (Main_void_mainJayArray_java_lang_String_Block3_11_13_15
+             N
+             D
+             Q
+             V
+             P
+             L
+             U
+             G
+             F
+             A
+             K
+             W
+             T
+             J
+             E
+             M
+             R
+             S
+             O
+             H
+             C
+             I
+             (ExtendedDoubleFloatingPoint
+               (esign L2)
+               (eexponent L2)
+               (bvshl (emantissa L2)
+                      #b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+               (eisNan L2)
+               (eisInfinity L2)
+               (eOVF L2)
+               (eUDF L2))
+             (bvadd N2 #b00000000000000000000000000000000000000000000000000001))))
+  (=> a!1 a!2)))
+(rule (let ((a!1 (not (= ((_ extract 104 104) (emantissa L2)) #b0)))
+      (a!2 (Main_void_mainJayArray_java_lang_String_Block3_11_16
+             C
+             E
+             V
+             M
+             O
+             T
+             G
+             F
+             U
+             A
+             I
+             H
+             K
+             S
+             D
+             Q
+             R
+             J
+             P
+             N
+             L
+             W
+             (ExtendedDoubleFloatingPoint
+               (esign L2)
+               (bvsub (eexponent L2) ((_ extract 11 0) N2))
+               (emantissa L2)
+               (eisNan L2)
+               (eisInfinity L2)
+               (eOVF L2)
+               (eUDF L2)))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_13_15
+             C
+             E
+             V
+             M
+             O
+             T
+             G
+             F
+             U
+             A
+             I
+             H
+             K
+             S
+             D
+             Q
+             R
+             J
+             P
+             N
+             L
+             W
+             L2
+             N2)
+           a!1)
+      a!2)))
+(rule (let ((a!1 (Main_void_mainJayArray_java_lang_String_Block3_11_16_Bits
+             K
+             D
+             I
+             T
+             L
+             O
+             W
+             H
+             P
+             J
+             E
+             Q
+             G
+             A
+             V
+             C
+             U
+             S
+             F
+             R
+             N
+             M
+             (DoubleFloatingPoint
+               (esign L2)
+               ((_ extract 10 0) (eexponent L2))
+               ((_ extract 104 52) (emantissa L2))
+               (eisNan L2)
+               (eisInfinity L2)
+               (eOVF L2)
+               (eUDF L2))
+             ((_ extract 52 52) (emantissa L2))
+             ((_ extract 51 51) (emantissa L2))
+             ((_ extract 50 50) (emantissa L2))
+             ((_ zero_extend 1) ((_ extract 49 0) (emantissa L2))))))
+  (=> (Main_void_mainJayArray_java_lang_String_Block3_11_16
+        K
+        D
+        I
+        T
+        L
+        O
+        W
+        H
+        P
+        J
+        E
+        Q
+        G
+        A
+        V
+        C
+        U
+        S
+        F
+        R
+        N
+        M
+        L2)
+      a!1)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_16_Bits
+           Y
+           I
+           G
+           X
+           W
+           M
+           K
+           Q
+           O
+           A
+           T
+           E
+           Z
+           J1
+           L
+           C
+           U
+           J
+           D
+           P
+           V
+           N
+           S
+           O2
+           P2
+           R2
+           Q2)
+         (= P2 #b0))
+    (Main_void_mainJayArray_java_lang_String_Block3_12
+      Y
+      I
+      G
+      X
+      W
+      M
+      K
+      Q
+      O
+      A
+      H
+      F
+      R
+      S
+      D
+      P
+      V
+      N)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_16_Bits
+           P
+           K
+           W
+           F
+           R
+           M
+           Q
+           H
+           V
+           J
+           L
+           O
+           U
+           J1
+           T
+           D
+           N
+           A
+           E
+           C
+           I
+           G
+           S
+           O2
+           R2
+           P2
+           Q2)
+         (= R2 #b1))
+    (Main_void_mainJayArray_java_lang_String_Block3_11_16_LSBR
+      P
+      K
+      W
+      F
+      R
+      M
+      Q
+      H
+      V
+      J
+      L
+      O
+      U
+      J1
+      T
+      D
+      N
+      A
+      E
+      C
+      I
+      G
+      S
+      O2
+      R2
+      P2
+      Q2)))
+(rule (let ((a!1 (Main_void_mainJayArray_java_lang_String_Block3_12
+             H
+             K
+             N
+             M
+             C
+             D
+             I
+             Y
+             Q
+             A
+             E
+             T
+             P
+             (DoubleFloatingPoint
+               (sign J)
+               (exponent J)
+               (bvadd (mantissa J)
+                      #b00000000000000000000000000000000000000000000000000001)
+               (isNan J)
+               (isInfinity J)
+               (OVF J)
+               (UDF J))
+             F
+             O
+             Z
+             U)))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_16_LSBR
+             H
+             K
+             N
+             M
+             C
+             D
+             I
+             Y
+             Q
+             A
+             W
+             L
+             X
+             J1
+             G
+             R
+             V
+             S
+             F
+             O
+             Z
+             U
+             J
+             P2
+             R2
+             O2
+             Q2)
+           (or (= P2 #b1) (= O2 #b1)))
+      a!1)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_16_LSBR
+           D
+           T
+           M
+           F
+           Q
+           N
+           G
+           K
+           R
+           S
+           C
+           O
+           E
+           J
+           U
+           V
+           W
+           A
+           P
+           L
+           H
+           I
+           J1
+           R2
+           O2
+           P2
+           Q2)
+         (= R2 #b0)
+         (= P2 #b0))
+    (Main_void_mainJayArray_java_lang_String_Block3_11_16_S
+      D
+      T
+      M
+      F
+      Q
+      N
+      G
+      K
+      R
+      S
+      C
+      O
+      E
+      J
+      U
+      V
+      W
+      A
+      P
+      L
+      H
+      I
+      J1
+      R2
+      O2
+      P2
+      Q2
+      0)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_16_S
+           Q
+           E
+           N
+           H
+           G
+           D
+           L
+           I
+           U
+           J1
+           P
+           M
+           W
+           S
+           T
+           K
+           F
+           A
+           X
+           R
+           C
+           O
+           J
+           P2
+           R2
+           O2
+           Q2
+           V)
+         (= ((_ extract 50 50) Q2) #b0)
+         (not (= V 51)))
+    (Main_void_mainJayArray_java_lang_String_Block3_11_16_S
+      Q
+      E
+      N
+      H
+      G
+      D
+      L
+      I
+      U
+      J1
+      P
+      M
+      W
+      S
+      T
+      K
+      F
+      A
+      X
+      R
+      C
+      O
+      J
+      P2
+      R2
+      O2
+      (bvshl Q2 #b000000000000000000000000000000000000000000000000001)
+      (+ V 1))))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_16_S
+           T
+           N
+           Y
+           U
+           R
+           M
+           B1
+           W
+           H
+           A
+           I
+           G
+           Q
+           S
+           O
+           E
+           Z
+           J
+           C
+           L
+           K
+           D
+           J1
+           R2
+           O2
+           P2
+           Q2
+           V)
+         (= V 51))
+    (Main_void_mainJayArray_java_lang_String_Block3_12
+      T
+      N
+      Y
+      U
+      R
+      M
+      B1
+      W
+      H
+      A
+      F
+      X
+      P
+      J1
+      C
+      L
+      K
+      D)))
+(rule (let ((a!1 (Main_void_mainJayArray_java_lang_String_Block3_12
+             V
+             H
+             L
+             X
+             I
+             P
+             N
+             K
+             R
+             A
+             D
+             U
+             O
+             (DoubleFloatingPoint
+               (sign J1)
+               (exponent J1)
+               (bvadd (mantissa J1)
+                      #b00000000000000000000000000000000000000000000000000001)
+               (isNan J1)
+               (isInfinity J1)
+               (OVF J1)
+               (UDF J1))
+             Z
+             Q
+             C
+             E)))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_11_16_S
+             V
+             H
+             L
+             X
+             I
+             P
+             N
+             K
+             R
+             A
+             Y
+             T
+             M
+             J
+             G
+             F
+             B1
+             S
+             Z
+             Q
+             C
+             E
+             J1
+             R2
+             P2
+             O2
+             Q2
+             W)
+           (= ((_ extract 50 50) Q2) #b1))
+      a!1)))
+(rule (let ((a!1 (not (= ((_ extract 51 0) (mantissa A)) #x0000000000000)))
+      (a!2 (not (= ((_ extract 51 0) (mantissa J)) #x0000000000000))))
+(let ((a!3 (or (and (= (exponent A) #b11111111111) a!1)
+               (and (= (exponent J) #b11111111111) a!2))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_12
+             N
+             H
+             K
+             P
+             G
+             M
+             R
+             F
+             Q
+             A
+             O
+             C
+             E
+             J
+             T
+             L
+             D
+             I)
+           a!3)
+      (Main_void_mainJayArray_java_lang_String_Block3_13 N H K P G M 2 T L D I)))))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_12
+           N
+           H
+           K
+           P
+           G
+           M
+           R
+           F
+           Q
+           A
+           O
+           C
+           E
+           J
+           T
+           L
+           D
+           I)
+         (= (exponent A) #b00000000000)
+         (= (mantissa A)
+            #b00000000000000000000000000000000000000000000000000000)
+         (= (exponent J) #b00000000000)
+         (= (mantissa J)
+            #b00000000000000000000000000000000000000000000000000000))
+    (Main_void_mainJayArray_java_lang_String_Block3_13 N H K P G M 0 T L D I)))
+(rule (let ((a!1 (not (= ((_ extract 51 0) (mantissa A)) #x0000000000000)))
+      (a!3 (not (= ((_ extract 51 0) (mantissa J)) #x0000000000000)))
+      (a!5 (not (and (= (exponent A) #b00000000000)
+                     (= (mantissa A)
+                        #b00000000000000000000000000000000000000000000000000000)
+                     (= (exponent J) #b00000000000)
+                     (= (mantissa J)
+                        #b00000000000000000000000000000000000000000000000000000)))))
+(let ((a!2 (not (and (= (exponent A) #b11111111111) a!1)))
+      (a!4 (not (and (= (exponent J) #b11111111111) a!3))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_12
+             N
+             H
+             K
+             P
+             G
+             M
+             R
+             F
+             Q
+             A
+             O
+             C
+             E
+             J
+             T
+             L
+             D
+             I)
+           a!2
+           a!4
+           (not (= A J))
+           a!5)
+      (Main_void_mainJayArray_java_lang_String_Block3_12_11
+        N
+        H
+        K
+        P
+        G
+        M
+        R
+        F
+        Q
+        A
+        O
+        C
+        E
+        J
+        T
+        L
+        D
+        I)))))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_12_11
+           N
+           H
+           K
+           P
+           G
+           M
+           R
+           F
+           Q
+           A
+           O
+           C
+           E
+           J
+           T
+           L
+           D
+           I)
+         (= (sign A) (sign J)))
+    (Main_void_mainJayArray_java_lang_String_Block3_12_12
+      N
+      H
+      K
+      P
+      G
+      M
+      R
+      F
+      Q
+      A
+      O
+      C
+      E
+      J
+      T
+      L
+      D
+      I)))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_12_11
+                  N
+                  H
+                  K
+                  P
+                  G
+                  M
+                  R
+                  F
+                  Q
+                  A
+                  O
+                  C
+                  E
+                  J
+                  T
+                  L
+                  D
+                  I)
+                (not (= (sign A) (sign J)))))
+      (a!2 (ite (not (= (sign A) false)) (- 1) 1)))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block3_13
+        N
+        H
+        K
+        P
+        G
+        M
+        a!2
+        T
+        L
+        D
+        I))))
+(rule (let ((a!1 (ite (not (= (sign A) false))
+                (bvugt (mantissa A) (mantissa J))
+                (bvult (mantissa A) (mantissa J)))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_12_12
+             N
+             H
+             K
+             P
+             G
+             M
+             R
+             F
+             Q
+             A
+             O
+             C
+             E
+             J
+             T
+             L
+             D
+             I)
+           (= (exponent A) (exponent J)))
+      (Main_void_mainJayArray_java_lang_String_Block3_13
+        N
+        H
+        K
+        P
+        G
+        M
+        (ite a!1 (- 1) 1)
+        T
+        L
+        D
+        I))))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block3_12_12
+                  N
+                  H
+                  K
+                  P
+                  G
+                  M
+                  R
+                  F
+                  Q
+                  A
+                  O
+                  C
+                  E
+                  J
+                  T
+                  L
+                  D
+                  I)
+                (not (= (exponent A) (exponent J)))))
+      (a!2 (ite (not (= (sign A) false))
+                (bvugt (exponent A) (exponent J))
+                (bvult (exponent A) (exponent J)))))
+  (=> a!1
+      (Main_void_mainJayArray_java_lang_String_Block3_13
+        N
+        H
+        K
+        P
+        G
+        M
+        (ite a!2 (- 1) 1)
+        T
+        L
+        D
+        I))))
+(rule (let ((a!1 (not (= ((_ extract 51 0) (mantissa A)) #x0000000000000)))
+      (a!3 (not (= ((_ extract 51 0) (mantissa J)) #x0000000000000))))
+(let ((a!2 (not (and (= (exponent A) #b11111111111) a!1)))
+      (a!4 (not (and (= (exponent J) #b11111111111) a!3))))
+  (=> (and (Main_void_mainJayArray_java_lang_String_Block3_12
+             N
+             H
+             K
+             P
+             G
+             M
+             R
+             F
+             Q
+             A
+             O
+             C
+             E
+             J
+             T
+             L
+             D
+             I)
+           a!2
+           a!4
+           (= A J))
+      (Main_void_mainJayArray_java_lang_String_Block3_13 N H K P G M 0 T L D I)))))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_13
+           L
+           D
+           C
+           I
+           N
+           G
+           H
+           M
+           F
+           K
+           E)
+         (< H 0))
+    (Main_void_mainJayArray_java_lang_String_Block2 L D C I N G H M F K E)))
+(rule (=> (and (Main_void_mainJayArray_java_lang_String_Block3_13
+           L
+           D
+           C
+           I
+           N
+           G
+           H
+           M
+           F
+           K
+           E)
+         (not (< H 0)))
+    (Main_void_mainJayArray_java_lang_String_Block4 L D C I N G H M F K E)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block0 L G F K C D I H E)
+    (Main_void_mainJayArray_java_lang_String_post L G F K C D I H E)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block4 G D L N I M H K E C F)
+    (Main_void_mainJayArray_java_lang_String_Block4_1 G D L N I M H K E C F)))
+(rule (let ((a!1 (and (Main_void_mainJayArray_java_lang_String_Block4
+                  G
+                  D
+                  L
+                  N
+                  I
+                  M
+                  H
+                  K
+                  E
+                  C
+                  F)
+                (not (not (= 0 0))))))
+  (=> a!1 |Assert_#10_Main.java,_line_9|)))
+(rule (=> (Main_void_mainJayArray_java_lang_String_Block4_1 G F L M C I H D N K E)
+    (Main_void_mainJayArray_java_lang_String_Block2 G F L M C I H D N K E)))
+(rule (=> (Main_void_clinit_pre C) (Main_void_clinit_Block1 C E F D C)))
+(rule (=> (Main_void_clinit_Block1 D F C E D) (Main_void_clinit_Block1_1 D F C E D)))
+(rule (=> (Main_void_clinit_Block1_1 F G C E D)
+    (Main_void_clinit_Block1_2 F G C E 0 0 0 D)))
+(rule (=> (Main_void_clinit_Block1_2 I D G F K C L H)
+    (inv_$StaticFields_Main_2 (- 2) 297 F E false)))
+(rule (=> (Main_void_clinit_Block1_2 H D F E I C K G)
+    (Main_void_clinit_Block1_3 H I C K G)))
+(rule (=> (Main_void_clinit_Block1_3 F G D C E) (Main_void_clinit_Block0 F G D C E)))
+(rule (=> (Main_void_clinit_Block0 G F E C D) (Main_void_clinit_post G F E C D)))
+(rule (=> (JayHornAssertions_void_clinit_pre C)
+    (JayHornAssertions_void_clinit_Block1 C C)))
+(rule (=> (JayHornAssertions_void_clinit_Block1 C C)
+    (JayHornAssertions_void_clinit_Block1_1 C C)))
+(rule (=> (JayHornAssertions_void_clinit_Block1_1 D C)
+    (JayHornAssertions_void_clinit_Block1_2 D 0 0 0 C)))
+(rule (=> (JayHornAssertions_void_clinit_Block1_2 G D E C F)
+    (JayHornAssertions_void_clinit_Block0 G D E C F)))
+(rule (=> (JayHornAssertions_void_clinit_Block0 G D C F E)
+    (JayHornAssertions_void_clinit_post G D C F E)))
+(rule (=> true (Main_void_mainJayArray_java_lang_String_pre G F E D C)))
+
+[root] - Checking properties
+(and (Main_void_mainJayArray_java_lang_String_Block3_13!slice!49 0 (- 1) 2)
+     (Main_void_mainJayArray_java_lang_String_Block3_12!slice!46
+       0
+       (- 1)
+       (DoubleFloatingPoint
+         true
+         #b11111111111
+         #b10000000000000000000000000000000000000000000000000000
+         false
+         false
+         false
+         false)
+       (DoubleFloatingPoint
+         false
+         #b11111111111
+         #b11000000000000000000000000000000000000000000000000000
+         true
+         false
+         false
+         false))
+     (Main_void_mainJayArray_java_lang_String_Block1_25!slice!45
+       0
+       (- 1)
+       (DoubleFloatingPoint
+         true
+         #b11111111111
+         #b10000000000000000000000000000000000000000000000000000
+         false
+         false
+         false
+         false)
+       (DoubleFloatingPoint
+         false
+         #b11111111111
+         #b10000000000000000000000000000000000000000000000000000
+         false
+         false
+         false
+         false)))
+Spacer takes 784.0 ms to check the given benchmark!
+UNSAFE
+
+BUILD SUCCESSFUL
+
+Total time: 4.109 secs
+1:54:06 PM: Execution finished ':jayhorn:Main.main()'.

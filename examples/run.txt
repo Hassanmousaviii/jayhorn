@@ -1,8 +1,8 @@
-floatUnboundedLoop4
+floatMul
 
 compile:
-javac .\examples\floatUnboundedLoop4\src\Main.java .\examples\floatUnboundedLoop4\src\org\sosy_lab\sv_benchmarks\Verifier.java -d .\examples\floatUnboundedLoop4\classes\
+javac .\examples\floatMul\src\Main.java .\examples\floatMul\src\org\sosy_lab\sv_benchmarks\Verifier.java -d .\examples\floatMul\classes\
 
 
 config: 
--j examples/floatUnboundedLoop4/classes -src examples/floatUnboundedLoop4/src -rounding-encoding loop-based -normalization-encoding loop-based -solver spacer -solution -full-cex -out C:\am21\Float_Z3_jayhorn\jayhorn\examples\floatUnboundedLoop4\horn -print-horn
+-j examples/floatMul/classes -src examples/floatMul/src -rounding-encoding loop-based -normalization-encoding loop-based -solver spacer -solution -full-cex -out C:\am21\Float_Z3_jayhorn\jayhorn\examples\floatMul\horn -print-horn

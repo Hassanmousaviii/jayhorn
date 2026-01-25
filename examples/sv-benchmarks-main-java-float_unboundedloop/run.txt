@@ -1,0 +1,12 @@
+Bounded-Proportional-Update
+
+compile:
+
+mkdir .\examples\sv-benchmarks-main-java-float_unboundedloop\float_unboundedloop\Bounded-Proportional-Update\classes\
+echo nul > .\examples\sv-benchmarks-main-java-float_unboundedloop\float_unboundedloop\Bounded-Proportional-Update\result.txt
+echo nul > ".\examples\sv-benchmarks-main-java-float_unboundedloop\float_unboundedloop\Bounded-Proportional-Update\model generated.txt"
+javac .\examples\sv-benchmarks-main-java-float_unboundedloop\float_unboundedloop\Bounded-Proportional-Update\Main.java .\examples\floatUnboundedLoop4\src\org\sosy_lab\sv_benchmarks\Verifier.java -d .\examples\sv-benchmarks-main-java-float_unboundedloop\float_unboundedloop\Bounded-Proportional-Update\classes\
+
+
+config:
+-j .\examples\sv-benchmarks-main-java-float_unboundedloop\float_unboundedloop\Bounded-Proportional-Update\classes\ -src .\examples\sv-benchmarks-main-java-float_unboundedloop\float_unboundedloop\Bounded-Proportional-Update\ -rounding-encoding loop-based -normalization-encoding loop-based -solver spacer -solution -full-cex -print-horn

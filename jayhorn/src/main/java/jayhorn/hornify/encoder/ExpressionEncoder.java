@@ -464,8 +464,8 @@ public class ExpressionEncoder {
 							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, rightFP);
 							return p.mkIte(p.mkEq(leftSign, rightSign),
 									p.mkIte(p.mkEq(leftExponent, rightExponent),
-											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)),
-											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))),
+											p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)), // TODO: recheck
+											p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))), // TODO: recheck
 									p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(true), p.mkLiteral(false))
 							);
 
@@ -478,8 +478,8 @@ public class ExpressionEncoder {
 							ProverExpr rightMantisa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, rightFP);
 							return p.mkIte(p.mkEq(leftSign, rightSign),
 									p.mkIte(p.mkEq(leftExponent, rightExponent),
-											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)),
-											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))),
+											p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)),// TODO: recheck
+											p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))),// TODO: recheck
 									p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(true), p.mkLiteral(false))
 							);
 						}
@@ -503,8 +503,8 @@ public class ExpressionEncoder {
 									p.mkLiteral(true),
 									p.mkIte(p.mkEq(leftSign, rightSign),
 											p.mkIte(p.mkEq(leftExponent, rightExponent),
-													p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkAnd(p.mkBVUlt(leftMantisa, rightMantisa),p.mkEq(p.mkBVExtract(53,53,leftMantisa),p.mkBV(1,1)),p.mkEq(p.mkBVExtract(53,53,rightMantisa),p.mkBV(1,1))), p.mkAnd(p.mkBVUgt(leftMantisa, rightMantisa),p.mkEq(p.mkBVExtract(53,53,leftMantisa),p.mkBV(1,1)),p.mkEq(p.mkBVExtract(53,53,rightMantisa),p.mkBV(1,1)) )),
-													p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkAnd(p.mkBVUlt(leftExponent, rightExponent),p.mkEq(p.mkBVExtract(53,53,leftMantisa),p.mkBV(1,1)),p.mkEq(p.mkBVExtract(53,53,rightMantisa),p.mkBV(1,1))), p.mkAnd(p.mkBVUgt(leftExponent, rightExponent),p.mkEq(p.mkBVExtract(53,53,leftMantisa),p.mkBV(1,1)),p.mkEq(p.mkBVExtract(53,53,rightMantisa),p.mkBV(1,1))))),
+													p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkAnd(p.mkBVUlt(leftMantisa, rightMantisa),p.mkEq(p.mkBVExtract(53,53,leftMantisa),p.mkBV(1,1)),p.mkEq(p.mkBVExtract(53,53,rightMantisa),p.mkBV(1,1))), p.mkAnd(p.mkBVUgt(leftMantisa, rightMantisa),p.mkEq(p.mkBVExtract(53,53,leftMantisa),p.mkBV(1,1)),p.mkEq(p.mkBVExtract(53,53,rightMantisa),p.mkBV(1,1)) )),// TODO: recheck
+													p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkAnd(p.mkBVUlt(leftExponent, rightExponent),p.mkEq(p.mkBVExtract(53,53,leftMantisa),p.mkBV(1,1)),p.mkEq(p.mkBVExtract(53,53,rightMantisa),p.mkBV(1,1))), p.mkAnd(p.mkBVUgt(leftExponent, rightExponent),p.mkEq(p.mkBVExtract(53,53,leftMantisa),p.mkBV(1,1)),p.mkEq(p.mkBVExtract(53,53,rightMantisa),p.mkBV(1,1))))),// TODO: recheck
 											p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(true), p.mkLiteral(false))
 									)
 							);
@@ -521,9 +521,9 @@ public class ExpressionEncoder {
 							return p.mkIte(p.mkEq(leftFP, rightFP),
 									p.mkLiteral(true),
 									p.mkIte(p.mkEq(leftSign, rightSign),
-											p.mkIte(p.mkEq(leftExponent, rightExponent),
-													p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)),
-													p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))),
+											p.mkIte(p.mkEq(leftExponent, rightExponent),// TODO: recheck
+													p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUlt(leftMantisa, rightMantisa), p.mkBVUgt(leftMantisa, rightMantisa)),
+													p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUlt(leftExponent, rightExponent), p.mkBVUgt(leftExponent, rightExponent))),
 											p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(true), p.mkLiteral(false))
 									)
 							);
@@ -545,9 +545,9 @@ public class ExpressionEncoder {
 							ProverExpr rightExponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, rightFP);
 							ProverExpr rightMantisa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, rightFP);
 							return p.mkIte(p.mkEq(leftSign, rightSign),
-									p.mkIte(p.mkEq(leftExponent, rightExponent),
-											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
-											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
+									p.mkIte(p.mkEq(leftExponent, rightExponent), // TODO: recheck
+											p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
+											p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
 									p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(false), p.mkLiteral(true))
 							);
 
@@ -560,9 +560,9 @@ public class ExpressionEncoder {
 							ProverExpr rightExponent = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, rightFP);
 							ProverExpr rightMantisa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, rightFP);
 							return p.mkIte(p.mkEq(leftSign, rightSign),
-									p.mkIte(p.mkEq(leftExponent, rightExponent),
-											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
-											p.mkIte(p.mkEq(leftSign, p.mkBV(1, 1)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
+									p.mkIte(p.mkEq(leftExponent, rightExponent),// TODO: recheck
+											p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
+											p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
 									p.mkIte(p.mkBVUlt(leftSign, rightSign), p.mkLiteral(false), p.mkLiteral(true))
 							);
 						}
@@ -588,10 +588,10 @@ public class ExpressionEncoder {
 									p.mkIte(p.mkEq(leftFP, rightFP),
 											p.mkLiteral(true),
 											p.mkIte(p.mkEq(leftSign, rightSign),
-													p.mkIte(p.mkEq(leftExponent, rightExponent),
-															p.mkIte(p.mkEq(leftSign, p.mkLiteral(1)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
-															p.mkIte(p.mkEq(leftSign, p.mkLiteral(1)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
-													p.mkIte(p.mkEq(leftSign, p.mkLiteral(0)), p.mkLiteral(false), p.mkLiteral(true))
+													p.mkIte(p.mkEq(leftExponent, rightExponent),// TODO: recheck
+															p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
+															p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
+													p.mkIte(p.mkEq(leftSign, p.mkLiteral(false)), p.mkLiteral(false), p.mkLiteral(true))
 											)
 									);
 							//);
@@ -610,9 +610,9 @@ public class ExpressionEncoder {
 									p.mkLiteral(true),
 									p.mkIte(p.mkEq(leftSign, rightSign),
 											p.mkIte(p.mkEq(leftExponent, rightExponent),
-													p.mkIte(p.mkEq(leftSign, p.mkLiteral(1)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
-													p.mkIte(p.mkEq(leftSign, p.mkLiteral(1)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
-											p.mkIte(p.mkEq(leftSign, p.mkLiteral(0)), p.mkLiteral(false), p.mkLiteral(true))
+													p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUgt(leftMantisa, rightMantisa), p.mkBVUlt(leftMantisa, rightMantisa)),
+													p.mkIte(p.mkEq(leftSign, p.mkLiteral(true)), p.mkBVUgt(leftExponent, rightExponent), p.mkBVUlt(leftExponent, rightExponent))),
+											p.mkIte(p.mkEq(leftSign, p.mkLiteral(false)), p.mkLiteral(false), p.mkLiteral(true))
 									)
 							       );
 							//);
@@ -753,8 +753,8 @@ public class ExpressionEncoder {
 
 						return p.mkIte(
 								p.mkAnd(p.mkEq(exponent,p.mkBV(255,8)),p.mkNot(p.mkEq(p.mkBVExtract(22,0,mantissa),p.mkBV(0,23)))),
-								p.mkLiteral(1),
-								p.mkLiteral(0)
+								p.mkLiteral(true),
+								p.mkLiteral(false)
 
 						);
 

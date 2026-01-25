@@ -532,13 +532,7 @@
                                                 false
                                                 false
                                                 false)))
-                                      (a!4 ((_ extract 105 105)
-                                             (bvlshr (concat #b0
-                                                             (mantissa x!1)
-                                                             #x0000000000000)
-                                                     (concat #b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-                                                             x!2))))
-                                      (a!5 (= (bvlshr (concat #b0
+                                      (a!4 (= (bvlshr (concat #b0
                                                               (mantissa x!1)
                                                               #x0000000000000)
                                                       (concat #b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -546,6 +540,12 @@
                                               (concat #b0
                                                       (mantissa x!3)
                                                       #x0000000000000)))
+                                      (a!6 ((_ extract 105 105)
+                                             (bvlshr (concat #b0
+                                                             (mantissa x!1)
+                                                             #x0000000000000)
+                                                     (concat #b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+                                                             x!2))))
                                       (a!7 ((_ extract 104 0)
                                              (bvlshr (concat #b0
                                                              (mantissa x!1)
@@ -561,9 +561,9 @@
                                                          (concat #b0
                                                                  (mantissa x!3)
                                                                  #x0000000000000)))))
-                                (let ((a!6 (and (not (= (exponent x!1)
+                                (let ((a!5 (and (not (= (exponent x!1)
                                                         (exponent x!3)))
-                                                a!5))
+                                                a!4))
                                       (a!8 (not (bvule a!7
                                                        (concat (mantissa x!3)
                                                                #x0000000000000))))
@@ -587,7 +587,7 @@
                                        a!2
                                        a!3
                                        (= (not (sign x!1)) (sign x!3))
-                                       (or (not (= a!4 #b0)) a!6 a!8)
+                                       (or a!5 (not (= a!6 #b0)) a!8)
                                        a!10
                                        (= Q1
                                           #b00000000000000000000000000000000000000000000000000000))))
@@ -679,39 +679,7 @@
                     (M1 Int)
                     (N1 Int)
                     (O1 DoubleFloatingPoint))
-             (! (let ((a!1 (exists ((x!1 ExtendedDoubleFloatingPoint)
-                                    (x!2 (_ BitVec 53)))
-                             (! (let ((a!1 (not (= ((_ extract 104 104)
-                                                     (emantissa x!1))
-                                                   #b0)))
-                                      (a!2 (or (= ((_ extract 50 50)
-                                                    (emantissa x!1))
-                                                  #b1)
-                                               (= ((_ extract 52 52)
-                                                    (emantissa x!1))
-                                                  #b1)))
-                                      (a!3 (DoubleFloatingPoint
-                                             (esign x!1)
-                                             (bvadd ((_ extract 10 0)
-                                                      (eexponent x!1))
-                                                    (bvmul #b11111111111
-                                                           ((_ extract 10 0)
-                                                             x!2)))
-                                             (bvadd #b00000000000000000000000000000000000000000000000000001
-                                                    ((_ extract 104 52)
-                                                      (emantissa x!1)))
-                                             (eisNan x!1)
-                                             (eisInfinity x!1)
-                                             (eOVF x!1)
-                                             (eUDF x!1))))
-                                  (and (not (esign x!1))
-                                       a!1
-                                       (= ((_ extract 51 51) (emantissa x!1))
-                                          #b1)
-                                       a!2
-                                       (= P a!3)))
-                                :weight 0)))
-                      (a!2 (exists ((x!1 DoubleFloatingPoint)
+             (! (let ((a!1 (exists ((x!1 DoubleFloatingPoint)
                                     (x!2 (_ BitVec 11))
                                     (x!3 DoubleFloatingPoint)
                                     (x!4 DoubleFloatingPoint))
@@ -772,6 +740,38 @@
                                             false
                                             false
                                             false))))
+                                :weight 0)))
+                      (a!2 (exists ((x!1 ExtendedDoubleFloatingPoint)
+                                    (x!2 (_ BitVec 53)))
+                             (! (let ((a!1 (not (= ((_ extract 104 104)
+                                                     (emantissa x!1))
+                                                   #b0)))
+                                      (a!2 (or (= ((_ extract 50 50)
+                                                    (emantissa x!1))
+                                                  #b1)
+                                               (= ((_ extract 52 52)
+                                                    (emantissa x!1))
+                                                  #b1)))
+                                      (a!3 (DoubleFloatingPoint
+                                             (esign x!1)
+                                             (bvadd ((_ extract 10 0)
+                                                      (eexponent x!1))
+                                                    (bvmul #b11111111111
+                                                           ((_ extract 10 0)
+                                                             x!2)))
+                                             (bvadd #b00000000000000000000000000000000000000000000000000001
+                                                    ((_ extract 104 52)
+                                                      (emantissa x!1)))
+                                             (eisNan x!1)
+                                             (eisInfinity x!1)
+                                             (eOVF x!1)
+                                             (eUDF x!1))))
+                                  (and (not (esign x!1))
+                                       a!1
+                                       (= ((_ extract 51 51) (emantissa x!1))
+                                          #b1)
+                                       a!2
+                                       (= P a!3)))
                                 :weight 0)))
                       (a!3 (exists ((x!1 (_ BitVec 51))
                                     (x!2 DoubleFloatingPoint))
@@ -854,7 +854,7 @@
                        M1
                        N1
                        O1)
-                     (or a!1 (not (sign P)) a!2 a!3 a!4)))
+                     (or a!1 a!2 (not (sign P)) a!3 a!4)))
                 :weight 0)))
       (a!10 (forall ((A Int)
                      (B Int)
@@ -1099,18 +1099,7 @@
                                          false
                                          false
                                          false)))
-                               (a!4 (= Q1
-                                       (ExtendedDoubleFloatingPoint
-                                         (sign x!3)
-                                         (concat #b0 (exponent x!3))
-                                         (concat #b0
-                                                 (mantissa x!3)
-                                                 #x0000000000000)
-                                         (isNan x!3)
-                                         (isInfinity x!3)
-                                         (OVF x!3)
-                                         (UDF x!3))))
-                               (a!5 (ExtendedDoubleFloatingPoint
+                               (a!4 (ExtendedDoubleFloatingPoint
                                       (sign x!1)
                                       (concat #b0 (exponent x!1))
                                       (bvlshr (concat #b0
@@ -1121,7 +1110,18 @@
                                       (isNan x!1)
                                       (isInfinity x!1)
                                       (OVF x!1)
-                                      (UDF x!1))))
+                                      (UDF x!1)))
+                               (a!5 (= Q1
+                                       (ExtendedDoubleFloatingPoint
+                                         (sign x!3)
+                                         (concat #b0 (exponent x!3))
+                                         (concat #b0
+                                                 (mantissa x!3)
+                                                 #x0000000000000)
+                                         (isNan x!3)
+                                         (isInfinity x!3)
+                                         (OVF x!3)
+                                         (UDF x!3)))))
                            (and (= A 1)
                                 (= B 137)
                                 a!1
@@ -1132,8 +1132,8 @@
                                 (= x!2 #b00000000101)
                                 a!2
                                 a!3
-                                a!4
-                                (= P1 a!5)))
+                                (= P1 a!4)
+                                a!5))
                          :weight 0)))
                  :weight 0)))
       (a!12 (forall ((A Int)
@@ -2299,15 +2299,15 @@
                                               (concat #b0
                                                       (mantissa x!3)
                                                       #x0000000000000))))
-                            (let ((a!5 (ExtendedDoubleFloatingPoint
-                                         (sign x!1)
-                                         (bvadd #x001
-                                                (concat #b0 (exponent x!3)))
-                                         (concat #b0 ((_ extract 105 1) a!4))
-                                         false
-                                         false
-                                         false
-                                         false)))
+                            (let ((a!5 (= P1
+                                          (ExtendedDoubleFloatingPoint
+                                            (sign x!1)
+                                            (concat #b0 (exponent x!3))
+                                            a!4
+                                            false
+                                            false
+                                            false
+                                            false))))
                               (and (= A 1)
                                    (= B 137)
                                    a!1
@@ -2318,9 +2318,9 @@
                                    (= x!2 #b00000000101)
                                    a!2
                                    a!3
-                                   (not (= ((_ extract 105 105) a!4) #b0))
+                                   (= ((_ extract 105 105) (emantissa P1)) #b0)
                                    (= (sign x!1) (sign x!3))
-                                   (= P1 a!5))))
+                                   a!5)))
                             :weight 0)))
                   (a!3 (exists ((x!1 DoubleFloatingPoint)
                                 (x!2 (_ BitVec 11))
@@ -2360,15 +2360,15 @@
                                               (concat #b0
                                                       (mantissa x!3)
                                                       #x0000000000000))))
-                            (let ((a!5 (= P1
-                                          (ExtendedDoubleFloatingPoint
-                                            (sign x!1)
-                                            (concat #b0 (exponent x!3))
-                                            a!4
-                                            false
-                                            false
-                                            false
-                                            false))))
+                            (let ((a!5 (ExtendedDoubleFloatingPoint
+                                         (sign x!1)
+                                         (bvadd #x001
+                                                (concat #b0 (exponent x!3)))
+                                         (concat #b0 ((_ extract 105 1) a!4))
+                                         false
+                                         false
+                                         false
+                                         false)))
                               (and (= A 1)
                                    (= B 137)
                                    a!1
@@ -2379,9 +2379,9 @@
                                    (= x!2 #b00000000101)
                                    a!2
                                    a!3
-                                   (= ((_ extract 105 105) (emantissa P1)) #b0)
+                                   (not (= ((_ extract 105 105) a!4) #b0))
                                    (= (sign x!1) (sign x!3))
-                                   a!5)))
+                                   (= P1 a!5))))
                             :weight 0))))
               (= (Main_void_mainJayArray_java_lang_String_Block1_19_16
                    A
@@ -2479,8 +2479,8 @@
                               (and (not (esign x!1))
                                    a!1
                                    (= D1 ((_ extract 52 52) (emantissa x!1)))
-                                   (= E1 ((_ extract 51 51) (emantissa x!1)))
                                    (= F1 ((_ extract 50 50) (emantissa x!1)))
+                                   (= E1 ((_ extract 51 51) (emantissa x!1)))
                                    a!2))
                             :weight 0))))
               (= (Main_void_mainJayArray_java_lang_String_Block4_5_16_Bits
@@ -2737,9 +2737,9 @@
                                             (eUDF x!1)))))
                               (and (or a!1 a!2 a!3)
                                    a!4
-                                   (= Q1 ((_ extract 52 52) (emantissa x!1)))
                                    (= S1 ((_ extract 50 50) (emantissa x!1)))
                                    (= R1 ((_ extract 51 51) (emantissa x!1)))
+                                   (= Q1 ((_ extract 52 52) (emantissa x!1)))
                                    a!5))
                             :weight 0))))
               (= (Main_void_mainJayArray_java_lang_String_Block1_19_16_Bits
@@ -2828,7 +2828,7 @@
                                    (not (= (exponent S) #b11111111111))
                                    (= C1 (bvadd #b10000000001 (exponent S)))
                                    (= F (not (= x!1 0)))
-                                   (= I (= T 0))
+                                   (= H (= T 0))
                                    a!1
                                    (not (= P 0))
                                    A1))
@@ -3093,18 +3093,7 @@
          (! (let ((a!1 (exists ((x!1 DoubleFloatingPoint)
                                 (x!2 DoubleFloatingPoint)
                                 (x!3 (_ BitVec 11)))
-                         (! (let ((a!1 (= D1
-                                          (ExtendedDoubleFloatingPoint
-                                            (sign x!2)
-                                            (concat #b0 (exponent x!2))
-                                            (concat #b0
-                                                    (mantissa x!2)
-                                                    #x0000000000000)
-                                            (isNan x!2)
-                                            (isInfinity x!2)
-                                            (OVF x!2)
-                                            (UDF x!2))))
-                                  (a!2 (ExtendedDoubleFloatingPoint
+                         (! (let ((a!1 (ExtendedDoubleFloatingPoint
                                          (sign x!1)
                                          (concat #b0 (exponent x!1))
                                          (bvlshr (concat #b0
@@ -3115,11 +3104,22 @@
                                          (isNan x!1)
                                          (isInfinity x!1)
                                          (OVF x!1)
-                                         (UDF x!1))))
+                                         (UDF x!1)))
+                                  (a!2 (= D1
+                                          (ExtendedDoubleFloatingPoint
+                                            (sign x!2)
+                                            (concat #b0 (exponent x!2))
+                                            (concat #b0
+                                                    (mantissa x!2)
+                                                    #x0000000000000)
+                                            (isNan x!2)
+                                            (isInfinity x!2)
+                                            (OVF x!2)
+                                            (UDF x!2)))))
                               (and (not (sign x!2))
                                    (not (sign x!1))
-                                   a!1
-                                   (= C1 a!2)))
+                                   (= C1 a!1)
+                                   a!2))
                             :weight 0))))
               (= (Main_void_mainJayArray_java_lang_String_Block4_5_13
                    A
@@ -3377,7 +3377,7 @@
          (! (let ((a!1 (exists ((x!1 Int))
                          (! (and (not (sign S))
                                  (= F (not (= x!1 0)))
-                                 (= I (= T 0))
+                                 (= H (= T 0))
                                  (not (= P 0))
                                  A1)
                             :weight 0))))
@@ -3639,6 +3639,50 @@
                          (! (let ((a!1 (not (= ((_ extract 104 104)
                                                  (emantissa x!1))
                                                #b0)))
+                                  (a!2 (or (= ((_ extract 50 50)
+                                                (emantissa x!1))
+                                              #b1)
+                                           (= ((_ extract 52 52)
+                                                (emantissa x!1))
+                                              #b1)))
+                                  (a!3 (DoubleFloatingPoint
+                                         (esign x!1)
+                                         (bvadd ((_ extract 10 0)
+                                                  (eexponent x!1))
+                                                (bvmul #b11111111111
+                                                       ((_ extract 10 0) x!2)))
+                                         (bvadd #b00000000000000000000000000000000000000000000000000001
+                                                ((_ extract 104 52)
+                                                  (emantissa x!1)))
+                                         (eisNan x!1)
+                                         (eisInfinity x!1)
+                                         (eOVF x!1)
+                                         (eUDF x!1))))
+                              (and (not (esign x!1))
+                                   a!1
+                                   (= ((_ extract 51 51) (emantissa x!1)) #b1)
+                                   a!2
+                                   (= L1 a!3)))
+                            :weight 0)))
+                  (a!2 (exists ((x!1 (_ BitVec 51)) (x!2 DoubleFloatingPoint))
+                         (! (let ((a!1 (DoubleFloatingPoint
+                                         (sign x!2)
+                                         (exponent x!2)
+                                         (bvadd #b00000000000000000000000000000000000000000000000000001
+                                                (mantissa x!2))
+                                         (isNan x!2)
+                                         (isInfinity x!2)
+                                         (OVF x!2)
+                                         (UDF x!2))))
+                              (and (not (sign x!2))
+                                   (= ((_ extract 50 50) x!1) #b1)
+                                   (= L1 a!1)))
+                            :weight 0)))
+                  (a!3 (exists ((x!1 ExtendedDoubleFloatingPoint)
+                                (x!2 (_ BitVec 53)))
+                         (! (let ((a!1 (not (= ((_ extract 104 104)
+                                                 (emantissa x!1))
+                                               #b0)))
                                   (a!2 (DoubleFloatingPoint
                                          (esign x!1)
                                          (bvadd ((_ extract 10 0)
@@ -3655,7 +3699,7 @@
                                    (= ((_ extract 51 51) (emantissa x!1)) #b0)
                                    (= L1 a!2)))
                             :weight 0)))
-                  (a!2 (exists ((x!1 DoubleFloatingPoint)
+                  (a!4 (exists ((x!1 DoubleFloatingPoint)
                                 (x!2 (_ BitVec 11))
                                 (x!3 DoubleFloatingPoint)
                                 (x!4 DoubleFloatingPoint))
@@ -3717,53 +3761,9 @@
                                    (= (not (sign x!1)) (sign x!4))
                                    a!4
                                    a!5))
-                            :weight 0)))
-                  (a!3 (exists ((x!1 ExtendedDoubleFloatingPoint)
-                                (x!2 (_ BitVec 53)))
-                         (! (let ((a!1 (not (= ((_ extract 104 104)
-                                                 (emantissa x!1))
-                                               #b0)))
-                                  (a!2 (or (= ((_ extract 50 50)
-                                                (emantissa x!1))
-                                              #b1)
-                                           (= ((_ extract 52 52)
-                                                (emantissa x!1))
-                                              #b1)))
-                                  (a!3 (DoubleFloatingPoint
-                                         (esign x!1)
-                                         (bvadd ((_ extract 10 0)
-                                                  (eexponent x!1))
-                                                (bvmul #b11111111111
-                                                       ((_ extract 10 0) x!2)))
-                                         (bvadd #b00000000000000000000000000000000000000000000000000001
-                                                ((_ extract 104 52)
-                                                  (emantissa x!1)))
-                                         (eisNan x!1)
-                                         (eisInfinity x!1)
-                                         (eOVF x!1)
-                                         (eUDF x!1))))
-                              (and (not (esign x!1))
-                                   a!1
-                                   (= ((_ extract 51 51) (emantissa x!1)) #b1)
-                                   a!2
-                                   (= L1 a!3)))
-                            :weight 0)))
-                  (a!4 (exists ((x!1 (_ BitVec 51)) (x!2 DoubleFloatingPoint))
-                         (! (let ((a!1 (DoubleFloatingPoint
-                                         (sign x!2)
-                                         (exponent x!2)
-                                         (bvadd #b00000000000000000000000000000000000000000000000000001
-                                                (mantissa x!2))
-                                         (isNan x!2)
-                                         (isInfinity x!2)
-                                         (OVF x!2)
-                                         (UDF x!2))))
-                              (and (not (sign x!2))
-                                   (= ((_ extract 50 50) x!1) #b1)
-                                   (= L1 a!1)))
                             :weight 0))))
             (let ((a!5 (and (or a!1 a!2 (not (sign L1)) a!3 a!4)
-                            (= K (= Z 0))
+                            (= H (= Z 0))
                             (not (= I1 0)))))
               (= (Main_void_mainJayArray_java_lang_String_Block1_22
                    A
@@ -3911,6 +3911,41 @@
                          (! (let ((a!1 (not (= ((_ extract 104 104)
                                                  (emantissa x!1))
                                                #b0)))
+                                  (a!2 (DoubleFloatingPoint
+                                         (esign x!1)
+                                         (bvadd ((_ extract 10 0)
+                                                  (eexponent x!1))
+                                                (bvmul #b11111111111
+                                                       ((_ extract 10 0) x!2)))
+                                         ((_ extract 104 52) (emantissa x!1))
+                                         (eisNan x!1)
+                                         (eisInfinity x!1)
+                                         (eOVF x!1)
+                                         (eUDF x!1))))
+                              (and (not (esign x!1))
+                                   a!1
+                                   (= ((_ extract 51 51) (emantissa x!1)) #b0)
+                                   (= K1 a!2)))
+                            :weight 0)))
+                  (a!2 (exists ((x!1 (_ BitVec 51)) (x!2 DoubleFloatingPoint))
+                         (! (let ((a!1 (DoubleFloatingPoint
+                                         (sign x!2)
+                                         (exponent x!2)
+                                         (bvadd #b00000000000000000000000000000000000000000000000000001
+                                                (mantissa x!2))
+                                         (isNan x!2)
+                                         (isInfinity x!2)
+                                         (OVF x!2)
+                                         (UDF x!2))))
+                              (and (not (sign x!2))
+                                   (= ((_ extract 50 50) x!1) #b1)
+                                   (= K1 a!1)))
+                            :weight 0)))
+                  (a!3 (exists ((x!1 ExtendedDoubleFloatingPoint)
+                                (x!2 (_ BitVec 53)))
+                         (! (let ((a!1 (not (= ((_ extract 104 104)
+                                                 (emantissa x!1))
+                                               #b0)))
                                   (a!2 (or (= ((_ extract 50 50)
                                                 (emantissa x!1))
                                               #b1)
@@ -3935,41 +3970,6 @@
                                    (= ((_ extract 51 51) (emantissa x!1)) #b1)
                                    a!2
                                    (= K1 a!3)))
-                            :weight 0)))
-                  (a!2 (exists ((x!1 ExtendedDoubleFloatingPoint)
-                                (x!2 (_ BitVec 53)))
-                         (! (let ((a!1 (not (= ((_ extract 104 104)
-                                                 (emantissa x!1))
-                                               #b0)))
-                                  (a!2 (DoubleFloatingPoint
-                                         (esign x!1)
-                                         (bvadd ((_ extract 10 0)
-                                                  (eexponent x!1))
-                                                (bvmul #b11111111111
-                                                       ((_ extract 10 0) x!2)))
-                                         ((_ extract 104 52) (emantissa x!1))
-                                         (eisNan x!1)
-                                         (eisInfinity x!1)
-                                         (eOVF x!1)
-                                         (eUDF x!1))))
-                              (and (not (esign x!1))
-                                   a!1
-                                   (= ((_ extract 51 51) (emantissa x!1)) #b0)
-                                   (= K1 a!2)))
-                            :weight 0)))
-                  (a!3 (exists ((x!1 (_ BitVec 51)) (x!2 DoubleFloatingPoint))
-                         (! (let ((a!1 (DoubleFloatingPoint
-                                         (sign x!2)
-                                         (exponent x!2)
-                                         (bvadd #b00000000000000000000000000000000000000000000000000001
-                                                (mantissa x!2))
-                                         (isNan x!2)
-                                         (isInfinity x!2)
-                                         (OVF x!2)
-                                         (UDF x!2))))
-                              (and (not (sign x!2))
-                                   (= ((_ extract 50 50) x!1) #b1)
-                                   (= K1 a!1)))
                             :weight 0)))
                   (a!4 (exists ((x!1 DoubleFloatingPoint)
                                 (x!2 (_ BitVec 11))
@@ -4109,7 +4109,7 @@
                 (F1 Bool)
                 (G1 Int))
          (! (let ((a!1 (and (not (sign X))
-                            (= I (= Y 0))
+                            (= K (= Y 0))
                             (not (= B1 0))
                             (= E1 X))))
               (= (Main_void_mainJayArray_java_lang_String_Block4_8
@@ -4271,7 +4271,7 @@
                                    (not (= N 0))
                                    (= A 1)
                                    (= B 137)
-                                   I
+                                   J
                                    a!1
                                    (= D1 0)
                                    (= E1 0)
@@ -4486,7 +4486,7 @@
                                             false
                                             false))))
                               (and (= ((_ extract 52 52) (mantissa x!1)) #b1)
-                                   (= H (not (= M1 0)))
+                                   (= F (not (= M1 0)))
                                    (>= D 0)
                                    (not (= M1 0))
                                    (= A 1)
@@ -4607,7 +4607,7 @@
                                    (not (= M1 0))
                                    (= A 1)
                                    (= B 137)
-                                   J
+                                   H
                                    (= D1 0)
                                    (= E1 0)
                                    (= F1 0)
@@ -4714,7 +4714,7 @@
                                  (= ((_ extract 52 52) (mantissa x!1)) #b1)
                                  (= A 1)
                                  (= B 137)
-                                 K
+                                 I
                                  (= D1 0)
                                  (= E1 0)
                                  (= F1 0)
@@ -5301,8 +5301,8 @@
                               (and (or a!1 a!2 a!3)
                                    a!4
                                    (= ((_ extract 51 51) (emantissa x!1)) #b1)
-                                   (= Q1 ((_ extract 52 52) (emantissa x!1)))
                                    (= S1 ((_ extract 50 50) (emantissa x!1)))
+                                   (= Q1 ((_ extract 52 52) (emantissa x!1)))
                                    a!5
                                    (= R1 #b1)))
                             :weight 0))))
@@ -5400,7 +5400,7 @@
                 (J1 Int)
                 (K1 DoubleFloatingPoint))
          (! (let ((a!1 (and (not (sign X))
-                            (= I (= Y 0))
+                            (= K (= Y 0))
                             (not (= B1 0))
                             (= E1 X)
                             (= H1 B1)
@@ -5481,7 +5481,7 @@
                 (F1 Bool)
                 (G1 Int))
          (! (let ((a!1 (and (not (sign X))
-                            (= I (= Y 0))
+                            (= K (= Y 0))
                             (not (= B1 0))
                             (= E1 X))))
               (= (Main_void_mainJayArray_java_lang_String_Block4_9
@@ -5648,36 +5648,14 @@
                 (I1 Int)
                 (J1 Int)
                 (K1 DoubleFloatingPoint))
-         (! (let ((a!1 (exists ((x!1 ExtendedDoubleFloatingPoint)
-                                (x!2 (_ BitVec 53)))
-                         (! (let ((a!1 (not (= ((_ extract 104 104)
-                                                 (emantissa x!1))
-                                               #b0)))
-                                  (a!2 (or (= ((_ extract 50 50)
-                                                (emantissa x!1))
-                                              #b1)
-                                           (= ((_ extract 52 52)
-                                                (emantissa x!1))
-                                              #b1)))
-                                  (a!3 (DoubleFloatingPoint
-                                         (esign x!1)
-                                         (bvadd ((_ extract 10 0)
-                                                  (eexponent x!1))
-                                                (bvmul #b11111111111
-                                                       ((_ extract 10 0) x!2)))
-                                         (bvadd #b00000000000000000000000000000000000000000000000000001
-                                                ((_ extract 104 52)
-                                                  (emantissa x!1)))
-                                         (eisNan x!1)
-                                         (eisInfinity x!1)
-                                         (eOVF x!1)
-                                         (eUDF x!1))))
-                              (and (not (esign x!1))
-                                   a!1
-                                   (= ((_ extract 51 51) (emantissa x!1)) #b1)
-                                   a!2
-                                   (= K1 a!3)))
-                            :weight 0)))
+         (! (let ((a!1 (and (not (sign X))
+                            (= K (= Y 0))
+                            (not (= B1 0))
+                            (= E1 X)
+                            (= H1 B1)
+                            (= I1 C1)
+                            (= J1 D1)
+                            (= K1 X)))
                   (a!2 (exists ((x!1 ExtendedDoubleFloatingPoint)
                                 (x!2 (_ BitVec 53)))
                          (! (let ((a!1 (not (= ((_ extract 104 104)
@@ -5713,7 +5691,37 @@
                                    (= ((_ extract 50 50) x!1) #b1)
                                    (= K1 a!1)))
                             :weight 0)))
-                  (a!4 (exists ((x!1 DoubleFloatingPoint)
+                  (a!4 (exists ((x!1 ExtendedDoubleFloatingPoint)
+                                (x!2 (_ BitVec 53)))
+                         (! (let ((a!1 (not (= ((_ extract 104 104)
+                                                 (emantissa x!1))
+                                               #b0)))
+                                  (a!2 (or (= ((_ extract 50 50)
+                                                (emantissa x!1))
+                                              #b1)
+                                           (= ((_ extract 52 52)
+                                                (emantissa x!1))
+                                              #b1)))
+                                  (a!3 (DoubleFloatingPoint
+                                         (esign x!1)
+                                         (bvadd ((_ extract 10 0)
+                                                  (eexponent x!1))
+                                                (bvmul #b11111111111
+                                                       ((_ extract 10 0) x!2)))
+                                         (bvadd #b00000000000000000000000000000000000000000000000000001
+                                                ((_ extract 104 52)
+                                                  (emantissa x!1)))
+                                         (eisNan x!1)
+                                         (eisInfinity x!1)
+                                         (eOVF x!1)
+                                         (eUDF x!1))))
+                              (and (not (esign x!1))
+                                   a!1
+                                   (= ((_ extract 51 51) (emantissa x!1)) #b1)
+                                   a!2
+                                   (= K1 a!3)))
+                            :weight 0)))
+                  (a!5 (exists ((x!1 DoubleFloatingPoint)
                                 (x!2 (_ BitVec 11))
                                 (x!3 DoubleFloatingPoint)
                                 (x!4 DoubleFloatingPoint))
@@ -5775,16 +5783,8 @@
                                    (= (not (sign x!1)) (sign x!4))
                                    a!4
                                    a!5))
-                            :weight 0)))
-                  (a!6 (and (not (sign X))
-                            (= I (= Y 0))
-                            (not (= B1 0))
-                            (= E1 X)
-                            (= H1 B1)
-                            (= I1 C1)
-                            (= J1 D1)
-                            (= K1 X))))
-            (let ((a!5 (and (or a!1 a!2 a!3 a!4 (not (sign K1))) (not (= H1 0)))))
+                            :weight 0))))
+            (let ((a!6 (and (or a!2 a!3 a!4 a!5 (not (sign K1))) (not (= H1 0)))))
               (= (Main_void_mainJayArray_java_lang_String_Block2
                    A
                    B
@@ -5823,7 +5823,7 @@
                    I1
                    J1
                    K1)
-                 (or a!5 a!6))))
+                 (or a!1 a!6))))
             :weight 0))
        (forall ((A Int)
                 (B Int)
@@ -6286,7 +6286,7 @@
          (! (let ((a!1 (exists ((x!1 Int))
                          (! (and (not (sign S))
                                  (= F (not (= x!1 0)))
-                                 (= I (= T 0))
+                                 (= H (= T 0))
                                  (not (= P 0))
                                  A1)
                             :weight 0))))
@@ -6570,15 +6570,7 @@
                 (H1 Int)
                 (I1 Int)
                 (J1 DoubleFloatingPoint))
-         (! (let ((a!1 (and (not (sign W))
-                            (= H (= X 0))
-                            (not (= A1 0))
-                            (= D1 W)
-                            (= G1 A1)
-                            (= H1 B1)
-                            (= I1 C1)
-                            (= J1 W)))
-                  (a!2 (exists ((x!1 ExtendedDoubleFloatingPoint)
+         (! (let ((a!1 (exists ((x!1 ExtendedDoubleFloatingPoint)
                                 (x!2 (_ BitVec 53)))
                          (! (let ((a!1 (not (= ((_ extract 104 104)
                                                  (emantissa x!1))
@@ -6608,21 +6600,7 @@
                                    a!2
                                    (= J1 a!3)))
                             :weight 0)))
-                  (a!3 (exists ((x!1 (_ BitVec 51)) (x!2 DoubleFloatingPoint))
-                         (! (let ((a!1 (DoubleFloatingPoint
-                                         (sign x!2)
-                                         (exponent x!2)
-                                         (bvadd #b00000000000000000000000000000000000000000000000000001
-                                                (mantissa x!2))
-                                         (isNan x!2)
-                                         (isInfinity x!2)
-                                         (OVF x!2)
-                                         (UDF x!2))))
-                              (and (not (sign x!2))
-                                   (= ((_ extract 50 50) x!1) #b1)
-                                   (= J1 a!1)))
-                            :weight 0)))
-                  (a!4 (exists ((x!1 ExtendedDoubleFloatingPoint)
+                  (a!2 (exists ((x!1 ExtendedDoubleFloatingPoint)
                                 (x!2 (_ BitVec 53)))
                          (! (let ((a!1 (not (= ((_ extract 104 104)
                                                  (emantissa x!1))
@@ -6643,7 +6621,21 @@
                                    (= ((_ extract 51 51) (emantissa x!1)) #b0)
                                    (= J1 a!2)))
                             :weight 0)))
-                  (a!5 (exists ((x!1 DoubleFloatingPoint)
+                  (a!3 (exists ((x!1 (_ BitVec 51)) (x!2 DoubleFloatingPoint))
+                         (! (let ((a!1 (DoubleFloatingPoint
+                                         (sign x!2)
+                                         (exponent x!2)
+                                         (bvadd #b00000000000000000000000000000000000000000000000000001
+                                                (mantissa x!2))
+                                         (isNan x!2)
+                                         (isInfinity x!2)
+                                         (OVF x!2)
+                                         (UDF x!2))))
+                              (and (not (sign x!2))
+                                   (= ((_ extract 50 50) x!1) #b1)
+                                   (= J1 a!1)))
+                            :weight 0)))
+                  (a!4 (exists ((x!1 DoubleFloatingPoint)
                                 (x!2 (_ BitVec 11))
                                 (x!3 DoubleFloatingPoint)
                                 (x!4 DoubleFloatingPoint))
@@ -6705,8 +6697,16 @@
                                    (= (not (sign x!1)) (sign x!4))
                                    a!4
                                    a!5))
-                            :weight 0))))
-            (let ((a!6 (and (or a!2 a!3 (not (sign J1)) a!4 a!5) (not (= G1 0)))))
+                            :weight 0)))
+                  (a!6 (and (not (sign W))
+                            (= J (= X 0))
+                            (not (= A1 0))
+                            (= D1 W)
+                            (= G1 A1)
+                            (= H1 B1)
+                            (= I1 C1)
+                            (= J1 W))))
+            (let ((a!5 (and (or a!1 a!2 (not (sign J1)) a!3 a!4) (not (= G1 0)))))
               (= (Main_void_mainJayArray_java_lang_String_Block2_1
                    A
                    B
@@ -6744,7 +6744,7 @@
                    H1
                    I1
                    J1)
-                 (or a!1 a!6))))
+                 (or a!5 a!6))))
             :weight 0))
        (forall ((A Int))
          (! (= (JayHornAssertions_void_clinit_pre A) (= A 1)) :weight 0))
@@ -6879,6 +6879,41 @@
                          (! (let ((a!1 (not (= ((_ extract 104 104)
                                                  (emantissa x!1))
                                                #b0)))
+                                  (a!2 (DoubleFloatingPoint
+                                         (esign x!1)
+                                         (bvadd ((_ extract 10 0)
+                                                  (eexponent x!1))
+                                                (bvmul #b11111111111
+                                                       ((_ extract 10 0) x!2)))
+                                         ((_ extract 104 52) (emantissa x!1))
+                                         (eisNan x!1)
+                                         (eisInfinity x!1)
+                                         (eOVF x!1)
+                                         (eUDF x!1))))
+                              (and (not (esign x!1))
+                                   a!1
+                                   (= ((_ extract 51 51) (emantissa x!1)) #b0)
+                                   (= K1 a!2)))
+                            :weight 0)))
+                  (a!2 (exists ((x!1 (_ BitVec 51)) (x!2 DoubleFloatingPoint))
+                         (! (let ((a!1 (DoubleFloatingPoint
+                                         (sign x!2)
+                                         (exponent x!2)
+                                         (bvadd #b00000000000000000000000000000000000000000000000000001
+                                                (mantissa x!2))
+                                         (isNan x!2)
+                                         (isInfinity x!2)
+                                         (OVF x!2)
+                                         (UDF x!2))))
+                              (and (not (sign x!2))
+                                   (= ((_ extract 50 50) x!1) #b1)
+                                   (= K1 a!1)))
+                            :weight 0)))
+                  (a!3 (exists ((x!1 ExtendedDoubleFloatingPoint)
+                                (x!2 (_ BitVec 53)))
+                         (! (let ((a!1 (not (= ((_ extract 104 104)
+                                                 (emantissa x!1))
+                                               #b0)))
                                   (a!2 (or (= ((_ extract 50 50)
                                                 (emantissa x!1))
                                               #b1)
@@ -6903,41 +6938,6 @@
                                    (= ((_ extract 51 51) (emantissa x!1)) #b1)
                                    a!2
                                    (= K1 a!3)))
-                            :weight 0)))
-                  (a!2 (exists ((x!1 ExtendedDoubleFloatingPoint)
-                                (x!2 (_ BitVec 53)))
-                         (! (let ((a!1 (not (= ((_ extract 104 104)
-                                                 (emantissa x!1))
-                                               #b0)))
-                                  (a!2 (DoubleFloatingPoint
-                                         (esign x!1)
-                                         (bvadd ((_ extract 10 0)
-                                                  (eexponent x!1))
-                                                (bvmul #b11111111111
-                                                       ((_ extract 10 0) x!2)))
-                                         ((_ extract 104 52) (emantissa x!1))
-                                         (eisNan x!1)
-                                         (eisInfinity x!1)
-                                         (eOVF x!1)
-                                         (eUDF x!1))))
-                              (and (not (esign x!1))
-                                   a!1
-                                   (= ((_ extract 51 51) (emantissa x!1)) #b0)
-                                   (= K1 a!2)))
-                            :weight 0)))
-                  (a!3 (exists ((x!1 (_ BitVec 51)) (x!2 DoubleFloatingPoint))
-                         (! (let ((a!1 (DoubleFloatingPoint
-                                         (sign x!2)
-                                         (exponent x!2)
-                                         (bvadd #b00000000000000000000000000000000000000000000000000001
-                                                (mantissa x!2))
-                                         (isNan x!2)
-                                         (isInfinity x!2)
-                                         (OVF x!2)
-                                         (UDF x!2))))
-                              (and (not (sign x!2))
-                                   (= ((_ extract 50 50) x!1) #b1)
-                                   (= K1 a!1)))
                             :weight 0)))
                   (a!4 (exists ((x!1 DoubleFloatingPoint)
                                 (x!2 (_ BitVec 11))

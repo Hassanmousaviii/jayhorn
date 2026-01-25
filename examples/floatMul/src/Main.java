@@ -1,9 +1,7 @@
 
 import org.sosy_lab.sv_benchmarks.Verifier;
 public class Main {
-	public static void main(String[] args) {	
-	
-			Double x = Verifier.nondetDouble();
+	public static void main(String[] args) {
 			Double y = Verifier.nondetDouble();
 			assert(y * 1.0 != y);
 	}

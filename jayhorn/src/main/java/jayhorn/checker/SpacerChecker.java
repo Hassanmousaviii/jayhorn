@@ -106,8 +106,8 @@ public class SpacerChecker extends Checker{
 			}
 			
 			if (Options.v().getPrintHorn()) {
-				//System.out.println(hf.writeHorn());
-				prover.printRules();
+				System.out.println(hf.writeHorn());
+//				prover.printRules();
 			}
 
 			
@@ -190,7 +190,7 @@ public class SpacerChecker extends Checker{
 		//work in progress
 //		System.out.println(prover.getCex());
 
-		String c = ((SpacerProver) prover).getFXAnswer();
+		String c = ((SpacerProver) prover).getFXAnswer(); // TODO: recheck
 		try {
 		FileWriter myWriter = new FileWriter("cex generated.txt");
 		myWriter.write(c);

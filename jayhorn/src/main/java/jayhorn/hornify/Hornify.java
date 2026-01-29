@@ -74,8 +74,8 @@ public class Hornify {
 										prover.mkBoundVariable(1,floatingPointADT.getType(0))
 								)
 						),
-						prover.mkLiteral(false),prover.mkLiteral(true) // TODO: recheck
-//						prover.mkLiteral(0),prover.mkLiteral(1)
+//						prover.mkLiteral(false),prover.mkLiteral(true) // TODO: recheck
+						prover.mkLiteral(0),prover.mkLiteral(1)
 				)
 		);
 		ProverFun requiredRoundingUp = prover.mkDefinedFunction("requiredRoundingUp" //LSB,G,R,S
@@ -645,8 +645,8 @@ public class Hornify {
 										prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
 								)
 						),
-						prover.mkLiteral(false),prover.mkLiteral(true)// TODO: recheck
-//						prover.mkLiteral(0),prover.mkLiteral(1)
+//						prover.mkLiteral(false),prover.mkLiteral(true)// TODO: recheck
+						prover.mkLiteral(0),prover.mkLiteral(1)
 				)
 		);
 		ProverFun isOVFDoubleExp = prover.mkDefinedFunction("isOVFDoubleExp"

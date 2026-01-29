@@ -4,6 +4,9 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import jayhorn.solver.*;
+import jayhorn.solver.princess.PrincessADT;
+import jayhorn.solver.princess.PrincessFloatingPointType;
 import org.apache.log4j.Level;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
@@ -13,7 +16,6 @@ import com.google.common.base.Stopwatch;
 import jayhorn.checker.EldaricaChecker;
 import jayhorn.checker.SpacerChecker;
 import jayhorn.checker.Checker;
-import jayhorn.solver.ProverFactory;
 import jayhorn.solver.princess.PrincessProverFactory;
 import jayhorn.solver.spacer.SpacerProverFactory;
 import jayhorn.utils.Stats;
@@ -92,7 +94,7 @@ public class Main {
       }
     
 	public static void main(String[] args) {
-		
+
 		Options options = Options.v();
 		CmdLineParser parser = new CmdLineParser(options);
 

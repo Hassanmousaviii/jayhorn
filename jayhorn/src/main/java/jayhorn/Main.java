@@ -5,8 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import jayhorn.solver.*;
-import jayhorn.solver.princess.PrincessADT;
-import jayhorn.solver.princess.PrincessFloatingPointType;
 import org.apache.log4j.Level;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;

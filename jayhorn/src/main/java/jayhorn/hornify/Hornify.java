@@ -14,6 +14,7 @@ import jayhorn.Log;
 import jayhorn.hornify.encoder.MethodEncoder;
 import jayhorn.solver.*;
 import jayhorn.solver.princess.PrincessFloatingPointType;
+import jayhorn.solver.spacer.SpacerProver;
 import soottocfg.cfg.Program;
 import soottocfg.cfg.method.Method;
 
@@ -59,25 +60,51 @@ public class Hornify {
 	/*	final ProverExpr s1 = prover.mkVariable("s1", prover.getBooleanType());
 		final ProverExpr s2 = prover.mkVariable("s2", prover.getBooleanType());*/
 
-		ProverFun xORSingleSigns = prover.mkDefinedFunction("xORSingleSigns",
-				new ProverType[] {floatingPointADT.getType(0), floatingPointADT.getType(0) },
-				prover.mkIte(
-						prover.mkEq(
-								floatingPointADT.mkSelExpr(
-										0,
-										0,
-										prover.mkBoundVariable(0,floatingPointADT.getType(0))
-								),
-								floatingPointADT.mkSelExpr(
-										0,
-										0,
-										prover.mkBoundVariable(1,floatingPointADT.getType(0))
-								)
-						),
-//						prover.mkLiteral(false),prover.mkLiteral(true) // TODO: recheck
-						prover.mkLiteral(0),prover.mkLiteral(1)
-				)
-		);
+		ProverFun xORSingleSigns;
+		if (prover instanceof SpacerProver){ // TODO: recheck
+			xORSingleSigns = prover.mkDefinedFunction("xORSingleSigns",
+					new ProverType[] {floatingPointADT.getType(0), floatingPointADT.getType(0) },
+					prover.mkIte(
+							prover.mkEq(
+									floatingPointADT.mkSelExpr(
+											0,
+											0,
+											prover.mkBoundVariable(0,floatingPointADT.getType(0))
+									),
+									floatingPointADT.mkSelExpr(
+											0,
+											0,
+											prover.mkBoundVariable(1,floatingPointADT.getType(0))
+									)
+							),
+						prover.mkLiteral(false),prover.mkLiteral(true)// TODO: recheck
+//							prover.mkLiteral(0),prover.mkLiteral(1)
+					)
+			);
+		}
+		else {
+			xORSingleSigns = prover.mkDefinedFunction("xORSingleSigns",
+					new ProverType[] {floatingPointADT.getType(0), floatingPointADT.getType(0) },
+					prover.mkIte(
+							prover.mkEq(
+									floatingPointADT.mkSelExpr(
+											0,
+											0,
+											prover.mkBoundVariable(0,floatingPointADT.getType(0))
+									),
+									floatingPointADT.mkSelExpr(
+											0,
+											0,
+											prover.mkBoundVariable(1,floatingPointADT.getType(0))
+									)
+							),
+//						prover.mkLiteral(false),prover.mkLiteral(true)// TODO: recheck
+							prover.mkLiteral(0),prover.mkLiteral(1)
+					)
+			);
+		}
+
+
 		ProverFun requiredRoundingUp = prover.mkDefinedFunction("requiredRoundingUp" //LSB,G,R,S
 				,new ProverType[] {prover.getBVType(1),
 						prover.getBVType(1),prover.getBVType(1),prover.getBVType(1)},
@@ -629,26 +656,53 @@ public class Hornify {
 				)
 		);
 
-		//Functions for Double Precision
-		ProverFun xORDoubleSigns = prover.mkDefinedFunction("xORDoubleSigns",
-				new ProverType[] {doubleFloatingPointADT.getType(0), doubleFloatingPointADT.getType(0) },
-				prover.mkIte(
-						prover.mkEq(
-								doubleFloatingPointADT.mkSelExpr(
-										0,
-										0,
-										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
-								),
-								doubleFloatingPointADT.mkSelExpr(
-										0,
-										0,
-										prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
-								)
-						),
-//						prover.mkLiteral(false),prover.mkLiteral(true)// TODO: recheck
-						prover.mkLiteral(0),prover.mkLiteral(1)
-				)
-		);
+		ProverFun xORDoubleSigns;
+		if (prover instanceof SpacerProver){ // TODO: recheck
+			//Functions for Double Precision
+			xORDoubleSigns = prover.mkDefinedFunction("xORDoubleSigns",
+					new ProverType[] {doubleFloatingPointADT.getType(0), doubleFloatingPointADT.getType(0) },
+					prover.mkIte(
+							prover.mkEq(
+									doubleFloatingPointADT.mkSelExpr(
+											0,
+											0,
+											prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+									),
+									doubleFloatingPointADT.mkSelExpr(
+											0,
+											0,
+											prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
+									)
+							),
+							prover.mkLiteral(false),prover.mkLiteral(true)// TODO: recheck
+//							prover.mkLiteral(0),prover.mkLiteral(1)
+					)
+			);
+		}
+		else {
+			//Functions for Double Precision
+			xORDoubleSigns = prover.mkDefinedFunction("xORDoubleSigns",
+					new ProverType[] {doubleFloatingPointADT.getType(0), doubleFloatingPointADT.getType(0) },
+					prover.mkIte(
+							prover.mkEq(
+									doubleFloatingPointADT.mkSelExpr(
+											0,
+											0,
+											prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+									),
+									doubleFloatingPointADT.mkSelExpr(
+											0,
+											0,
+											prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
+									)
+							),
+							//						prover.mkLiteral(false),prover.mkLiteral(true)// TODO: recheck
+							prover.mkLiteral(0),prover.mkLiteral(1)
+					)
+			);
+		}
+
+
 		ProverFun isOVFDoubleExp = prover.mkDefinedFunction("isOVFDoubleExp"
 				,new ProverType[] {prover.getBVType(12)},
 				//prover.mkIte(

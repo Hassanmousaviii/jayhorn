@@ -20,7 +20,7 @@ import soottocfg.cfg.method.Method;
 
 /**
  * Class to hornify Java program
- * 
+ *
  * @author teme
  *
  */
@@ -34,21 +34,21 @@ public class Hornify {
 	public final List<ProverHornClause> clauses = new LinkedList<ProverHornClause>();
 
 	public Hornify(ProverFactory fac) {
-		this.factory = fac;	
+		this.factory = fac;
 	}
 
 
-    public HornEncoderContext toHorn(Program program){
-        return toHorn(program, -1, HornEncoderContext.GeneratedAssertions.ALL);
-    }
+	public HornEncoderContext toHorn(Program program){
+		return toHorn(program, -1, HornEncoderContext.GeneratedAssertions.ALL);
+	}
 
 	/**
 	 * Main method to encode into Horn
 	 * @param program
 	 */
 	public HornEncoderContext toHorn(Program program,
-                                     int explicitHeapSize,
-                                     HornEncoderContext.GeneratedAssertions generatedAssertions){
+									 int explicitHeapSize,
+									 HornEncoderContext.GeneratedAssertions generatedAssertions){
 		prover = factory.spawn();
 		prover.setHornLogic(true);
 
@@ -77,7 +77,7 @@ public class Hornify {
 											prover.mkBoundVariable(1,floatingPointADT.getType(0))
 									)
 							),
-						prover.mkLiteral(false),prover.mkLiteral(true)// TODO: recheck
+							prover.mkLiteral(false),prover.mkLiteral(true)// TODO: recheck
 //							prover.mkLiteral(0),prover.mkLiteral(1)
 					)
 			);
@@ -109,22 +109,22 @@ public class Hornify {
 				,new ProverType[] {prover.getBVType(1),
 						prover.getBVType(1),prover.getBVType(1),prover.getBVType(1)},
 				//prover.mkIte(
-						prover.mkEq( //G.(LSB + (R+S)) = 1
-								prover.mkBVAND(
-										prover.mkBoundVariable(1, prover.getBVType(1)), //G
+				prover.mkEq( //G.(LSB + (R+S)) = 1
+						prover.mkBVAND(
+								prover.mkBoundVariable(1, prover.getBVType(1)), //G
+								prover.mkBVOR(
+										prover.mkBoundVariable(0, prover.getBVType(1)), //LSB
 										prover.mkBVOR(
-												prover.mkBoundVariable(0, prover.getBVType(1)), //LSB
-												prover.mkBVOR(
-														prover.mkBoundVariable(2, prover.getBVType(1)), //R
-														prover.mkBoundVariable(3, prover.getBVType(1)), //S
-														1
-												),
+												prover.mkBoundVariable(2, prover.getBVType(1)), //R
+												prover.mkBoundVariable(3, prover.getBVType(1)), //S
 												1
 										),
 										1
 								),
-								prover.mkBV(1,1)
-						)/*,
+								1
+						),
+						prover.mkBV(1,1)
+				)/*,
 						prover.mkLiteral(true),
 						prover.mkLiteral(false)*/
 				//)
@@ -135,17 +135,17 @@ public class Hornify {
 		ProverFun isOVFSingleExp = prover.mkDefinedFunction("isOVFSingleExp"
 				,new ProverType[] {prover.getBVType(9)},
 
-						prover.mkEq(
-								prover.mkBVExtract(8,8,prover.mkBoundVariable(0, prover.getBVType(9))),
-								prover.mkBV(1,1)
-						)
+				prover.mkEq(
+						prover.mkBVExtract(8,8,prover.mkBoundVariable(0, prover.getBVType(9))),
+						prover.mkBV(1,1)
+				)
 		);
 		ProverFun isUDFSingleExp = prover.mkDefinedFunction("isUDFSingleExp"
 				,new ProverType[] {prover.getBVType(9)},
-						prover.mkBVUlt(
-								prover.mkBoundVariable(0, prover.getBVType(9)),
-								prover.mkBV(1,9)
-						)
+				prover.mkBVUlt(
+						prover.mkBoundVariable(0, prover.getBVType(9)),
+						prover.mkBV(1,9)
+				)
 		);
 
 		ProverFun isOVFSingleSigInAdd = null;
@@ -153,15 +153,15 @@ public class Hornify {
 		ProverFun isOVFSingleSigInMul = prover.mkDefinedFunction("isOVFSingleSigInMul"
 				,new ProverType[] {prover.getBVType(48)},
 
-						prover.mkEq(
-								prover.mkBVExtract(47,47,prover.mkBoundVariable(0, prover.getBVType(48))),
-								prover.mkBV(1,1)
-						)
+				prover.mkEq(
+						prover.mkBVExtract(47,47,prover.mkBoundVariable(0, prover.getBVType(48))),
+						prover.mkBV(1,1)
+				)
 		);
 		ProverFun extractSingleSigLSBInMul = prover.mkDefinedFunction("extractSingleSigLSBInMul"
 				,new ProverType[] {prover.getBVType(48)},
 
-								prover.mkBVExtract(23,23,prover.mkBoundVariable(0, prover.getBVType(48)))
+				prover.mkBVExtract(23,23,prover.mkBoundVariable(0, prover.getBVType(48)))
 
 
 
@@ -169,13 +169,13 @@ public class Hornify {
 		ProverFun extractSingleSigGInMul = prover.mkDefinedFunction("extractSingleSigGInMul"
 				,new ProverType[] {prover.getBVType(48)},
 
-								prover.mkBVExtract(22,22,prover.mkBoundVariable(0, prover.getBVType(48)))
+				prover.mkBVExtract(22,22,prover.mkBoundVariable(0, prover.getBVType(48)))
 
 		);
 		ProverFun extractSingleSigRInMul = prover.mkDefinedFunction("extractSingleSigRInMul"
 				,new ProverType[] {prover.getBVType(48)},
 
-								prover.mkBVExtract(21,21,prover.mkBoundVariable(0, prover.getBVType(48)))
+				prover.mkBVExtract(21,21,prover.mkBoundVariable(0, prover.getBVType(48)))
 
 
 		);
@@ -210,16 +210,16 @@ public class Hornify {
 						prover.mkBVPlus(
 								prover.mkBVConcat(
 										prover.mkBVZeroExtend(1,
-										floatingPointADT.mkSelExpr(
-												0,
-												2,
-												prover.mkBoundVariable(0,floatingPointADT.getType(0))
-										),24),
-										prover.mkBV(0,23),
-										48
+												floatingPointADT.mkSelExpr(
+														0,
+														2,
+														prover.mkBoundVariable(0,floatingPointADT.getType(0))
+												),24),
+										prover.mkBV(0,47),
+										72 //Todo: recheck
 								),
-								prover.mkBV(new BigInteger("8388608"),48),
-								48
+								prover.mkBV(new BigInteger("8388608"),72), //Todo: recheck
+								72 //Todo: recheck
 						), //mantissa
 						floatingPointADT.mkSelExpr(0,3,prover.mkBoundVariable(0,floatingPointADT.getType(0))),//isInf
 						floatingPointADT.mkSelExpr(0,4,prover.mkBoundVariable(0,floatingPointADT.getType(0))),//isNaN
@@ -347,71 +347,48 @@ public class Hornify {
 				}));
 		ProverFun isSingleNaN = prover.mkDefinedFunction("isSingleNaN" //FP
 				,new ProverType[] {floatingPointADT.getType(0)},
-								prover.mkAnd(  //e=11...1 and m != 0
-										prover.mkEq(
-												floatingPointADT.mkSelExpr(
-														0,
-														1,
-														prover.mkBoundVariable(0,floatingPointADT.getType(0))
-												), //e
-												prover.mkBV(255,8)
+				prover.mkAnd(  //e=11...1 and m != 0
+						prover.mkEq(
+								floatingPointADT.mkSelExpr(
+										0,
+										1,
+										prover.mkBoundVariable(0,floatingPointADT.getType(0))
+								), //e
+								prover.mkBV(255,8)
+						),
+						prover.mkNot(
+								prover.mkEq(
+										floatingPointADT.mkSelExpr(
+												0,
+												2,
+												prover.mkBoundVariable(0,floatingPointADT.getType(0))
 										),
-										prover.mkNot(
-												prover.mkEq(
-														floatingPointADT.mkSelExpr(
-																0,
-																2,
-																prover.mkBoundVariable(0,floatingPointADT.getType(0))
-														),
-														prover.mkBV(0,24)
-												)
-										)
+										prover.mkBV(0,24)
 								)
-						//)
+						)
+				)
+				//)
 		);
 		ProverFun isSingleInf = prover.mkDefinedFunction("isSingleInf" //FP
 				,new ProverType[] {floatingPointADT.getType(0)},
 
-						prover.mkOr(
-								prover.mkEq( //IsInf = true
-										floatingPointADT.mkSelExpr(
-												0,
-												3,
-												prover.mkBoundVariable(0,floatingPointADT.getType(0))
-										),
-										prover.mkLiteral(true) // TODO: recheck
+				prover.mkOr(
+						prover.mkEq( //IsInf = true
+								floatingPointADT.mkSelExpr(
+										0,
+										3,
+										prover.mkBoundVariable(0,floatingPointADT.getType(0))
 								),
-								prover.mkAnd( //e=11...1 and m = 0
-										prover.mkEq(
-												floatingPointADT.mkSelExpr(
-														0,
-														1,
-														prover.mkBoundVariable(0,floatingPointADT.getType(0))
-												),
-												prover.mkBV(255,8)
-										),
-										prover.mkEq(
-												floatingPointADT.mkSelExpr(
-														0,
-														2,
-														prover.mkBoundVariable(0,floatingPointADT.getType(0))
-												),
-												prover.mkBV(0,24)
-										)
-
-								)
-						));
-		ProverFun isSingleZero = prover.mkDefinedFunction("isSingleZero" //FP
-				,new ProverType[] {floatingPointADT.getType(0)},
-
-						prover.mkAnd(
+								prover.mkLiteral(true) // TODO: recheck
+						),
+						prover.mkAnd( //e=11...1 and m = 0
 								prover.mkEq(
 										floatingPointADT.mkSelExpr(
 												0,
 												1,
 												prover.mkBoundVariable(0,floatingPointADT.getType(0))
 										),
-										prover.mkBV(0,8)
+										prover.mkBV(255,8)
 								),
 								prover.mkEq(
 										floatingPointADT.mkSelExpr(
@@ -422,60 +399,83 @@ public class Hornify {
 										prover.mkBV(0,24)
 								)
 
-						));
-		ProverFun areEqSingleSigns = prover.mkDefinedFunction("areEqSingleSigns" //FP
-				,new ProverType[] {floatingPointADT.getType(0),floatingPointADT.getType(0)},
+						)
+				));
+		ProverFun isSingleZero = prover.mkDefinedFunction("isSingleZero" //FP
+				,new ProverType[] {floatingPointADT.getType(0)},
 
+				prover.mkAnd(
 						prover.mkEq(
 								floatingPointADT.mkSelExpr(
 										0,
 										1,
 										prover.mkBoundVariable(0,floatingPointADT.getType(0))
 								),
+								prover.mkBV(0,8)
+						),
+						prover.mkEq(
 								floatingPointADT.mkSelExpr(
 										0,
-										1,
-										prover.mkBoundVariable(1,floatingPointADT.getType(0))
-								)
-						));
+										2,
+										prover.mkBoundVariable(0,floatingPointADT.getType(0))
+								),
+								prover.mkBV(0,24)
+						)
+
+				));
+		ProverFun areEqSingleSigns = prover.mkDefinedFunction("areEqSingleSigns" //FP
+				,new ProverType[] {floatingPointADT.getType(0),floatingPointADT.getType(0)},
+
+				prover.mkEq(
+						floatingPointADT.mkSelExpr(
+								0,
+								1,
+								prover.mkBoundVariable(0,floatingPointADT.getType(0))
+						),
+						floatingPointADT.mkSelExpr(
+								0,
+								1,
+								prover.mkBoundVariable(1,floatingPointADT.getType(0))
+						)
+				));
 		ProverFun isSingleNeg = prover.mkDefinedFunction("isSingleNeg" //FP
 				,new ProverType[] {floatingPointADT.getType(0)},
 
-						prover.mkEq( //sign = 1
-								floatingPointADT.mkSelExpr(
-										0,
-										0,
-										prover.mkBoundVariable(0,floatingPointADT.getType(0))
-								),
-								prover.mkLiteral(true) // TODO: recheck
-						));
+				prover.mkEq( //sign = 1
+						floatingPointADT.mkSelExpr(
+								0,
+								0,
+								prover.mkBoundVariable(0,floatingPointADT.getType(0))
+						),
+						prover.mkLiteral(true) // TODO: recheck
+				));
 		ProverFun existSingleNaN = prover.mkDefinedFunction("existSingleNaN"
 				,new ProverType[] {floatingPointADT.getType(0),floatingPointADT.getType(0)},
 
-						prover.mkOr(
-								isSingleNaN.mkExpr(prover.mkBoundVariable(0,floatingPointADT.getType(0))),
-								isSingleNaN.mkExpr(prover.mkBoundVariable(1,floatingPointADT.getType(0)))
-						));
+				prover.mkOr(
+						isSingleNaN.mkExpr(prover.mkBoundVariable(0,floatingPointADT.getType(0))),
+						isSingleNaN.mkExpr(prover.mkBoundVariable(1,floatingPointADT.getType(0)))
+				));
 		ProverFun existSingleInf = prover.mkDefinedFunction("existSingleInf"
 				,new ProverType[] {floatingPointADT.getType(0),floatingPointADT.getType(0)},
 
-						prover.mkOr(
-								isSingleInf.mkExpr(prover.mkBoundVariable(0,floatingPointADT.getType(0))),
-								isSingleInf.mkExpr(prover.mkBoundVariable(1,floatingPointADT.getType(0)))
-						));
+				prover.mkOr(
+						isSingleInf.mkExpr(prover.mkBoundVariable(0,floatingPointADT.getType(0))),
+						isSingleInf.mkExpr(prover.mkBoundVariable(1,floatingPointADT.getType(0)))
+				));
 		ProverFun singleOperandsEqZero = prover.mkDefinedFunction("singleOperandsEqZero"
 				,new ProverType[] {floatingPointADT.getType(0),floatingPointADT.getType(0)},
-						prover.mkAnd(
-								isSingleZero.mkExpr(prover.mkBoundVariable(0,floatingPointADT.getType(0))),
-								isSingleZero.mkExpr(prover.mkBoundVariable(1,floatingPointADT.getType(0)))
-						));
+				prover.mkAnd(
+						isSingleZero.mkExpr(prover.mkBoundVariable(0,floatingPointADT.getType(0))),
+						isSingleZero.mkExpr(prover.mkBoundVariable(1,floatingPointADT.getType(0)))
+				));
 		ProverFun singleOperandsEqInf = prover.mkDefinedFunction("singleOperandsEqInf"
 				,new ProverType[] {floatingPointADT.getType(0),floatingPointADT.getType(0)},
 
-						prover.mkAnd(
-								isSingleInf.mkExpr(prover.mkBoundVariable(0,floatingPointADT.getType(0))),
-								isSingleInf.mkExpr(prover.mkBoundVariable(1,floatingPointADT.getType(0)))
-						));
+				prover.mkAnd(
+						isSingleInf.mkExpr(prover.mkBoundVariable(0,floatingPointADT.getType(0))),
+						isSingleInf.mkExpr(prover.mkBoundVariable(1,floatingPointADT.getType(0)))
+				));
 		ProverFun existSingleZero = prover.mkDefinedFunction("existSingleZero"
 				,new ProverType[] {floatingPointADT.getType(0),floatingPointADT.getType(0)},
 				prover.mkIte(
@@ -488,24 +488,24 @@ public class Hornify {
 		ProverFun existSpecCasForSingleInMul = prover.mkDefinedFunction("existSpecCasForSingleInMul"
 				,new ProverType[] {floatingPointADT.getType(0),floatingPointADT.getType(0)},
 
-						prover.mkOr(
-								existSingleNaN.mkExpr(
-										prover.mkBoundVariable(0,floatingPointADT.getType(0)),
-										prover.mkBoundVariable(1,floatingPointADT.getType(0))
-								),
-								existSingleInf.mkExpr(
-										prover.mkBoundVariable(0,floatingPointADT.getType(0)),
-										prover.mkBoundVariable(1,floatingPointADT.getType(0))
-								)
-						));
+				prover.mkOr(
+						existSingleNaN.mkExpr(
+								prover.mkBoundVariable(0,floatingPointADT.getType(0)),
+								prover.mkBoundVariable(1,floatingPointADT.getType(0))
+						),
+						existSingleInf.mkExpr(
+								prover.mkBoundVariable(0,floatingPointADT.getType(0)),
+								prover.mkBoundVariable(1,floatingPointADT.getType(0))
+						)
+				));
 		ProverFun needsNormalizationInSingleDiv = prover.mkDefinedFunction("needsNormalizationInSingleDiv",
 				new ProverType[] {prover.getBVType(24), prover.getBVType(24)},
 
-						prover.mkBVUlt(
-								prover.mkBoundVariable(0, prover.getBVType(24)),
-								prover.mkBoundVariable(1, prover.getBVType(24))
-								)
-				);
+				prover.mkBVUlt(
+						prover.mkBoundVariable(0, prover.getBVType(24)),
+						prover.mkBoundVariable(1, prover.getBVType(24))
+				)
+		);
 
 		ProverFun subSingleExponentsInDiv = prover.mkDefinedFunction( "subSingleExponentsInDiv",
 				new ProverType[] {prover.getBVType(8), prover.getBVType(8)},
@@ -530,7 +530,7 @@ public class Hornify {
 								prover.mkBoundVariable(0,prover.getBVType(24)),
 								prover.mkBV(0,48),
 								72
-								),
+						),
 						prover.mkBVZeroExtend(
 								48,
 								prover.mkBoundVariable(1,prover.getBVType(24)),
@@ -706,9 +706,9 @@ public class Hornify {
 		ProverFun isOVFDoubleExp = prover.mkDefinedFunction("isOVFDoubleExp"
 				,new ProverType[] {prover.getBVType(12)},
 				//prover.mkIte(
-						prover.mkEq(prover.mkBVExtract(11,11,prover.mkBoundVariable(0, prover.getBVType(12))),
-								prover.mkBV(1,1)
-						)/*,
+				prover.mkEq(prover.mkBVExtract(11,11,prover.mkBoundVariable(0, prover.getBVType(12))),
+						prover.mkBV(1,1)
+				)/*,
 						prover.mkLiteral(true),
 						prover.mkLiteral(false)
 				)*/
@@ -716,49 +716,49 @@ public class Hornify {
 		ProverFun isUDFDoubleExp = prover.mkDefinedFunction("isUDFDoubleExp"
 				,new ProverType[] {prover.getBVType(12)},
 				//prover.mkIte(
-						prover.mkBVUlt(prover.mkBoundVariable(0, prover.getBVType(12)),
-								prover.mkBV(1,12)
-						)/*,
+				prover.mkBVUlt(prover.mkBoundVariable(0, prover.getBVType(12)),
+						prover.mkBV(1,12)
+				)/*,
 						prover.mkLiteral(true),
 						prover.mkLiteral(false)*/
 				//)
 		);
 		ProverFun isOVFDoubleSigInAdd = null;
 		ProverFun isOVFDoubleSigInMul = prover.mkDefinedFunction("isOVFDoubleSigInMul"
-				,new ProverType[] {prover.getBVType(106)},
+				,new ProverType[] {prover.getBVType(159)}, // TODO: recheck
 				//prover.mkIte(
-						prover.mkEq(
-								prover.mkBVExtract(105,105,prover.mkBoundVariable(0, prover.getBVType(106))),
-								prover.mkBV(1,1)
-						)/*,
+				prover.mkEq(
+						prover.mkBVExtract(158,158,prover.mkBoundVariable(0, prover.getBVType(159))), // TODO: recheck
+						prover.mkBV(1,1)
+				)/*,
 						prover.mkLiteral(true),
 						prover.mkLiteral(false)*/
 				//)
 		);
 
 		ProverFun extractDoubleSigLSBInMul = prover.mkDefinedFunction("extractDoubleSigLSBInMul"
-				,new ProverType[] {prover.getBVType(106)},
-				prover.mkBVExtract(52,52,prover.mkBoundVariable(0, prover.getBVType(106))));
+				,new ProverType[] {prover.getBVType(159)}, // TODO: recheck
+				prover.mkBVExtract(105,105,prover.mkBoundVariable(0, prover.getBVType(159)))); // TODO: recheck
 
 		ProverFun extractDoubleSigGInMul = prover.mkDefinedFunction("extractDoubleSigGInMul"
-				,new ProverType[] {prover.getBVType(106)},
+				,new ProverType[] {prover.getBVType(159)}, // TODO: recheck
 
-								prover.mkBVExtract(51,51,prover.mkBoundVariable(0, prover.getBVType(106)))
+				prover.mkBVExtract(104,104,prover.mkBoundVariable(0, prover.getBVType(159))) // TODO: recheck
 
 
 		);
 		ProverFun extractDoubleSigRInMul = prover.mkDefinedFunction("extractDoubleSigRInMul"
-				,new ProverType[] {prover.getBVType(106)},
+				,new ProverType[] {prover.getBVType(159)}, // TODO: recheck
 
-								prover.mkBVExtract(50,50,prover.mkBoundVariable(0, prover.getBVType(106)))
+				prover.mkBVExtract(103,103,prover.mkBoundVariable(0, prover.getBVType(159))) // TODO: recheck
 
 		);
 		ProverFun computeDoubleSigStickyInMul = prover.mkDefinedFunction("computeDoubleSigStickyInMul"
-				,new ProverType[] {prover.getBVType(106)},
+				,new ProverType[] {prover.getBVType(159)}, // TODO: recheck
 				prover.mkIte(
 						prover.mkEq(
-								prover.mkBVExtract(49,0,prover.mkBoundVariable(0, prover.getBVType(106))),
-								prover.mkBV(0,50)
+								prover.mkBVExtract(102,0,prover.mkBoundVariable(0, prover.getBVType(159))), // TODO: recheck
+								prover.mkBV(0,103) // TODO: recheck
 						),
 						prover.mkBV(0,1),
 						prover.mkBV(1,1)
@@ -785,18 +785,18 @@ public class Hornify {
 						prover.mkBVPlus(
 								prover.mkBVConcat(
 										prover.mkBVZeroExtend(1,
-										doubleFloatingPointADT.mkSelExpr(
-												0,
-												2,
-												prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
-										), 53),
-										prover.mkBV(0,52),
-										106
+												doubleFloatingPointADT.mkSelExpr(
+														0,
+														2,
+														prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+												), 53),
+										prover.mkBV(0,105), // TODO: recheck
+										159 //todo :recheck
 								),
 								//
-//4503599627370496
-								prover.mkBV(new BigInteger("4503599627370496"),106),
-								106
+//40564819207303340847894502572032
+								prover.mkBV(new BigInteger("40564819207303340847894502572032"),159), // TODO: recheck
+								159 //todo :recheck
 						), //mantissa
 						doubleFloatingPointADT.mkSelExpr(0,3,prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))),//isInf
 						doubleFloatingPointADT.mkSelExpr(0,4,prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))),//isNaN
@@ -980,80 +980,80 @@ public class Hornify {
 				));
 		ProverFun isDoubleNaN = prover.mkDefinedFunction("isDoubleNaN"
 				,new ProverType[] {doubleFloatingPointADT.getType(0)},
-								prover.mkAnd( //e=11...1 and m != 0
-										prover.mkEq(
-												doubleFloatingPointADT.mkSelExpr(
-														0,
-														1,
-														prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
-												),
-												prover.mkBV(2047,11)
+				prover.mkAnd( //e=11...1 and m != 0
+						prover.mkEq(
+								doubleFloatingPointADT.mkSelExpr(
+										0,
+										1,
+										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+								),
+								prover.mkBV(2047,11)
+						),
+						prover.mkNot(
+								prover.mkEq(
+										doubleFloatingPointADT.mkSelExpr(
+												0,
+												2,
+												prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
 										),
-										prover.mkNot(
-												prover.mkEq(
-														doubleFloatingPointADT.mkSelExpr(
-																0,
-																2,
-																prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
-														),
-														prover.mkBV(0,53))
-										)
-								)
-						);
+										prover.mkBV(0,53))
+						)
+				)
+		);
 		//);/*,
 						/*prover.mkLiteral(true), prover.mkLiteral(false)
 				));*/
 		ProverFun existDoubleNaN = prover.mkDefinedFunction("existDoubleNaN"
 				,new ProverType[] {doubleFloatingPointADT.getType(0),doubleFloatingPointADT.getType(0)},
 				//prover.mkIte(
-						prover.mkOr(
-								isDoubleNaN.mkExpr(prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))),
-								isDoubleNaN.mkExpr(prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0)))
-						));/*,
+				prover.mkOr(
+						isDoubleNaN.mkExpr(prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))),
+						isDoubleNaN.mkExpr(prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0)))
+				));/*,
 						prover.mkLiteral(true), prover.mkLiteral(false)
 				));*/
 		ProverFun isDoubleInf = prover.mkDefinedFunction("isDoubleInf"
 				,new ProverType[] {doubleFloatingPointADT.getType(0)},
 				//prover.mkIte(
-						prover.mkOr(
+				prover.mkOr(
+						prover.mkEq(
+								doubleFloatingPointADT.mkSelExpr(
+										0,
+										3,
+										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
+								),
+								prover.mkLiteral(true) // TODO: recheck
+						), //IsInf = true
+						prover.mkAnd( //e=11...1 and m = 0
 								prover.mkEq(
 										doubleFloatingPointADT.mkSelExpr(
 												0,
-												3,
+												1,
 												prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
 										),
-										prover.mkLiteral(true) // TODO: recheck
-								), //IsInf = true
-								prover.mkAnd( //e=11...1 and m = 0
-										prover.mkEq(
-												doubleFloatingPointADT.mkSelExpr(
-														0,
-														1,
-														prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
-												),
-												prover.mkBV(2047,11)
+										prover.mkBV(2047,11)
+								),
+								prover.mkEq(
+										doubleFloatingPointADT.mkSelExpr(
+												0,
+												2,
+												prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
 										),
-										prover.mkEq(
-												doubleFloatingPointADT.mkSelExpr(
-														0,
-														2,
-														prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))
-												),
-												prover.mkBV(0,53)
-										)
-
+										prover.mkBV(0,53)
 								)
-						));/*,
+
+						)
+				));/*,
 						prover.mkLiteral(true), prover.mkLiteral(false)
 				));*/
 
 		ProverFun existDoubleInf = prover.mkDefinedFunction("existDoubleInf"
 				,new ProverType[] {doubleFloatingPointADT.getType(0),doubleFloatingPointADT.getType(0)},
 				//prover.mkIte(
-						prover.mkOr(
-								isDoubleInf.mkExpr(prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))),
-								isDoubleInf.mkExpr(prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0)))
-						));/*,
+				prover.mkOr(
+						isDoubleInf.mkExpr(prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0))),
+						isDoubleInf.mkExpr(prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0)))
+				));/*,
 						prover.mkLiteral(true), prover.mkLiteral(false)
 				));*/
 		ProverFun doubleOperandsEqZero = prover.mkDefinedFunction("doubleOperandsEqZero"
@@ -1086,17 +1086,17 @@ public class Hornify {
 				));
 		ProverFun existSpecCasForDoubleInMul = prover.mkDefinedFunction("existSpecCasForDoubleInMul"
 				,new ProverType[] {doubleFloatingPointADT.getType(0),doubleFloatingPointADT.getType(0)},
-			//
-						prover.mkOr(
-								existDoubleNaN.mkExpr(
-										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0)),
-										prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
-								),
-								existDoubleInf.mkExpr(
-										prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0)),
-										prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
-								)
-						));/*,
+				//
+				prover.mkOr(
+						existDoubleNaN.mkExpr(
+								prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0)),
+								prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
+						),
+						existDoubleInf.mkExpr(
+								prover.mkBoundVariable(0,doubleFloatingPointADT.getType(0)),
+								prover.mkBoundVariable(1,doubleFloatingPointADT.getType(0))
+						)
+				));/*,
 						prover.mkLiteral(true), prover.mkLiteral(false)
 				));*/
 		ProverFun needsNormalizationInDoubleDiv = prover.mkDefinedFunction("needsNormalizationInDoubleDiv",
@@ -1193,48 +1193,48 @@ public class Hornify {
 				})
 		);
 		ProverFun extractLSBInDoubleDivResult = prover.mkDefinedFunction("extractLSBInDoubleDivResult",
-				new ProverType[] {prover.getBVType(107)},
+				new ProverType[] {prover.getBVType(159)}, // TODO: recheck
 				prover.mkIte(
 						prover.mkEq(
-								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(107))),
+								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(159))), // TODO: recheck
 								prover.mkBV(1,1)
 						),
-						prover.mkBVExtract(54,54,prover.mkBoundVariable(0,prover.getBVType(107))),
-						prover.mkBVExtract(53,53,prover.mkBoundVariable(0,prover.getBVType(107)))
+						prover.mkBVExtract(54,54,prover.mkBoundVariable(0,prover.getBVType(159))), // TODO: recheck
+						prover.mkBVExtract(53,53,prover.mkBoundVariable(0,prover.getBVType(159))) // TODO: recheck
 				)
 		);
 		ProverFun extractGInDoubleDivResult = prover.mkDefinedFunction("extractGInDoubleDivResult",
-				new ProverType[] {prover.getBVType(107)},
+				new ProverType[] {prover.getBVType(159)}, // TODO: recheck
 				prover.mkIte(
 						prover.mkEq(
-								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(107))),
+								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(159))), // TODO: recheck
 								prover.mkBV(1,1)
 						),
-						prover.mkBVExtract(53,53,prover.mkBoundVariable(0,prover.getBVType(107))),
-						prover.mkBVExtract(52,52,prover.mkBoundVariable(0,prover.getBVType(107)))
+						prover.mkBVExtract(53,53,prover.mkBoundVariable(0,prover.getBVType(159))), // TODO: recheck
+						prover.mkBVExtract(52,52,prover.mkBoundVariable(0,prover.getBVType(159))) // TODO: recheck
 				)
 		);
 		ProverFun extractRInDoubleDivResult = prover.mkDefinedFunction("extractRInDoubleDivResult",
-				new ProverType[] {prover.getBVType(107)},
+				new ProverType[] {prover.getBVType(159)}, // TODO: recheck
 				prover.mkIte(
 						prover.mkEq(
-								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(107))),
+								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(159))), // TODO: recheck
 								prover.mkBV(1,1)
 						),
-						prover.mkBVExtract(52,52,prover.mkBoundVariable(0,prover.getBVType(107))),
-						prover.mkBVExtract(51,51,prover.mkBoundVariable(0,prover.getBVType(107)))
+						prover.mkBVExtract(52,52,prover.mkBoundVariable(0,prover.getBVType(159))), // TODO: recheck
+						prover.mkBVExtract(51,51,prover.mkBoundVariable(0,prover.getBVType(159))) // TODO: recheck
 				)
 		);
 		ProverFun computeSInDoubleDivResult = prover.mkDefinedFunction("computeSInDoubleDivResult",
-				new ProverType[] {prover.getBVType(107)},
+				new ProverType[] {prover.getBVType(159)}, // TODO: recheck
 				prover.mkIte(
 						prover.mkEq(
-								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(107))),
+								prover.mkBVExtract(106,106,prover.mkBoundVariable(0,prover.getBVType(159))), // TODO: recheck
 								prover.mkBV(1,1)
 						),
 						prover.mkIte(
 								prover.mkEq(
-										prover.mkBVExtract(51,0,prover.mkBoundVariable(0,prover.getBVType(107))),
+										prover.mkBVExtract(51,0,prover.mkBoundVariable(0,prover.getBVType(159))), // TODO: recheck
 										prover.mkBV(0,52)
 								),
 								prover.mkBV(0,1),
@@ -1242,7 +1242,7 @@ public class Hornify {
 						),
 						prover.mkIte(
 								prover.mkEq(
-										prover.mkBVExtract(50,0,prover.mkBoundVariable(0,prover.getBVType(107))),
+										prover.mkBVExtract(50,0,prover.mkBoundVariable(0,prover.getBVType(159))), // TODO: recheck
 										prover.mkBV(0,51)
 								),
 								prover.mkBV(0,1),
@@ -1340,9 +1340,9 @@ public class Hornify {
 
 		for (Method method : program.getMethods()) {
 			final MethodEncoder encoder = new MethodEncoder(prover, method, hornContext);
-			clauses.addAll(encoder.encode());		
+			clauses.addAll(encoder.encode());
 		}
-		
+
 		return hornContext;
 	}
 
@@ -1371,7 +1371,7 @@ public class Hornify {
 	 * Write Horn clauses to file
 	 */
 	public static void hornToFile(List<ProverHornClause> clauses,
-			int num) {
+								  int num) {
 		// write Horn clauses to file
 		String out = jayhorn.Options.v().getOutDir();
 		if (out != null) {
@@ -1390,8 +1390,8 @@ public class Hornify {
 	 * Write Horn clauses to an SMT-LIB file
 	 */
 	public static void hornToSMTLIBFile(List<ProverHornClause> clauses,
-			int num,
-			Prover prover) {
+										int num,
+										Prover prover) {
 		String out = jayhorn.Options.v().getOutDir();
 		if (out != null) {
 			String basename = jayhorn.Options.v().getOutBasename();
@@ -1401,13 +1401,13 @@ public class Hornify {
 
 			LinkedList<String> it = new LinkedList<String>();
 
-                        it.add(prover.toSMTLIBScript(clauses));
+			it.add(prover.toSMTLIBScript(clauses));
 			writeToFile(file, it);
 		}
 	}
 
 	private static void writeToFile(Path file, List<String> it) {
-		try {					
+		try {
 			Path parent = file.getParent();
 			if (parent != null)
 				Files.createDirectories(parent);

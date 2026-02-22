@@ -1,4 +1,4 @@
-11:46:10 PM: Executing ':jayhorn:Main.main()'...
+6:55:45 PM: Executing ':jayhorn:Main.main()'...
 
 Installing pre-commit hook for WINDOWS
 Requires cabal, alex, happy, and bnfc to be installed.
@@ -10,11 +10,11 @@ Requires cabal, alex, happy, and bnfc to be installed.
 :jayhorn:processResources UP-TO-DATE
 :jayhorn:classes UP-TO-DATE
 :jayhorn:Main.main()
-[root] - ---   JayHorn : Static Analyzer for Java Programs   ---
+[root] - ---   JayHorn : Static Analyzer for Java Programs   --- 
 [root] - Horn solver: spacer
-[root] - Building CFG  ...
-[root] - Safety Verification ...
-[root] - Hornify  ...
+[root] - Building CFG  ... 
+[root] - Safety Verification ... 
+[root] - Hornify  ... 
 com.microsoft.z3.Z3Exception: unknown parameter 'use_heavy_mev'
 Legal parameters are:
   bmc.linear_unrolling_depth (unsigned int) (default: 4294967295)
@@ -135,8 +135,8 @@ Legal parameters are:
 	at jayhorn.solver.spacer.SpacerProver.createSolver(SpacerProver.java:96)
 	at jayhorn.solver.spacer.SpacerProver.<init>(SpacerProver.java:65)
 	at jayhorn.solver.spacer.SpacerProverFactory.spawn(SpacerProverFactory.java:32)
-	at jayhorn.hornify.Hornify.toHorn(Hornify.java:51)
-	at jayhorn.hornify.Hornify.toHorn(Hornify.java:41)
+	at jayhorn.hornify.Hornify.toHorn(Hornify.java:52)
+	at jayhorn.hornify.Hornify.toHorn(Hornify.java:42)
 	at jayhorn.checker.SpacerChecker.checkProgram(SpacerChecker.java:85)
 	at jayhorn.Main.safetyAnalysis(Main.java:72)
 	at jayhorn.Main.main(Main.java:130)
@@ -259,12 +259,12 @@ Legal parameters are:
 	at com.microsoft.z3.Fixedpoint.setParameters(Fixedpoint.java:45)
 	at jayhorn.solver.spacer.SpacerProver.createSolver(SpacerProver.java:96)
 	at jayhorn.solver.spacer.SpacerProver.setHornLogic(SpacerProver.java:1264)
-	at jayhorn.hornify.Hornify.toHorn(Hornify.java:52)
-	at jayhorn.hornify.Hornify.toHorn(Hornify.java:41)
+	at jayhorn.hornify.Hornify.toHorn(Hornify.java:53)
+	at jayhorn.hornify.Hornify.toHorn(Hornify.java:42)
 	at jayhorn.checker.SpacerChecker.checkProgram(SpacerChecker.java:85)
 	at jayhorn.Main.safetyAnalysis(Main.java:72)
 	at jayhorn.Main.main(Main.java:130)
-[root] - Transform Program Methods into Horn Clauses ...
+[root] - Transform Program Methods into Horn Clauses ... 
 [root] - Running from entry point: <Main: void main(JayArray_java_lang_String)>
 		(Main_void_mainJayArray_java_lang_String_Block1
   $in_0_0_0
@@ -4711,12 +4711,13 @@ Legal parameters are:
   outHeapCounter_308
   exponentsDiff_309)
 		(let ((a!1 (bvlshr (concat ((_ zero_extend 1) (mantissa lfp_326))
-                           #x0000000000000)
-                   ((_ zero_extend 95) exponentsDiff_325)))
+                           #b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+                   ((_ zero_extend 148) exponentsDiff_325)))
       (a!2 (ExtendedDoubleFloatingPoint
              (sign rfp_327)
              ((_ zero_extend 1) (exponent rfp_327))
-             (concat ((_ zero_extend 1) (mantissa rfp_327)) #x0000000000000)
+             (concat ((_ zero_extend 1) (mantissa rfp_327))
+                     #b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
              (isNan rfp_327)
              (isInfinity rfp_327)
              (OVF rfp_327)
@@ -4907,7 +4908,7 @@ Legal parameters are:
     (esign efp_358)
     (bvadd (eexponent efp_358) #x001)
     (bvlshr (emantissa efp_358)
-            #b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+            #b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
     (eisNan efp_358)
     (eisInfinity efp_358)
     (eOVF efp_358)
@@ -5140,7 +5141,7 @@ Legal parameters are:
     (esign efp_405)
     (eexponent efp_405)
     (bvshl (emantissa efp_405)
-           #b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+           #b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
     (eisNan efp_405)
     (eisInfinity efp_405)
     (eOVF efp_405)
@@ -7153,12 +7154,13 @@ Legal parameters are:
   outHeapCounter_679
   exponentsDiff_680)
 		(let ((a!1 (bvlshr (concat ((_ zero_extend 1) (mantissa lfp_697))
-                           #x0000000000000)
-                   ((_ zero_extend 95) exponentsDiff_696)))
+                           #b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+                   ((_ zero_extend 148) exponentsDiff_696)))
       (a!2 (ExtendedDoubleFloatingPoint
              (sign rfp_698)
              ((_ zero_extend 1) (exponent rfp_698))
-             (concat ((_ zero_extend 1) (mantissa rfp_698)) #x0000000000000)
+             (concat ((_ zero_extend 1) (mantissa rfp_698))
+                     #b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
              (isNan rfp_698)
              (isInfinity rfp_698)
              (OVF rfp_698)
@@ -7349,7 +7351,7 @@ Legal parameters are:
     (esign efp_729)
     (bvadd (eexponent efp_729) #x001)
     (bvlshr (emantissa efp_729)
-            #b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+            #b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
     (eisNan efp_729)
     (eisInfinity efp_729)
     (eOVF efp_729)
@@ -7582,7 +7584,7 @@ Legal parameters are:
     (esign efp_776)
     (eexponent efp_776)
     (bvshl (emantissa efp_776)
-           #b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+           #b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
     (eisNan efp_776)
     (eisInfinity efp_776)
     (eOVF efp_776)
@@ -9623,5 +9625,10 @@ Legal parameters are:
 		-------------
 
 [root] - Checking properties
+Spacer takes 17.60 s to check the given benchmark!
+UNSAFE
 
-did not answer after 15 min.
+BUILD SUCCESSFUL
+
+Total time: 23.219 secs
+6:56:09 PM: Execution finished ':jayhorn:Main.main()'.

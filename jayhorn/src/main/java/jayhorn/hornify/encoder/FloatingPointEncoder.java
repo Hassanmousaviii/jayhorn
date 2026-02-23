@@ -2949,14 +2949,14 @@ public class FloatingPointEncoder {
                             p.mkIte(
                                     p.mkEq(p.mkBVExtract(2*this.f-1,2*this.f-1, mantissa), p.mkBV(1,1)),
                                     mantissa,
-                                    p.mkBVshl(mantissa,p.mkBV(1,2*f),2*f)))
+                                    p.mkBVshl(mantissa,p.mkBV(1,3*f),3*f))) // TODO: recheck didn't made new method for spacer. sorry
             ); //LSB
             varMap.put(G,
                     p.mkBVExtract(this.f-1 , this.f-1,
                             p.mkIte(
                                     p.mkEq(p.mkBVExtract(2*this.f-1,2*this.f-1, mantissa), p.mkBV(1,1)),
                                     mantissa,
-                                    p.mkBVshl(mantissa,p.mkBV(1,2*f),2*f)))
+                                    p.mkBVshl(mantissa,p.mkBV(1,3*f),3*f))) // TODO: recheck didn't made new method for spacer. sorry
             ); //G
 
             varMap.put(R,
@@ -2964,7 +2964,7 @@ public class FloatingPointEncoder {
                             p.mkIte(
                                     p.mkEq(p.mkBVExtract(2*this.f-1,2*this.f-1, mantissa), p.mkBV(1,1)),
                                     mantissa,
-                                    p.mkBVshl(mantissa,p.mkBV(1,2*f),2*f)))
+                                    p.mkBVshl(mantissa,p.mkBV(1,3*f),3*f))) // TODO: recheck didn't made new method for spacer. sorry
             ); //G
 
             varMap.put(S,
@@ -2972,7 +2972,7 @@ public class FloatingPointEncoder {
                             p.mkIte(
                                     p.mkEq(p.mkBVExtract(2*this.f-1,2*this.f-1, mantissa), p.mkBV(1,1)),
                                     mantissa,
-                                    p.mkBVshl(mantissa,p.mkBV(1,2*f),2*f)))
+                                    p.mkBVshl(mantissa,p.mkBV(1,3*f),3*f))) // TODO: recheck didn't made new method for spacer. sorry
             ); //G
 
 
@@ -9548,8 +9548,8 @@ public class FloatingPointEncoder {
                         varMap.get(resultSignVar),
                         varMap.get(ee),
                         p.mkBVMul(
-                                p.mkBVZeroExtend(this.f,leftMantisa,this.f),
-                                p.mkBVZeroExtend(this.f,rightMantisa,this.f),3*this.f), //TODO: recheck 2*this.f
+                                p.mkBVZeroExtend(2*this.f,leftMantisa,2*this.f),//TODO: recheck 2*this.f
+                                p.mkBVZeroExtend(2*this.f,rightMantisa,2*this.f),3*this.f), //TODO: recheck 2*this.f
                         p.mkLiteral(false), // TODO: recheck
                         p.mkLiteral(false),
                         p.mkLiteral(false),
@@ -9605,7 +9605,7 @@ public class FloatingPointEncoder {
                                 this.e + 1),
                         p.mkBVlshr(
                                 extendedFloatingPointADT.mkSelExpr(0,2,varMap.get(extendedFP)),
-                                p.mkBV(1,2 * this.f),
+                                p.mkBV(1,3 * this.f),//TODO: recheck
                                 3 * this.f), //TODO: recheck 2*this.f
                         extendedFloatingPointADT.mkSelExpr(0,3,varMap.get(extendedFP)),
                         extendedFloatingPointADT.mkSelExpr(0,4,varMap.get(extendedFP)),

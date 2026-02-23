@@ -1,0 +1,27 @@
+=== BENCHMARK: Conflict ===
+
+[root] - ---   JayHorn : Static Analyzer for Java Programs   --- 
+[root] - Horn solver: spacer
+[root] - Building CFG  ... 
+Soot failed to parse <Main: double snippet(double,double,double,double,double,double,double)>
+java.lang.RuntimeException: Type mismatch:
+$ex_, $d20 := call <java.lang.Math: double pow(double,double)>(d1)
+At position 1:
+Arg 2.0 of type DoubleType cannot be assigned to type java.lang.Double
+	at soottocfg.cfg.statement.CallStatement.<init>(CallStatement.java:65)
+	at soottocfg.soot.visitors.SootStmtSwitch.translateMethodInvokation(SootStmtSwitch.java:457)
+	at soottocfg.soot.visitors.SootStmtSwitch.translateDefinitionStmt(SootStmtSwitch.java:1268)
+	at soottocfg.soot.visitors.SootStmtSwitch.caseAssignStmt(SootStmtSwitch.java:228)
+	at soot.jimple.internal.JAssignStmt.apply(JAssignStmt.java:238)
+	at soottocfg.soot.visitors.SootStmtSwitch.<init>(SootStmtSwitch.java:120)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:312)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:281)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:336)
+	at soottocfg.soot.SootToCfg.run(SootToCfg.java:158)
+	at jayhorn.Main.safetyAnalysis(Main.java:63)
+	at jayhorn.Main.main(Main.java:129)
+2026-02-22 20:43:07,890 ERROR (main) [root] - java.lang.RuntimeException: Type mismatch:
+$ex_, $d20 := call <java.lang.Math: double pow(double,double)>(d1)
+At position 1:
+Arg 2.0 of type DoubleType cannot be assigned to type java.lang.Double
+UNKNOWN

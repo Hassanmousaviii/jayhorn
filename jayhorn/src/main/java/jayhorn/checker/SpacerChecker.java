@@ -131,6 +131,10 @@ public class SpacerChecker extends Checker{
 			Stopwatch satTimer = Stopwatch.createStarted();
 			if (S2H.sh().getErrorState().isEmpty()){
 				Stats.stats().add("Warning", "No assertions found.");
+				String stopTime =  String.valueOf(satTimer.stop());
+				Stats.stats().add("CheckSatTime", stopTime);
+				System.out.println("Spacer takes "
+						+ stopTime + " to check the given benchmark!");
 				return CheckerResult.SAFE;
 			}
 			

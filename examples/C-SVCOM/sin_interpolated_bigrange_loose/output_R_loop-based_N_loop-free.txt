@@ -1,0 +1,24 @@
+[root] - ---   JayHorn : Static Analyzer for Java Programs   --- 
+[root] - Horn solver: spacer
+[root] - Building CFG  ... 
+Soot failed to parse <Main: void <clinit>()>
+java.lang.RuntimeException: Type mismatch:
+$ex_ := call <JayArray_double: void set(int,double)>($r1, 0)
+At position 2:
+Arg 0.0 of type DoubleType cannot be assigned to type java.lang.Double
+	at soottocfg.cfg.statement.CallStatement.<init>(CallStatement.java:65)
+	at soottocfg.soot.visitors.SootStmtSwitch.translateMethodInvokation(SootStmtSwitch.java:457)
+	at soottocfg.soot.visitors.SootStmtSwitch.caseInvokeStmt(SootStmtSwitch.java:318)
+	at soot.jimple.internal.JInvokeStmt.apply(JInvokeStmt.java:100)
+	at soottocfg.soot.visitors.SootStmtSwitch.<init>(SootStmtSwitch.java:120)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:312)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:281)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:336)
+	at soottocfg.soot.SootToCfg.run(SootToCfg.java:158)
+	at jayhorn.Main.safetyAnalysis(Main.java:63)
+	at jayhorn.Main.main(Main.java:129)
+2026-02-24 05:36:50,181 ERROR (main) [root] - java.lang.RuntimeException: Type mismatch:
+$ex_ := call <JayArray_double: void set(int,double)>($r1, 0)
+At position 2:
+Arg 0.0 of type DoubleType cannot be assigned to type java.lang.Double
+UNKNOWN

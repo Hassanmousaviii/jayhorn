@@ -1,0 +1,31 @@
+[root] - ---   JayHorn : Static Analyzer for Java Programs   --- 
+[root] - Horn solver: spacer
+[root] - Building CFG  ... 
+Soot failed to parse <Main: void main(JayArray_java_lang_String)>
+java.lang.RuntimeException: Type mismatch:
+$ex_, $boxed_7_value_00 := call <java.lang.Double: void <init>(double)>($boxed_7)
+At position 1:
+Arg 100.0 of type DoubleType cannot be assigned to type java.lang.Double
+	at soottocfg.cfg.statement.CallStatement.<init>(CallStatement.java:65)
+	at soottocfg.soot.memory_model.NewMemoryModel.mkConstructorCall(NewMemoryModel.java:572)
+	at soottocfg.soot.visitors.SootStmtSwitch.translateMethodInvokation(SootStmtSwitch.java:446)
+	at soottocfg.soot.visitors.SootStmtSwitch.caseInvokeStmt(SootStmtSwitch.java:318)
+	at soot.jimple.internal.JInvokeStmt.apply(JInvokeStmt.java:100)
+	at soottocfg.soot.visitors.SootValueSwitch.boxDownCastExpression(SootValueSwitch.java:414)
+	at soottocfg.soot.visitors.SootValueSwitch.caseCastExpr(SootValueSwitch.java:349)
+	at soot.jimple.internal.AbstractCastExpr.apply(AbstractCastExpr.java:134)
+	at soottocfg.soot.visitors.SootStmtSwitch.translateDefinitionStmt(SootStmtSwitch.java:1325)
+	at soottocfg.soot.visitors.SootStmtSwitch.caseAssignStmt(SootStmtSwitch.java:228)
+	at soot.jimple.internal.JAssignStmt.apply(JAssignStmt.java:238)
+	at soottocfg.soot.visitors.SootStmtSwitch.<init>(SootStmtSwitch.java:120)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:312)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:281)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:336)
+	at soottocfg.soot.SootToCfg.run(SootToCfg.java:158)
+	at jayhorn.Main.safetyAnalysis(Main.java:63)
+	at jayhorn.Main.main(Main.java:129)
+2026-02-24 01:56:15,363 ERROR (main) [root] - java.lang.RuntimeException: Type mismatch:
+$ex_, $boxed_7_value_00 := call <java.lang.Double: void <init>(double)>($boxed_7)
+At position 1:
+Arg 100.0 of type DoubleType cannot be assigned to type java.lang.Double
+UNKNOWN

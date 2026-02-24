@@ -1,1 +1,3933 @@
-true
+(let ((a!1 (forall ((A Int)
+                    (B Int)
+                    (C Int)
+                    (D Int)
+                    (E Int)
+                    (F Int)
+                    (G Int)
+                    (H Int)
+                    (I Int)
+                    (J Int)
+                    (K Int))
+             (! (= (Main_void_mainJayArray_java_lang_String_Block3_1
+                     A
+                     B
+                     C
+                     D
+                     E
+                     F
+                     G
+                     H
+                     I
+                     J
+                     K)
+                   (not (<= G 0)))
+                :weight 0)))
+      (a!2 (forall ((A Int)
+                    (B Int)
+                    (C Int)
+                    (D DoubleFloatingPoint)
+                    (E Int)
+                    (F Int)
+                    (G Int)
+                    (H Int)
+                    (I Int)
+                    (J Int)
+                    (K Int)
+                    (L Int)
+                    (M Int)
+                    (N Int)
+                    (O Int)
+                    (P Int)
+                    (Q Int)
+                    (R Int)
+                    (S Int)
+                    (T DoubleFloatingPoint)
+                    (U Int))
+             (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                               (= ((_ extract 51 0) (mantissa D))
+                                  #x0000000000000)))
+                      (a!2 (not (= D
+                                   (DoubleFloatingPoint
+                                     false
+                                     #b01111111111
+                                     #b11100000000000000000000000000000000000000000000000000
+                                     false
+                                     false
+                                     false
+                                     false)))))
+                  (= (Main_double_bessely0testdouble_Block6_11
+                       A
+                       B
+                       C
+                       D
+                       E
+                       F
+                       G
+                       H
+                       I
+                       J
+                       K
+                       L
+                       M
+                       N
+                       O
+                       P
+                       Q
+                       R
+                       S
+                       T
+                       U)
+                     (and (not (= F 0))
+                          a!1
+                          a!2
+                          (= G 0)
+                          (= Q A)
+                          (= R B)
+                          (= S C)
+                          (= T D))))
+                :weight 0)))
+      (a!3 (forall ((A Int)
+                    (B Int)
+                    (C Int)
+                    (D DoubleFloatingPoint)
+                    (E Int)
+                    (F Int)
+                    (G Int)
+                    (H Int)
+                    (I Int)
+                    (J Int)
+                    (K Int)
+                    (L Int)
+                    (M Int)
+                    (N Int)
+                    (O Int)
+                    (P Int)
+                    (Q DoubleFloatingPoint)
+                    (R Int))
+             (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                               (= ((_ extract 51 0) (mantissa D))
+                                  #x0000000000000)))
+                      (a!2 (not (= D
+                                   (DoubleFloatingPoint
+                                     false
+                                     #b10000000000
+                                     #b10100000000000000000000000000000000000000000000000000
+                                     false
+                                     false
+                                     false
+                                     false)))))
+                  (= (Main_double_bessely0testdouble_Block12_11
+                       A
+                       B
+                       C
+                       D
+                       E
+                       F
+                       G
+                       H
+                       I
+                       J
+                       K
+                       L
+                       M
+                       N
+                       O
+                       P
+                       Q
+                       R)
+                     (and (not (= F 0))
+                          a!1
+                          a!2
+                          (= G 0)
+                          (= N A)
+                          (= O B)
+                          (= P C)
+                          (= Q D))))
+                :weight 0)))
+      (a!4 (forall ((A Int)
+                    (B Int)
+                    (C Int)
+                    (D DoubleFloatingPoint)
+                    (E Int)
+                    (F Int)
+                    (G Int)
+                    (H Int)
+                    (I Int)
+                    (J Int)
+                    (K Int)
+                    (L Int)
+                    (M Int)
+                    (N Int)
+                    (O Int)
+                    (P Int)
+                    (Q Int)
+                    (R Int)
+                    (S DoubleFloatingPoint)
+                    (T Int))
+             (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                               (= ((_ extract 51 0) (mantissa D))
+                                  #x0000000000000)))
+                      (a!2 (not (= D
+                                   (DoubleFloatingPoint
+                                     false
+                                     #b10000000000
+                                     #b10000000000000000000000000000000000000000000000000000
+                                     false
+                                     false
+                                     false
+                                     false)))))
+                  (= (Main_double_bessely0testdouble_Block8_11
+                       A
+                       B
+                       C
+                       D
+                       E
+                       F
+                       G
+                       H
+                       I
+                       J
+                       K
+                       L
+                       M
+                       N
+                       O
+                       P
+                       Q
+                       R
+                       S
+                       T)
+                     (and (not (= F 0))
+                          a!1
+                          a!2
+                          (= G 0)
+                          (= P A)
+                          (= Q B)
+                          (= R C)
+                          (= S D))))
+                :weight 0)))
+      (a!5 (forall ((A Int)
+                    (B Int)
+                    (C Int)
+                    (D DoubleFloatingPoint)
+                    (E Int)
+                    (F Int)
+                    (G Int)
+                    (H Int)
+                    (I Int)
+                    (J Int)
+                    (K Int)
+                    (L Int)
+                    (M Int)
+                    (N DoubleFloatingPoint)
+                    (O Int))
+             (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                               (= ((_ extract 51 0) (mantissa D))
+                                  #x0000000000000)))
+                      (a!2 (not (= D
+                                   (DoubleFloatingPoint
+                                     false
+                                     #b10000000000
+                                     #b11010000000000000000000000000000000000000000000000000
+                                     false
+                                     false
+                                     false
+                                     false)))))
+                  (= (Main_double_bessely0testdouble_Block18_11
+                       A
+                       B
+                       C
+                       D
+                       E
+                       F
+                       G
+                       H
+                       I
+                       J
+                       K
+                       L
+                       M
+                       N
+                       O)
+                     (and (not (= F 0))
+                          a!1
+                          a!2
+                          (= G 0)
+                          (= K A)
+                          (= L B)
+                          (= M C)
+                          (= N D))))
+                :weight 0)))
+      (a!6 (forall ((A Int)
+                    (B Int)
+                    (C Int)
+                    (D DoubleFloatingPoint)
+                    (E Int)
+                    (F Int)
+                    (G Int)
+                    (H Int)
+                    (I Int)
+                    (J Int)
+                    (K Int)
+                    (L Int)
+                    (M Int)
+                    (N Int)
+                    (O Int)
+                    (P Int)
+                    (Q Int)
+                    (R DoubleFloatingPoint)
+                    (S Int))
+             (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                               (= ((_ extract 51 0) (mantissa D))
+                                  #x0000000000000)))
+                      (a!2 (not (= D
+                                   (DoubleFloatingPoint
+                                     false
+                                     #b10000000000
+                                     #b10010000000000000000000000000000000000000000000000000
+                                     false
+                                     false
+                                     false
+                                     false)))))
+                  (= (Main_double_bessely0testdouble_Block10_11
+                       A
+                       B
+                       C
+                       D
+                       E
+                       F
+                       G
+                       H
+                       I
+                       J
+                       K
+                       L
+                       M
+                       N
+                       O
+                       P
+                       Q
+                       R
+                       S)
+                     (and (not (= F 0))
+                          a!1
+                          a!2
+                          (= G 0)
+                          (= O A)
+                          (= P B)
+                          (= Q C)
+                          (= R D))))
+                :weight 0)))
+      (a!7 (forall ((A Int)
+                    (B Int)
+                    (C Int)
+                    (D DoubleFloatingPoint)
+                    (E Int)
+                    (F Int)
+                    (G Int)
+                    (H Int)
+                    (I Int)
+                    (J Int)
+                    (K Int)
+                    (L Int)
+                    (M Int)
+                    (N Int)
+                    (O DoubleFloatingPoint)
+                    (P Int))
+             (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                               (= ((_ extract 51 0) (mantissa D))
+                                  #x0000000000000)))
+                      (a!2 (not (= D
+                                   (DoubleFloatingPoint
+                                     false
+                                     #b10000000000
+                                     #b11000000000000000000000000000000000000000000000000000
+                                     false
+                                     false
+                                     false
+                                     false)))))
+                  (= (Main_double_bessely0testdouble_Block16_11
+                       A
+                       B
+                       C
+                       D
+                       E
+                       F
+                       G
+                       H
+                       I
+                       J
+                       K
+                       L
+                       M
+                       N
+                       O
+                       P)
+                     (and (not (= F 0))
+                          a!1
+                          a!2
+                          (= G 0)
+                          (= L A)
+                          (= M B)
+                          (= N C)
+                          (= O D))))
+                :weight 0)))
+      (a!8 (forall ((A Int)
+                    (B Int)
+                    (C Int)
+                    (D DoubleFloatingPoint)
+                    (E Int)
+                    (F Int)
+                    (G Int)
+                    (H Int)
+                    (I Int)
+                    (J Int)
+                    (K Int)
+                    (L Int)
+                    (M Int)
+                    (N Int)
+                    (O Int)
+                    (P DoubleFloatingPoint)
+                    (Q Int))
+             (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                               (= ((_ extract 51 0) (mantissa D))
+                                  #x0000000000000)))
+                      (a!2 (not (= D
+                                   (DoubleFloatingPoint
+                                     false
+                                     #b10000000000
+                                     #b10110000000000000000000000000000000000000000000000000
+                                     false
+                                     false
+                                     false
+                                     false)))))
+                  (= (Main_double_bessely0testdouble_Block14_11
+                       A
+                       B
+                       C
+                       D
+                       E
+                       F
+                       G
+                       H
+                       I
+                       J
+                       K
+                       L
+                       M
+                       N
+                       O
+                       P
+                       Q)
+                     (and (not (= F 0))
+                          a!1
+                          a!2
+                          (= G 0)
+                          (= M A)
+                          (= N B)
+                          (= O C)
+                          (= P D))))
+                :weight 0)))
+      (a!9 (forall ((A Int)
+                    (B Int)
+                    (C Int)
+                    (D DoubleFloatingPoint)
+                    (E Int)
+                    (F Int)
+                    (G Int)
+                    (H Int)
+                    (I Int)
+                    (J Int)
+                    (K Int)
+                    (L Int)
+                    (M Int)
+                    (N Int)
+                    (O Int)
+                    (P Int)
+                    (Q Int)
+                    (R Int)
+                    (S Int)
+                    (T Int)
+                    (U DoubleFloatingPoint)
+                    (V Int))
+             (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                               (= ((_ extract 51 0) (mantissa D))
+                                  #x0000000000000)))
+                      (a!2 (not (= D
+                                   (DoubleFloatingPoint
+                                     false
+                                     #b01111111111
+                                     #b11000000000000000000000000000000000000000000000000000
+                                     false
+                                     false
+                                     false
+                                     false)))))
+                  (= (Main_double_bessely0testdouble_Block4_11
+                       A
+                       B
+                       C
+                       D
+                       E
+                       F
+                       G
+                       H
+                       I
+                       J
+                       K
+                       L
+                       M
+                       N
+                       O
+                       P
+                       Q
+                       R
+                       S
+                       T
+                       U
+                       V)
+                     (and (not (= F 0))
+                          a!1
+                          a!2
+                          (= G 0)
+                          (= R A)
+                          (= S B)
+                          (= T C)
+                          (= U D))))
+                :weight 0)))
+      (a!10 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q Int)
+                     (R Int)
+                     (S DoubleFloatingPoint)
+                     (T Int))
+              (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                                (= ((_ extract 51 0) (mantissa D))
+                                   #x0000000000000)))
+                       (a!2 (not (= D
+                                    (DoubleFloatingPoint
+                                      false
+                                      #b10000000000
+                                      #b10000000000000000000000000000000000000000000000000000
+                                      false
+                                      false
+                                      false
+                                      false)))))
+                   (= (Main_double_bessely0testdouble_Block8_12
+                        A
+                        B
+                        C
+                        D
+                        E
+                        F
+                        G
+                        H
+                        I
+                        J
+                        K
+                        L
+                        M
+                        N
+                        O
+                        P
+                        Q
+                        R
+                        S
+                        T)
+                      (and (not (= F 0))
+                           (not (sign D))
+                           a!1
+                           a!2
+                           (= G 0)
+                           (= P A)
+                           (= Q B)
+                           (= R C)
+                           (= S D))))
+                 :weight 0)))
+      (a!11 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q DoubleFloatingPoint)
+                     (R Int))
+              (! (= (Main_double_bessely0testdouble_Block12
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O
+                      P
+                      Q
+                      R)
+                    (and (not (= F 0)) (= N A) (= O B) (= P C) (= Q D)))
+                 :weight 0)))
+      (a!12 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int))
+              (! (= (Main_double_bessely0testdouble_Block20 A B C D E F G H I J)
+                    (not (= F 0)))
+                 :weight 0)))
+      (a!13 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N DoubleFloatingPoint)
+                     (O Int))
+              (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                                (= ((_ extract 51 0) (mantissa D))
+                                   #x0000000000000)))
+                       (a!2 (not (= D
+                                    (DoubleFloatingPoint
+                                      false
+                                      #b10000000000
+                                      #b11010000000000000000000000000000000000000000000000000
+                                      false
+                                      false
+                                      false
+                                      false)))))
+                   (= (Main_double_bessely0testdouble_Block18_12
+                        A
+                        B
+                        C
+                        D
+                        E
+                        F
+                        G
+                        H
+                        I
+                        J
+                        K
+                        L
+                        M
+                        N
+                        O)
+                      (and (not (= F 0))
+                           (not (sign D))
+                           a!1
+                           a!2
+                           (= G 0)
+                           (= K A)
+                           (= L B)
+                           (= M C)
+                           (= N D))))
+                 :weight 0)))
+      (a!14 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q Int)
+                     (R DoubleFloatingPoint)
+                     (S Int))
+              (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                                (= ((_ extract 51 0) (mantissa D))
+                                   #x0000000000000)))
+                       (a!2 (not (= D
+                                    (DoubleFloatingPoint
+                                      false
+                                      #b10000000000
+                                      #b10010000000000000000000000000000000000000000000000000
+                                      false
+                                      false
+                                      false
+                                      false)))))
+                   (= (Main_double_bessely0testdouble_Block10_12
+                        A
+                        B
+                        C
+                        D
+                        E
+                        F
+                        G
+                        H
+                        I
+                        J
+                        K
+                        L
+                        M
+                        N
+                        O
+                        P
+                        Q
+                        R
+                        S)
+                      (and (not (= F 0))
+                           (not (sign D))
+                           a!1
+                           a!2
+                           (= G 0)
+                           (= O A)
+                           (= P B)
+                           (= Q C)
+                           (= R D))))
+                 :weight 0)))
+      (a!15 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N DoubleFloatingPoint)
+                     (O Int))
+              (! (= (Main_double_bessely0testdouble_Block18
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O)
+                    (and (not (= F 0)) (= K A) (= L B) (= M C) (= N D)))
+                 :weight 0)))
+      (a!16 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O DoubleFloatingPoint)
+                     (P Int))
+              (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                                (= ((_ extract 51 0) (mantissa D))
+                                   #x0000000000000)))
+                       (a!2 (not (= D
+                                    (DoubleFloatingPoint
+                                      false
+                                      #b10000000000
+                                      #b11000000000000000000000000000000000000000000000000000
+                                      false
+                                      false
+                                      false
+                                      false)))))
+                   (= (Main_double_bessely0testdouble_Block16_12
+                        A
+                        B
+                        C
+                        D
+                        E
+                        F
+                        G
+                        H
+                        I
+                        J
+                        K
+                        L
+                        M
+                        N
+                        O
+                        P)
+                      (and (not (= F 0))
+                           (not (sign D))
+                           a!1
+                           a!2
+                           (= G 0)
+                           (= L A)
+                           (= M B)
+                           (= N C)
+                           (= O D))))
+                 :weight 0)))
+      (a!17 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O DoubleFloatingPoint)
+                     (P Int))
+              (! (= (Main_double_bessely0testdouble_Block16
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O
+                      P)
+                    (and (not (= F 0)) (= L A) (= M B) (= N C) (= O D)))
+                 :weight 0)))
+      (a!18 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P DoubleFloatingPoint)
+                     (Q Int))
+              (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                                (= ((_ extract 51 0) (mantissa D))
+                                   #x0000000000000)))
+                       (a!2 (not (= D
+                                    (DoubleFloatingPoint
+                                      false
+                                      #b10000000000
+                                      #b10110000000000000000000000000000000000000000000000000
+                                      false
+                                      false
+                                      false
+                                      false)))))
+                   (= (Main_double_bessely0testdouble_Block14_12
+                        A
+                        B
+                        C
+                        D
+                        E
+                        F
+                        G
+                        H
+                        I
+                        J
+                        K
+                        L
+                        M
+                        N
+                        O
+                        P
+                        Q)
+                      (and (not (= F 0))
+                           (not (sign D))
+                           a!1
+                           a!2
+                           (= G 0)
+                           (= M A)
+                           (= N B)
+                           (= O C)
+                           (= P D))))
+                 :weight 0)))
+      (a!19 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q Int)
+                     (R DoubleFloatingPoint)
+                     (S Int))
+              (! (= (Main_double_bessely0testdouble_Block10
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O
+                      P
+                      Q
+                      R
+                      S)
+                    (and (not (= F 0)) (= O A) (= P B) (= Q C) (= R D)))
+                 :weight 0)))
+      (a!20 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q Int)
+                     (R Int)
+                     (S DoubleFloatingPoint)
+                     (T Int))
+              (! (= (Main_double_bessely0testdouble_Block8
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O
+                      P
+                      Q
+                      R
+                      S
+                      T)
+                    (and (not (= F 0)) (= P A) (= Q B) (= R C) (= S D)))
+                 :weight 0)))
+      (a!21 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P DoubleFloatingPoint)
+                     (Q Int))
+              (! (= (Main_double_bessely0testdouble_Block14
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O
+                      P
+                      Q)
+                    (and (not (= F 0)) (= M A) (= N B) (= O C) (= P D)))
+                 :weight 0)))
+      (a!22 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q Int)
+                     (R Int)
+                     (S Int)
+                     (T DoubleFloatingPoint)
+                     (U Int))
+              (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                                (= ((_ extract 51 0) (mantissa D))
+                                   #x0000000000000)))
+                       (a!2 (not (= D
+                                    (DoubleFloatingPoint
+                                      false
+                                      #b01111111111
+                                      #b11100000000000000000000000000000000000000000000000000
+                                      false
+                                      false
+                                      false
+                                      false)))))
+                   (= (Main_double_bessely0testdouble_Block6_12
+                        A
+                        B
+                        C
+                        D
+                        E
+                        F
+                        G
+                        H
+                        I
+                        J
+                        K
+                        L
+                        M
+                        N
+                        O
+                        P
+                        Q
+                        R
+                        S
+                        T
+                        U)
+                      (and (not (= F 0))
+                           (not (sign D))
+                           a!1
+                           a!2
+                           (= G 0)
+                           (= Q A)
+                           (= R B)
+                           (= S C)
+                           (= T D))))
+                 :weight 0)))
+      (a!23 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q Int)
+                     (R Int)
+                     (S Int)
+                     (T Int)
+                     (U DoubleFloatingPoint)
+                     (V Int))
+              (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                                (= ((_ extract 51 0) (mantissa D))
+                                   #x0000000000000)))
+                       (a!2 (not (= D
+                                    (DoubleFloatingPoint
+                                      false
+                                      #b01111111111
+                                      #b11000000000000000000000000000000000000000000000000000
+                                      false
+                                      false
+                                      false
+                                      false)))))
+                   (= (Main_double_bessely0testdouble_Block4_12
+                        A
+                        B
+                        C
+                        D
+                        E
+                        F
+                        G
+                        H
+                        I
+                        J
+                        K
+                        L
+                        M
+                        N
+                        O
+                        P
+                        Q
+                        R
+                        S
+                        T
+                        U
+                        V)
+                      (and (not (= F 0))
+                           (not (sign D))
+                           a!1
+                           a!2
+                           (= G 0)
+                           (= R A)
+                           (= S B)
+                           (= T C)
+                           (= U D))))
+                 :weight 0)))
+      (a!24 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q Int)
+                     (R Int)
+                     (S Int)
+                     (T DoubleFloatingPoint)
+                     (U Int))
+              (! (= (Main_double_bessely0testdouble_Block6
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O
+                      P
+                      Q
+                      R
+                      S
+                      T
+                      U)
+                    (and (not (= F 0)) (= Q A) (= R B) (= S C) (= T D)))
+                 :weight 0)))
+      (a!25 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q DoubleFloatingPoint)
+                     (R Int))
+              (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                                (= ((_ extract 51 0) (mantissa D))
+                                   #x0000000000000)))
+                       (a!2 (not (= D
+                                    (DoubleFloatingPoint
+                                      false
+                                      #b10000000000
+                                      #b10100000000000000000000000000000000000000000000000000
+                                      false
+                                      false
+                                      false
+                                      false)))))
+                   (= (Main_double_bessely0testdouble_Block12_12
+                        A
+                        B
+                        C
+                        D
+                        E
+                        F
+                        G
+                        H
+                        I
+                        J
+                        K
+                        L
+                        M
+                        N
+                        O
+                        P
+                        Q
+                        R)
+                      (and (not (= F 0))
+                           (not (sign D))
+                           a!1
+                           a!2
+                           (= G 0)
+                           (= N A)
+                           (= O B)
+                           (= P C)
+                           (= Q D))))
+                 :weight 0)))
+      (a!26 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q Int)
+                     (R Int)
+                     (S Int)
+                     (T Int)
+                     (U DoubleFloatingPoint)
+                     (V Int))
+              (! (= (Main_double_bessely0testdouble_Block4
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O
+                      P
+                      Q
+                      R
+                      S
+                      T
+                      U
+                      V)
+                    (and (not (= F 0)) (= R A) (= S B) (= T C) (= U D)))
+                 :weight 0)))
+      (a!27 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D Int)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int))
+              (! (= (Main_void_mainJayArray_java_lang_String_Block1_5
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J)
+                    (and (>= D 0)
+                         (= A 1)
+                         (= B 137)
+                         (= G 0)
+                         (= H 0)
+                         (= I 0)
+                         (= J 1)))
+                 :weight 0)))
+      (a!28 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D Int)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int))
+              (! (= (Main_void_mainJayArray_java_lang_String_Block1_2
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O)
+                    (and (>= D 0)
+                         (= A 1)
+                         (= B 137)
+                         (= G 1)
+                         (= H 137)
+                         (= I C)
+                         (= J D)
+                         (= K 1)))
+                 :weight 0)))
+      (a!29 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L DoubleFloatingPoint)
+                     (M Int))
+              (! (= (Main_double_bessely0testdouble_Block19_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M)
+                    (and (= I (- 19))
+                         (= J 133)
+                         (= L
+                            (DoubleFloatingPoint
+                              false
+                              #b01111111101
+                              #b11000000111100100111110000001001000000010010000101010
+                              false
+                              false
+                              false
+                              false))))
+                 :weight 0)))
+      (a!30 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L DoubleFloatingPoint)
+                     (M Int))
+              (! (= (Main_double_bessely0testdouble_Block17_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M)
+                    (and (= I (- 17))
+                         (= J 133)
+                         (= L
+                            (DoubleFloatingPoint
+                              false
+                              #b01111111101
+                              #b11100101101101101001100010010000011010001100000000110
+                              false
+                              false
+                              false
+                              false))))
+                 :weight 0)))
+      (a!31 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L DoubleFloatingPoint)
+                     (M Int))
+              (! (= (Main_double_bessely0testdouble_Block15_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M)
+                    (and (= I (- 15))
+                         (= J 133)
+                         (= L
+                            (DoubleFloatingPoint
+                              false
+                              #b01111111101
+                              #b11111111000000110001010000000011010011110000101011100
+                              false
+                              false
+                              false
+                              false))))
+                 :weight 0)))
+      (a!32 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L DoubleFloatingPoint)
+                     (M Int))
+              (! (= (Main_double_bessely0testdouble_Block13_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M)
+                    (and (= I (- 13))
+                         (= J 133)
+                         (= L
+                            (DoubleFloatingPoint
+                              false
+                              #b01111111110
+                              #b10000101001000101111011011011010100011100101011100111
+                              false
+                              false
+                              false
+                              false))))
+                 :weight 0)))
+      (a!33 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L DoubleFloatingPoint)
+                     (M Int))
+              (! (= (Main_double_bessely0testdouble_Block11_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M)
+                    (and (= I (- 11))
+                         (= J 133)
+                         (= L
+                            (DoubleFloatingPoint
+                              false
+                              #b01111111110
+                              #b10000010101001111111101011100110101101000110010001101
+                              false
+                              false
+                              false
+                              false))))
+                 :weight 0)))
+      (a!34 (forall ((A Int) (B Int))
+              (! (= (JayHornAssertions_void_clinit_Block1 A B)
+                    (and (= A 1) (= B 1)))
+                 :weight 0)))
+      (a!35 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D Int)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int))
+              (! (= (Main_void_clinit_Block1_2 A B C D E F G H)
+                    (and (= A 1) (= E 0) (= F 0) (= G 0) (= H 1)))
+                 :weight 0)))
+      (a!36 (forall ((A Int) (B Int) (C Int) (D Int) (E Int))
+              (! (= (Main_void_clinit_Block1_1 A B C D E) (and (= A 1) (= E 1)))
+                 :weight 0)))
+      (a!37 (forall ((A Int) (B Int) (C Int) (D Int) (E Int))
+              (! (= (Main_void_clinit_Block1 A B C D E) (and (= A 1) (= E 1)))
+                 :weight 0)))
+      (a!38 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L DoubleFloatingPoint)
+                     (M Int))
+              (! (= (Main_double_bessely0testdouble_Block9_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M)
+                    (and (= I (- 9))
+                         (= J 133)
+                         (= L
+                            (DoubleFloatingPoint
+                              false
+                              #b01111111101
+                              #b11101110010101010000110011000001001000101001001111010
+                              false
+                              false
+                              false
+                              false))))
+                 :weight 0)))
+      (a!39 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L DoubleFloatingPoint)
+                     (M Int))
+              (! (= (Main_double_bessely0testdouble_Block7_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M)
+                    (and (= I (- 7))
+                         (= J 133)
+                         (= L
+                            (DoubleFloatingPoint
+                              false
+                              #b01111111101
+                              #b11000011110100000101100001101000001101000001101101010
+                              false
+                              false
+                              false
+                              false))))
+                 :weight 0)))
+      (a!40 (forall ((A Int) (B Int))
+              (! (= (JayHornAssertions_void_clinit_Block1_1 A B)
+                    (and (= A 1) (= B 1)))
+                 :weight 0)))
+      (a!41 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L DoubleFloatingPoint)
+                     (M Int))
+              (! (= (Main_double_bessely0testdouble_Block5_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M)
+                    (and (= I (- 5))
+                         (= J 133)
+                         (= L
+                            (DoubleFloatingPoint
+                              false
+                              #b01111111101
+                              #b10000100001101001111111111001001101111111101000010010
+                              false
+                              false
+                              false
+                              false))))
+                 :weight 0)))
+      (a!42 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D DoubleFloatingPoint)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L DoubleFloatingPoint)
+                     (M Int))
+              (! (= (Main_double_bessely0testdouble_Block21_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M)
+                    (and (= I (- 21))
+                         (= J 133)
+                         (= L
+                            (DoubleFloatingPoint
+                              false
+                              #b01111111101
+                              #b10010011100110100101011101000101101100010010110010110
+                              false
+                              false
+                              false
+                              false))))
+                 :weight 0)))
+      (a!43 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D Int)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M DoubleFloatingPoint)
+                     (N Int))
+              (! (= (Main_void_mainJayArray_java_lang_String_Block1_6
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N)
+                    (and (>= D 0)
+                         (= A 1)
+                         (= B 137)
+                         (= G 0)
+                         (= H 0)
+                         (= I 0)
+                         (= N 1)))
+                 :weight 0)))
+      (a!44 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D Int)
+                     (E Int)
+                     (F Int)
+                     (G Int)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int))
+              (! (= (Main_void_mainJayArray_java_lang_String_Block1_1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O
+                      P)
+                    (and (= G A) (= H B) (= I C) (= J D) (= L 1)))
+                 :weight 0)))
+      (a!45 (forall ((A Int)
+                     (B Int)
+                     (C Int)
+                     (D Int)
+                     (E Int)
+                     (F Bool)
+                     (G Bool)
+                     (H Int)
+                     (I Int)
+                     (J Int)
+                     (K Int)
+                     (L Int)
+                     (M Int)
+                     (N Int)
+                     (O Int)
+                     (P Int)
+                     (Q Int)
+                     (R Int)
+                     (S Int)
+                     (T Int)
+                     (U DoubleFloatingPoint)
+                     (V Int)
+                     (W Int)
+                     (X Int)
+                     (Y Int)
+                     (Z Int))
+              (! (= (Main_void_mainJayArray_java_lang_String_Block1
+                      A
+                      B
+                      C
+                      D
+                      E
+                      F
+                      G
+                      H
+                      I
+                      J
+                      K
+                      L
+                      M
+                      N
+                      O
+                      P
+                      Q
+                      R
+                      S
+                      T
+                      U
+                      V
+                      W
+                      X
+                      Y
+                      Z)
+                    (and (= M A) (= N B) (= O C) (= P D)))
+                 :weight 0)))
+      (a!46 (forall ((A Int) (B Int) (C Int) (D Int) (E Bool))
+              (! (= (inv_$StaticFields_Main_2 A B C D E)
+                    (and (= A (- 22)) (= B 297) (not E)))
+                 :weight 0))))
+  (and (= |Assert_#2_Main.java,_line_21| false)
+       (= |Assert_#1_Main.java,_line_20| true)
+       (= |Assert_#0_Main.java,_line_18| true)
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q DoubleFloatingPoint)
+                (R Int))
+         (! (= (Main_double_bessely0testdouble_Block10_1
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K
+                 L
+                 M
+                 N
+                 O
+                 P
+                 Q
+                 R)
+               true)
+            :weight 0))
+       a!1
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block18_1 A B C D E F G H I J)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O DoubleFloatingPoint)
+                (P Int))
+         (! (= (Main_double_bessely0testdouble_Block14_1
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K
+                 L
+                 M
+                 N
+                 O
+                 P)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R DoubleFloatingPoint)
+                (S Int))
+         (! (= (Main_double_bessely0testdouble_Block8_1
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K
+                 L
+                 M
+                 N
+                 O
+                 P
+                 Q
+                 R
+                 S)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P DoubleFloatingPoint)
+                (Q Int))
+         (! (= (Main_double_bessely0testdouble_Block12_1
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K
+                 L
+                 M
+                 N
+                 O
+                 P
+                 Q)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S Int)
+                (T DoubleFloatingPoint)
+                (U Int))
+         (! (= (Main_double_bessely0testdouble_Block4_1
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K
+                 L
+                 M
+                 N
+                 O
+                 P
+                 Q
+                 R
+                 S
+                 T
+                 U)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S DoubleFloatingPoint)
+                (T Int))
+         (! (= (Main_double_bessely0testdouble_Block6_1
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K
+                 L
+                 M
+                 N
+                 O
+                 P
+                 Q
+                 R
+                 S
+                 T)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S Int)
+                (T Int)
+                (U Int)
+                (V DoubleFloatingPoint)
+                (W Int))
+         (! (let ((a!1 (or (not (= F 0))
+                           (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa D)))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa V)) #b1)))
+                  (a!4 (not (= ((_ extract 10 10) (exponent D)) #b1))))
+            (let ((a!3 (or (sign D)
+                           a!2
+                           (not (= (exponent D) #b01111111111))
+                           (not (<= F 0)))))
+            (let ((a!5 (and a!1 a!3 (or (not (= F 0)) a!4))))
+              (= (Main_double_bessely0testdouble_Block1_3
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S
+                   T
+                   U
+                   V
+                   W)
+                 a!5))))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N DoubleFloatingPoint)
+                (O Int))
+         (! (= (Main_double_bessely0testdouble_Block16_1
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K
+                 L
+                 M
+                 N
+                 O)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S Int)
+                (T Int)
+                (U DoubleFloatingPoint)
+                (V Int))
+         (! (= (Main_double_bessely0testdouble_Block2_1
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K
+                 L
+                 M
+                 N
+                 O
+                 P
+                 Q
+                 R
+                 S
+                 T
+                 U
+                 V)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N DoubleFloatingPoint)
+                (O Int))
+         (! (let ((a!1 (and (or (bvule #b01111111100 (exponent N))
+                                (not (>= F 0)))
+                            (not (sign N))
+                            (not (= (exponent N) #b01111111100)))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_13
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O)
+                 a!1))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L DoubleFloatingPoint)
+                (M Int))
+         (! (let ((a!1 (or (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa D)))
+                           (bvule #b01111111100 (exponent L))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa D)) #b1)))
+                  (a!4 (or (not ((_ bit2bool 10) (exponent D)))
+                           (bvule #b01111111100 (exponent L)))))
+            (let ((a!3 (or (sign D)
+                           (not (= (exponent D) #b01111111111))
+                           a!2
+                           (bvule #b01111111100 (exponent L)))))
+            (let ((a!5 (and a!1
+                            (not (sign L))
+                            (not (= (exponent L) #b01111111100))
+                            a!3
+                            a!4)))
+              (= (Main_double_bessely0testdouble_Block0
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M)
+                 a!5))))
+            :weight 0))
+       a!2
+       a!3
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S Int)
+                (T Int)
+                (U DoubleFloatingPoint)
+                (V Int))
+         (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                           (= ((_ extract 51 0) (mantissa D)) #x0000000000000)))
+                  (a!2 (not (= D
+                               (DoubleFloatingPoint
+                                 false
+                                 #b01111111111
+                                 #b10000000000000000000000000000000000000000000000000000
+                                 false
+                                 false
+                                 false
+                                 false)))))
+            (let ((a!3 (and (= ((_ extract 52 52) (mantissa D)) #b1)
+                            a!1
+                            a!2
+                            (= E 1)
+                            (= O 0)
+                            (= P 0)
+                            (= Q 0)
+                            (= R A)
+                            (= S B)
+                            (= T C)
+                            (= U D)
+                            (= V 1))))
+              (= (Main_double_bessely0testdouble_Block1_2_11
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S
+                   T
+                   U
+                   V)
+                 a!3)))
+            :weight 0))
+       a!4
+       a!5
+       a!6
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N DoubleFloatingPoint)
+                (O Int))
+         (! (let ((a!1 (or (not (= (exponent N) #b11111111111))
+                           (= ((_ extract 51 0) (mantissa N)) #x0000000000000)))
+                  (a!2 (not (= N
+                               (DoubleFloatingPoint
+                                 false
+                                 #b01111111100
+                                 #b11001100110011001100110011001100110011001100110011010
+                                 false
+                                 false
+                                 false
+                                 false)))))
+            (let ((a!3 (and (or (bvule #b01111111100 (exponent N))
+                                (not (>= F 0)))
+                            (not (sign N))
+                            (not (= (exponent N) #b01111111100))
+                            (<= 0 F)
+                            a!1
+                            a!2
+                            (= G 0))))
+              (= (Main_void_mainJayArray_java_lang_String_Block3_11
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O)
+                 a!3)))
+            :weight 0))
+       a!7
+       a!8
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M DoubleFloatingPoint)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q DoubleFloatingPoint)
+                (R Int))
+         (! (let ((a!1 (or (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa M)))
+                           (bvule #b01111111100 (exponent Q))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa M)) #b1)))
+                  (a!4 (or (not ((_ bit2bool 10) (exponent M)))
+                           (bvule #b01111111100 (exponent Q))))
+                  (a!5 (or (not (= (exponent M) #b11111111111))
+                           (= ((_ extract 51 0) (mantissa M)) #x0000000000000)))
+                  (a!6 (not (= M
+                               (DoubleFloatingPoint
+                                 false
+                                 #b01111111111
+                                 #b10100000000000000000000000000000000000000000000000000
+                                 false
+                                 false
+                                 false
+                                 false)))))
+            (let ((a!3 (or (sign M)
+                           (not (= (exponent M) #b01111111111))
+                           a!2
+                           (bvule #b01111111100 (exponent Q)))))
+            (let ((a!7 (and a!1
+                            (not (sign Q))
+                            (not (= (exponent Q) #b01111111100))
+                            a!3
+                            a!4
+                            (= ((_ extract 52 52) (mantissa M)) #b1)
+                            (>= D 0)
+                            a!5
+                            a!6
+                            (= A 1)
+                            (= B 137))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_12_11
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R)
+                 a!7))))
+            :weight 0))
+       a!9
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S Int)
+                (T Int)
+                (U Int)
+                (V DoubleFloatingPoint)
+                (W Int))
+         (! (let ((a!1 (or (not (= F 0))
+                           (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa D)))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa D)) #b1)))
+                  (a!4 (not (= ((_ extract 10 10) (exponent D)) #b1)))
+                  (a!5 (or (not (= (exponent D) #b11111111111))
+                           (= ((_ extract 51 0) (mantissa D)) #x0000000000000)))
+                  (a!6 (not (= D
+                               (DoubleFloatingPoint
+                                 false
+                                 #b01111111111
+                                 #b10100000000000000000000000000000000000000000000000000
+                                 false
+                                 false
+                                 false
+                                 false)))))
+            (let ((a!3 (or (sign D)
+                           (not (= (exponent D) #b01111111111))
+                           (not (<= F 0))
+                           a!2)))
+            (let ((a!7 (and a!1
+                            a!3
+                            (or (not (= F 0)) a!4)
+                            (not (= F 0))
+                            a!5
+                            a!6
+                            (= G 0)
+                            (= S A)
+                            (= T B)
+                            (= U C)
+                            (= V D))))
+              (= (Main_double_bessely0testdouble_Block2_11
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S
+                   T
+                   U
+                   V
+                   W)
+                 a!7))))
+            :weight 0))
+       a!10
+       a!11
+       a!12
+       a!13
+       a!14
+       a!15
+       a!16
+       a!17
+       a!18
+       a!19
+       a!20
+       a!21
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S Int)
+                (T Int)
+                (U Int)
+                (V DoubleFloatingPoint)
+                (W Int))
+         (! (let ((a!1 (or (not (= F 0))
+                           (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa D)))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa D)) #b1)))
+                  (a!4 (not (= ((_ extract 10 10) (exponent D)) #b1))))
+            (let ((a!3 (or (sign D)
+                           (not (= (exponent D) #b01111111111))
+                           (not (<= F 0))
+                           a!2)))
+            (let ((a!5 (and a!1
+                            a!3
+                            (or (not (= F 0)) a!4)
+                            (not (= F 0))
+                            (= S A)
+                            (= T B)
+                            (= U C)
+                            (= V D))))
+              (= (Main_double_bessely0testdouble_Block2
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S
+                   T
+                   U
+                   V
+                   W)
+                 a!5))))
+            :weight 0))
+       a!22
+       a!23
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N DoubleFloatingPoint)
+                (O Int))
+         (! (let ((a!1 (or (not (= (exponent N) #b11111111111))
+                           (= ((_ extract 51 0) (mantissa N)) #x0000000000000)))
+                  (a!2 (not (= N
+                               (DoubleFloatingPoint
+                                 false
+                                 #b01111111100
+                                 #b11001100110011001100110011001100110011001100110011010
+                                 false
+                                 false
+                                 false
+                                 false)))))
+            (let ((a!3 (and (or (not (>= F 0))
+                                (bvule #b01111111100 (exponent N)))
+                            (not (sign N))
+                            (not (= (exponent N) #b01111111100))
+                            (<= 0 F)
+                            a!1
+                            a!2
+                            (= G 0))))
+              (= (Main_void_mainJayArray_java_lang_String_Block3_12
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O)
+                 a!3)))
+            :weight 0))
+       a!24
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S Int)
+                (T Int)
+                (U DoubleFloatingPoint)
+                (V Int))
+         (! (let ((a!1 (or (not (= (exponent D) #b11111111111))
+                           (= ((_ extract 51 0) (mantissa D)) #x0000000000000)))
+                  (a!2 (not (= D
+                               (DoubleFloatingPoint
+                                 false
+                                 #b01111111111
+                                 #b10000000000000000000000000000000000000000000000000000
+                                 false
+                                 false
+                                 false
+                                 false)))))
+            (let ((a!3 (and (= ((_ extract 52 52) (mantissa D)) #b1)
+                            (not (sign D))
+                            a!1
+                            a!2
+                            (= E 1)
+                            (= O 0)
+                            (= P 0)
+                            (= Q 0)
+                            (= R A)
+                            (= S B)
+                            (= T C)
+                            (= U D)
+                            (= V 1))))
+              (= (Main_double_bessely0testdouble_Block1_2_12
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S
+                   T
+                   U
+                   V)
+                 a!3)))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N DoubleFloatingPoint)
+                (O Int))
+         (! (let ((a!1 (and (or (bvule #b01111111100 (exponent N))
+                                (not (>= F 0)))
+                            (not (sign N))
+                            (not (= (exponent N) #b01111111100))
+                            (<= 0 F))))
+              (= (Main_void_mainJayArray_java_lang_String_Block3
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O)
+                 a!1))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S Int)
+                (T Int)
+                (U Int)
+                (V DoubleFloatingPoint)
+                (W Int))
+         (! (let ((a!1 (or (not (= F 0))
+                           (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa D)))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa D)) #b1)))
+                  (a!4 (not (= ((_ extract 10 10) (exponent D)) #b1)))
+                  (a!5 (or (not (= (exponent D) #b11111111111))
+                           (= ((_ extract 51 0) (mantissa D)) #x0000000000000)))
+                  (a!6 (not (= D
+                               (DoubleFloatingPoint
+                                 false
+                                 #b01111111111
+                                 #b10100000000000000000000000000000000000000000000000000
+                                 false
+                                 false
+                                 false
+                                 false)))))
+            (let ((a!3 (or (sign D)
+                           (not (= (exponent D) #b01111111111))
+                           (not (<= F 0))
+                           a!2)))
+            (let ((a!7 (and a!1
+                            a!3
+                            (or (not (= F 0)) a!4)
+                            (not (= F 0))
+                            (not (sign D))
+                            a!5
+                            a!6
+                            (= G 0)
+                            (= S A)
+                            (= T B)
+                            (= U C)
+                            (= V D))))
+              (= (Main_double_bessely0testdouble_Block2_12
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S
+                   T
+                   U
+                   V
+                   W)
+                 a!7))))
+            :weight 0))
+       a!25
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M DoubleFloatingPoint)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q DoubleFloatingPoint)
+                (R Int))
+         (! (let ((a!1 (or (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa M)))
+                           (bvule #b01111111100 (exponent Q))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa M)) #b1)))
+                  (a!4 (or (not ((_ bit2bool 10) (exponent M)))
+                           (bvule #b01111111100 (exponent Q))))
+                  (a!5 (or (not (= (exponent M) #b11111111111))
+                           (= ((_ extract 51 0) (mantissa M)) #x0000000000000)))
+                  (a!6 (not (= M
+                               (DoubleFloatingPoint
+                                 false
+                                 #b01111111111
+                                 #b10100000000000000000000000000000000000000000000000000
+                                 false
+                                 false
+                                 false
+                                 false)))))
+            (let ((a!3 (or (sign M)
+                           (not (= (exponent M) #b01111111111))
+                           a!2
+                           (bvule #b01111111100 (exponent Q)))))
+            (let ((a!7 (and a!1
+                            (not (sign Q))
+                            (not (= (exponent Q) #b01111111100))
+                            a!3
+                            a!4
+                            (= ((_ extract 52 52) (mantissa M)) #b1)
+                            (not (sign M))
+                            (>= D 0)
+                            a!5
+                            a!6
+                            (= A 1)
+                            (= B 137))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_12_12
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R)
+                 a!7))))
+            :weight 0))
+       a!26
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int))
+         (! (= (Main_void_mainJayArray_java_lang_String_Block4
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K)
+               false)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Bool)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N DoubleFloatingPoint)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R DoubleFloatingPoint)
+                (S Int))
+         (! (let ((a!1 (or (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa N)))
+                           (bvule #b01111111100 (exponent R))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa N)) #b1)))
+                  (a!4 (or (not ((_ bit2bool 10) (exponent N)))
+                           (bvule #b01111111100 (exponent R)))))
+            (let ((a!3 (or (sign N)
+                           (not (= (exponent N) #b01111111111))
+                           a!2
+                           (bvule #b01111111100 (exponent R)))))
+            (let ((a!5 (and a!1
+                            (not (sign R))
+                            (not (= (exponent R) #b01111111100))
+                            a!3
+                            a!4
+                            (= F (= H 0))
+                            (>= D 0)
+                            (= ((_ extract 52 52) (mantissa N)) #b1)
+                            (= A 1)
+                            (= B 137))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_11
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S)
+                 a!5))))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M DoubleFloatingPoint)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q DoubleFloatingPoint)
+                (R Int))
+         (! (let ((a!1 (or (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa M)))
+                           (bvule #b01111111100 (exponent Q))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa M)) #b1)))
+                  (a!4 (or (not ((_ bit2bool 10) (exponent M)))
+                           (bvule #b01111111100 (exponent Q)))))
+            (let ((a!3 (or (sign M)
+                           (not (= (exponent M) #b01111111111))
+                           a!2
+                           (bvule #b01111111100 (exponent Q)))))
+            (let ((a!5 (and a!1
+                            (not (sign Q))
+                            (not (= (exponent Q) #b01111111100))
+                            a!3
+                            a!4
+                            (>= D 0)
+                            (= ((_ extract 52 52) (mantissa M)) #b1)
+                            (= A 1)
+                            (= B 137))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_10
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R)
+                 a!5))))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Bool)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K DoubleFloatingPoint)
+                (L Int))
+         (! (let ((a!1 (and (>= D 0)
+                            (= ((_ extract 52 52) (mantissa K)) #b1)
+                            (= A 1)
+                            (= B 137)
+                            F
+                            (= L 1))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_8
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L)
+                 a!1))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M DoubleFloatingPoint)
+                (N Int))
+         (! (let ((a!1 (and (>= D 0)
+                            (= ((_ extract 52 52) (mantissa M)) #b1)
+                            (= A 1)
+                            (= B 137)
+                            (= G 0)
+                            (= H 0)
+                            (= I 0)
+                            (= N 1))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_7
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N)
+                 a!1))
+            :weight 0))
+       a!27
+       (forall ((A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G Int))
+         (! (let ((a!1 (and (>= D 0) (= A 1) (= B 137) (= G 1))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_4
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G)
+                 a!1))
+            :weight 0))
+       a!28
+       a!29
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block21 A B C D E F G H I J)
+               (= F 0))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L DoubleFloatingPoint)
+                (M Int))
+         (! (let ((a!1 (not (= ((_ extract 50 50) (mantissa D)) #b1)))
+                  (a!3 (not (= ((_ extract 10 10) (exponent D)) #b1))))
+            (let ((a!2 (or (sign D) (not (= (exponent D) #b01111111111)) a!1)))
+            (let ((a!4 (and (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                        (mantissa D)))
+                            a!2
+                            a!3
+                            (= I (- 4))
+                            (= J 133)
+                            (= L
+                               (DoubleFloatingPoint
+                                 false
+                                 #b01111111011
+                                 #b10110100110000000001000100110111100110101100011100001
+                                 false
+                                 false
+                                 false
+                                 false)))))
+              (= (Main_double_bessely0testdouble_Block3_1
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M)
+                 a!4))))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block5 A B C D E F G H I J)
+               (= F 0))
+            :weight 0))
+       a!30
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block19 A B C D E F G H I J)
+               (= F 0))
+            :weight 0))
+       a!31
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block17 A B C D E F G H I J)
+               (= F 0))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (let ((a!1 (not (= ((_ extract 50 50) (mantissa D)) #b1)))
+                  (a!3 (not (= ((_ extract 10 10) (exponent D)) #b1))))
+            (let ((a!2 (or (sign D) (not (= (exponent D) #b01111111111)) a!1)))
+            (let ((a!4 (and (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                        (mantissa D)))
+                            a!2
+                            a!3
+                            (= F 0))))
+              (= (Main_double_bessely0testdouble_Block3 A B C D E F G H I J)
+                 a!4))))
+            :weight 0))
+       a!32
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block15 A B C D E F G H I J)
+               (= F 0))
+            :weight 0))
+       a!33
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S Int)
+                (T Int)
+                (U DoubleFloatingPoint)
+                (V Int))
+         (! (let ((a!1 (and (= ((_ extract 52 52) (mantissa D)) #b1)
+                            (= E 1)
+                            (= O 0)
+                            (= P 0)
+                            (= Q 0)
+                            (= R A)
+                            (= S B)
+                            (= T C)
+                            (= U D)
+                            (= V 1))))
+              (= (Main_double_bessely0testdouble_Block1_2
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S
+                   T
+                   U
+                   V)
+                 a!1))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R DoubleFloatingPoint)
+                (S Int))
+         (! (let ((a!1 (and (= ((_ extract 52 52) (mantissa D)) #b1)
+                            (= E 1)
+                            (= O A)
+                            (= P B)
+                            (= Q C)
+                            (= R D)
+                            (= S 1))))
+              (= (Main_double_bessely0testdouble_Block1_1
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S)
+                 a!1))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M Int)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q Int)
+                (R Int)
+                (S DoubleFloatingPoint)
+                (T Int))
+         (! (let ((a!1 (and (= ((_ extract 52 52) (mantissa D)) #b1)
+                            (= E 1)
+                            (= P A)
+                            (= Q B)
+                            (= R C)
+                            (= S D)
+                            (= T 1))))
+              (= (Main_double_bessely0testdouble_Block1
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R
+                   S
+                   T)
+                 a!1))
+            :weight 0))
+       (forall ((A Int) (B Int) (C Int) (D Int) (E Int))
+         (! (let ((a!1 (and (= A 1) (= B 0) (= C 0) (= D 0) (= E 1))))
+              (= (JayHornAssertions_void_clinit_post A B C D E) a!1))
+            :weight 0))
+       (forall ((A Int) (B Int) (C Int) (D Int) (E Int))
+         (! (let ((a!1 (and (= A 1) (= B 0) (= C 0) (= D 0) (= E 1))))
+              (= (JayHornAssertions_void_clinit_Block0 A B C D E) a!1))
+            :weight 0))
+       (forall ((A Int) (B Int) (C Int) (D Int) (E Int))
+         (! (let ((a!1 (and (= A 1) (= B 0) (= C 0) (= D 0) (= E 1))))
+              (= (JayHornAssertions_void_clinit_Block1_2 A B C D E) a!1))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block13 A B C D E F G H I J)
+               (= F 0))
+            :weight 0))
+       a!34
+       (forall ((A Int) (B Int) (C Int) (D Int) (E Int))
+         (! (let ((a!1 (and (= A 1) (= B 0) (= C 0) (= D 0) (= E 1))))
+              (= (Main_void_clinit_post A B C D E) a!1))
+            :weight 0))
+       (forall ((A Int) (B Int) (C Int) (D Int) (E Int))
+         (! (let ((a!1 (and (= A 1) (= B 0) (= C 0) (= D 0) (= E 1))))
+              (= (Main_void_clinit_Block0 A B C D E) a!1))
+            :weight 0))
+       (forall ((A Int) (B Int) (C Int) (D Int) (E Int))
+         (! (let ((a!1 (and (= A 1) (= B 0) (= C 0) (= D 0) (= E 1))))
+              (= (Main_void_clinit_Block1_3 A B C D E) a!1))
+            :weight 0))
+       a!35
+       a!36
+       a!37
+       a!38
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block11 A B C D E F G H I J)
+               (= F 0))
+            :weight 0))
+       a!39
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block9 A B C D E F G H I J)
+               (= F 0))
+            :weight 0))
+       a!40
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L DoubleFloatingPoint)
+                (M Int))
+         (! (let ((a!1 (or (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa D)))
+                           (bvule #b01111111100 (exponent L))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa D)) #b1)))
+                  (a!4 (or (not ((_ bit2bool 10) (exponent D)))
+                           (bvule #b01111111100 (exponent L)))))
+            (let ((a!3 (or (sign D)
+                           (not (= (exponent D) #b01111111111))
+                           a!2
+                           (bvule #b01111111100 (exponent L)))))
+            (let ((a!5 (and a!1
+                            (not (sign L))
+                            (not (= (exponent L) #b01111111100))
+                            a!3
+                            a!4)))
+              (= (Main_double_bessely0testdouble_post A B C D E F G H I J K L M)
+                 a!5))))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L Int)
+                (M DoubleFloatingPoint)
+                (N Int)
+                (O Int)
+                (P Int)
+                (Q DoubleFloatingPoint)
+                (R Int))
+         (! (let ((a!1 (or (not (bvule #b10100000000000000000000000000000000000000000000000000
+                                       (mantissa M)))
+                           (bvule #b01111111100 (exponent Q))))
+                  (a!2 (not (= ((_ extract 50 50) (mantissa M)) #b1)))
+                  (a!4 (or (not ((_ bit2bool 10) (exponent M)))
+                           (bvule #b01111111100 (exponent Q)))))
+            (let ((a!3 (or (sign M)
+                           (not (= (exponent M) #b01111111111))
+                           a!2
+                           (bvule #b01111111100 (exponent Q)))))
+            (let ((a!5 (and a!1
+                            (not (sign Q))
+                            (not (= (exponent Q) #b01111111100))
+                            a!3
+                            a!4
+                            (>= D 0)
+                            (= ((_ extract 52 52) (mantissa M)) #b1)
+                            (= A 1)
+                            (= B 137))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_12
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M
+                   N
+                   O
+                   P
+                   Q
+                   R)
+                 a!5))))
+            :weight 0))
+       a!41
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int))
+         (! (= (Main_double_bessely0testdouble_Block7 A B C D E F G H I J)
+               (= F 0))
+            :weight 0))
+       (forall ((A Int) (B Int) (C Int) (D DoubleFloatingPoint) (E Int))
+         (! (let ((a!1 (and (= ((_ extract 52 52) (mantissa D)) #b1) (= E 1))))
+              (= (Main_double_bessely0testdouble_pre A B C D E) a!1))
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J DoubleFloatingPoint)
+                (K Int))
+         (! (let ((a!1 (and (>= D 0)
+                            (= ((_ extract 52 52) (mantissa J)) #b1)
+                            (= A 1)
+                            (= B 137)
+                            (= K 1))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_9
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K)
+                 a!1))
+            :weight 0))
+       a!42
+       a!43
+       (forall ((A Int))
+         (! (= (JayHornAssertions_void_clinit_pre A) (= A 1)) :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D DoubleFloatingPoint)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int)
+                (L DoubleFloatingPoint)
+                (M Int))
+         (! (let ((a!1 (exists ((x!1 Int))
+                         (! (and (not (= x!1 0))
+                                 (= I (- 3))
+                                 (= J 133)
+                                 (= L
+                                    (DoubleFloatingPoint
+                                      false
+                                      #b01111111111
+                                      #b10000000000000000000000000000000000000000000000000000
+                                      false
+                                      false
+                                      false
+                                      false)))
+                            :weight 0))))
+              (= (Main_double_bessely0testdouble_Block20_1
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G
+                   H
+                   I
+                   J
+                   K
+                   L
+                   M)
+                 a!1))
+            :weight 0))
+       (forall ((A Int)) (! (= (Main_void_clinit_pre A) (= A 1)) :weight 0))
+       (forall ((A Int) (B Int) (C Int) (D Int) (E Int) (F Int) (G Int))
+         (! (let ((a!1 (and (>= D 0) (= A 1) (= B 137) (= G 1))))
+              (= (Main_void_mainJayArray_java_lang_String_Block1_3
+                   A
+                   B
+                   C
+                   D
+                   E
+                   F
+                   G)
+                 a!1))
+            :weight 0))
+       a!44
+       a!45
+       (forall ((A Int) (B Int) (C Int) (D Int) (E Int))
+         (! (= (Main_void_mainJayArray_java_lang_String_pre A B C D E) true)
+            :weight 0))
+       a!46
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int))
+         (! (= (Main_void_mainJayArray_java_lang_String_post A B C D E F G H I)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int))
+         (! (= (Main_void_mainJayArray_java_lang_String_Block0
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int))
+         (! (= (Main_void_mainJayArray_java_lang_String_Block2
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K)
+               true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int))
+         (! (= (inv_JayArray_java_lang_String_103 A B C D E F G H I J K) true)
+            :weight 0))
+       (forall ((A Int)
+                (B Int)
+                (C Int)
+                (D Int)
+                (E Int)
+                (F Int)
+                (G Int)
+                (H Int)
+                (I Int)
+                (J Int)
+                (K Int))
+         (! (= (Main_void_mainJayArray_java_lang_String_Block4_1
+                 A
+                 B
+                 C
+                 D
+                 E
+                 F
+                 G
+                 H
+                 I
+                 J
+                 K)
+               true)
+            :weight 0))))

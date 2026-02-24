@@ -1,0 +1,24 @@
+[root] - ---   JayHorn : Static Analyzer for Java Programs   --- 
+[root] - Horn solver: spacer
+[root] - Building CFG  ... 
+Soot failed to parse <Main: void main(JayArray_java_lang_String)>
+java.lang.RuntimeException: Type mismatch:
+$ex_, dummy_ret0 := call <Main: int f00(float,float)>()
+At position 0:
+Arg -3.05993664E8 of type FloatType cannot be assigned to type java.lang.Float
+	at soottocfg.cfg.statement.CallStatement.<init>(CallStatement.java:65)
+	at soottocfg.soot.visitors.SootStmtSwitch.translateMethodInvokation(SootStmtSwitch.java:457)
+	at soottocfg.soot.visitors.SootStmtSwitch.caseInvokeStmt(SootStmtSwitch.java:318)
+	at soot.jimple.internal.JInvokeStmt.apply(JInvokeStmt.java:100)
+	at soottocfg.soot.visitors.SootStmtSwitch.<init>(SootStmtSwitch.java:120)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:312)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:281)
+	at soottocfg.soot.SootToCfg.constructCfg(SootToCfg.java:336)
+	at soottocfg.soot.SootToCfg.run(SootToCfg.java:158)
+	at jayhorn.Main.safetyAnalysis(Main.java:63)
+	at jayhorn.Main.main(Main.java:129)
+2026-02-24 01:50:21,424 ERROR (main) [root] - java.lang.RuntimeException: Type mismatch:
+$ex_, dummy_ret0 := call <Main: int f00(float,float)>()
+At position 0:
+Arg -3.05993664E8 of type FloatType cannot be assigned to type java.lang.Float
+UNKNOWN

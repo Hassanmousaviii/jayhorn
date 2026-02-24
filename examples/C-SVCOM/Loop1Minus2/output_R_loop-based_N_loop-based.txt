@@ -1,0 +1,5 @@
+[root] - ---   JayHorn : Static Analyzer for Java Programs   --- 
+[root] - Horn solver: spacer
+[root] - Building CFG  ... 
+2026-02-24 02:00:10,878 ERROR (main) [root] - java.lang.IllegalArgumentException: Types don't match: java.lang.Float and int for f0<DivFloat>i2
+UNKNOWN

@@ -1,8 +1,8 @@
-PartitionEx
+Bassel
 
 compile:
-javac .\examples\Java-SVCOM\PartitionEx\src\Main.java .\examples\Java-SVCOM\PartitionEx\src\org\sosy_lab\sv_benchmarks\Verifier.java -d .\examples\Java-SVCOM\PartitionEx\classes\
+javac .\examples\Java-SVCOM\Bassel\src\Main.java .\examples\Java-SVCOM\Bassel\src\org\sosy_lab\sv_benchmarks\Verifier.java -d .\examples\Java-SVCOM\Bassel\classes\
 
 
 config: 
--j examples/Java-SVCOM/PartitionEx/classes -src examples/Java-SVCOM/PartitionEx/src -rounding-encoding loop-based -normalization-encoding loop-based -solver spacer -solution -full-cex -print-horn
+-j examples/Java-SVCOM/Bassel/classes -src examples/Java-SVCOM/Bassel/src -rounding-encoding loop-based -normalization-encoding loop-based -solver spacer -solution -full-cex -print-horn

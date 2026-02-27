@@ -398,9 +398,21 @@ public class PrincessProver implements Prover {
         //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
         return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.cast2SignedBV(bitLength,((TermExpr)expr).term) , getBVType(bitLength));
     }
-    public ProverExpr mkBV(int value, int bitLength)
+    public ProverExpr mkIntToUnsignedBV(ProverExpr expr, int bitLength)
     {
 
+        //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.cast2UnsignedBV(bitLength,((TermExpr)expr).term) , getBVType(bitLength));
+    }
+    public ProverExpr mkCastToInt(ProverExpr expr)
+    {
+
+        //ap.theories.bitvectors.ModuloArithmetic.cas
+        return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.cast2Int(((TermExpr)expr).term) , getIntType());
+    }
+    public ProverExpr mkBV(int value, int bitLength)
+    {
+        //ap.theories.bitvectors.ModuloArithmetic.bv
         //ap.theories.bitvectors.ModuloArithmetic.bv(value.bitLength(), IdealInt$.MODULE$.apply(value));
         return new TermExpr(ap.theories.bitvectors.ModuloArithmetic.bv(bitLength,IdealInt$.MODULE$.apply(value)) , getBVType(bitLength));
     }
@@ -502,6 +514,7 @@ public class PrincessProver implements Prover {
 	}
 
 	public ProverExpr mkNeg(ProverExpr arg) {
+
 		return new TermExpr(((TermExpr) arg).term.unary_$minus(), getIntType());
 	}
 
@@ -747,6 +760,7 @@ public class PrincessProver implements Prover {
                     .map(new scala.runtime.AbstractFunction1<Tuple2<IAtom, Clause>,
                                                              Tuple2<ProverFun, ProverExpr[]>>() {
                             public Tuple2<ProverFun, ProverExpr[]> apply(Tuple2<IAtom, Clause> p) {
+
                               /*  if (p._1().equals(SimpleWrapper.FALSEAtom()))
                                     // encode FALSE as null
                                     return null;*/

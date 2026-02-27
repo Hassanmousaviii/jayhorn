@@ -219,6 +219,8 @@ public class ExpressionEncoder {
 			/*DoubleLiteral doubleLiteral = (DoubleLiteral) e;
 			return doubleFloatingPointEnCoder.mkDoublePE(doubleLiteral.getValue());*/
 
+
+
 		}
 		else if (e instanceof IdentifierExpression) {
 			Variable var = ((IdentifierExpression) e).getVariable();
@@ -644,15 +646,62 @@ public class ExpressionEncoder {
 				return p.mkImplies(left, right);
 			case IndexInString:
 				return stringEncoder.mkIndexInString(e, varMap);
+				case BNot:
+					return p.mkCastToInt(p.mkNot(p.mkIntToUnsignedBV(left,32)));
 			case Shl:
+				return p.mkCastToInt(
+						p.mkBVshl(
+								p.mkIntToUnsignedBV(left,32),
+								p.mkIntToUnsignedBV(right,32),
+								32
+						)
+				);
 			case Shr:
+				return p.mkCastToInt(
+						p.mkBVlshr(
+								p.mkIntToUnsignedBV(left,32),
+								p.mkIntToUnsignedBV(right,32),
+								32
+						)
+				);
 			case Ushr:
+				return p.mkCastToInt(
+						p.mkBVlshr(
+								p.mkIntToUnsignedBV(left,32),
+								p.mkIntToUnsignedBV(right,32),
+								32
+						)
+				);
+			/*	if (hornContext.elimOverApprox())
+					throw new OverApproxException();
+				return p.mkHornVariable("HACK_FreeVar" + HornHelper.hh().newVarNum(), p.getIntType());*/
 			case BAnd:
+				return p.mkCastToInt(
+					p.mkBVAND(
+							p.mkIntToUnsignedBV(left,32),
+							p.mkIntToUnsignedBV(right,32),
+							32
+					)
+				);
 			case BOr:
+				return p.mkCastToInt(
+						p.mkBVOR(
+								p.mkIntToUnsignedBV(left,32),
+								p.mkIntToUnsignedBV(right,32),
+								32
+						)
+				);
 			case Xor:
-                                if (hornContext.elimOverApprox())
+				return p.mkCastToInt(
+						p.mkBVXOR(
+								p.mkIntToUnsignedBV(left,32),
+								p.mkIntToUnsignedBV(right,32),
+								32
+						)
+				);
+                               /* if (hornContext.elimOverApprox())
                                     throw new OverApproxException();
-				return p.mkHornVariable("HACK_FreeVar" + HornHelper.hh().newVarNum(), p.getIntType());
+				return p.mkHornVariable("HACK_FreeVar" + HornHelper.hh().newVarNum(), p.getIntType());*/
 			// Verify.verify(left.getType()==p.getIntType() &&
 			// right.getType()==p.getIntType());
 			// return binopFun.mkExpr(new ProverExpr[]{left, right});
@@ -682,22 +731,22 @@ public class ExpressionEncoder {
 							ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 							ProverExpr isNaN = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 3, tSubExpr.getSubExpr(3));
 							ProverExpr isInf = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 4, tSubExpr.getSubExpr(3));
-							ProverExpr OVF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
-							ProverExpr UDF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));
+							/*ProverExpr OVF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
+							ProverExpr UDF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));*/
 							//ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 							return p.mkTuple(new ProverExpr[]{tSubExpr.getSubExpr(0), tSubExpr.getSubExpr(1), tSubExpr.getSubExpr(2)
-									, doubleFloatingPointEnCoder.mkDoublePE(p.mkNot(sign), exponent, mantissa, isNaN, isInf,OVF,UDF)});
+									, doubleFloatingPointEnCoder.mkDoublePE(p.mkNot(sign), exponent, mantissa, isNaN, isInf/*,OVF,UDF*/)});
 						} else if (((PrincessADTType) tSubExpr.getSubExpr(3).getType()).sort.name().equals("FloatingPoint")) {
 							ProverExpr sign = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 0, tSubExpr.getSubExpr(3));
 							ProverExpr exponent = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tSubExpr.getSubExpr(3));
 							ProverExpr mantissa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 							ProverExpr isNaN = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 3, tSubExpr.getSubExpr(3));
 							ProverExpr isInf = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 4, tSubExpr.getSubExpr(3));
-							ProverExpr OVF = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
-							ProverExpr UDF = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));
+							/*ProverExpr OVF = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
+							ProverExpr UDF = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));*/
 							//ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 							return p.mkTuple(new ProverExpr[]{tSubExpr.getSubExpr(0), tSubExpr.getSubExpr(1), tSubExpr.getSubExpr(2)
-									, singleFloatingPointEnCoder.mkDoublePE(p.mkNot(sign), exponent, mantissa, isNaN, isInf,OVF,UDF)});
+									, singleFloatingPointEnCoder.mkDoublePE(p.mkNot(sign), exponent, mantissa, isNaN, isInf/*,OVF,UDF*/)});
 						}
 				}
 				return p.mkNeg(subExpr);
@@ -713,10 +762,10 @@ public class ExpressionEncoder {
 							ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 							ProverExpr isNaN = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 3, tSubExpr.getSubExpr(3));
 							ProverExpr isInf = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 4, tSubExpr.getSubExpr(3));
-							ProverExpr OVF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
-							ProverExpr UDF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));
+							/*ProverExpr OVF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
+							ProverExpr UDF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));*/
 							return p.mkTuple(new ProverExpr[]{tSubExpr.getSubExpr(0), tSubExpr.getSubExpr(1), tSubExpr.getSubExpr(2)
-									, doubleFloatingPointEnCoder.mkDoublePE(p.mkLiteral(0), exponent, mantissa, isNaN, isInf,OVF, UDF)});
+									, doubleFloatingPointEnCoder.mkDoublePE(p.mkLiteral(0), exponent, mantissa, isNaN, isInf/*,OVF, UDF*/)});
 						}
 					return p.mkIte(p.mkAnd(p.mkLeq(subExpr, p.mkLiteral(0)), p.mkNot(p.mkEq(subExpr, p.mkLiteral(0)))), p.mkNeg(subExpr), subExpr);
 				}
@@ -728,8 +777,8 @@ public class ExpressionEncoder {
 						ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 						ProverExpr isNaN = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 3, tSubExpr.getSubExpr(3));
 						ProverExpr isInf = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 4, tSubExpr.getSubExpr(3));
-						ProverExpr OVF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
-						ProverExpr UDF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));
+						/*ProverExpr OVF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
+						ProverExpr UDF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));*/
 						return p.mkAnd(p.mkEq(exponent,p.mkBV(2047,11)),p.mkNot(p.mkEq(p.mkBVExtract(51,0,mantissa),p.mkBV(0,52))));
 
 					}
@@ -740,8 +789,8 @@ public class ExpressionEncoder {
 						ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 						ProverExpr isNaN = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 3, tSubExpr.getSubExpr(3));
 						ProverExpr isInf = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 4, tSubExpr.getSubExpr(3));
-						ProverExpr OVF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
-						ProverExpr UDF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));
+						/*ProverExpr OVF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
+						ProverExpr UDF = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));*/
 						return p.mkAnd(p.mkEq(exponent,p.mkBV(2047,11)),p.mkEq(p.mkBVExtract(51,0,mantissa),p.mkBV(0,52)));
 					}
 				case IsNaNFloat:
@@ -766,8 +815,8 @@ public class ExpressionEncoder {
 						ProverExpr mantissa = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
 						ProverExpr isNaN = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 3, tSubExpr.getSubExpr(3));
 						ProverExpr isInf = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 4, tSubExpr.getSubExpr(3));
-						ProverExpr OVF = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
-						ProverExpr UDF = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));
+						/*ProverExpr OVF = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 5, tSubExpr.getSubExpr(3));
+						ProverExpr UDF = singleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 6, tSubExpr.getSubExpr(3));*/
 						return p.mkAnd(p.mkEq(exponent,p.mkBV(255,8)),p.mkEq(p.mkBVExtract(22,0,mantissa),p.mkBV(0,23)));
 					}
 
@@ -775,8 +824,24 @@ public class ExpressionEncoder {
 				case IsNormalDouble:
 					if (subExpr instanceof ProverTupleExpr) {
 						ProverTupleExpr tSubExpr = (ProverTupleExpr) subExpr;
+						ProverExpr exponent = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 1, tSubExpr.getSubExpr(3));
 						ProverExpr mantissa = doubleFloatingPointEnCoder.getFloatingPointADT().mkSelExpr(0, 2, tSubExpr.getSubExpr(3));
-						return  p.mkEq(p.mkBVExtract(52,52,mantissa),p.mkBV(1,1));
+						return    p.mkOr(
+								p.mkAnd(
+										p.mkBVUge(exponent,p.mkBV(1,11)),
+										p.mkBVUle(exponent, p.mkBV(2046,11)),
+										p.mkEq(p.mkBVExtract(52,52,mantissa),p.mkBV(1,1))
+								),
+								p.mkAnd(
+										p.mkEq(exponent,p.mkBV(1,11)),
+										p.mkEq(p.mkBVExtract(52,52,mantissa),p.mkBV(0,1)),
+										p.mkNot(p.mkEq(mantissa,p.mkBV(0,53)))
+
+								)
+						);
+
+
+								//p.mkEq(p.mkBVExtract(52,52,mantissa),p.mkBV(1,1));
 
 					}
 				case IsNormalFloat:

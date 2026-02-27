@@ -440,6 +440,16 @@ public class SpacerProver implements Prover {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
+	@Override
+	public ProverExpr mkIntToUnsignedBV(ProverExpr expr, int bitLength)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	@Override
+	public ProverExpr mkCastToInt(ProverExpr expr)
+	{
+		throw new RuntimeException("not implemented");
+	}
 
 	@Override
 	public ProverExpr mkLiteral(int value)   {

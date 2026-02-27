@@ -1,14 +1,10 @@
 package jayhorn.checker;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
-import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Stopwatch;
 import com.google.common.base.Verify;
@@ -18,11 +14,7 @@ import jayhorn.Options;
 import jayhorn.hornify.HornEncoderContext;
 import jayhorn.hornify.HornPredicate;
 import jayhorn.hornify.Hornify;
-import jayhorn.solver.Prover;
-import jayhorn.solver.ProverExpr;
-import jayhorn.solver.ProverFactory;
-import jayhorn.solver.ProverHornClause;
-import jayhorn.solver.ProverResult;
+import jayhorn.solver.*;
 import jayhorn.solver.princess.PrincessProver;
 import jayhorn.solver.princess.CexPrinter;
 import jayhorn.utils.GhostRegister;
@@ -86,7 +78,7 @@ public class EldaricaChecker extends Checker {
                 generateAndCheckHornClauses(program, -1,
                   HornEncoderContext.GeneratedAssertions.ALL);
 
-            //            Log.info("Prover code " + result);
+            //           Log.info("Prover code " + result);
             
             if (result == ProverResult.Sat) {
                 Log.info("Program is SAFE");
@@ -233,7 +225,7 @@ public class EldaricaChecker extends Checker {
             }
             if (Options.v().solution) {
                 if (result == ProverResult.Sat) {
-                    // solutionOutput = printHeapInvariants(hornContext);
+                     solutionOutput = printHeapInvariants(hornContext, allClauses);
                 } else if (result == ProverResult.Unsat) {
                     Log.info("Possible violation at " +
                              ((PrincessProver)prover).getLastCEX().apply(1).productElement(0));
@@ -273,14 +265,109 @@ public class EldaricaChecker extends Checker {
     }
 
 
-    private String printHeapInvariants(HornEncoderContext hornContext) {
+    private String printHeapInvariants(HornEncoderContext hornContext, List<ProverHornClause> allClauses) {
         StringBuilder sb = new StringBuilder();
+        String convertedTrace = "";
         if (prover.getLastSolution() != null) {
             sb.append("No assertion can fail using the following heap invariants:\n");
 
             Map<ClassVariable, TreeMap<Long, String>> heapInvariants = new LinkedHashMap<ClassVariable, TreeMap<Long, String>>();
+            ClauseGraph graph = new ClauseGraph();
+            graph = ClauseGraphBuilder.buildClauseGraph(allClauses);
+           // graph.prettyPrintTopological();
+            graph.prettyPrint();
 
             for (Entry<String, String> entry : prover.getLastSolution().entrySet()) {
+                Log.info(entry.getKey() + ":::" + entry.getValue());
+
+                String key = entry.getKey();
+                int idx = key.indexOf('/');
+                String beforeSlash = (idx != -1) ? key.substring(0, idx) : key;
+
+
+
+
+
+                Optional<ProverHornClause> hClause = allClauses.stream()
+                        .filter(c -> {
+                            try {
+                                ProverFun f = c.getHeadFun();
+                                return f != null
+                                        && f.toString().equals(beforeSlash);
+                            } catch (IndexOutOfBoundsException | NullPointerException e) {
+                                return false;
+                            }
+                        })
+                        .findFirst();
+                Log.info("In Head--> " + hClause.toString());
+                Pattern pattern = Pattern.compile("_(\\d+)");
+                Matcher matcher = pattern.matcher(entry.getValue());
+
+                List<Integer> indices = new ArrayList<>();
+                StringBuffer sb1 = new StringBuffer();
+
+                while (matcher.find()) {
+                    int idx1 = Integer.parseInt(matcher.group(1)); // the number after "_"
+                    indices.add(idx1);
+                    Object[] arr = Arrays.stream(hClause.get().getHeadArgs()).toArray();
+                    // Use A[idx] in replacement, e.g. _x, _z, ...
+                    String replacement = "_" + arr[idx1].toString();
+
+                    // Important: quoteReplacement to avoid problems with $ and \
+                    matcher.appendReplacement(sb1, Matcher.quoteReplacement(replacement));
+                }
+                matcher.appendTail(sb1);
+                String newLine = sb1.toString();
+                convertedTrace +=  "\n ---------------------------------- \n";
+                convertedTrace +=   entry.getKey() + ":\n" + newLine;
+              //  Log.info(" Original: " + entry.getValue());
+             //   Log.info("Indices found: " + indices + " in " + hClause.get().getHeadFun());
+              //  Log.info("new: " + newLine);
+
+
+
+
+
+                //String key = entry.getKey();
+               // int idx = key.indexOf('/');
+               // String beforeSlash = (idx != -1) ? key.substring(0, idx) : key;
+
+                Optional<ProverHornClause> clause1 = allClauses.stream()
+                        .filter(c -> {
+                            try {
+                                ProverFun f = c.getBodyFun(0);
+                                return f != null
+                                        && f.toString().equals(beforeSlash);
+                            } catch (IndexOutOfBoundsException | NullPointerException e) {
+                                return false;
+                            }
+                        })
+                        .findFirst();
+                Log.info("In Body--> " + clause1.toString());
+                String [] constraints = entry.getValue().split("&");
+                for (String c: constraints) {
+                    String [] constraints1 = c.split(";");
+                    for (String c1: constraints1) {
+                        Matcher m = Pattern.compile("_(\\d+)").matcher(c1);
+                        Log.info(c1);
+                        if (m.find()) {
+                            int value = Integer.parseInt(m.group(1)); // extract the number
+                            Object[] arr = Arrays.stream(hClause.get().getHeadArgs()).toArray();
+
+                            Log.info("Found number: " + value + " var: " + arr[value].toString() + " condition: " + c1.replace("_"+value,arr[value].toString()));
+
+                        }
+
+                    }
+
+                }
+
+
+              /*  Log.info(allClauses.stream()
+                        .filter(c -> c.getBodyFun(0) != null
+                                && c.getBodyFun(0).toString()
+                                .equals("<Main: void main(JayArray_java_lang_String)>_Block1_5/12"))
+                        .findFirst());*/
                 boolean found = false;
                 for (Entry<ClassVariable, Map<Long, HornPredicate>> pentry : hornContext.getInvariantPredicates().entrySet()) {
 
@@ -323,8 +410,13 @@ public class EldaricaChecker extends Checker {
                 sb.append("--\n");
             }
             sb.append("----\n");
-//            System.err.println(sb.toString());
+           // System.err.println(sb.toString());
         }
+        Log.info(" Converted: " + convertedTrace);
         return sb.toString();
     }
+
+
 }
+
+

@@ -70,6 +70,10 @@ public interface Prover {
 
 	ProverExpr mkIte(ProverExpr cond, ProverExpr thenExpr, ProverExpr elseExpr);
 
+	ProverExpr mkIntToUnsignedBV(ProverExpr expr, int bitLength);
+
+	public ProverExpr mkCastToInt(ProverExpr expr);
+
 	// Arithmetic
 	ProverExpr mkLiteral(int value);
 

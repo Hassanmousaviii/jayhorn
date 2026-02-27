@@ -88,6 +88,8 @@ import soottocfg.soot.memory_model.MemoryModel;
 import soottocfg.soot.util.MethodInfo;
 import soottocfg.soot.util.SootTranslationHelpers;
 
+import javax.swing.*;
+
 /**
  * @author schaef
  */
@@ -236,6 +238,10 @@ public class SootValueSwitch implements JimpleValueSwitch {
 			this.expressionStack
 					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.Ne, lhs, rhs));
 			return;
+		}else if (op.compareTo("~") == 0) { // bit-not
+			this.expressionStack
+					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.BNot, lhs, rhs));
+			return;
 		} else if (op.compareTo("&") == 0) { // bit-and
 			this.expressionStack
 					.add(new BinaryExpression(statementSwitch.getCurrentLoc(), BinaryOperator.BAnd, lhs, rhs));
@@ -346,9 +352,31 @@ public class SootValueSwitch implements JimpleValueSwitch {
 	@Override
 	public void caseCastExpr(CastExpr arg0) {
 		if (isPrimitiveNarrowing(arg0)) {
-			boxDownCastExpression((PrimType) arg0.getCastType(), arg0.getOp());
+			if((arg0.getOp().getType() == FloatType.v() || arg0.getOp().getType() == DoubleType.v()) && arg0.getType() == IntType.v()) {
+				arg0.getOp().apply(this);
+				this.expressionStack.add(0, new UnaryExpression(this.getStatementSwitch().getCurrentLoc(), UnaryOperator.CastToInt, popExpression()));
+			} else if (arg0.getOp().getType() == DoubleType.v() && arg0.getType() == LongType.v()) {
+				arg0.getOp().apply(this);
+				this.expressionStack.add(0, new UnaryExpression(this.getStatementSwitch().getCurrentLoc(), UnaryOperator.CastToInt, popExpression()));
+			} else if(arg0.getOp().getType() == DoubleType.v() && arg0.getType() == FloatType.v()) {
+				arg0.getOp().apply(this);
+				this.expressionStack.add(0, new UnaryExpression(this.getStatementSwitch().getCurrentLoc(), UnaryOperator.CastToFloat, popExpression()));
+			}
+			else
+				boxDownCastExpression((PrimType) arg0.getCastType(), arg0.getOp());
 		} else {
 			arg0.getOp().apply(this);
+			if(arg0.getOp().getType() == IntType.v() && arg0.getType() == FloatType.v())
+				this.expressionStack.add(0,new UnaryExpression(this.getStatementSwitch().getCurrentLoc(),UnaryOperator.CastToFloat,popExpression()));
+			else if((arg0.getOp().getType() == IntType.v() || arg0.getOp().getType() == FloatType.v()) && arg0.getType() == DoubleType.v())
+				this.expressionStack.add(0,new UnaryExpression(this.getStatementSwitch().getCurrentLoc(),UnaryOperator.CastToDouble,popExpression()));
+			else if(arg0.getOp().getType() == ByteType.v() && arg0.getType() == FloatType.v())
+				this.expressionStack.add(0,new UnaryExpression(this.getStatementSwitch().getCurrentLoc(),UnaryOperator.CastToFloat,popExpression()));
+
+			else if(arg0.getOp().getType() == LongType.v() && arg0.getType() == DoubleType.v()) {
+				//arg0.getOp().apply(this);
+				this.expressionStack.add(0, new UnaryExpression(this.getStatementSwitch().getCurrentLoc(), UnaryOperator.CastLongToDouble, popExpression()));
+			}
 		}
 	}
 

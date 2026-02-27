@@ -32,7 +32,7 @@ public class BinaryExpression extends Expression {
 
 	public enum BinaryOperator {
 		Plus("+"), Minus("-"), Mul("*"), Div("/"), Mod("%"), And("&&"), Or("||"), Xor("^"), Implies("->"), Eq("=="),
-		Ne("!="), Gt(">"), Ge(">="), Lt("<"), Le("<="), Shl("<<"), Shr(">>"), Ushr("u>>"), BOr("|"), BAnd("&"),
+		Ne("!="), Gt(">"), Ge(">="), Lt("<"), Le("<="), BNot("~"),Shl("<<"), Shr(">>"), Ushr("u>>"), BOr("|"), BAnd("&"),
 		PoLeq("<:"), StringEq("==="), StringConcat("+++"), StringCompareTo("<?>"), StartsWith("startsWith"), EndsWith("endsWith"), CharAt("charAt"),
 		ToString("<str>"), BoolToString("<str_b>"), CharToString("<str_c>"), IndexInString("<idx_str>"), StringIndexOf("<idx_of>"), StringIndexOfChar("<idx_of_char>"),
 		StringLastIndexOf("<last_idx_of>"), StringLastIndexOfChar("<last_idx_of_char>"), ToDouble("<double>"), ToFloat("<float>"), AssumeDouble("<AssumeDouble>"),AssumeFloat("<AssumeFloat>"), MulDouble("<MulDouble>"), MulFloat("<MulFloat>"), AddDouble("<AddDouble>"), AddFloat("<AddFloat>"), DivDouble("<DivDouble>"), DivFloat("<DivFloat>"), LeDouble("<LeDouble>"), LeFloat("LeFloat"), MinusDouble("MinusDouble"), MinusFloat("MinusFloat");	// TODO: not an actual BinaryExpression
@@ -112,6 +112,7 @@ public class BinaryExpression extends Expression {
 						|| (op == BinaryOperator.Le && (left instanceof UnaryExpression || right instanceof UnaryExpression))
 						|| (op == BinaryOperator.ToDouble)
 						|| (op == BinaryOperator.ToFloat)
+
 						|| op == BinaryOperator.CharAt || op == BinaryOperator.IndexInString
 						|| op == BinaryOperator.ToString || op == BinaryOperator.BoolToString || op == BinaryOperator.CharToString
 							|| op == BinaryOperator.StringIndexOfChar || op == BinaryOperator.StringLastIndexOfChar

@@ -18,9 +18,14 @@ import jayhorn.solver.Prover;
 import jayhorn.solver.ProverExpr;
 import jayhorn.solver.ProverHornClause;
 import soottocfg.cfg.LiveVars;
+import soottocfg.cfg.expression.BinaryExpression;
+import soottocfg.cfg.expression.Expression;
+import soottocfg.cfg.expression.IteExpression;
 import soottocfg.cfg.method.CfgBlock;
 import soottocfg.cfg.method.CfgEdge;
 import soottocfg.cfg.method.Method;
+import soottocfg.cfg.statement.AssignStatement;
+import soottocfg.cfg.statement.AssumeStatement;
 import soottocfg.cfg.statement.HavocStatement;
 import soottocfg.cfg.statement.Statement;
 import soottocfg.cfg.variable.Variable;
@@ -275,7 +280,34 @@ public class MethodEncoder {
         List<Statement> stmts = block.getStatements();
         for (int i = 0; i < stmts.size(); ++i) {
             final Statement s = stmts.get(i);
-            final String postName = initName + "_" + (++counter);
+
+             String postName = initName + "_" + (++counter);
+            if(s instanceof AssignStatement)
+            {
+                Expression e = ((Expression)((AssignStatement)s).getRight());
+                if(e instanceof IteExpression)
+                {
+                    IteExpression ite = (IteExpression) e;
+                    BinaryExpression condExpr = (BinaryExpression)ite.getCondition();
+                    if(condExpr.getOp() == BinaryExpression.BinaryOperator.LeDouble)
+                        postName = postName + "-" + "FCmpResult";
+                }
+                else if(e instanceof BinaryExpression)
+                {
+                    BinaryExpression be = (BinaryExpression) e;
+                    if(be.getOp() == BinaryExpression.BinaryOperator.AddDouble)
+                        postName = postName + "-"+"FAddResult";
+
+                }
+            } else if (s instanceof AssumeStatement) {
+                Expression e = ((Expression)((AssumeStatement)s).getExpression());
+                if(e instanceof BinaryExpression)
+                {
+                    BinaryExpression be = (BinaryExpression) e;
+                    if (be.getOp() == BinaryExpression.BinaryOperator.AssumeDouble)
+                        postName = postName + "-"+"FAssumeResult";
+                }
+            }
             final List<Variable> interVarList = HornHelper.hh().setToSortedList(liveAfter.get(s));
             HornPredicate postPred = null;
             if(s instanceof HavocStatement) //ToDo: check it again

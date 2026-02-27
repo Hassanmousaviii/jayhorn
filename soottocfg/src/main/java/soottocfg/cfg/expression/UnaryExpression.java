@@ -8,10 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import soottocfg.cfg.SourceLocation;
-import soottocfg.cfg.type.BoolType;
-import soottocfg.cfg.type.DoubleType;
-import soottocfg.cfg.type.IntType;
-import soottocfg.cfg.type.Type;
+import soottocfg.cfg.type.*;
 import soottocfg.cfg.variable.Variable;
 
 /**
@@ -25,7 +22,7 @@ public class UnaryExpression extends Expression {
 	private final UnaryOperator op;
 
 	public enum UnaryOperator {
-		Neg("-"), LNot("!"), Len("<len>"), ABS("<ABS>"), NegDouble("NegDouble"), NegFloat("NegFloat"),IsNormalDouble("<IsNormalDouble>"),IsNormalFloat("<IsNormalFloat>"),IsNaNFloat("<IsNaNFloat>"),IsNaNDouble("<IsNaNDouble>"),IsInfFloat("<IsInfFloat>"),IsInfDouble("<IsInfFloat>");
+		Neg("-"), LNot("!"), Len("<len>"), ABS("<ABS>"), NegDouble("NegDouble"), NegFloat("NegFloat"),IsNormalDouble("<IsNormalDouble>"),IsNormalFloat("<IsNormalFloat>"),IsNaNFloat("<IsNaNFloat>"),IsNaNDouble("<IsNaNDouble>"),IsInfFloat("<IsInfFloat>"),IsInfDouble("<IsInfFloat>"),CastToFloat("(float)"),CastToDouble("(double)"),CastLongToDouble("(double)"),CastToInt("(int)"),CastToLong("(long)"),FloatToIntBit("<toIntBit>"),DoubleToLongBit("<toLongBits>"),intBitsToFloat("<intBitsToFloat>"),longBitsToDouble("<longBitsToDouble>");
 		private final String name;
 
 		private UnaryOperator(String s) {
@@ -110,6 +107,24 @@ public class UnaryExpression extends Expression {
 			}
 			case IsInfFloat:{
 				return BoolType.instance();
+			}
+			case CastToFloat:{
+				return FloatType.instance();
+			}
+			case longBitsToDouble:
+			case CastLongToDouble:
+			case CastToDouble:{
+				return DoubleType.instance();
+			}
+			case CastToInt:{
+				return IntType.instance();
+			}
+			case DoubleToLongBit:
+			case FloatToIntBit:{
+				return IntType.instance();
+			}
+			case intBitsToFloat:{
+				return FloatType.instance();
 			}
 		}
 		throw new RuntimeException("Unknown case " + op);

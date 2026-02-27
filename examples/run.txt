@@ -1,8 +1,8 @@
-floatDiv
+floatGE
 
 compile:
-javac .\examples\floatDiv\src\Main.java .\examples\floatDiv\src\org\sosy_lab\sv_benchmarks\Verifier.java -d .\examples\floatDiv\classes\
+javac .\examples\floatGE\src\Main.java .\examples\floatGE\src\org\sosy_lab\sv_benchmarks\Verifier.java -d .\examples\floatGE\classes\
 
 
 config: 
--j examples/floatDiv/classes -src examples/floatDiv/src -rounding-encoding loop-based -normalization-encoding loop-based -solver spacer -solution -full-cex -out C:\am21\Float_Z3_jayhorn\jayhorn\examples\floatDiv\horn -print-horn
+-j examples/floatGE/classes -src examples/floatGE/src -rounding-encoding loop-based -normalization-encoding loop-based -solver spacer -solution -full-cex -out C:\am21\Float_Z3_jayhorn\jayhorn\examples\floatGE\horn -print-horn

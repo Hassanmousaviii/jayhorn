@@ -233,7 +233,8 @@ public class ExpressionEncoder {
 			return p.mkLiteral(BigInteger.valueOf(((IntegerLiteral) e).getValue()));
 		} else if (e instanceof NullLiteral) {
 			return p.mkLiteral(HornHelper.NullValue);
-		} else if (e instanceof BinaryExpression) {
+		}
+		else if (e instanceof BinaryExpression) {
 			final BinaryExpression be = (BinaryExpression) e;
 			ProverExpr left = exprToProverExpr(be.getLeft(), varMap);
 

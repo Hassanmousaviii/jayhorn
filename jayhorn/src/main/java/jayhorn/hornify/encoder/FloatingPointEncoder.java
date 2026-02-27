@@ -2559,7 +2559,7 @@ public class FloatingPointEncoder {
 
             ProverExpr eMantissa = extendedFloatingPointADT.mkSelExpr(0, 2, varMap.get(efp));
             ProverExpr Cond = p.mkEq(
-                    p.mkBVExtract(3*this.f - 2, 3*this.f - 2, //TODO: recheck dose need any change??
+                    p.mkBVExtract(2*this.f - 2, 2*this.f - 2, //TODO: recheck
                             eMantissa),
                     p.mkBV(0, 1)
             );
@@ -2581,7 +2581,7 @@ public class FloatingPointEncoder {
 
             //Not require normalization
             Cond = p.mkEq(
-                    p.mkBVExtract(3*this.f - 2, 3*this.f - 2, //TODO: recheck dose need any change??
+                    p.mkBVExtract(2*this.f - 2, 2*this.f - 2, //TODO: recheck
                             eMantissa),
                     p.mkBV(1, 1)
             );
@@ -2603,7 +2603,7 @@ public class FloatingPointEncoder {
                                             eMantissa,
 
                                             p.mkBVSub(
-                                                    p.mkBV(3*f-2,3*f) , //TODO: recheck dose need any change??
+                                                    p.mkBV(2*f-2,3*f) , //TODO: recheck
                                                     varMap.get(lzcount),
                                                     3*f//TODO: recheck
                                             )
@@ -2640,7 +2640,7 @@ public class FloatingPointEncoder {
             // post5 (efp(..., em(efp) << 1,...), lzc+1) --> post5 (efp, lzc) & m(efp)[104] = 0 //has leading zero
 
 
-            ProverExpr Cond = p.mkEq(p.mkBVExtract(3*this.f - 2, 3*this.f - 2, extendedFloatingPointADT.mkSelExpr(0, 2, varMap.get(efp))), p.mkBV(0, 1)); //TODO: recheck dose need any change??
+            ProverExpr Cond = p.mkEq(p.mkBVExtract(2*this.f - 2, 2*this.f - 2, extendedFloatingPointADT.mkSelExpr(0, 2, varMap.get(efp))), p.mkBV(0, 1)); //TODO: recheck
             ProverExpr extendedFPInSub = mkExtendedDoublePE(
                     extendedFloatingPointADT.mkSelExpr(0, 0, varMap.get(efp)), //sign
                     extendedFloatingPointADT.mkSelExpr(0, 1, varMap.get(efp)), //exponent
